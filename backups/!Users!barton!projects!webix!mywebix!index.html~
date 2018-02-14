@@ -1,0 +1,11 @@
+<head>
+  <title>mywebix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=0.5">
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  <div id="webix-playground" style="width:400px; height:300px; margin:10px;"></div>
+</body>
+

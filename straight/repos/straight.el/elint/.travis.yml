@@ -1,0 +1,13 @@
+dist: trusty
+sudo: false
+language: bash
+addons:
+  apt:
+    sources:
+      - debian-sid
+    packages:
+      - shellcheck
+before_script:
+  - shellcheck --version
+script:
+  - make travis

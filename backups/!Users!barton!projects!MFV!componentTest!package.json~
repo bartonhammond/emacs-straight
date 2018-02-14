@@ -1,0 +1,33 @@
+{
+  "name": "componentTest",
+  "version": "0.0.1",
+  "private": true,
+  "jest": {
+    "scriptPreprocessor": "./node_modules/react-native/jestSupport/preprocessor.js",
+    "setupEnvScriptFile": "./node_modules/react-native/jestSupport/env.js",
+    "setupTestFrameworkScriptFile": "jestSupport/customMatchers.js",
+    "testFileExtensions": [
+      "js"
+    ],
+    "collectCoverage": false,
+    "unmockedModulePathPatterns": [
+      "promise",
+      "source-map"
+    ]
+  },
+  "scripts": {
+    "start": "react-native start",
+    "test": "NODE_ENV=test jest --verbose"
+  },
+  "dependencies": {
+    "react-native": "^0.15.0"
+  },
+  "devDependencies": {
+    "indent": "0.0.1",
+    "inspect-react-element": "^1.1.1",
+    "jest-cli": "^0.8.0",
+    "object-matches": "^1.0.0",
+    "react": "^0.14.3",
+    "react-shallow-renderer-helpers": "^2.0.2"
+  }
+}

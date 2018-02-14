@@ -1,0 +1,26 @@
+
+//Start from Admin dashboard
+$element = $this->driver->findElement(WebDriverBy::linkText("Administration"));
+$this->assertNotNull($element);
+$element->click();
+
+//
+$this->moveToElementOnMobile(WebDriverBy::linkText("Courses and Programs"));
+$this->webDriver->findElement(WebDriverBy::linkText("Courses and Programs"));
+$this->assertNotNull($element);
+$element->click();
+
+//Search for course
+$this->webDriver->findElement(WebDriverBy::name("courseSearch_keyword"))->sendKeys("BWH Music Course");
+$this->webDriver->findElement(WebDriverBy::xpath("//span[@class='input-group-btn']/button"))->click();
+
+//Make sure the result is the one we want
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(
+    WebDriverBy::xpath("//div[@id='primary']/div/section/table/tbody/tr/td[4]/a[1]"),
+    'BWH Music Course'));
+
+//Click it to edit
+$this->webDriver->findElement(WebDriverBy::xpath("//div[@id='primary']/div/section/table/tbody/tr/td[4]/a[1]"))->click();
+
+$url = $this->driver->getCurrentURL();
+$this->assertContains('admin/course/edit/', $url);    

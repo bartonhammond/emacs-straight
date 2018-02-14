@@ -1,0 +1,10 @@
+var blogsData = [
+  {
+  },
+  {
+  }
+];
+
+Template.blogs.helpers({
+  blogs: blogsData
+})

@@ -1,0 +1,6 @@
+module.exports = {
+  github: {
+    clientId: '06bb3ce00732d2c19dc0',
+    clientSecret: '13319c1a86fefe2b875a88eac88d13dc2d81cfd5'
+  }
+};

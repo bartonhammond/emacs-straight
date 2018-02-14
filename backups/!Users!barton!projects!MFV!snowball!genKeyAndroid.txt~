@@ -1,0 +1,41 @@
+see
+https://facebook.github.io/react-native/docs/signed-apk-android.html
+
+
+see:
+https://docs.gradle.org/current/userguide/build_environment.html
+
+
+///////
+keytool -genkey -noprompt  -alias my-key-alias  -dname "CN=fireball.acclivyx.com, OU=acclivyx.com, O=Unknown, L=Austin, ST=TX, C=US"  -keystore $SNOWFLAKE_RELEASE_STORE_FIL  -storepass SNOWFLAKE_RELEASE_STORE_PASSWOR  -keypass SNOWFLAKE_RELEASE_KEY_PASSWORD
+
+cp ./my-release-key.keystore android/app
+
+
+cd android && ./gradlew assembleRelease
+
+gradlew -DSNOWFLAKE_RELEASE_STORE_FILE=my-release-key.keystore
+-DSNOWFLAKE_RELEASE_KEY_ALIAS=my-key-alias
+-DSNOWFLAKE_RELEASE_STORE_PASSWORD=zzzzz -DSNOWFLAKE_RELEASE_KEY_PASSWORD=xxxxx assembleRelease
+
+
+
+keytool -genkey -noprompt  -alias SNOWFLAKE_RELEASE_KEY_ALIAS  -dname
+"CN=fireball.acclivyx.com, OU=acclivyx.com, O=Unknown, L=Austin,
+ST=TX, C=US"  -keystore $SNOWFLAKE_RELEASE_STORE_FILE  -storepass
+SNOWFLAKE_RELEASE_STORE_PASSWORD -keypass
+SNOWFLAKE_RELEASE_KEY_PASSWORD
+
+keytool -genkey -noprompt \
+-alias SNOWFLAKE_RELEASE_KEY_ALIAS \
+-dname "CN=fireball.acclivyx.com, OU=acclivyx.com, O=Unknown, L=Austin, ST=TX, C=US" \
+-keystore $SNOWFLAKE_RELEASE_STORE_FILE \
+-storepass SNOWFLAKE_RELEASE_STORE_PASSWORD \
+-keypass SNOWFLAKE_RELEASE_KEY_PASSWORD
+
+./gradlew \
+-DSNOWFLAKE_RELEASE_STORE_FILE=$SNOWFLAKE_RELEASE_STORE_FILE \
+-DSNOWFLAKE_RELEASE_KEY_ALIAS=$SNOWFLAKE_RELEASE_KEY_ALIAS \
+-DSNOWFLAKE_RELEASE_STORE_PASSWORD=$SNOWFLAKE_RELEASE_STORE_PASSWORD \
+-DSNOWFLAKE_RELEASE_KEY_PASSWORD=SNOWFLAKE_RELEASE_KEY_PASSWORD \
+assembleRelease

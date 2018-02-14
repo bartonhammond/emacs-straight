@@ -1,0 +1,8 @@
+//class
+export default class ClassTest {
+  translate(foo) {
+    return foo + ' ClassTest was here';
+  }
+}
+
+

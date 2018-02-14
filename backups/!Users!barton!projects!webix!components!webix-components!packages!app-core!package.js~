@@ -1,0 +1,51 @@
+/**
+ *  Application core file - all modules are referenced here
+ *
+ */
+Package.describe({
+  name: 'app:core',
+  summary: 'Core application package.',
+  version: '1.0.0',
+  git: 'https://github.com/username/app-core'
+});
+
+Package.onUse(function(api) {
+
+  api.versionsFrom("METEOR@1.0");
+
+  // Here you add all your modules, and also define the load order by the way
+  // you order them in this array. MAKE SURE app:lib always goes first!
+  var packages = [
+    'app:lib'//, // no dependencies
+    // 'app:module1', // lib
+    // 'app:module2', // ...
+  ];
+
+  api.use(packages); // all code => this package
+
+  api.imply(packages); // this package => application
+
+  // client
+  api.addFiles([
+    'lib/client/index.html',
+    'lib/client/atNavButton.html',
+    'lib/client/atNavButton.js',
+    'lib/client/webix-input.js'
+  ], 'client');
+
+  // client & server
+  api.addFiles([
+    'lib/both/Values.js'
+  ], ['client', 'server']);
+
+  // server
+  api.addFiles([
+    
+  ], 'server');
+
+
+  // Last but not least.. (optional)
+  api.export();
+
+});
+

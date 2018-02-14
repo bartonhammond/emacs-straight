@@ -1,0 +1,5 @@
+class Test {
+  echo(value) {
+    return value + 'barton';
+  }
+}

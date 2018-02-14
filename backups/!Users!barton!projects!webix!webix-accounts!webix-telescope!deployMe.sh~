@@ -1,0 +1,13 @@
+mv server/lib/config/accounts.js server/lib/config/accounts.fake
+mv server/lib/config/accounts.real server/lib/config/accounts.js
+
+mv server/lib/config/email.js server/lib/config/email.fake
+mv server/lib/config/email.real server/lib/config/email.js
+
+meteor deploy --debug webix-account-boilerplate.meteor.com
+
+mv server/lib/config/accounts.js server/lib/config/accounts.real
+mv server/lib/config/accounts.fake server/lib/config/accounts.js
+
+mv server/lib/config/email.js server/lib/config/email.real
+mv server/lib/config/email.fake server/lib/config/email.js

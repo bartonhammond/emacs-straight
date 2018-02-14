@@ -1,0 +1,37 @@
+Router.configure({
+  // this will be the default controller
+  controller: 'ApplicationController'
+});
+Router.route('/', {
+  name: 'home'
+});
+
+Router.route('/postslist');
+Router.route('/signin');
+Router.route('/signup');
+Router.route('/pwdreset');
+
+if (Meteor.isClient) {
+  ApplicationController = RouteController.extend({
+    layoutTemplate: 'masterLayout',
+    loadingTemplate: 'loading',
+    notFoundTemplate: 'pageNotFound',
+    yieldTemplates: {
+      nav: {to: 'nav'},
+      footer: {to: 'footer'}
+    }
+  });
+  var requireLogin = function() {
+    if (! Meteor.user()) {
+      if (Meteor.loggingIn()) {
+        this.render(this.loadingTemplate);
+      } else {
+        Router.go('/signin');
+      }
+    } else {
+      this.next();
+    }
+  }
+  Router.onBeforeAction(requireLogin, {only: 'postslist'});
+}
+

@@ -1,0 +1,28 @@
+<?php
+if (isset($_POST['projectName'])) {
+    $customerName = $_POST['customerName'];
+    $newProjectName = $_POST['projectName'];
+    $newTestName = $_POST['testName'];
+
+    $cur = getcwd();
+    
+    try {
+    $test = $cur . '/../../test/' . $newProjectName;
+    mkdir($test, 0777);
+    mkdir($test . '/pageObjects', 0777);
+    mkdir($test . '/' . $newTestName, 0777);
+
+    $projectJson->customerName = $customerName;
+    $projectJson->tests = array($newTestName);
+
+    
+    file_put_contents($test
+                      . '/project.json',
+                      json_encode($projectJson,
+                                  JSON_PRETTY_PRINT)
+                      , FILE_APPEND | LOCK_EX);
+    
+} catch(Exception $err) {
+    error_log('barton exception' . $err);
+}
+}

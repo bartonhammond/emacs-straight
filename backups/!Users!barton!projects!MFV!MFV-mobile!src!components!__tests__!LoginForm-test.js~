@@ -1,0 +1,182 @@
+'use strict';
+
+import assert from 'assert';
+import React, { View } from 'react-native';
+import utils from 'react-addons-test-utils';
+
+import {
+  LOGIN_STATE_REGISTER
+} from '../../../src/lib/constants';
+
+
+jest.dontMock('../../../src/components/LoginForm');
+var LoginForm = require('../../../src/components/LoginForm');
+var t = require('tcomb-form-native');
+let Form = t.form.Form;
+
+describe('LoginForm', () => {
+
+  function renderLoginForm(props) {
+    const renderer = utils.createRenderer();
+    renderer.render(<LoginForm {...props}/>);
+    const output = renderer.getRenderOutput();
+
+    return {
+      props,
+      output,
+      renderer
+    };
+  }
+
+  function getFields(output) {
+    return output.props.options.fields;
+  }
+
+  function getValues(output) {
+    return output.props.value;
+  }
+
+  function checkLoginForm(props) {
+    const {output} = renderLoginForm(props);
+    assert.deepEqual(output.type,Form);
+
+    const fields = getFields(output);
+
+    assert.deepEqual(fields.username.editable,!props.form.isFetching);
+    assert.deepEqual(fields.username.hasError,props.form.fields.usernameHasError);
+    
+    assert.deepEqual(fields.password.editable,!props.form.isFetching);
+    assert.deepEqual(fields.password.hasError,props.form.fields.passwordHasError);    
+    assert.deepEqual(fields.password.secureTextEntry,!props.form.fields.showPassword);        
+    assert.deepEqual(fields.passwordAgain.editable,!props.form.isFetching);
+    assert.deepEqual(fields.passwordAgain.hasError,props.form.fields.passwordAgainHasError);    
+    assert.deepEqual(fields.passwordAgain.secureTextEntry,!props.form.fields.showPassword);
+
+    const values = getValues(output);
+    assert.deepEqual(values.username, props.value.username);
+    assert.deepEqual(values.email, props.value.email);
+    assert.deepEqual(values.password, props.value.password);
+    assert.deepEqual(values.passwordAgain, props.value.passwordAgain);    
+  }
+  
+  it('should display without errors and without values', () => {
+    let form = {
+      isFetching: false,
+      fields: {
+        usernameHasError: false,
+        emailHasError: false,
+        passwordHasError: false,
+        passwordAgainHasError: false,
+        showPassword: false
+      },
+      state: LOGIN_STATE_REGISTER
+    };
+
+    let value = {
+      username: '',
+      email: '',
+      password: '',
+      passwordAgain: ''
+    };
+    
+    let props = {
+      form: form,
+      value: value,
+      onChange: () => {}
+    };
+
+    checkLoginForm(props);
+  });
+
+
+  it('should display  errors and  values', () => {
+    let form = {
+      isFetching: false,
+      fields: {
+        usernameHasError: true,
+        emailHasError: true,
+        passwordHasError: true,
+        passwordAgainHasError: true,
+        showPassword: false
+      },
+      state: LOGIN_STATE_REGISTER
+    };
+
+    let value = {
+      username: 'username',
+      email: 'email',
+      password: 'password',
+      passwordAgain: 'passwordagain'
+    };
+    
+    let props = {
+      form: form,
+      value: value,
+      onChange: () => {}
+    };
+
+    checkLoginForm(props);
+  });
+
+
+  it('should not be editable if fetching', () => {
+    let form = {
+      isFetching: true,
+      fields: {
+        usernameHasError: true,
+        emailHasError: true,
+        passwordHasError: true,
+        passwordAgainHasError: true,
+        showPassword: false
+      },
+      state: LOGIN_STATE_REGISTER
+    };
+
+    let value = {
+      username: 'username',
+      email: 'email',
+      password: 'password',
+      passwordAgain: 'passwordagain'
+    };
+    
+    let props = {
+      form: form,
+      value: value,
+      onChange: () => {}
+    };
+
+    checkLoginForm(props);
+  });
+
+
+  it('password fields are not secured if shown', () => {
+    let form = {
+      isFetching: false,
+      fields: {
+        usernameHasError: false,
+        emailHasError: false,
+        passwordHasError: false,
+        passwordAgainHasError: false,
+        showPassword: true
+      },
+      state: LOGIN_STATE_REGISTER
+    };
+
+    let value = {
+      username: 'username',
+      email: 'email',
+      password: 'password',
+      passwordAgain: 'passwordagain'
+    };
+    
+    let props = {
+      form: form,
+      value: value,
+      onChange: () => {}
+    };
+
+    checkLoginForm(props);
+  });
+
+  
+});//describe LoginFormTest

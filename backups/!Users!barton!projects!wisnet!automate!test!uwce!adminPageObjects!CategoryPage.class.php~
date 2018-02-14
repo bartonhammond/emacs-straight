@@ -1,0 +1,75 @@
+<?php
+require_once __DIR__ . "/../../../../src/pageObjects/Page.class.php";
+use Facebook\WebDriver\WebDriverBy;
+
+class CategoryPage extends \Automate\Page {
+    private static $_selectors = [
+        "h2_heading" =>
+        [
+            "css" => "h2.sectionheading"
+        ],
+        "category_title" =>
+        [
+            "css" => "input[name='category_title']",
+        ],
+        "category_description" =>
+        [
+            "script" => ""
+        ],
+        "new_submit" =>
+        [
+            "css" => 'div#primary button[type="submit"]'
+        ],
+        "action_message" =>
+        [
+            "css" => "div#primary div.alert.alert-success.alert-dismissible"
+        ]
+    ];
+
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors["category_title"]]);
+    }
+
+    function typeCategoryName($name) {
+        $this->type(self::$_selectors['category_title'], $name);        
+    }
+    
+    function getH2HeadingText() {
+        return $this->find(self::$_selectors['h2_heading'])->getText();
+    }
+    function clickH2Heading() {
+        $this->click(self::$_selectors["h2_heading"]);
+    }
+    function typeDescription($value) {
+        /*
+        $element = $this->driver->findElements(WebDriverBy::cssSelector("iframe"));
+        
+        $this->driver->switchTo()->frame($element[0]);
+
+        $this->driver->executeScript("document.body.innerHTML='" . $value . "'");
+
+        $foo = $this->driver->executeScript("return document.body.innerHTML;");
+        print $foo;
+        $this->driver = $this->driver->switchTo()->defaultContent();
+        */
+
+        /*
+        $selector = self::$_selectors['category_description'];
+        $selector["script"] = "window.frames[0].document.body.innerText = '"
+                            . $value
+                            . "'";
+        */
+    }
+    function submit() {
+        //hide the keyboard
+        if ($this->isMobile) {
+            $this->click(self::$_selectors['h2_heading']);
+        }
+        $this->click(self::$_selectors["new_submit"]);
+    }
+    function getActionMessage() {
+        $this->waitPageLoadedBySelectors([self::$_selectors["action_message"]]);
+        return $this->find(self::$_selectors['action_message'])->getText();
+    }
+}

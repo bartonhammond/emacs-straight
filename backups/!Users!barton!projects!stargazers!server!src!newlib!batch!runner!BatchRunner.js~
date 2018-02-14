@@ -1,0 +1,88 @@
+'use strict';
+require('regenerator/runtime');
+
+import Bottleneck from 'bottleneck';
+import ProcessorClass from '../../ProcessorClass';
+
+class BatchGetUser extends ProcessorClass{
+  constructor() {
+    super();
+    this.getGitHubUserLimiter = new Bottleneck(1, 800);
+    this.latinize = require('latinize');    
+  }
+  
+  init(access_token) {
+    let self = this;
+    self.queue.process(
+      'batchGetUser'
+        + '_'
+        + access_token,
+      1,//3 batch, 10 online
+      function(job,
+               ctx,
+               done) {
+
+        self.job = job;
+
+        self.gitHub.access_token = job.data.access_token;
+        self.gitHub.id = job.data.id;
+
+        self.gitHub.getUser(
+          job.data.login)
+        
+          .then((user) => {
+
+            if (user
+                && user.location) {
+
+              //do not save user if there's no location
+              let loc = self.latinize(user.location).toLowerCase();
+              var valid = /^[a-z\.\,\-_\s]+$/i.test(loc);
+
+              if (valid) {
+                
+                let key =  self.redisKeyUser + user.login;
+                self.redisClient.setnx(
+                  key,
+                  JSON.stringify(user));
+
+                //Expire in 1/2 year
+                self.redisClient.expire(key, 60 * 60 * 24 * 180);
+                
+                return self.getLocation(job.data.id,
+                                        user.location,
+                                        job.data.access_token,
+                                        done);
+              }//valid
+            }//user.location
+            return done();
+          })
+          .catch((err) => {
+            self.logger.error(
+              'BatchGetUser',              
+              {id: job.data.id,
+               login: job.data.login,
+               error:err,
+               access_token: self.access_token});
+
+            return done(err);
+          });
+      });
+  } //init
+  getLocation(id, location, access_token, done) {
+    let CreateBatchGetLocationJob = require('../location/CreateBatchGetLocationJob');
+
+    //no need to limit as getUser is already limited
+    //and is slower then Mapzen
+    let createBatchGetLocationJob
+          = CreateBatchGetLocationJob.creator(access_token);
+    
+    createBatchGetLocationJob.createJob(id, location);
+    return done();
+  }
+
+
+}
+module.exports = BatchGetUser;
+
+

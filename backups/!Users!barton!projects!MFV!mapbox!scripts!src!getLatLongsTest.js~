@@ -1,0 +1,27 @@
+'use strict';
+
+var MapBoxData = require('./MapBoxData');
+let mapBoxData = new MapBoxData();
+
+var fs = require('fs');
+
+let _ = require('underscore');
+
+try {
+  mapBoxData.getAllStarGazers('bartonhammond','snowflake')
+    .then(function(results) {
+      let stargazers = [];
+      if (_.isArray(results) && _.isArray(results[0])){
+        for (let result of results) {
+          stargazers.push(...result);
+        }
+      } else {
+        stargazers = results;
+      }
+      fs.writeFileSync('./starGazers2.geojson',
+                       JSON.stringify(stargazers, null, 2));
+      console.log('done');
+    });
+} catch (err) {
+  console.log('getStarGazer.error',err);
+}

@@ -1,0 +1,36 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class Masthead extends \Automate\Page {
+    private static $_selectors = [
+        "login" =>
+        [
+            "css" => "header#masthead li:nth-child(3) > a"
+        ],
+        "h1_heading" =>
+        [
+            "css" => "div#primary h1"
+        ],
+        "logout" =>
+        [
+            "xpath" => "//a[contains(text(),'Logout')]"
+        ]        
+    ];
+
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors["h1_heading"]]);
+    }
+
+    function login() {
+        $this->click(self::$_selectors['login']);        
+    }
+
+    function logout() {
+        $this->click(self::$_selectors['logout']);        
+    }
+    
+    function getH1HeadingText() {
+        return $this->find(self::$_selectors['h1_heading'])->getText();
+    }
+}

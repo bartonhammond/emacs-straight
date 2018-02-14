@@ -1,0 +1,4 @@
+Slingshot.fileRestrictions("myImageUploads", {
+  allowedFileTypes: ["image/*"],
+  maxSize: 3 * 1024 * 1024 // 3 MB
+});

@@ -1,0 +1,31 @@
+<?php
+namespace Automation;
+
+/**
+ * Read all the customer directories and return the directory name and
+ * the json from the 'automate.json' file.
+ */
+class ReadTestDirectory {
+    
+    public function readDirectory() {
+        $dir    = './tests';        
+        $files1 = scandir($dir);
+
+        $dirs = [];
+        foreach ($files1 as $key => $value) 
+        { 
+            if (!in_array($value,array(".","..")))  {
+                // Read JSON file
+                $json = file_get_contents($dir . '/' . $value . '/automate.json');
+
+                //Decode JSON
+                $json_data = json_decode($json,true);
+                $json_data['directory'] = $dir . '/' . $value;
+
+                array_push($dirs,$json_data);
+            }
+    
+        }//foreach
+        return $dirs;
+    }
+}

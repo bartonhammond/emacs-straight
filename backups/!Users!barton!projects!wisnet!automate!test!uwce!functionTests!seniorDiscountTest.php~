@@ -1,0 +1,38 @@
+<?php 
+require_once __DIR__ . '/../../../src/testCase/BaseTestCase.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/MainPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/Campus.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/CourseCatalog.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/LoginPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/AdminPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/TermPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/CategoryPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/CoursePage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/SessionPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/CourseAndProgramPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/CourseProgramDisplayPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/WorkshopPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/TimeSlotsPage.class.php';
+
+
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\WebDriverSelect;
+use Facebook\WebDriver\WebDriverExpectedConditions;
+class Test extends \Automate\BaseTestCase { 
+
+    function __construct() {
+        parent::__construct();        
+        $this->isFunctionTest = true;
+        $this->isLocal = true;
+    }
+
+
+    
+    public function thisFunction() {
+        include "seniorDiscount_Admin.php";
+        
+    }
+
+}
+?>

@@ -1,0 +1,28 @@
+'use strict';
+require('regenerator/runtime');
+
+import CreateGetUserJob from './CreateGetUserJob';
+import ProcessorClass from '../ProcessorClass';
+
+class GetUserProcessor extends ProcessorClass{
+  constructor(queue, job, ctx, done) {
+    super(queue, job, ctx, done);
+  }
+  /**
+   * Process the login
+   */
+  run() {
+    let self = this;
+    CreateGetUserJob(
+      self.queue,
+      self.job.data.login
+    ).then((job) => {
+      job.on('complete',(result) => {
+        self.saveResults(result);        
+      });//job on complete
+    });//then((job)
+  }//run
+
+
+}
+module.exports = GetUserProcessor;

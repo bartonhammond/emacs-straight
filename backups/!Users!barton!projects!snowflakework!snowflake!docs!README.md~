@@ -1,0 +1,3 @@
+Setting up Fastlane
+
+In XCode v 7, follow these steps [https://docs.fastlane.tools/codesigning/XcodeProject/](https://docs.fastlane.tools/codesigning/XcodeProject/) to set the "IOS Developer" and the "Provisioning Profile"

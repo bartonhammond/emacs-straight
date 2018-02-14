@@ -1,0 +1,29 @@
+'use strict';
+var MapBoxData = require('./MapBoxData');
+let mapBoxData = new MapBoxData();
+var fs = require('fs');
+var _ = require('underscore');
+
+//How long does it take?
+
+try {
+  var stargazers =
+        JSON.parse(fs.readFileSync('./starGazers.geojson'));
+  
+  mapBoxData.getAllStarGazersBio(stargazers) 
+    .then((users) => {
+      fs.writeFileSync('./starGazersBio.geojson', JSON.stringify(users, null, 2));
+    });
+} catch (err) {
+  console.log('err',err);
+}
+
+
+
+
+
+
+
+
+
+

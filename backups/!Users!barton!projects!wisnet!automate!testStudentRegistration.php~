@@ -1,0 +1,43 @@
+<?php
+require_once 'vendor/autoload.php'; 
+require_once __DIR__ . '/src/testCase/BaseTestCase.php';
+require_once __DIR__ . '/test/uwce/pageObjects/Account.php';
+require_once __DIR__ . '/test/uwce/pageObjects/Login.php';
+require_once __DIR__ . '/test/uwce/pageObjects/Catalog.php';
+require_once __DIR__ . '/test/uwce/pageObjects/CatalogCourse.php';
+require_once __DIR__ . '/test/uwce/pageObjects/CatalogCourseExtra.php';
+require_once __DIR__ . '/test/uwce/pageObjects/CatalogSearch.php';
+require_once __DIR__ . '/test/uwce/pageObjects/CreateAccount.php';
+require_once __DIR__ . '/test/uwce/pageObjects/CreateAccountExtra.php';
+require_once __DIR__ . '/test/uwce/pageObjects/Masthead.php';
+    
+use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDrniver\WebDriverExpectedConditions;
+
+
+$host = 'http://0.0.0.0:4444/wd/hub';
+$driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome(), 50000,50000);
+$isMobile = false;
+
+$masthead = new Masthead($driver, $isMobile);
+$login = new Login($driver, $isMobile);
+$catalog = new Catalog($driver, $isMobile);
+$catalogCourse = new CatalogCourseExtra($driver, $isMobile);    
+$catalogSearch = new CatalogSearch($driver, $isMobile);        
+$createAccount = new CreateAccountExtra($driver, $isMobile);
+$account = new Account($driver, $isMobile);        
+
+
+$home = "https://www.secured-site7.com/uwce-staging/www/fond-du-lac/login";
+$driver->get($home);
+
+$automate = json_decode(file_get_contents('test/uwce/studentRegistration/automate.json'));
+
+$login->setUsername1TextField($automate->screenshots->variables->email);
+$login->setPassword1PasswordField($automate->screenshots->variables->password);
+$login->submit();
+
+//
+//$catalogCourse->setIAmRegisteringMyselfCheckboxField();

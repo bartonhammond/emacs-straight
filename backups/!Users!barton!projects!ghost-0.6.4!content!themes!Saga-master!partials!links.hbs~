@@ -1,0 +1,5 @@
+<nav class="links fadeIn animated">
+    <ul>
+        <li><a title="Table of Contents" href="/contents"><i class="fa fa-fw fa-list"></i></a></li>
+    </ul>
+</nav>

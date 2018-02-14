@@ -1,0 +1,11 @@
+{
+    "name": "barton/first",
+    "description": "First tutorial",
+    "authors": [
+        {
+            "name": "Barton Hammond",
+            "email": "bartonhammond@gmail.com"
+        }
+    ],
+    "require": {}
+}

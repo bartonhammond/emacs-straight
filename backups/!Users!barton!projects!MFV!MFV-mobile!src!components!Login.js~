@@ -1,0 +1,242 @@
+'use strict';
+
+/**
+ *  Thanks to: http://browniefed.com/blog/2015/06/07/react-native-layout-examples/
+ *
+ */
+import React,
+{ Image,
+  View,
+  StyleSheet,
+  Text,
+  TouchableHighlight
+}
+from 'react-native';
+
+import ItemCheckbox from '../components/ItemCheckbox';
+import Dimensions from 'Dimensions';
+let windowSize = Dimensions.get('window');
+
+import Button from 'apsl-react-native-button';
+import  _ from 'underscore';
+
+import t from 'tcomb-form-native';
+
+let Form = t.form.Form;
+
+import {
+  LOGIN_STATE_REGISTER,
+  LOGIN_STATE_LOGIN,
+  LOGIN_STATE_FORGOT_PASSWORD
+} from '../constants/actions';
+
+
+var styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    flex: 1,
+    backgroundColor: 'transparent'
+  },
+  bg: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: windowSize.width,
+    height: windowSize.height
+  },
+  header: {
+    marginTop: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    backgroundColor: 'transparent'
+  },
+  mark: {
+    width: 150,
+    height: 150
+  },
+  signin: {
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  inputs: {
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10,
+
+  },
+  inputContainer: {
+    padding: 10,
+    borderWidth: 1,
+    borderBottomColor: '#CCC',
+    borderColor: 'transparent'
+  },
+  forgotContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  whiteFont: {
+    color: '#FFF'
+  }
+});
+
+
+let Login = React.createClass({
+  onChange(value) {
+    if (!_.isUndefined(_.property('email')(value))) {
+      this.props.actions.onAuthFormFieldChange('email',value.email);
+    } else if (!_.isUndefined(_.property('password')(value))) {
+      this.props.actions.onAuthFormFieldChange('password',value.password);
+    } else if (!_.isUndefined(_.property('passwordAgain')(value))) {
+      this.props.actions.onAuthFormFieldChange('passwordAgain',value.passwordAgain);
+    }
+    this.setState({value});
+  },
+
+
+  render() {
+    if (!_.isNull(this.props.auth.form.error)) {
+
+    }
+    let options = {
+      auto: 'placeholders',
+      fields: {
+        email: {
+          hasError: this.props.auth.form.fields.emailHasError,
+          label: 'Email',
+          error: 'Please enter valid email',
+          keyboardType: 'email-address'
+        }       
+      }
+    };
+    
+    let password = {
+      label: 'Password',
+      password: true,
+      secureTextEntry: !this.props.auth.form.fields.showPassword,
+      maxLength: 12,
+      hasError: this.props.auth.form.fields.passwordHasError,
+      error: 'Must have 6-12 characters with at least 1 number and 1 special character'
+    };
+
+    let passwordAgain= {
+      label: 'Please enter password again',
+      password: true,
+      secureTextEntry: !this.props.auth.form.fields.showPassword,
+      maxLength: 12,
+      hasError: this.props.auth.form.fields.passwordAgainHasError,
+      error: 'Passwords must match'
+    };
+
+    
+    let LoginForm;
+    let loginButtonText;
+    let itemCheckBox = <ItemCheckbox
+              onCheck={() => this.props.actions.onAuthFormFieldChange('showPassword',true)}
+              onUncheck={() => this.props.actions.onAuthFormFieldChange('showPassword',false)}
+          />;
+    let passwordDisplay = <Text/>;
+
+    let forgotPassword =  <TouchableHighlight
+    onPress={() => this.props.actions.forgotPasswordState()} >
+    <Text>Forgot Password?</Text>
+    </TouchableHighlight>;
+
+    let alreadyHaveAccount =<TouchableHighlight
+    onPress={() => this.props.actions.loginState()}>
+    <Text>Already have an account?</Text>
+    </TouchableHighlight>;
+    
+    let register =<TouchableHighlight
+    onPress={() => this.props.actions.registerState()}>
+    <Text>Register</Text>
+    </TouchableHighlight>
+
+    let leftMessage;
+    let rightMessage;
+    
+    switch(this.props.auth.form.state) {
+    case(LOGIN_STATE_REGISTER):
+      LoginForm = t.struct({
+        email: t.String,
+        password: t.String,
+        passwordAgain: t.String
+      });
+      loginButtonText = 'Register'
+      options.fields['password'] = password;
+      options.fields['passwordAgain'] = passwordAgain;
+      passwordDisplay = itemCheckBox;
+      leftMessage = forgotPassword;
+      rightMessage = alreadyHaveAccount;
+      break;
+      
+    case(LOGIN_STATE_LOGIN):
+      LoginForm = t.struct({
+        email: t.String,
+        password: t.String
+      });
+      loginButtonText = 'Log in';
+      options.fields['password'] = password;
+      passwordDisplay = itemCheckBox;
+      leftMessage = register;
+      rightMessage = forgotPassword;
+      break;
+      
+    case(LOGIN_STATE_FORGOT_PASSWORD):
+      LoginForm = t.struct({
+        email: t.String,
+      });
+      loginButtonText = 'Reset password';
+      leftMessage = register;
+      rightMessage = alreadyHaveAccount;
+      break;
+    }
+    
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Image style={styles.mark} source={{uri: 'http://i.imgur.com/da4G0Io.png'}} />
+        </View>
+        <View style={styles.inputs}>
+          <Form
+              ref="form"
+              type={LoginForm}
+              options={options}
+              onChange={this.onChange}
+          />
+          {passwordDisplay}
+        </View>
+
+        
+        <View style={styles.signin}>
+          <Button
+              style={{
+                  backgroundColor: '#FF3366',
+                  borderColor:  '#FF3366'
+                }}
+              isDisabled={!this.props.auth.form.isValid}
+              onPress={() => this.props.actions.signup(this.props.auth.form.fields.email, this.props.auth.form.fields.password)}
+          >
+            {loginButtonText}
+          </Button>
+        </View>
+        
+        <View >
+      <View style={styles.forgotContainer}>
+       {leftMessage}
+       {rightMessage}
+          </View>
+        </View>
+        
+      </View>
+    );
+  }
+})
+
+
+export default Login;
+

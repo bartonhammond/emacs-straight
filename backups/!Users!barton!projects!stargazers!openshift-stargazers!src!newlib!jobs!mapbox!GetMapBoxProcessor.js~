@@ -1,0 +1,59 @@
+'use strict';
+require('regenerator/runtime');
+
+import Bottleneck from 'bottleneck';
+import ProcessorClass from '../ProcessorClass';
+import CreateGetStargazersForRepo from '../stargazers/CreateGetStargazersForRepo';
+import CreateGetUserJob from '../user/CreateGetUserJob';
+
+class GetUsersForRepoProcessor extends ProcessorClass{
+  constructor(queue, job, ctx, done) {
+    super(queue, job, ctx, done);
+    this.getUserLimiter = new Bottleneck(1, 1200);
+  }
+  /**
+   *   For all the stargazers of the repo, get their user information
+   */
+  run() {
+    let self = this;
+    
+    //First, get all the stargazers for the repo
+    CreateGetStargazersForRepo(
+      self.queue,
+      self.job.data.owner,
+      self.job.data.repo
+    ).then((job) => {
+
+      //Now all the stargazers are retrieved
+      job.on('complete', (stargazers) => {
+        
+        //used to determine when processing is done
+        self.lastPage = stargazers.length;
+        
+        //loop through all the stargazers        
+        for (let star of stargazers) {
+          //first check if user is cached in redis
+          
+          self.getUserLimiter.schedule(
+            CreateGetUserJob.bind(
+              self,
+              self.queue,
+              star.login))
+            .then((job) => {
+              job.on('complete',(user) => {
+                console.log('CreateGetUserJob.user',user.login);
+                self.saveResults(user);
+                //save reuslts
+              });
+              job.on('failed', (err) => {
+                console.log('CreateGetUserJob.onfailed',err);
+                self.saveResults();
+              });              
+            });
+        }//for
+      });
+    });
+  }//run
+}
+
+module.exports = GetUsersForRepoProcessor;

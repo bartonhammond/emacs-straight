@@ -1,0 +1,168 @@
+/**
+ * 
+ */
+'use strict';
+/**
+ * ## Imports
+ *
+ */
+//Handle the endpoints
+var BatchHandlers = require('./handlers'),
+    //Joi is Hapi's validation library
+    Joi = require('joi'),
+    internals = {};
+
+
+/**
+ */
+internals.endpoints = [
+
+
+  {
+    method: 'GET',
+    path: '/online/runner/{access_token}/{owner}/{repo}',
+    handler: {
+      async: BatchHandlers.runner
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Build mapbox for owner/repo',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),
+          owner: Joi.string().optional().default('bartonhammond'),
+          repo: Joi.string().optional().default('snowflake')
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/online/mapbox/{access_token}/{owner}/{repo}',
+    handler: {
+      async: BatchHandlers.mapbox
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Retrieve the exisiting mapbox data if any',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),
+          owner: Joi.string().optional().default('bartonhammond'),
+          repo: Joi.string().optional().default('snowflake')
+	}
+      }
+    }
+  },  
+  {
+    method: 'GET',
+    path: '/online/stargazers/{access_token}/{owner}/{repo}',
+    handler: {
+      async: BatchHandlers.stargazers
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Get Stargazers for repo',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),
+          owner: Joi.string().optional().default('bartonhammond'),
+          repo: Joi.string().optional().default('snowflake-hapi-openshift')
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/online/user/{access_token}/{owner}/{repo}/{user}',
+    handler: {
+      async: BatchHandlers.user
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Get user from repo - save in Redis',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),
+          owner: Joi.string().optional().default('bartonhammond'),
+          repo: Joi.string().optional().default('snowflake'),
+          user: Joi.string().optional().default('gnepud')
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/online/starred/{access_token}/{owner}/{repo}/{user}',
+    handler: {
+      async: BatchHandlers.starred
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Get all starred projects for user',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),
+          owner: Joi.string().optional().default('bartonhammond'),
+          repo: Joi.string().optional().default('snowflake'),
+          user: Joi.string().optional().default('bartonhammond')          
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/online/following/{access_token}/{owner}/{repo}/{user}',
+    handler: {
+      async: BatchHandlers.following
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Get the people who are followed by this user',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),
+          owner: Joi.string().optional().default('bartonhammond'),
+          repo: Joi.string().optional().default('snowflake'),
+          user: Joi.string().optional().default('bartonhammond')          
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/online/followers/{access_token}/{owner}/{repo}',
+    handler: {
+      async: BatchHandlers.followers
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Return users sorted by how many followers they have',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),
+          owner: Joi.string().optional().default('bartonhammond'),
+          repo: Joi.string().optional().default('snowflake')
+	}
+      }
+    }
+  }    
+
+];
+
+
+module.exports = internals;

@@ -1,0 +1,195 @@
+    <?php include("header.html"); ?>
+    <br><br>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1>Generate ATF Test Scripts</h1>
+          <p class="lead">Just to prove a simple use of this
+            tool</p>
+          <input type="text" id="scriptName" value="main"
+                 placeholder="Script object name">
+          <p>Provide name of script, like "main" or "catalog"</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          Kantu<br>
+          <div class="textwrapper">          
+            <textarea id="kantu" rows="15" >
+              [
+              {
+              "Command": "open",
+              "Target": "https://everydayfit.ninja/login",
+              "Value": ""
+              },
+              {
+              "Command": "click",
+              "Target": "id=email",
+              "Value": ""
+              },
+              {
+              "Command": "type",
+              "Target": "id=email",
+              "Value": "bartonhammond@gmail.com"
+              },
+              {
+              "Command": "type",
+              "Target": "id=password",
+              "Value": "12345678"
+              },
+              {
+              "Command": "clickAndWait",
+              "Target": "css=input.btns.btn2",
+              "Value": ""
+              }
+              ]              
+            </textarea>
+          </div>          
+        </div>
+        <div class="col-lg-6">
+          Selectors<br>
+          <div class="textwrapper">
+            <textarea id="selectors" rows="15">
+              [
+              {     
+              "operationName": "clickForgotYourPasswordLink",
+              "attributeType": "link",
+              "attributeName": "forgotYourPassword",
+              "attributeStrategy": "css",
+              "attributeValue": "a[href=&#x27;password/reset&#x27;]"
+              },
+
+              {     
+              "operationName": "clickLogInButton",
+              "attributeType": "button",
+              "attributeName": "logIn",
+              "attributeStrategy": "css",
+              "attributeValue": "input.btns.btn2"
+              },
+
+              {     
+              "operationName": "clickOrCreateAnAccountLink",
+              "attributeType": "link",
+              "attributeName": "orCreateAnAccount",
+              "attributeStrategy": "css",
+              "attributeValue": "a[href=&#x27;register&#x27;]"
+              },
+
+
+
+              {     
+              "operationName": "setEmailTextField",
+              "operationArgument" : "emailValue",
+              "attributeType": "text",
+              "attributeName": "email",
+              "attributeStrategy": "id",
+              "attributeValue": "email"
+              },
+
+              {     
+              "operationName": "setPasswordPasswordField",
+              "operationArgument" : "passwordValue",
+              "attributeType": "text",
+              "attributeName": "password",
+              "attributeStrategy": "id",
+              "attributeValue": "password"
+              }
+              ]              
+            </textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <button onClick="process()">Process</button>
+        </div>
+      </div>
+    </div>
+
+    <br><br>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          Kantu Steps<br>
+          <table border=1 id="kantuTable"></table>    
+        </div>
+        <div class="col-lg-6">
+          Selectors<br>
+          <table border=1 id="selectorsTable"></table>
+        </div>
+      </div>
+    </div>
+    <br><br>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" >
+          <button onClick="takeSnapShot()">Take Snap Shot</button>
+        </div>
+        <div class="col-lg-4"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" >
+          <button onClick="waitPageLoaded()">Wait Page Loaded</button>
+        </div>
+        <div class="col-lg-4"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" >
+          <button onClick="assertEquals()">Assert Equals</button>
+          <input type="text" id="assertEquals"
+                 placeholder="Enter text to check equality">
+        </div>
+        <div class="col-lg-4"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" >
+          <button onClick="verifyPageUrl()">Verify Page URL</button>
+        </div>
+        <div class="col-lg-4"></div>
+      </div>
+    </div>
+
+    <br><br>
+
+    <div class="container" >
+      <div class="row">
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <button onClick="makeScript()">Add to script</button>
+        </div>
+        <div class="col-lg-4">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 center-block">
+          <div class="textwrapper">      
+            <textarea id="codeScript" rows="20" cols="80">
+            </textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <?php include("footer.html"); ?>    
+    <script src="./classes.js"></script>
+    <script src="./code.js"></script>
+  </body>
+</html>

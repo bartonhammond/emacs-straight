@@ -1,0 +1,28 @@
+<?php
+$home = "https://www.secured-site7.com/uwce-staging/www/";
+    
+$this->driver->get($home);
+$this->main->waitPageLoaded();
+$this->assertEquals("Continuing Education", $this->main->getH2HeadingText());
+$this->takeSnapShot();
+$this->main->selectFondDuLac();
+
+$this->courseCatalogPage->waitPageLoaded();
+$this->assertEquals("Course Catalog", $this->courseCatalogPage->getH1HeadingText());
+$this->takeSnapShot();
+
+$this->courseCatalogPage->login();
+
+$this->loginPage->waitInputsClickable();
+$this->assertEquals("Login", $this->loginPage->getH1HeadingText());
+$this->takeSnapShot();
+
+$this->loginPage->typeUsername('bhammond@wisnet.com');
+$this->loginPage->typePassword('12345678a');
+$this->takeSnapShot();
+$this->loginPage->submit();
+
+$this->adminPage->waitPageLoaded();
+$this->assertEquals("System Administration", $this->adminPage->getH1HeadingText());
+$this->takeSnapShot();
+?>

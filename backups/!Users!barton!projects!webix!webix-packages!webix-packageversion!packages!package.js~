@@ -1,0 +1,39 @@
+Package.describe({
+  name: 'app:lib', // All modules should api.use() this.
+  summary: 'Application core library.',
+  version: '1.0.0',
+});
+
+Package.onUse(function(api) {
+
+  api.versionsFrom(['METEOR@1.0']);
+
+  var packages = [
+    'standard-app-packages',
+    'autopublish',
+    'insecure',
+    //'webix:webix',
+    'fortawesome:fontawesome',
+    'accounts-password',
+    'useraccounts:iron-routing@1.12.3'
+  ];
+
+  api.use(packages);
+
+
+  api.imply(packages);
+
+  api.addFiles([
+    'lib/vendor/webix/webix_debug.js',
+    'lib/vendor/webix/compact.css',
+    'lib/vendor/webix/meteor_data.js',
+  ], ['client']);
+  
+  api.export('webix', 'client');
+  
+  api.imply();
+
+  api.export([
+
+  ]);
+});

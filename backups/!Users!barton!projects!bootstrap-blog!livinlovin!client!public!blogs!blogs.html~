@@ -1,0 +1,8 @@
+<template name="nonPublishedBlogs">
+  <div class="col-md-9 content blog">
+
+    {{> pagesNav}}
+    {{> pages}}
+    
+  </div>
+</template>

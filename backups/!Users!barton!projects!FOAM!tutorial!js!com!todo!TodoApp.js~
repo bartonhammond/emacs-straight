@@ -1,0 +1,16 @@
+CLASS({
+  package: 'com.todo',
+  name: 'TodoApp',
+  extends: 'foam.browser.u2.BrowserController',
+  requires: [
+    'com.todo.model.Todo',
+  ],
+  properties: [
+    {
+      name: 'model',
+      factory: function() {
+        return this.Todo;
+      }
+    }
+  ]
+});

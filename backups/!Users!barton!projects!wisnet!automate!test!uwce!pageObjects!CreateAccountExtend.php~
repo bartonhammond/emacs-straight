@@ -1,0 +1,426 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickCancelLink",
+        "attributeType": "link",
+       "attributeName": "cancel",
+        "attributeStrategy": "css",
+        "attributeValue": "a.btn.btn-default"
+     },
+
+    {     
+        "operationName": "clickCreateAccount1Button",
+        "attributeType": "button",
+       "attributeName": "createAccount1",
+        "attributeStrategy": "id",
+        "attributeValue": "toggleRegForm"
+     },
+
+    {     
+        "operationName": "clickCreateAccount2Button",
+        "attributeType": "button",
+       "attributeName": "createAccount2",
+        "attributeStrategy": "css",
+        "attributeValue": "#registrationform div.row div:nth-of-type(1) form button.btn.btn-primary"
+     },
+
+    {     
+        "operationName": "clickForgotPasswordLink",
+        "attributeType": "link",
+       "attributeName": "forgotPassword",
+        "attributeStrategy": "css",
+        "attributeValue": "a.pull-right"
+     },
+
+    {     
+        "operationName": "clickLogInButton",
+        "attributeType": "button",
+       "attributeName": "logIn",
+        "attributeStrategy": "css",
+        "attributeValue": "#loginform div.row div:nth-of-type(1) form button.btn.btn-primary"
+     },
+
+
+
+    {     
+        "operationName": "setDateOfBirthTextField",
+        "operationArgument" : "dateOfBirthValue",
+        "attributeType": "text",
+       "attributeName": "dateOfBirth",
+        "attributeStrategy": "id",
+        "attributeValue": "new_birthDate"
+     },
+
+    {     
+        "operationName": "setEmailAddressTextField",
+        "operationArgument" : "emailAddressValue",
+        "attributeType": "text",
+       "attributeName": "emailAddress",
+        "attributeStrategy": "id",
+        "attributeValue": "new_email"
+     },
+
+    {     
+        "operationName": "setFirstNameTextField",
+        "operationArgument" : "firstNameValue",
+        "attributeType": "text",
+       "attributeName": "firstName",
+        "attributeStrategy": "id",
+        "attributeValue": "new_firstName"
+     },
+
+    {     
+        "operationName": "setLastNameTextField",
+        "operationArgument" : "lastNameValue",
+        "attributeType": "text",
+       "attributeName": "lastName",
+        "attributeStrategy": "id",
+        "attributeValue": "new_lastName"
+     },
+
+    {     
+        "operationName": "setPassword1PasswordField",
+        "operationArgument" : "password1Value",
+        "attributeType": "text",
+       "attributeName": "password1",
+        "attributeStrategy": "id",
+        "attributeValue": "password"
+     },
+
+    {     
+        "operationName": "setPassword2PasswordField",
+        "operationArgument" : "password2Value",
+        "attributeType": "text",
+       "attributeName": "password2",
+        "attributeStrategy": "id",
+        "attributeValue": "password_password"
+     },
+
+    {     
+        "operationName": "setPhoneNumberTextField",
+        "operationArgument" : "phoneNumberValue",
+        "attributeType": "text",
+       "attributeName": "phoneNumber",
+        "attributeStrategy": "id",
+        "attributeValue": "new_phone"
+     },
+
+    {     
+        "operationName": "setRetypeEmailAddressTextField",
+        "operationArgument" : "retypeEmailAddressValue",
+        "attributeType": "text",
+       "attributeName": "retypeEmailAddress",
+        "attributeStrategy": "id",
+        "attributeValue": "new_confirmemail"
+     },
+
+    {     
+        "operationName": "setRetypePasswordPasswordField",
+        "operationArgument" : "retypePasswordValue",
+        "attributeType": "text",
+       "attributeName": "retypePassword",
+        "attributeStrategy": "id",
+        "attributeValue": "password_confirmPassword"
+     },
+
+    {     
+        "operationName": "setUsername1TextField",
+        "operationArgument" : "username1Value",
+        "attributeType": "text",
+       "attributeName": "username1",
+        "attributeStrategy": "id",
+        "attributeValue": "username"
+     },
+
+    {     
+        "operationName": "setUsername2TextField",
+        "operationArgument" : "username2Value",
+        "attributeType": "text",
+       "attributeName": "username2",
+        "attributeStrategy": "id",
+        "attributeValue": "new_username"
+     },
+
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class CreateAccountExtend extends \Automate\Page {
+
+
+
+
+
+
+
+
+
+     protected $pageLoadedText = "Please provide your name and email address so that we may confirm your class registration and contact you in case of changes or cancellation";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/create-account";
+
+
+
+
+
+
+
+   private static $_selectors = [
+    "cancel" =>
+    [
+       "css" => "a.btn.btn-default"
+    ],
+
+    "createAccount1" =>
+    [
+       "id" => "toggleRegForm"
+    ],
+
+    "createAccount2" =>
+    [
+       "css" => "#registrationform div.row div:nth-of-type(1) form button.btn.btn-primary"
+    ],
+
+    "dateOfBirth" =>
+    [
+       "id" => "new_birthDate"
+    ],
+
+    "emailAddress" =>
+    [
+       "id" => "new_email"
+    ],
+
+    "firstName" =>
+    [
+       "id" => "new_firstName"
+    ],
+
+    "forgotPassword" =>
+    [
+       "css" => "a.pull-right"
+    ],
+
+    "lastName" =>
+    [
+       "id" => "new_lastName"
+    ],
+
+    "logIn" =>
+    [
+       "css" => "#loginform div.row div:nth-of-type(1) form button.btn.btn-primary"
+    ],
+
+
+
+    "password1" =>
+    [
+       "id" => "password"
+    ],
+
+    "password2" =>
+    [
+       "id" => "password_password"
+    ],
+
+    "phoneNumber" =>
+    [
+       "id" => "new_phone"
+    ],
+
+    "retypeEmailAddress" =>
+    [
+       "id" => "new_confirmemail"
+    ],
+
+    "retypePassword" =>
+    [
+       "id" => "password_confirmPassword"
+    ],
+
+    "username1" =>
+    [
+       "id" => "username"
+    ],
+
+    "username2" =>
+    [
+       "id" => "new_username"
+    ],
+    ];
+    /**
+     * Click on Cancel Link.
+     *
+     */
+    function clickCancelLink() {
+        //link
+        $this->click(self::$_selectors['cancel']);
+    }
+
+    /**
+     * Click on Create Account Button.
+     *
+     */
+    function clickCreateAccount1Button() {
+        //button
+        $this->click(self::$_selectors['createAccount1']);
+    }
+
+    /**
+     * Click on Create Account Button.
+     *
+     */
+    function clickCreateAccount2Button() {
+        //button
+        $this->click(self::$_selectors['createAccount2']);
+    }
+
+    /**
+     * Click on Forgot Password Link.
+     *
+     */
+    function clickForgotPasswordLink() {
+        //link
+        $this->click(self::$_selectors['forgotPassword']);
+    }
+
+    /**
+     * Click on Log In Button.
+     *
+     */
+    function clickLogInButton() {
+        //button
+        $this->click(self::$_selectors['logIn']);
+    }
+
+
+
+    /**
+     * Set default value to Date Of Birth Text field.
+     *
+     */
+    function setDateOfBirthTextField($dateOfBirthValue) {
+         //text
+        $this->type(self::$_selectors['dateOfBirth'],$dateOfBirthValue);
+    }
+
+    /**
+     * Set default value to Email Address Text field.
+     *
+     */
+    function setEmailAddressTextField($emailAddressValue) {
+         //text
+        $this->type(self::$_selectors['emailAddress'],$emailAddressValue);
+    }
+
+    /**
+     * Set default value to First Name Text field.
+     *
+     */
+    function setFirstNameTextField($firstNameValue) {
+         //text
+        $this->type(self::$_selectors['firstName'],$firstNameValue);
+    }
+
+    /**
+     * Set default value to Last Name Text field.
+     *
+     */
+    function setLastNameTextField($lastNameValue) {
+         //text
+        $this->type(self::$_selectors['lastName'],$lastNameValue);
+    }
+
+    /**
+     * Set default value to Password Password field.
+     *
+     */
+    function setPassword1PasswordField($password1Value) {
+         //text
+        $this->type(self::$_selectors['password1'],$password1Value);
+    }
+
+    /**
+     * Set default value to Password Password field.
+     *
+     */
+    function setPassword2PasswordField($password2Value) {
+         //text
+        $this->type(self::$_selectors['password2'],$password2Value);
+    }
+
+    /**
+     * Set default value to Phone Number Text field.
+     *
+     */
+    function setPhoneNumberTextField($phoneNumberValue) {
+         //text
+        $this->type(self::$_selectors['phoneNumber'],$phoneNumberValue);
+    }
+
+    /**
+     * Set default value to Retype Email Address Text field.
+     *
+     */
+    function setRetypeEmailAddressTextField($retypeEmailAddressValue) {
+         //text
+        $this->type(self::$_selectors['retypeEmailAddress'],$retypeEmailAddressValue);
+    }
+
+    /**
+     * Set default value to Retype Password Password field.
+     *
+     */
+    function setRetypePasswordPasswordField($retypePasswordValue) {
+         //text
+        $this->type(self::$_selectors['retypePassword'],$retypePasswordValue);
+    }
+
+    /**
+     * Set default value to Username Text field.
+     *
+     */
+    function setUsername1TextField($username1Value) {
+         //text
+        $this->type(self::$_selectors['username1'],$username1Value);
+    }
+
+    /**
+     * Set default value to Username Text field.
+     *
+     */
+    function setUsername2TextField($username2Value) {
+         //text
+        $this->type(self::$_selectors['username2'],$username2Value);
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickLogInButton();
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+        //Update w/ appropriate selector
+        $this->waitPageLoadedBySelectors(self::$_selectors);    
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return strpos($this->driver->getCurrentURL(), $this->pageUrl) !== false;
+    }
+}

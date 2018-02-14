@@ -1,0 +1,46 @@
+import {Record} from 'immutable';
+import {
+  SET_SESSION_TOKEN,
+  SET_EVENT_EMITTER,
+
+  SESSION_TOKEN_SUCCESS,
+  SESSION_TOKEN_FAILURE,
+
+  LOGGED_OUT,
+  LOGGED_IN,
+
+  SIGNUP_SUCCESS,
+  LOGIN_SUCCESS,
+  LOGOUT_SUCCESS
+} from '../constants';
+
+const InitialState = Record({
+  sessionToken: null,
+  eventEmitter: null
+});
+const initialState = new InitialState;
+
+export default function globalReducer(state = initialState, action) {
+  if (!(state instanceof InitialState)) return initialState.merge(state);
+
+  switch (action.type) {
+
+  case SET_SESSION_TOKEN:
+  case SESSION_TOKEN_SUCCESS:
+    state.eventEmitter.emit(LOGGED_IN, { });
+    return state.set('sessionToken', action.payload);
+
+  case SET_EVENT_EMITTER: 
+    return state.set('eventEmitter', action.payload);
+
+  case SIGNUP_SUCCESS:
+  case LOGIN_SUCCESS:
+    return state.eventEmitter.emit(LOGGED_IN, { });
+
+  case SESSION_TOKEN_FAILURE:
+  case LOGOUT_SUCCESS:
+    return state.eventEmitter.emit(LOGGED_OUT, { });
+
+  }
+  return state;
+}

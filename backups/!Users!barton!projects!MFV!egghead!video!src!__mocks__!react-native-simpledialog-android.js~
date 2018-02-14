@@ -1,0 +1,7 @@
+//mock react-native-simpledialog-android
+
+var SimpleAlert = {};
+
+SimpleAlert.alert = jest.genMockFunction();
+
+module.exports SimpleAlert;

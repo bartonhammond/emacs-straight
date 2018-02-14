@@ -1,0 +1,28 @@
+'use strict';
+require('regenerator/runtime');
+
+import CacheSearchRepositoriesProcessor from './CacheSearchRepositoriesProcessor';
+
+class CacheSearchRespositories{
+  constructor(queue) {
+    this.queue = queue;
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process(
+      'cacheSearchRepositories',
+      3, //batch
+      function(job,
+               ctx,
+               done) {
+
+        new CacheSearchRepositoriesProcessor(
+          self.queue,
+          job,
+          ctx,
+          done).run();
+      });
+  }
+}
+  module.exports = CacheSearchRespositories ;

@@ -1,0 +1,21 @@
+<template name="atInput">
+  {{> Template.dynamic template=templateName}}
+</template>
+
+<template name="atTextInput">
+    <div class="at-input {{#if isValidating}}validating{{/if}} {{#if hasError}}has-error{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
+    <div data-view="text"
+         data-type="{{type}}"
+         data-id="at-field-{{_id}}"
+         data-placeholder="{{placeholder}}"
+         data-label="{{#if showLabels}}{{displayName}}{{/if}}"
+         data-required="{{required}}">
+    </div>
+    {{#if hasIcon}}
+       <span class="{{iconClass}}"></span>
+    {{/if}}
+    {{#if hasError}}
+       <span>{{errorText}}</span>
+       {{/if}}
+    </div>
+</template>

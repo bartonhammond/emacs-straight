@@ -1,0 +1,72 @@
+<?php
+require_once __DIR__ . "/../../../../src/pageObjects/Page.class.php";
+use Facebook\WebDriver\WebDriverSelect;
+
+class WorkshopPage extends \Automate\Page {
+    private static $_selectors = [
+        "heading" =>
+        [
+            "css" => "h3.modal-title"
+        ],
+        "title" =>
+        [
+            "id" => "workshop_title"
+        ],
+        "fee_label" =>
+        [
+            "id" => "workshop_feeTitle"
+        ],
+        "fee" =>
+        [
+            "id" => "workshop_fee"
+        ],
+        "instructor" =>
+        [
+            "css" => "div#ajaxModal select"
+        ],
+        "max_students" =>
+        [
+            "id" => "workshop_maxStudents"
+        ],
+        "location" =>
+        [
+            "id" => "workshop_location"
+        ],
+        "submit" =>
+        [
+            "css" => "#ajaxModal a.submit.btn.btn-sm.btn-primary"
+        ]
+        
+    ];
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors(self::$_selectors);
+    }
+
+    function getHeading() {
+        return $this->find(self::$_selectors['heading'])->getText();
+    }
+    function typeWorkshopTitle($value) {
+        $this->type(self::$_selectors['title'], $value);
+    }
+    function typeFeeLabel($value) {
+        $this->type(self::$_selectors['fee_label'], $value);
+    }
+    function typeFee($value) {
+        $this->type(self::$_selectors['fee'], $value);
+    }
+    function clickInstructor() {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["instructor"]));
+        $webDriverSelect->selectByIndex(1);        
+    }
+    function typeMaxStudents($value) {
+        $this->type(self::$_selectors['max_students'], $value);
+    }
+    function typeLocation($value) {
+        $this->type(self::$_selectors['location'], $value);
+    }
+    function submit() {
+        $this->click(self::$_selectors['submit']);
+    }
+        
+}

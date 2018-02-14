@@ -1,0 +1,11 @@
+var Mongoose = require('mongoose');
+
+module.exports = Mongoose.model('User', Mongoose.Schema({
+  username: String,
+  email: String,
+  password: String,
+  firstName: String,
+  lastName: String,
+  age: Number,
+  emailVerified: Boolean
+}));

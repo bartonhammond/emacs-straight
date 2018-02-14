@@ -1,0 +1,4 @@
+Steps
+
+* ```npm run genMapBoxData``` -> ```latlongs.geojson```
+* 

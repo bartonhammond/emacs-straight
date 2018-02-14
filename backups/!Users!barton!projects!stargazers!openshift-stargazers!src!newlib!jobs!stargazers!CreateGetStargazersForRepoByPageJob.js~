@@ -1,0 +1,21 @@
+/**
+ * Return promise that resolves to a getRepositoryByPageJob
+ */
+let CreateGetRepositoryByPageJob = function(queue, currentPage, stars, language)
+{
+  return new Promise((resolve, reject) => {
+    let job = queue.create('getRepositoryByPage', {
+      title: 'getRepositoryByPage: '  + currentPage,
+      stars: stars,
+      language: language,
+      page: currentPage
+    }).save((err) => {
+      if (err) {
+        reject(err);
+      }
+    });
+    resolve(job);
+  });
+};//createJob
+
+module.exports = CreateGetRepositoryByPageJob;

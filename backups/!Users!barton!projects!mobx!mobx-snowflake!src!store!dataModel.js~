@@ -1,0 +1,10 @@
+'use strict';
+import {observable, computed, autorun} from 'mobx';
+
+
+export class DataModel {
+
+  constructor() {
+    @observable this.isFetching = false;    
+  }
+}

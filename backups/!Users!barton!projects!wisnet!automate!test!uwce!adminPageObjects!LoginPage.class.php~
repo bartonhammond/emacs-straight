@@ -1,0 +1,51 @@
+<?php
+require_once __DIR__ . "/../../../../src/pageObjects/Page.class.php";
+
+class LoginPage extends \Automate\Page {
+    private static $_selectors = [
+        "h1_heading" =>
+        [
+            "css" => "div#primary header > h1"
+        ],
+        "username" =>
+        [
+            "css" => "input#username"
+        ],
+        "password" =>
+        [
+            "css" => "input#password"
+        ],
+        "submit" =>
+        [
+            "css" => "section#loginform button[type='submit']"
+        ]
+    ];
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors(self::$_selectors);
+    }
+
+    function waitInputsClickable() {
+        $this->waitPageClickableBySelectors([self::$_selectors["username"],
+                                             self::$_selectors["password"]]);
+    }
+
+    function typeUsername($name) {
+        $this->type(self::$_selectors["username"],$name);
+    }
+
+    function typePassword($pass) {
+        $this->type(self::$_selectors["password"],$pass);
+    }
+
+    function submit() {
+        //hide the keyboard
+        if ($this->isMobile) {
+            $this->click(self::$_selectors['h1_heading']);
+        }        
+        $this->click(self::$_selectors["submit"]);
+    }
+    function getH1HeadingText() {
+        return $this->find(self::$_selectors['h1_heading'])->getText();
+    }
+}

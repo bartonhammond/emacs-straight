@@ -1,0 +1,59 @@
+var User = require('../../database/models/User'),
+    JwtAuth = require('../../auth/jwt-strategy'),
+    JasonWebToken = require('jsonwebtoken'),
+    Crypto = require('../../lib/Crypto'),
+    Mailer = require('../../lib/Mailer'),
+    Config = require('../../config');
+
+var internals = {};
+
+internals.registerUser = function (req, reply) {
+
+  req.payload.password = Crypto.encrypt(req.payload.password);
+  req.payload.emailVerified = false;
+  var user = new User(req.payload);
+
+  user.save(function (err, user) {
+
+    if (err) {
+      reply({
+	statusCode: 503,
+	message: "User couldn't be saved."
+      });
+    } else {
+      var tokenData = {
+        userName: user.userName,
+        id: user._id
+      };
+         
+      Mailer.sentMailVerificationLink(user,JasonWebToken.sign(tokenData,
+                                                        Config.crypto.privateKey));
+      
+      reply({
+	statusCode: 201,
+	message: "User registered.",
+	token: JwtAuth.createToken({ username: user.username, email: user.email })
+      });
+    }
+  });
+};
+
+internals.loginUser = function (req, reply) {
+
+  var credentials = {};
+  User.findOne({ username: req.payload.username }, function (err, user) {
+    
+    if (err) {
+      reply({ success: false, message: 'Authentication failed. User not found.' });
+    } else {
+      credentials = user;
+      if (Crypto.decrypt(credentials.password) != req.payload.password) {
+	reply({ success: false, message: 'Passwords does not match.' });
+      } else {
+	reply({ success: true, message: 'Authenticated.', token: JwtAuth.createToken({ username: credentials.username, email: credentials.email }) });
+      }
+    }
+  });
+};
+
+module.exports = internals;

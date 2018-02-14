@@ -1,0 +1,75 @@
+/**
+ * # StarGazers.js
+ * 
+ * 
+ *
+ */
+'use strict';
+/**
+ * ## Async support
+ * 
+ */ 
+require('regenerator/runtime');
+
+/**
+ * ## Imports
+ * 
+ * Config for defaults and underscore for a couple of features
+ */ 
+const RNGeocoder = require('react-native-geocoder');
+const BackendFactory = require('./BackendFactory').default;
+const Tiles = require('./Tiles');
+
+export default class StarGazers {
+  constructor() {
+    this.latinize = require('latinize');
+    this.tiles = new Tiles();
+  }
+  
+  async getStargazersAndBio() {
+
+    let stargazersBio = await BackendFactory().getStargazersBio(
+      'transistorsoft',
+      'react-native-background-geolocation');
+
+    console.log('stargazersBio',stargazersBio);
+
+    let biosWithGPS
+          = await this.getGPS(stargazersBio);
+    console.log('biosWithGPS',biosWithGPS);
+    
+    
+    let tilesResults = await this.tiles.process(biosWithGPS);
+    
+    return tilesResults;
+    
+  }
+   getGeocodeAddress(user, location) {
+    return RNGeocoder.geocodeAddress(location)
+      .then((latLong) => {
+        console.log('getGeocodeAddress', latLong);            
+        if (latLong) {
+          user.lat = latLong[0].location.lat;
+          user.long = latLong[0].location.lng;
+        }
+        return user;
+      }).catch((err) => {
+        console.log('getGeocodeAddress.err for location' + location,err);
+        return user;
+      });
+  }
+  async getGPS(stargazersBio) {
+    let usersWithLocations = [];
+    for (let user of stargazersBio) {
+      if (user.location) {
+        const location = this.latinize(user.location);
+        var valid = /^[a-z\,\-_\s]+$/i.test(location);
+        if (valid) {
+          usersWithLocations.push(this.getGeocodeAddress(user,location));
+        }
+      }//if location
+    } //for user
+    return usersWithLocations;
+  }
+  
+}

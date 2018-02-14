@@ -1,0 +1,10 @@
+<?php
+
+
+require _once("vendor/autoload.php");
+
+
+$f3 = Base::instance(); //static function
+
+$f3->run();
+

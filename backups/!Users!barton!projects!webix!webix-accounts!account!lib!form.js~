@@ -1,0 +1,18 @@
+'use strict';
+Template.title.helpers({
+  title: function () {
+    return T9n.get(WebixDefaults.texts.title.signIn);
+  }
+});
+
+Template.title.onCreated(function() {
+  console.log('title.onCreated');
+});
+
+Template.title.onRendered(function() {
+  console.log('title.onRendered');
+});
+
+Template.title.onDestroyed(function() {
+  console.log('title.onDestroyed');
+});

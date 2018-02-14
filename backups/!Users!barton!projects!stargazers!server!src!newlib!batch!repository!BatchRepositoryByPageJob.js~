@@ -1,0 +1,30 @@
+'use strict';
+/**
+ * Return promise that resolves to a getRepositoryByPageJob
+ */
+let CreateGetRepositoryByPageJob = function(queue,
+                                            id,
+                                            access_token,
+                                            currentPage,
+                                            minstars,
+                                            maxstars)
+{
+  return new Promise((resolve, reject) => {
+    queue.create('batchGetRepositoryByPage', {
+      title: 'batchGetRepositoryByPage: '  + currentPage,
+      id: id,
+      access_token: access_token,
+      minstars: minstars,
+      maxstars: maxstars,
+      page: currentPage
+    }).save((err) => {
+      if (err) {
+        return reject(err);
+      } else {
+        return resolve();
+      }
+    });
+  });
+};//createJob
+
+module.exports = CreateGetRepositoryByPageJob;

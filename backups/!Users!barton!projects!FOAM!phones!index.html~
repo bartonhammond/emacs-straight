@@ -1,0 +1,11 @@
+<html>
+  <head>
+    <script src="foam/core/bootFOAM.js"></script>
+    <link rel="stylesheet" href="foam/core/foam.css" />
+  </head>
+  <body>
+    <script>
+      document.write(FOAM_POWERED);
+    </script>
+  </body>
+</html>

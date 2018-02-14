@@ -1,0 +1,37 @@
+import keyMirror from 'key-mirror';
+
+let AuthConstants = keyMirror({
+  PARSE_INIT: null,
+  PARSE_INIT_SUCCESS: null,
+  PARSE_INIT_FAILURE: null,
+  
+  SIGNUP: null,
+  SIGNUP_SUCCESS: null,
+  SIGNUP_FAILURE: null,
+
+  LOGIN: null,
+  LOGIN_SUCCESS: null,
+  LOGIN_FAILURE: null,
+
+  LOGOUT: null,
+  LOGOUT_SUCCESS: null,
+  LOGOUT_FAILURE: null
+});
+
+
+
+export function clickSignUp() {
+  return {
+    type: AuthConstants.SIGNUP
+  }
+}
+
+
+export function parseInit(config ) {
+  return {
+    type: PARSE_INIT,
+    payload: {config}
+  };
+}
+
+module.exports = AuthConstants;

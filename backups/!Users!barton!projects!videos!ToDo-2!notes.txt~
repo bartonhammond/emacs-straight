@@ -1,0 +1,43 @@
+We will create the Todo app by selecting Create
+
+The next screen provides input for the name of the app.
+
+With the Designer selecting application, let's review some options and
+make some changes.
+
+Application
+
+1). The first change is the Theme.  Meteor Kitchen has themes for
+Bootstrap from https://bootswatch.com/. Select the theme and see those
+available.  We'll pick the bootswatch-paper which has features of the
+Google Material Design specifications.
+
+2) With Login With Password - the default is checked - just verify for
+now
+
+3) Save the changes - scroll to the bottom and click save
+
+Application -> Public Zone -> Pages -> Home Public -> Components ->
+Home_JumboTron
+
+We want to override two fields
+A. The Text field with changes that point to our GitHub acccount.
+
+From: 
+<b>This <a href="https://www.meteor.com" target="_blank">Meteor</a>
+application is made with <a href="http://www.meteorkitchen.com"
+target="_blank">meteor-kitchen</a> without manual coding.</b><br />It
+demonstrates how to create application with login, register and forgot
+password functions.<br />Source code (input file for generator) is <a
+href="https://github.com/perak/kitchen-examples/tree/master/example-accounts"
+target="_blank">here</a>.
+
+B. More importantly, we change the Button Route from Login to
+Register. Select it from the drop downs.
+
+The public facing website is now ok for our purposes.
+
+The next thing to do is change the private side of the application.
+The default page for the private side is home_private
+
+See Application -> Private Zone -> Pages -> home_private

@@ -1,0 +1,27 @@
+'use strict';
+
+/**
+Post page
+*/
+Template.post.helpers({
+  id: function() {
+    return Template.instance().data.state.toLowerCase();
+  }
+});
+
+Template.post.onRendered(function() {
+  if (_.isUndefined(webix.ui.views[Template.instance().data.state])) {
+    var component =  webix.markup.init();
+    webix.event(window, 'resize', function(){
+      if (component) component.resize();
+    });
+  }
+});
+
+Template.postPage.onDestroyed(function() {
+  var state = Template.instance().data.state;
+  if (webix.ui.views[state]) {
+    webix.ui.views[state].destructor();
+  }
+});
+

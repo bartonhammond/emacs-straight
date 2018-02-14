@@ -1,0 +1,26 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class MainPage extends \Automate\Page {
+    private static $_selectors = [
+        "fond_du_lac" =>
+        [
+            "css" => "div#primary div:nth-child(3) > a"
+        ],
+        "h2_message" =>
+        [
+            "css" => "div#primary h2"
+        ]
+            
+    ];
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors['h2_message']]);
+    }
+    function selectFondDuLac() {
+        $this->click(self::$_selectors['fond_du_lac']);
+    }
+    function getH2HeadingText() {
+        return $this->find(self::$_selectors['h2_message'])->getText();
+    }
+}

@@ -1,0 +1,29 @@
+Package.describe({
+  name: 'webix:keysim',
+  version: '0.0.1',
+  summary: 'Sim keyboard'
+  git: ''
+});
+
+// Declare NPM modules for Meteor to download into .npm/package
+Npm.depends({
+  'keysim':'1.3.0'
+});
+
+
+Package.onUse(function(api) {
+  api.versionsFrom(['METEOR@1.0']);
+  
+  api.use(['cosmos:browserify@0.5.1'], 'client'); // need this package
+
+  api.addFiles([
+      'client.browserify.js',           // browserify file
+      'client.browserify.options.json'  // browserify options file
+    ],
+    'client'
+  );
+
+  // export it to global app scope
+  api.export('Keysim','client');
+});
+

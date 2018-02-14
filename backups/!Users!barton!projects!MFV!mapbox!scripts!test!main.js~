@@ -1,0 +1,18 @@
+/*
+curl -X POST  -H "X-Parse-Application-Id:
+ lh1EL9XYYQHSjBqS8GTR6W65QvLpSUzHErBZE7N1"  -H "X-Parse-REST-API-Key:
+ 49cmZDEiNaveHk0foEjbhxplltgPIaOwkSBmFECL"  -H "Content-Type:
+ application/json"  -d '{}'  https://api.parse.com/1/functions/hello
+*/
+// Use Parse.Cloud.define to define as many cloud functions as you want.
+// For example:
+var test = require('cloud/test.js');
+var classTest = require('cloud/ClassTest.js');
+
+Parse.Cloud.define("hello", function(request, response) {
+
+  console.log('request.params.foo: ' + request.params.foo);
+  console.log('test.echo: ' + test(request.params.foo));
+  
+  response.success(classTest(request.params.foo));
+});

@@ -1,0 +1,31 @@
+var Joi = require('joi');
+var AccountHandlers = require('./handlers');
+
+var internals = {};
+
+internals.endpoints = [
+  {
+    method: 'POST',
+    path: '/account/register',
+    handler: AccountHandlers.registerUser,
+    config: {
+      validate: {
+	payload: {
+	  username: Joi.string().alphanum().min(6).max(12).required(),
+	  password: Joi.string().regex(/[a-zA-Z0-9]{3,30}/).required(),
+	  email: Joi.string().email().required(),
+	  firstName: Joi.string(),
+	  lastName: Joi.string(),
+	  age: Joi.number().integer()
+	}
+      }
+    }
+  },
+  {
+    method: 'POST',
+    path: '/account/login',
+    handler: AccountHandlers.loginUser
+  }
+];
+
+module.exports = internals;

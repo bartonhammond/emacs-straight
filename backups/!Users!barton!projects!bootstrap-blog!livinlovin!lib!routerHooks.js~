@@ -1,0 +1,7 @@
+var IR_Filters = {
+    // make sure to scroll to the top of the page on a new route
+    // Use: global
+    scrollUp: function() {
+        $('body,html').scrollTop(0);
+    }
+}

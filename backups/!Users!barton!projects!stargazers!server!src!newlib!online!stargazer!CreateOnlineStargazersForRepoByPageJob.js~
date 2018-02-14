@@ -1,0 +1,62 @@
+'use strict';
+let logger = require('../../Bunyan').logger();
+
+import BatchStargazersForRepoByPageJobProcessor from './BatchStargazersForRepoByPageJobProcessor';
+
+class CreateBatchStargazersForRepoByPageJob {
+  constructor(access_token)  {
+    this.access_token = access_token;
+    this.queue = require('../../Queue').queue();
+    this.batchStargazersForRepoByPageJobProcessor = new BatchStargazersForRepoByPageJobProcessor().init(access_token);
+  }
+  
+  createJob(id,
+            owner,
+            repo,
+            currentPage){
+
+    let self = this;
+
+    self.queue.create('batchStargazersForRepoByPage'
+                      + '_'
+                      + self.access_token, {
+                        title: 'batchStargazersForRepoByPage: '
+                          + owner + ':'      
+                          + repo + ':'
+                          + currentPage,
+                        id: id,
+                        access_token: self.access_token,
+                        owner: owner,
+                        repo: repo,
+                        page: currentPage
+                      })
+      .save((err) => {
+        if (err) {
+          logger.error(
+            'CreateBatchStargazersForRepoByPageJob',              
+            {id: id,
+             error: err,
+             owner: owner,
+             repo: repo,
+             page: currentPage,
+             access_token: self.access_token});
+        }
+      });
+  };
+}
+
+let creators = {};
+function _getCreator(access_token) {
+  if (access_token in creators) {
+    return creators[access_token];
+  }
+  creators[access_token] = new CreateBatchStargazersForRepoByPageJob(access_token);
+  return creators[access_token];
+}
+
+
+module.exports = {
+  creator: function(access_token) {
+    return _getCreator(access_token);
+  }
+};

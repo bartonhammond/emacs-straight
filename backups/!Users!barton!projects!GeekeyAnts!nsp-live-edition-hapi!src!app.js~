@@ -1,0 +1,26 @@
+'use strict';
+/**
+ *  Starting point of NSP Live Edition Hapi Server
+ */
+
+/**
+ *  Hapi is NodeJS server.
+ *
+ * From the command line, run ```npm start``` 
+ *
+ *  Hapi is configured in this import
+ */
+var HapiServer = require('./hapi-config/server');
+
+/**
+* The mongodb will be used to store all the users
+*/
+require('./database/mongodb');
+
+/**
+ * When hapi starts up, some info is displayed
+ */
+HapiServer.start(function () {
+  console.log('Server is running: ' + HapiServer.info.uri);
+});
+

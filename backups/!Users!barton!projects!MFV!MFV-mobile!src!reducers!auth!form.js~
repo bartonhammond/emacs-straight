@@ -1,0 +1,23 @@
+import {Record} from 'immutable';
+import {
+  LOGIN_STATE_REGISTER
+} from '../../constants';
+
+const Form = Record({
+  state: LOGIN_STATE_REGISTER,
+  disabled: false,
+  error: null,
+  isValid: false,
+  isFetching: true,
+  fields: new (Record({
+    email: '',
+    emailHasError: false,
+    password: '',
+    passwordHasError: false,
+    passwordAgain: '',
+    passwordAgainHasError: false,
+    showPassword: false
+  }))
+});
+
+export default Form;

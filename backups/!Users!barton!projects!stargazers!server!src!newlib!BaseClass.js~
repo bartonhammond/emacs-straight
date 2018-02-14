@@ -1,0 +1,48 @@
+'use strict';
+require('regenerator/runtime');
+import GitHub from '../GitHub';
+let logger = require('../Bunyan').logger();
+let BaseClass = class {
+  constructor(queue) {
+    this.queue = queue;
+    this.gitHub = new GitHub();
+    this.logger = logger;
+  }
+  /**
+   *  If the error is a rate-limiting one,
+   *  pause the queue until the time the rate 
+   *  is reset
+   *
+   *  see ../lib/Github for checking rate-limit
+   *
+   */
+  needToPause(ctx, err) {
+    if (err
+        && err.status
+        && err.status === 403) {
+      let now = Date.now() * 1000;
+      
+      let pause = err.ratelimitReset - now;
+      self.logger.info('BaseClass',
+                  {id: self.id,
+                   msg: 'needToPause',
+                   access_token: self.access_token});
+      ctx.pause(1000, (error)=> {
+        if (!error) {
+          setTimeout( () => {
+            self.logger.info('BaseClass',
+                  {id: self.id,
+                   msg: 'needToPause',
+                   access_token: self.access_token});            
+            ctx.resume();
+          }, pause );
+        }
+      });
+    }
+  }
+  
+};
+
+module.exports = BaseClass;
+
+

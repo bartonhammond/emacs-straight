@@ -1,0 +1,7 @@
+$this->assertTrue($this->main->verifyPageLoaded());
+$this->assertTrue($this->main->verifyPageUrl());
+$this->takeSnapShot();
+$this->main->setCreditCardTextField("404");
+$this->main->setExpMonthDropDownListField('02');
+$this->main->setExpYearDropDownListField('2019');
+$this->main->clickSubmitPaymentButton();

@@ -1,0 +1,24 @@
+<App Theme="Native">
+  <!-- GraphicsView lets us use OpenGL in Native theme -->
+  <GraphicsView>
+    <!-- Setting basic theme inside GraphicsView -->
+    <Fuse.BasicTheme.BasicStyle />
+
+    <DockPanel>
+      <StatusBarBackground Dock="Top" />
+      <Panel Dock="Fill">
+
+        <WebView Url="http://www.fusetools.com">
+          <!-- NativeViewHost lets us host Native controls in GraphicsView -->
+          <NativeViewHost>
+            <Android.WebView  />
+            <iOS.WebView />
+          </NativeViewHost>
+
+        </WebView>
+
+      </Panel>
+      <BottomBarBackground Dock="Bottom" />
+    </DockPanel>
+  </GraphicsView>
+</App>

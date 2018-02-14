@@ -1,0 +1,4 @@
+{
+  "customerName": "Customer name here",
+  "tests": ["testName"]
+}

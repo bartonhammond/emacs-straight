@@ -1,0 +1,21 @@
+{
+    "testName": "Student Registration",
+    "testScripts": [
+        "studentRegister.php"
+    ],
+    "sqlCommandHttp": "http:\/\/www.secured-site7.com\/uwce-staging\/www\/staging-student-reset",
+    "_sqlCommand": "mySQLCommand.sql",
+    "results": "\/Users\/barton\/projects\/wisnet\/automate\/src\/utilities\/..\/..\/test\/uwce\/studentRegistration\/output\/2017-12-23-17-53",
+    "screenshots": {
+        "browser_list_name_barton-test": "wisnet-browsers",
+        "browser_list_name": "barton-test",
+        "login": "",
+        "variables": {
+            "username": "bhammond@wisnet.com",
+            "password": "12345678a",
+            "firstName": "BWH1515524480",
+            "lastName": "HAM1515524480",
+            "email": "BWH1515524480@HAM1515524480.com"
+        }
+    }
+}

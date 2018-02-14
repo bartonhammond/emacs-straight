@@ -1,0 +1,12 @@
+BaseController = RouteController.extend({
+  showOrDelay: function(config) {
+    if (webix.ui.views[config.id]) {
+      $$(config.id).show();
+    } else {
+      webix.ui.delay(config,$$(config.id));
+      webix.delay(function() {
+        webix.$$(config.id);
+      }
+    }
+  }
+});

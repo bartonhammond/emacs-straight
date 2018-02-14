@@ -1,0 +1,28 @@
+<template name="postsListBtn">
+  <div data-view="layout"
+       data-type="clean"
+       data-stack="cols">
+    
+    <div data-type="clean"
+         data-gravity=2
+         data-minWidth=25>
+    </div>
+    
+    <div data-view="button"
+         data-width=150
+         data-label="{{t9n 'postslist.button.prev'}}"
+         data-click="{{postsListPrevBtnClick}}">
+    </div>
+    
+    <div data-view="button"
+         data-width=150
+         data-label="{{t9n 'postslist.button.next'}}"
+         data-click="{{postsListNextBtnClick}}">
+    </div>
+    
+    <div data-type="clean"
+         data-gravity=2
+         data-minWidth=25>
+    </div>
+  </div>
+</template>

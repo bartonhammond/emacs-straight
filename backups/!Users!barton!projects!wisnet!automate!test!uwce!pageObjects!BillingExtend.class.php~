@@ -1,0 +1,14 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class BillingExtra extends Billing {
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return $this->verifyPageUrlToLastSlash($this->driver->getCurrentURL(),
+                                               $this->pageUrl);        
+
+    }
+}

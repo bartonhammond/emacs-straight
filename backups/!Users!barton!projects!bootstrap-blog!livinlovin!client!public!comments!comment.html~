@@ -1,0 +1,23 @@
+<template name="comments">
+  <div id="comments">
+    <h3 class="comments-title">5 Comments</h3>
+    <ol class="commentlist">
+      <li class="comment">
+        <div>
+          <img alt="" src="http://0.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=60&amp;d=&amp;r=G" class="avatar avatar-60 photo" height="60" width="60">                
+          <div>
+            <div class="comment-author vcard">
+              <cite class="fn"><a href="http://www.themezilla.com" rel="external nofollow" class="url">Toby</a></cite>                   
+            </div><!-- end comment-author -->
+            <div class="comment-meta commentmetadata">
+              September 28, 2012 at 3:31 pm
+            </div><!-- end comment-meta -->
+            <div class="comment-body">
+              <p>Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+            </div><!-- end comment-body -->
+          </div><!-- end div -->
+        </div><!-- end comment -->
+      </li>
+    </ol>
+  </div>
+</template>

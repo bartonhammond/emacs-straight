@@ -1,0 +1,10 @@
+<template name="signin">
+  <div data-id="signin"
+       data-view="layout"
+       data-type="clean"
+       data-stack="cols">
+      <div data-view="template" data-width=200 minWidth=50>My left</div>
+      <div data-view="template" data-position="flex">{{>atForm}}</div>
+      <div data-view="template" data-width=200 minWidth=50>My Right</div> 
+  </div>
+</template>

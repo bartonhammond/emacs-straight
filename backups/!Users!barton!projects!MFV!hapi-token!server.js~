@@ -1,0 +1,11 @@
+// hapi server and configuration
+var HapiServer = require('./config/hapi');
+
+// connect mongoose
+require('./database/connect');
+
+// start the server
+HapiServer.start(function () {
+	console.log('Server is running: ' + HapiServer.info.uri);
+});
+

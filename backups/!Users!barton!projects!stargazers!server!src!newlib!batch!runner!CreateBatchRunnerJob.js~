@@ -1,0 +1,56 @@
+'use strict';
+let logger = require('../../Bunyan').logger();
+
+import BatchGetUser from './BatchGetUser';
+
+class CreateBatchGetUserJob{
+  constructor(access_token) {
+    this.access_token = access_token;
+    this.queue = require('../../Queue').queue();
+    this.batchGetUser = new BatchGetUser().init(access_token);
+  }
+  
+  createJob(id, login) {
+    let self = this;
+
+    return new Promise((resolve,reject) => {
+      self.queue.create(
+        'batchGetUser'
+          + '_'
+          + self.access_token, {
+            title: 'batchGetUser: ' + login,
+            id: id,
+            access_token: self.access_token,
+            login: login
+          }).save((err) => {
+            if (err) {
+              logger.error(
+                'CreateBatchGetUserJob',                
+                {id: id,
+                 error: err,
+                 login:login,
+                 access_token: self.access_token});
+                
+              return reject(err);
+            }
+            return resolve();
+          });
+    });
+    
+  };//createJob
+}
+
+let creators = {};
+function _getCreator(access_token) {
+  if (access_token in creators) {
+    return creators[access_token];
+  }
+  creators[access_token] = new CreateBatchGetUserJob(access_token);
+  return creators[access_token];
+}
+
+module.exports = {
+  creator: function(access_token) {
+    return _getCreator(access_token);
+  }
+};

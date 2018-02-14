@@ -1,0 +1,50 @@
+<?php
+require_once __DIR__ . "/../../../../src/pageObjects/Page.class.php";
+//url: https://www.secured-site7.com/uwce-staging/www/fond-du-lac/admin/course/xxx
+class CourseProgramDisplayPage extends \Automate\Page {
+    private static $_selectors = [
+        "h2_heading" =>
+        [
+            "css" => "div#primary h2"
+        ],
+        "edit_course" =>
+        [
+            "css" => "div#primary h2 > a > span"
+        ],
+        "add_new_session" =>
+        [
+            "css" => "div#primary div.buttongroup > a.btn.btn-primary.ajax-action"
+        ],
+        "edit_first_session" =>
+        [
+            "css" => "div#primary a.ajax-action.btn.btn-xs.btn-primary > span"
+        ]
+    ];
+    
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors['h2_heading'],
+                                          self::$_selectors['add_new_session'],
+                                          
+        ]);
+    }
+
+    function getH2HeadingText() {
+        return $this->find(self::$_selectors['h2_heading'])->getText();
+    }
+
+    function clickAddNewSession() {
+        $this->click(self::$_selectors['add_new_session']);
+    }
+    function clickToEditCourse() {
+        $this->click(self::$_selectors['edit_course']);
+    }
+    function clickToEditFirstSession() {
+        $this->click(self::$_selectors['edit_first_session']);
+    }
+    
+}
+
+
+
+
+

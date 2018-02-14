@@ -1,0 +1,30 @@
+Router.configure({
+    layoutTemplate: 'masterLayout',
+    loadingTemplate: 'loading',
+    notFoundTemplate: 'pageNotFound',
+    yieldTemplates: {
+        nav: {to: 'nav'},
+        footer: {to: 'footer'},
+    },
+  onStop: function() {
+    debugger;
+    var routeId = this.route.getName();
+        if (webix.ui.views[routeId]) {
+          $$(routeId).hide();
+        }
+        console.log('route onstop');
+      }
+});
+
+Router.map(function() {
+    this.route('home', {
+      path: '/'
+    });
+
+    this.route('private');
+});
+/*
+Router.plugin('ensureSignedIn', {
+  only: ['private']
+});
+*/

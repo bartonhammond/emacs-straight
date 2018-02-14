@@ -1,0 +1,7 @@
+<template name="atNavButton">
+  <div data-id="at-nav-button"
+       data-view="button"
+       data-label="{{text}}"
+       data-width=100>
+  </div>
+</template>

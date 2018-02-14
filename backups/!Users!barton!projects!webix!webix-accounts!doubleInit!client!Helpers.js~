@@ -1,0 +1,46 @@
+'use strict';
+(function(globals){
+  "use strict";
+  if (!globals.Helpers) {
+    globals.Helpers = {};
+  }
+}(this));
+
+Helpers.navButtonOnAfterRender = function(ev) {
+  console.log('navButton.onAfterRender');
+  console.log('$$', $$('nav-button'));
+  console.log('views',webix.ui.views['nav-button']);
+  
+}
+
+/**
+ * See client/posts_list.html onClick
+ */
+Helpers.validateEmail = function() {
+  var email = $$('email').data.value;
+  var emailError = !Is.email(email);
+  if (emailError) {
+    var key = WebixDefaults.texts.errors.invalidEmail;
+    webix.message({type:"error", text: T9n.get(key)});
+  }
+  return emailError;
+};
+Helpers.validatePasswordMissing = function(password) {
+  var passwordMissingError = _.isEmpty(password);
+  if (passwordMissingError) {
+    var key = WebixDefaults.texts.errors.passwordEmpty;
+    webix.message({type:"error", text: T9n.get(key)});
+  }
+  return passwordMissingError;
+}
+Helpers.validatePasswordsMatch = function() {
+  var password = $$('password').data.value;
+  var password_again = $$('password_again').data.value;
+  var passwordMatchError = password !== password_again;
+  if (passwordMatchError) {
+    var key = WebixDefaults.texts.errors.pwdMismatch;
+    webix.message({type:"error", text: T9n.get(key)});
+  }
+  return passwordMatchError;
+}
+

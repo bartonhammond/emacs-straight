@@ -1,0 +1,20 @@
+<?php include("header.html"); ?>
+<br><br>
+<div class="container">
+  <h2 class="form-signin-heading">Create new Project</h2>    
+  <form class="form-signin">
+    <input type="text" id="custName" class="form-control" placeholder="Customer Name"  autofocus>
+    <input type="text" id="projectName" class="form-control" placeholder="Project Name" >
+    <input type="text" id="testName" class="form-control" placeholder="Test Name">
+    <input type="text" id="testDescription" class="form-control" placeholder="Test Description">
+    <button class="btn btn-lg btn-primary btn-block" id="btn" >Create</button>
+  </form>
+</div> <!-- /container -->
+
+<?php include("footer.html"); ?>  
+
+<?php include("newProjectServer.php") ?>
+
+<script src="./newProject.js"></script>
+</body>
+</html>

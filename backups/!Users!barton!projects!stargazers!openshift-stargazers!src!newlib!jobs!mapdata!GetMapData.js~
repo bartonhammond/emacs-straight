@@ -1,0 +1,32 @@
+'use strict';
+require('regenerator/runtime');
+
+import BaseClass from '../BaseClass';
+import GetUsersForRepoProcessor from './GetUsersForRepoProcessor';
+
+class GetUsersForRepo extends BaseClass{
+  constructor(queue) {
+    super(queue);
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process(
+      'getUsersForRepo',
+      1,
+      function(job,
+               ctx,
+               done) {
+        
+        new GetUsersForRepoProcessor(
+          self.queue,
+          job,
+          ctx,
+          done).run();
+
+      });
+  }
+}
+module.exports = GetUsersForRepo;
+
+

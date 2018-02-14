@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wisnet - Everyday Fit - Screen Shots</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script> 
+    $(function(){
+      $("#includedContent").load("output/screenshots.html"); 
+    });
+    n =  new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+    document.getElementById("date").innerHTML
+       = "Browserstack Screentshot: " +  m + "/" + d + "/" + y;
+    </script> 
+  </head>
+  <body>
+
+    <div class="container">
+      <h2>Wisnet - Everyday Fit</h2>
+      <h3 id="date">Browserstack Screenshots</h3>
+      <p>Captured screen shots from running Automated scripts </p>
+      <table class="table table-hover">
+        <thead>
+          <div id="includedContent"></div>
+        </thead>
+        <tbody>
+
+   
+        </tbody>
+      </table>
+    </div>
+    
+
+
+  </body>
+</html>

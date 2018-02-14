@@ -1,0 +1,17 @@
+'use strict';
+
+jest.autoMockOff();
+
+jest.dontMock('../counterReducer');
+
+const counterReducer = require('../counterReducer.js');
+
+describe('counterReducer', () => {
+  it('should increment', () => {
+    expect(counterReducer(0, ).toEqual(true);
+  });
+  
+  it('should increment', () => {
+    expect(true).toEqual(true);
+  });
+});

@@ -1,0 +1,38 @@
+Steps followed:
+1) add page.('/dist') to foo/routing.html 
+```javascript
+ window.addEventListener('WebComponentsReady', function() {
+    page.base('/dist');
+   ....
+   });
+```
+2) gulp
+3) python -m SimpleHTTPServer 8000 dist/
+
+Results:
+1) navigate to http://localhost:8000/dist/ -> everything looks fine
+2) click "home" -> URL changes to http://localhost:8000/ and page displays directory listing
+3) click browser back button -> URL changes to http://localhost:8000/dist/ & page again looks fine
+4) click "users" -> URL changes to http://localhost:8000/users and error code 404 displayed
+5) same behavior for menu "contact"
+
+I notice that the hashbang is not working now.
+
+
+aliea
+ATT - data plan:
+    10G - $200 -> currrent monthly is $258 total
+    15G - $180 -> upgrade monthly should be $219 total
+
+
+        
+    - purchase phone
+        1265 - charles $19.74
+        1774 - marilyn $13.34
+        5578 - contract may 23 2016 $15 -> to own $185
+             - $40 line
+        
+        2 phones on installment
+          1265, 1774
+
+        ATT Next plan - pay phone monthy

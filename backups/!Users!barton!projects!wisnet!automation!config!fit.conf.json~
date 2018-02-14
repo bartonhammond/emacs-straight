@@ -1,0 +1,20 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "wisnetcom",
+  "key": "G6SBfwFVrpR5mMAPysJG",
+  
+  "capabilities": {
+    "build": "phpunit-browserstack",
+    "name": "fit_test",
+    "browserstack.debug": true
+  },
+
+  "environments": [
+    {
+      "os": "OS X",
+      "os_version": "El Capitan",
+      "browser": "chrome",
+      "browser_version": "61.0"
+    }
+  ]
+}

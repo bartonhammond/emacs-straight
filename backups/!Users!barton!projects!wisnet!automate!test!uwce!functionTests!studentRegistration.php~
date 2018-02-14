@@ -1,0 +1,59 @@
+//masthead
+$this->driver->get("https://www.secured-site7.com/uwce-staging/www/fond-du-lac/catalog");
+$this->masthead->verifyPageLoaded();
+$this->assertTrue($this->masthead->verifyPageUrl());
+$this->takeSnapShot();
+$this->masthead->clickLoginLink();
+//loginToRegister
+$this->assertTrue($this->login->verifyPageLoaded());
+$this->assertTrue($this->login->verifyPageUrl());
+$this->takeSnapShot();
+
+//Display the Register Form
+$this->login->clickCreateAccount1Button();
+
+//Should still be showing the Login url
+$this->assertTrue($this->login->verifyPageLoaded());
+$this->assertTrue($this->login->verifyPageUrl());
+
+//This will force the page to submit and change to "Create-Account"
+//url
+//So the create-account script will verify the url
+sleep(2); //running local needs time
+$this->login->clickCreateAccount2Button();
+sleep(2); //running local needs time
+
+//Create account
+$this->assertTrue($this->createAccount->verifyPageLoaded());
+$this->assertTrue($this->createAccount->verifyPageUrl());
+
+//Should be message to clear
+$this->createAccount->clickXButton();
+$this->takeSnapShot();
+<?php
+
+$date = new DateTime();
+$timeStamp =  $date->getTimestamp();
+$firstName = "BWH". $timeStamp;
+$lastName = "HAM" . $timeStamp;
+$email =$firstName . "@" . $lastName . ".com";
+$password = "12345678a";
+
+$this->setScreenShotVariableInAutomate('firstName', $firstName);
+$this->setScreenShotVariableInAutomate('lastName', $lastName);
+$this->setScreenShotVariableInAutomate('email', $email);
+$this->setScreenShotVariableInAutomate('password', $password);
+
+$this->createAccount->setFirstNameTextField($firstName);
+$this->createAccount->setLastNameTextField($lastName);
+
+$this->createAccount->setPhoneNumberTextField("8885551212");
+$this->createAccount->setEmailAddressTextField($email);
+$this->createAccount->setRetypeEmailAddressTextField($email);
+
+$this->createAccount->setPassword2PasswordField($password);
+$this->createAccount->setRetypePasswordPasswordField($password);
+//need special copy
+$this->createAccount->setDateOfBirthTextField("10/10/1990");
+$this->createAccount->clickCreateAccount2Button();
+?>

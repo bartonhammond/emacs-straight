@@ -1,0 +1,16 @@
+<?php
+namespace Automate;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+echo "autoload\n";
+require_once './src/utilities/RunTests.class.php';
+echo "runTests\n";
+
+$username = "bhammond@wisnet.com";
+$authkey = "u0459a8738c4a60d";
+$isLocal = true;
+
+$command = new RunTests($username, $authkey, $isLocal);
+echo "have command\n";
+$command->callBrowsers($argv, $argc);
+

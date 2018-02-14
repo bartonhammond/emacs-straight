@@ -1,0 +1,20 @@
+<?php
+
+require_once __DIR__ . '/../../../src/testCase/UnitTest.class.php';
+require_once __DIR__ . '/AdminCreateSessionsTest.class.php';
+
+/*
+PLATFORM_NAME='Mac OSX 10.12' BROWSER_NAME='Chrome' VERSION='62x64' NAME='University of Wisconsin-Continuing Education' BUILD='2018-01-22-13-51' DIRECTORY='/Users/barton/projects/wisnet/automate/src/utilities/../../test/uwce/adminCreateSessions/output/2018-01-22-13-51' USER_NAME='bhammond@wisnet.com' AUTHKEY='u0459a8738c4a60d' ISLOCAL='1' vendor/bin/phpunit  --verbose --debug /Users/barton/projects/wisnet/automate/src/utilities/../../test/uwce/adminCreateSessions/test.php
+*/           
+
+class AdminTest extends \Automate\UnitTest { 
+    public function thisFunction() {
+        //Delete data from previous run
+        file_get_contents("http://www.secured-site7.com/uwce-staging/www/staging-reset");
+        $admin = new AdminCreateSessionsTest($this,
+                                             $this->driver,
+                                             $this->isMobile,
+                                             $this->isLocal);
+        $admin->main();
+    }
+}

@@ -1,0 +1,9 @@
+'use strict';
+
+Template.discuss.helpers({
+  dataClick = function() {
+    `
+    Router.go('postPage', {_id: this._id});
+    `
+  }
+});

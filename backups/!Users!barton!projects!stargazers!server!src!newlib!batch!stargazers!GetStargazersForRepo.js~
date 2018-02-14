@@ -1,0 +1,27 @@
+'use strict';
+require('regenerator/runtime');
+
+import GetStargazersForRepoProcessor from './GetStargazersForRepoProcessor';
+
+class GetStargazersForRepo{
+  constructor(queue) {
+    this.queue = queue;
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process(
+      'getStargazersForRepo',
+      13,//3 batch, 10 online
+      function(job,
+               ctx,
+               done) {
+        new GetStargazersForRepoProcessor(
+          self.queue,
+          job,
+          ctx,
+          done).run();
+      });
+  }
+}
+module.exports = GetStargazersForRepo;

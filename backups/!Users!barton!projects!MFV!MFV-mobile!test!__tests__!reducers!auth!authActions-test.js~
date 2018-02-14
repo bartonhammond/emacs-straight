@@ -1,0 +1,6 @@
+'use strict';
+
+import assert from 'assert';
+import nock from 'nock';
+import * as actions from '../src/actions/PostersActions';
+import mockStore from './mocks/Store';

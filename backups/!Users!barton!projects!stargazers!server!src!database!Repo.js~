@@ -1,0 +1,154 @@
+/**
+ * # User.js
+ *
+ * The user document for Mongoose
+ *
+ */
+'use strict';
+import  pako from 'pako';
+/**
+ * ## Imports
+ *
+ */
+//Mongoose - the ORM
+var Mongoose = require('mongoose'),
+    //The document structure definition
+    Schema = Mongoose.Schema;
+
+Mongoose.Promise = global.promise;
+
+//Same fields as Parse.com 
+var RepoSchema = new Schema({
+  owner: {
+    type: String,
+    required: true
+  },
+  repo: {
+    type: String,
+    required: true
+  },
+  mapbox:{
+    type: String,
+    required: true
+  },
+  following: {
+    type: String,
+    required: true    
+  },
+  starred: {
+    type: String,
+    required: true        
+  }
+});
+//Make a compound index 
+RepoSchema.index({ owner: 1, repo: 1 }, { unique: true });
+
+
+/**
+ * ## Mongoose model for Repo
+ *
+ * @param RepoSchema - the Repo document structure definition
+ *
+ */
+var Repo = Mongoose.model('Repo', RepoSchema);
+
+/**
+ * ## findRepo
+ *
+ * @param owner - owner name
+ * @param repo - repo name
+ * @param callback - resolve the action
+ *
+ */
+RepoSchema.statics.findRepo = function(owner, repo) {
+  return new Promise((resolve,reject) => {
+    try {
+      this.findOne({
+        owner: owner,
+        repo: repo
+      })
+        .exec()
+        .then((repo) => {
+          repo.mapbox
+            = JSON.parse(pako.inflate(repo.mapbox, { to: 'string' }));
+          repo.following
+            = JSON.parse(pako.inflate(repo.following, { to: 'string' }));
+          repo.starred
+            = JSON.parse(pako.inflate(repo.starred, { to: 'string' }));
+          resolve(repo);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch(err) {
+      reject(err);
+    }
+  });
+};
+
+/**
+ * ## findRepo
+ *
+ * @param owner - owner name
+ * @param repo - repo name
+ * @param callback - resolve the action
+ *
+ */
+RepoSchema.statics.addRepo
+  = function(
+    owner,
+    repo,
+    mapbox,
+    following,
+    starred
+  ) {
+
+    return new Promise((resolve,reject) => {
+      try {
+        if (following && following.length  > 100) {
+          following = following.slice(0,100);
+        }
+        
+        if (starred && starred.length > 100) {
+          starred = starred.slice(0,100);
+        }
+        
+        let _mapbox = pako.deflate(
+          JSON.stringify(mapbox),
+          {to: 'string' });
+        
+        let _following = pako.deflate(
+          JSON.stringify(following),
+          {to:'string'});
+        
+        let _starred = pako.deflate(
+          JSON.stringify(starred),
+          {to: 'string' });
+        
+        let temp = new Repo({
+          owner: owner,
+          repo: repo,
+          mapbox: _mapbox,
+          following: _following,
+          starred: _starred
+        });
+
+        temp.save()
+          .then((err) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(temp);
+            }
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      } catch (err) {
+        reject(err);
+      }
+    });//promise
+  }; //addRepo
+
+
+module.exports = Repo;

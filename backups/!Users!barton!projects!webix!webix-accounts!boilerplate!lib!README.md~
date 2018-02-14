@@ -1,0 +1,7 @@
+Webix UserAccount boilerplate
+================
+
+
+The [useraccounts:webix](https://github.com/bartonhammond/useraccounts-webix.git) package is referenced.  You will have to setup for local development (e.g. from the packages/ directory do `ln -s /path/to/useraccounts-webix/ .`)
+
+This Meteor application uses Webix for the user interface.

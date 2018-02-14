@@ -1,0 +1,56 @@
+<template name="input">
+  {{> Template.dynamic template=templateName}}
+</template>
+
+<template name="textInput">
+    <div data-view="text"
+         data-type="{{type}}"
+         data-id="{{_id}}"
+         data-name="{{_id}}"
+         data-placeholder="{{placeholder}}"
+         data-label="{{displayName}}"
+         data-width=500
+         data-labelWidth=250
+         data-required="{{required}}"></div>
+</template>
+
+
+<template name="checkboxInput">
+  <div data-view="checkbox"
+       data-type="{{type}}"
+       data-id="{{_id}}"
+       data-name="{{_id}}"
+       data-label="{{displayName}}"
+       data-width=500
+       data-labelWidth=250
+       data-required="{{required}}"></div>
+</template>
+
+<!--
+<template name="selectInput">
+  <div class="at-input">
+    <label for="at-field-{{_id}}">{{displayName}}</label>
+    <select id="at-field-{{_id}}" name="at-field-{{_id}}">
+      {{#each values}}
+        <option value="{{value}}">{{text}}</option>
+      {{/each}}
+    </select>
+  </div>
+</template>
+
+<template name="radioInput">
+  <div class="at-input">
+    <label>{{displayName}}</label>
+  </div>
+  {{#each values}}
+    <div class="at-input">
+      <input id="at-field-{{id}}-choice-{{value}}" type="radio" name="at-field-{{id}}" value={{value}}>
+      <label>{{text}}</label>
+    </div>
+  {{/each}}
+</template>
+
+<template name="hiddenInput">
+  <input type="hidden" id="at-field-{{_id}}" name="at-field-{{_id}}">
+</template>
+-->

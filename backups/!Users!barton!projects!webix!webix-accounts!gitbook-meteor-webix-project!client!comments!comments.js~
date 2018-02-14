@@ -1,0 +1,8 @@
+Template.comments.helpers({
+  comments: function() {
+    if (!_.isUndefined(this.state)
+        && 'postPage' === this.state) {
+      return Comments.find({postId: Template.parentData()._id});
+    }
+  }
+});

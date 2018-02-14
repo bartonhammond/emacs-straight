@@ -1,0 +1,85 @@
+<?php
+{{#if copyright.claimant}}
+/*
+All the code that follow is
+Copyright (c) {{copyright.year}}, {{copyright.claimant}}. All Rights Reserved.
+Not for reuse without permission.
+*/
+{{/if}}
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+    {{#operations}}
+      Operation Name: {{operation.name}}
+      {{#if argument}}      
+      Operation Argument: {{argument.name}}
+      {{/if}}
+      Attribute Strategy: {{attribute.strategy}}
+      Attribute Name: {{attribute.name}}
+      Attribute Value: {{attribute.value}}
+      {{#equals type 'submit'}}
+        Submit: {{target.name}}
+      {{#equals}}     
+
+    {{/operations}}     
+
+
+class {{model.name}} extends \Automate\Page {
+   {{#attributes}}
+    {{#unless attribute.strategy }}
+     protected ${{attribute.name}} = "{{{attribute.value}}}";
+     {{/unless }}
+   {{/attributes}}    
+   private static $_selectors = [
+    {{#attributes}}
+    {{#if attribute.strategy}}
+    "{{attribute.name}}" =>
+    [
+       "{{attribute.strategy}}" => "{{{attribute.value}}}"
+    ],
+    {{/if}}
+    {{/attributes}}
+    ];
+    {{#operations}}
+    {{#unequals type 'fill.submit'}}
+    {{#unequals type 'fill'}}              
+    /**
+     * {{#if argument}}{{argument.documentation}}{{else}}{{operation.documentation}}{{/if}}
+     *
+     */
+    {{#if argument}}
+    function {{operation.name}}(${{argument.name}}) {
+    {{else}}
+    function {{operation.name}}() {
+    {{/if}}
+     {{#equals type 'submit'}}
+       $this->{{target.name}}();
+     {{/equals}}
+     {{#equals type 'link'}}
+        //link
+        $this->click(self::$_selectors['{{attribute.name}}']);
+    {{/equals}}
+     {{#equals type 'text'}}
+         //text
+        $this->type(self::$_selectors['{{attribute.name}}'],${{argument.name}});
+    {{/equals}}
+    {{#equals type 'button'}}
+        //button
+        $this->click(self::$_selectors['{{attribute.name}}']);
+    {{/equals}}
+     {{#equals type 'select'}}
+        //select
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["{{attribute.name}}"]));
+        $webDriverSelect->selectByVisibleText(${{argument.name}});        
+    {{/equals}}
+    {{#equals type 'verify.loaded'}}
+        //Update w/ appropriate selector
+        $this->waitPageLoadedBySelectors(self::$_selectors);    
+    {{/equals}}
+    {{#equals type 'verify.url'}}
+        return strpos($this->driver->getCurrentURL(), $this->{{attribute.name}}) !== false;
+    {{/equals}}
+    }
+    {{/unequals}}    
+    {{/unequals}}        
+    {{/operations}}    
+}

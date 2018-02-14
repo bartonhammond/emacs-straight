@@ -1,0 +1,16 @@
+{
+  "server": "hub-cloud.browserstack.com",
+   "user": "bartonhammond1",
+   "key": "UXXHAju9asdQAp1R2LcN",
+  
+  "capabilities": {
+    "build": "phpunit-browserstack",
+    "name": "fit_test",
+    "browserstack.debug": true
+  },
+
+  "environments": [{
+    "browser": "chrome",
+    "os": "OS X"
+  }]
+}

@@ -1,0 +1,39 @@
+$this->navigateToCourseAndProgramPage();
+
+$this->cpDisplayPage->clickToEditCourse();
+
+$this->coursePage->waitPageLoaded();
+
+$this->coursePage->selectProgram();
+$this->coursePage->submit();
+
+
+$this->cpDisplayPage->waitPageLoaded();
+$this->cpDisplayPage->clickToEditFirstSession();
+
+$this->session->waitPageLoaded();
+
+$this->session->clickWorkshopsTab();
+$this->takeSnapShot();
+
+//Wait for popup.
+$this->session->clickAddNewWorkshop();
+
+sleep(3);
+
+$this->takeSnapShot();
+$this->workshopPage->waitPageLoaded();
+$this->assertEquals("New Workshop", $this->workshopPage->getHeading());
+
+$this->workshopPage->typeWorkshopTitle("BWH Workshop Title");
+$this->workshopPage->typeFeeLabel("BWH Workshop Fee Label");
+$this->workshopPage->typeFee("10");
+$this->workshopPage->clickInstructor();
+$this->workshopPage->typeMaxStudents(2);
+$this->workshopPage->typeLocation("Fond du Lac");
+$this->workshopPage->submit();
+
+sleep(3);
+$this->assertEquals("BWH Workshop Title", $this->session->getWorkshopTitle());
+$this->takeSnapShot();
+

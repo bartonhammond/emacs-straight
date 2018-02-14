@@ -1,0 +1,161 @@
+<?php
+namespace Automate;
+
+class ProcessSessions {
+    protected $username;
+    protected $key;
+    protected $output_directory;
+    
+    function __construct($username, $key, $output_directory) {
+        $this->username = $username;
+        $this->key = $key;
+        $this->output_directory = $output_directory;
+   }
+    
+    //Start an HTML row
+    //Display green if ok
+    protected function _htmlRowStart($pageName, $hasError) {
+        
+        $class = "test-success";
+        if ($hasError) {
+            $class =  "test-failed";
+        }
+      
+        $button = '<button type="button"'
+        .  ' class="viewLog" data-toggle="modal" data-target="#logModal"'
+        . ' data-whatever="' . $pageName . '">View Log</button>';
+        
+        return '<tr><th class="'
+        . $class .'" valign="middle">'
+        . $pageName
+        . '<br> '
+        . $button
+        . '</th>';
+
+    }
+
+
+    
+    //Create a TD
+    protected function _htmlTD($url, $pageName) {
+        return '<td>'
+        . '<p class="screenshot-name">'
+        . 'url-here-please'
+        . '</p>'
+        . '<p class="screenshot-os">'
+        . $pageName
+        . '</p>'
+        . '<img class="screenshot-img" src="' . $url
+        . '"></td>';
+    }
+    
+    //Create video in TD
+    protected function _htmlVideo($url) {
+        return '<td><video width="320" height="240" controls><source src="' . $url . '" type="video/mp4"></video></td>';
+    }
+    
+    //End the row
+    protected function _htmlRowEnd() {
+        return "</tr>";
+    }
+
+
+    public function getLogs($sessionID) {
+        $CONFIG = $GLOBALS['CONFIG'];
+
+        $url= "https://www.browserstack.com/automate/sessions/" . $sessionID . '.json';
+        
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_USERPWD, "$this->username:$this->key");
+  
+        $out = curl_exec($ch);
+        curl_close($ch);
+  
+        $out_array = explode("\n", $out);
+        $json = json_decode($out_array[0]);
+        $session = $json->automation_session;
+        $video_url = $session->video_url;
+  
+        //Store the results as a HTML row of cells
+        $url = "https://www.browserstack.com/automate/logs/" . $sessionID;
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_USERPWD, "$this->username:$this->key");
+
+        $out = curl_exec($ch);
+        curl_close($ch);
+
+        $device = "";
+
+        //Get the capabilities
+        $out_array = explode("\n", $out);
+        $json_string =substr($out_array[0], strpos($out_array[0],'{'), strpos($out_array[0],'}'));
+
+        $json = json_decode($json_string)->desiredCapabilities;
+        
+        //Is Mobile?
+        if (isset($json->real_mobile)) {
+            //Get unique name for file
+            $device =  $json->os . '_' . $json->os_version . '_' . $json->device;
+
+        } else {
+            //Get unique name for file
+            $browserName = '';
+            if (isset($json->browser)) {
+                $browserName = $json->browser;
+            } else {
+                $browserName = $json->browserName;
+            }
+            $device =  $json->os . '_' . $json->os_version . '_' . $browserName . '_' . $json->browser_version;
+
+        }
+        $device = str_replace('-', '_', $device);
+        $device = str_replace(' ', '_', $device);        
+        $device = str_replace('.', '_', $device);
+        
+        // create new directory with 744 permissions if it does not exist yet
+        // owner will be the user/group the PHP script is run under
+        if ( !file_exists($this->output_directory) ) {
+            $oldmask = umask(0);  // helpful when used in linux server  
+            mkdir ($this->output_directory, 0744);
+        }
+
+        $errorLog = file_get_contents($this->output_directory . '/' . $device . '.log');
+
+        $hasError = true;
+        if (strpos($errorLog, 'OK (1 test,') !== false) {
+            $hasError = false;
+        }
+                                      
+        //Write out the file
+        ob_start();
+        print $this->_htmlRowStart($device, $hasError);
+  
+        //Video in first cell
+        print $this->_htmlVideo(trim($video_url));
+
+        //Each debug is a screen shot
+        foreach($out_array as $line) {
+            if (strpos($line, 'DEBUG')) {
+                $line_array = explode(" ", $line);
+              print $this->_htmlTD(trim($line_array[3]), $device);
+            }
+        }
+
+        print $this->_htmlRowEnd();
+        $resultsString = ob_get_clean();
+
+        file_put_contents($this->output_directory . '/screenshots.html', $resultsString, FILE_APPEND | LOCK_EX);
+
+
+    }
+}
+
+?>

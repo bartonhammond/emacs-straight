@@ -1,0 +1,48 @@
+<?php
+namespace Automate;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+/** 
+ * 
+ * Check that neither ScreenShots or Automation tests are running
+ * 
+ */
+class AutomateFile {
+    protected $directory;
+    public $automate;
+    
+    public function __construct($directory) {
+        $this->directory = $directory;
+        $this->read();
+    }
+    public function read() {
+        $this->automate = json_decode(file_get_contents($this->directory .  "/automate.json"));
+    }
+    /*
+     * Save variables during the Automation tests for use later by 
+     * ScreenShots
+     */
+
+    public function addScreenShotVariable($key, $value) {
+        $this->read();
+        $this->automate->screenshots->variables->$key = $value;
+        $this->save();
+    }
+    public function save() {
+        file_put_contents($this->directory .  "/automate.json"
+                          ,json_encode($this->automate,
+                                       JSON_PRETTY_PRINT)
+                          ,LOCK_EX);                
+    }
+
+    public function setResults($results) {
+        $this->read();
+        $this->automate->results = $results;
+        $this->save();
+    }
+}
+/*
+$automate = new AutomateFile('/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions');
+$automate->addScreenShotVariable("course_id", "723");
+*/

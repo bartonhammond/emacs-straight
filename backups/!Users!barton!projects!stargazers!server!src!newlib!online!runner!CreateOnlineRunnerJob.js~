@@ -1,0 +1,41 @@
+'use strict';
+let logger = require('../../Bunyan').logger();
+
+import BatchRunner from './BatchRunner';
+
+class CreateBatchRunnerJob{
+  constructor() {
+    this.queue = require('../../Queue').queue();
+    this.batchGetRunner = new BatchRunner().init();
+  }
+  
+  createJob(id) {
+
+    let self = this;
+
+    return new Promise((resolve,reject) => {
+      self.queue.create(
+        'batchRunner',
+        {title: 'batchRunner'
+        })
+        .delay(1000 * 60)// 1 minute
+        .save((err) => {
+          if (err) {
+            logger.error(
+              'CreateBatchRunnerJob',                
+              {id: id,
+               error: err,
+               access_token: self.access_token});
+            
+            return reject(err);
+          }
+          return resolve();
+        });
+    });
+    
+  };//createJob
+}
+
+
+module.exports = CreateBatchRunnerJob;
+

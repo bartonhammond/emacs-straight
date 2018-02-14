@@ -1,0 +1,37 @@
+{
+  "type": "script",
+  "seleniumVersion": "2",
+  "formatVersion": 2,
+  "steps": [
+    {
+      "type": "get",
+      "url": "https://www.secured-site7.com/uwce-staging/www/fond-du-lac/admin/course/edit/719"
+      
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "css selector",
+        "value": "span.glyphicon.glyphicon-pencil"
+      }
+    },
+    {
+      "type": "waitForEval",
+      "script": "document.querySelector('div#primary li.tab.tab-2.tab-location > a').scrollIntoView(true); return 1;",
+      "value": 1
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "link text",
+        "value": "Location"
+      }
+    }
+  ],
+  "data": {
+    "configs": {},
+    "source": "none"
+  },
+  "inputs": [],
+  "timeoutSeconds": 60
+}

@@ -1,0 +1,41 @@
+'use strict';
+require('regenerator/runtime');
+var fs = require('fs');
+
+let LatLongs = require('./LatLongs');
+let latLongs = new LatLongs();
+
+let Tiles = require('./Tiles');
+let tiles = new Tiles();
+
+let GeoColor = require('./GeoColor');
+let geoColor = new GeoColor();
+
+let GeoToAnnotations = require('./GeoToAnnotations');
+let geoToAnnotations = new GeoToAnnotations();
+
+class TheBigOne {
+  async process(owner, repo) {
+    try {
+      let latLongResults = await latLongs.get(owner, repo);
+
+      let tilesResults = await tiles.process(latLongResults);
+
+      let annotationsResults = null;
+      
+      if (tilesResults.length > 25) {
+        let geoColorResults = geoColor.jenks(tilesResults);
+        annotationsResults =  geoToAnnotations.convert(geoColorResults);
+      } else {
+        annotationsResults = geoToAnnotations.convert(tilesResults);
+      }
+
+      fs.writeFileSync('./annotations.json', JSON.stringify(annotationsResults, null, 2));        
+      
+    } catch (error) {
+      console.log('bigOne error',error);
+    }
+  }
+}
+
+(new TheBigOne()).process('bartonhammond','snowflake');

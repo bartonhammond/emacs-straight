@@ -1,0 +1,19 @@
+<?php include("header.html"); ?>
+   <br><br>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1>Generate ATF Test Scripts</h1>
+          <p class="lead">Just to prove a simple use of this
+            tool</p>
+          <input type="text" id="scriptName" value="main"
+                 placeholder="Script object name">
+          <p>Provide name of script, like "main" or "catalog"</p>
+        </div>
+      </div>
+    </div>
+    <?php include("footer.html"); ?>    
+    <script src="./classes.js"></script>
+    <script src="./code.js"></script>
+  </body>
+</html>

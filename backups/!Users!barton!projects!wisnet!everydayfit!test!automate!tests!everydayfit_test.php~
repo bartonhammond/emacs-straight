@@ -1,0 +1,266 @@
+<?php
+require 'vendor/autoload.php';
+
+use Alexschwarz89\Browserstack\Screenshots\Api;
+use Alexschwarz89\Browserstack\Screenshots\Request;
+
+class EverydayFit extends BrowserStackTest {
+
+  public $BROWSERSTACK_ACCOUNT   = 'bartonhammond1';
+  public $BROWSERSTACK_PASSWORD  = 'UXXHAju9asdQAp1R2LcN';
+
+  public $IN_PROGRESS = "A previous screenshot request is already in progress";
+  public $api =  '';
+
+  public $results = array();
+
+
+  //Start an HTML row 
+  public function _htmlRowStart($pageName) {
+    return '<tr><td valign="middle">' .  $pageName . '</td>';
+  }
+  //Create a TD
+  public function _htmlTD($os, $os_version, $browser, $browser_version, $url) {
+    return '<td style="text-align:center">' . $os . ' ' . $os_version . ' ' . $browser . ' ' . $browser_version . '<img src="' . $url . '"></td>';
+  }
+  //End the row
+  public function _htmlRowEnd() {
+    return '</tr>';
+  }
+
+  
+  //Cature the screen shot and save results
+  public function capture($url, $os, $os_version, $browser, $browser_version) {
+    // Short-hand Notation
+    $request    = Request::buildRequest($url, $os, $os_version, $browser, $browser_version);
+
+    // Send the request
+    $response   = $this->api->sendRequest( $request );
+
+    if ($response->isSuccessful) {
+      // Wait until the request is finished
+      do {
+        // Query Job Status
+        $status = $this->api->getJobStatus($response->jobId);
+
+        if ($status->isFinished()) {
+          print "IsFinished \n";
+          var_dump($this->results);
+          // When it's finished, print out the image URLs
+          foreach ($status->finishedScreenshots as $screenshot) {
+
+            print "Screenshot: \n";
+            var_dump($screenshot);
+
+            $this->results[$url] = array_merge($this->results[$url],
+                                               array(
+                                                 "os" => $screenshot->os,
+                                                 "os_version" => $screenshot->os_version,
+                                                 "browser" => $screenshot->browser,
+                                                 "browser_version" => $screenshot->browser_version,
+                                                 "image_url" => $screenshot->image_url
+                                               ));
+
+            var_dump($this->results);
+            print "\n";
+          }
+          break;
+        } //if
+        
+        // Wait five seconds
+        sleep(5);
+
+      } while (true);
+      
+    } else {
+      if (!empty($response->message) && $response->message == $this->IN_PROGRESS) {
+        sleep(5);
+        $this->capture($url, $os, $os_version, $browser, $browser_version);
+      } else {
+        print 'Job creation failed. Reason: ' . $response->errorMessage . "\n";
+      }
+    }
+    
+    
+  }
+  public function makeScreenShots() {
+    
+    $url = self::$driver->getCurrentURL();
+    if(!array_key_exists($url,$this->results)) {
+      print "this->results does not have key " . $url . "\n";
+      $this->results[$url] = array();
+    } else {
+      print "this->results does have key " . $url . "\n";
+    }
+    print "\n\nurl: " . $url . "\n";
+    
+    //See https://www.browserstack.com/automate/phpunit
+    $screenShots = array(
+      array(     
+        "os"=> "Windows",
+        "os_version"=> "7",
+        "browser"=> "ie",
+        "browser_version" => "11.0"
+      ),
+      array(
+        "os"=> "OS X",
+        "os_version"=> "El Capitan",
+        "browser"=> "chrome",
+        "browser_version"=> "50.0",
+      )
+    );
+
+
+    foreach($screenShots as $item) { //foreach element in $screenShots
+      $this->capture($url,$item['os'], $item['os_version'], $item['browser'], $item['browser_version']);
+    }
+
+  }
+  
+
+  public function testLogin() {
+    //Initialize $api
+    $this->api =  new Api($this->BROWSERSTACK_ACCOUNT, $this->BROWSERSTACK_PASSWORD);
+    //$browserList    = $this->api->getBrowsers();
+
+    //Output buffering
+    //       ob_start();
+    //       var_dump( $browserList );
+    //       $browserListString = ob_get_clean();
+    
+    //       $my_file = 'browserList.txt';
+    //       $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
+    //       fwrite($handle, $browserListString);
+    //       fclose($handle);
+    
+    //Main page
+    $home = "http://welcome.wisnetcreative.com/everydayfit/www/www/public/";
+    self::$driver->get($home);
+    $this->makeScreenShots();
+    
+    //Get Log in link
+    $element = self::$driver->findElement(WebDriverBy::linkText("Log In"));
+    $element->click();
+
+    //Login
+    self::$driver->wait(10, 500)->until(function($driver) {
+
+      $element = $driver->findElement(WebDriverBy::id("email"));
+      $element->sendKeys("bartonhammond@gmail.com");
+
+      $element = $driver->findElement(WebDriverBy::id("password"));
+      $element->sendKeys("123456");
+
+      $element = $driver->findElement(WebDriverBy::className("btn2"));
+
+      $this->makeScreenShots();      
+      $element->click();
+      
+      return true;
+    });
+
+
+
+
+/*
+      
+    //Check if on Activity List page
+    self::$driver->wait(20, 1000)->until(function($driver) {
+    $url = self::$driver->getCurrentURL();
+    $this->makeScreenShots();                 
+    return (strpos($url, 'activity-list') !== false);
+    });        
+
+
+    //Click the Team tab
+    $element = self::$driver->findElement(WebDriverBy::linkText("Teams"));                
+    $element->click();
+    
+    //Check if on Team List page
+    self::$driver->wait(20, 1000)->until(function($driver) {
+    $this->makeScreenShots();
+    $url = self::$driver->getCurrentURL();
+    return (strpos($url, 'group-list') !== false);
+    });        
+    
+
+    //Click the Challenges tab
+    $element = self::$driver->findElement(WebDriverBy::linkText("Challenges"));
+    $element->click();
+    
+    //Check if on Challenges List page
+    self::$driver->wait(20, 1000)->until(function($driver) {
+    $this->makeScreenShots();         
+    $url = self::$driver->getCurrentURL();
+    return (strpos($url, 'challenge-list') !== false);
+    });        
+
+    //Click the hamburger
+    $element = self::$driver->findElement(WebDriverBy::className("js-navBoxTrigger"));
+    $this->makeScreenShots(); 
+    $element->click();
+
+    //Click Profile
+    $element = self::$driver->findElement(WebDriverBy::linkText("Profile"));
+    $element->click();
+    
+    //Check if on Profile page is displayed
+    self::$driver->wait(20, 1000)->until(function($driver) {
+    $this->makeScreenShots();                          
+    $url = self::$driver->getCurrentURL();
+    return (strpos($url, 'profile') !== false);
+    });        
+
+    //Click Edit Profile
+    $element = self::$driver->findElement(WebDriverBy::linkText("Edit Profile"));
+    $element->click();
+    
+    //Check if on Edit Profile page 
+    self::$driver->wait(20, 1000)->until(function($driver) {
+    $this->makeScreenShots();          
+    $url = self::$driver->getCurrentURL();
+    return (strpos($url, 'edit-profile') !== false);
+    });        
+
+    //Click the hamburger
+    $element = self::$driver->findElement(WebDriverBy::className("js-navBoxTrigger"));
+    $element->click();
+
+    //Log out
+    $element = self::$driver->findElement(WebDriverBy::linkText("Logout"));
+    $element->click();
+    
+
+    //Check if main page
+    self::$driver->wait(20, 1000)->until(function($driver) {
+    $url = self::$driver->getCurrentURL();
+    $length = strlen('public/');
+
+    return $length === 0 || (substr($url, -$length) === 'public/');            
+
+    });
+    */
+
+    //Output results buffering
+    ob_start();
+    var_dump( $this->results );
+    $resultsString = ob_get_clean();
+    
+    $my_file = 'results.txt';
+    $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
+    fwrite($handle, $resultsString);
+    fclose($handle);
+
+    //Write out the HTML
+    foreach ($this->results as $key => $value) {
+      print $key . "\n";
+      foreach($value as $akey => $avalue) {
+        print $akey . ' ' . $avalue . "\n";
+  }
+}  
+    
+    
+  }
+
+}
+?>

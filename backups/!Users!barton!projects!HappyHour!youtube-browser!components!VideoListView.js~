@@ -1,0 +1,35 @@
+var React = require('react-native');
+var {
+  ScrollView,
+  Image,
+  TouchableOpacity
+} = React;
+
+var VideoListView = React.createClass({
+  getInitialState: function() {
+    return {
+      videos: []
+    }
+  },
+  render: function() {
+    return (
+      <ScrollView>
+        {
+          this.state.videos.map(video => {
+            return (
+              <TouchableOpacity>
+                <Image
+                  source={{uri: video.thumbnail}}
+                  style={{height: 280}}
+                  resizeMode={Image.resizeMode.cover}
+                />
+              </TouchableOpacity>
+            )
+          })
+        }
+      </ScrollView>
+    );
+  }
+});
+
+module.exports = VideoListView;

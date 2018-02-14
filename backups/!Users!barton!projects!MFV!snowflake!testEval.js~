@@ -1,0 +1,4 @@
+var fs = require('fs');
+var aFile = JSON.parse(fs.readFileSync('./1450795317798.bwh'));
+
+console.log(aFile);

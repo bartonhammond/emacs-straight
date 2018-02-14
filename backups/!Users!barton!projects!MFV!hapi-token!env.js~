@@ -1,0 +1,4 @@
+// enviroment variables
+
+process.env['JWT_SECRET'] = 'BartonHammond';
+process.env['MONGO_CONN'] = '127.0.0.1:27017/nodejs';

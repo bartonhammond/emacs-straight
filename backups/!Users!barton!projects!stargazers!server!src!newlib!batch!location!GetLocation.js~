@@ -1,0 +1,37 @@
+'use strict';
+require('regenerator/runtime');
+
+import BaseClass from '../BaseClass';
+import MapZen from '../../MapZen';
+
+class GetLocation extends BaseClass{
+  constructor(queue) {
+    super(queue);
+    this.mapZen = new MapZen();
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process(
+      'getLocation',
+      6, //limit is 6 concurrent / 1000ms
+      function(job,
+               ctx,
+               done) {
+        
+        self.mapZen.search(job.data.location)
+        
+          .then((location) => {
+            done(null, location);
+            
+          }).catch((err) => {
+            done(err);
+            self.needToPause(ctx, err);
+          });
+
+      });
+  }
+}
+module.exports = GetLocation;
+
+

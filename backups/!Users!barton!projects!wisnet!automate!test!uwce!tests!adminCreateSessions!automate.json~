@@ -1,0 +1,5 @@
+{
+  "testScripts-save": ["adminLogin.php", "adminAddCategory.php", "adminNewTerm.php", "adminNewCourse.php", "adminNewSession.php"],
+  "testScripts": ["php_example.php"],
+  "sqlCommandHttp": "http://www.secured-site7.com/uwce-staging/www/staging-reset"
+}

@@ -1,0 +1,9 @@
+//catalog
+$this->assertTrue($this->catalog->verifyPageLoaded());
+$this->assertTrue($this->catalog->verifyPageUrl());
+$this->takeSnapShot();
+
+$this->catalog->clickSearchCatalog1Button('_BWH');
+$this->catalog->clickSearchCatalog2Button();
+
+

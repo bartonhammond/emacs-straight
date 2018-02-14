@@ -1,0 +1,39 @@
+if (Meteor.isClient) {
+  
+  Meteor.startup(function () {
+    webix.ready(function(){ webix.markup.init(); });
+  });
+  
+  Session.setDefault('myerrMsg','Temp message');
+
+  Template.foo.onRendered(function () {
+    Meteor.setTimeout(function() {
+      $$("at-field-email").attachEvent("onBlur", function(prev_view){
+        console.log(prev_view);
+        var value = prev_view.data.value;
+        document.getElementById('email2').value = value;
+        $('#email2').focusout();
+      });
+
+    },300);
+  })
+  Template.foo.helpers({
+    err : function() {x
+      return Session.get('myerrMsg');
+    }
+  });
+                          
+
+  Template.foo.events({
+    'focusout input': function(event, template) {
+      Session.set('myerrMsg','focusout input event');    
+      console.log('myemail focusout input: ' + event.target.value);
+    }
+  });
+
+  Template.foo2.inheritsHelpersFrom("foo");
+  Template.foo2.inheritsEventsFrom("foo");
+
+
+  //Template.foo2.inheritsHooksFrom("foo");
+}

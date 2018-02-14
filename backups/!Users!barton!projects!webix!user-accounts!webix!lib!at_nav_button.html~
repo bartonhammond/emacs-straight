@@ -1,0 +1,3 @@
+<template name="atNavButton">
+  <div id="at-nav-button"></div>
+</template>

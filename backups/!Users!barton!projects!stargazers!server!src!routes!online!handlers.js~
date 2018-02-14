@@ -1,0 +1,38 @@
+'use strict';
+require('regenerator/runtime');
+
+let uuid = require('uuid');
+
+import CreateOnlineRunnerJob
+from '../../newlib/online/runner/CreateOnlineRunnerJob';
+
+let internals ={};
+
+
+internals.onlineRunner = async function(req, reply) {
+
+  let createOnlineRunnerJob =
+        CreateOnlineRunnerJob.creator(req.params.access_token);
+  
+  createOnlineRunnerJob.createJob(
+    5, //uuid.v4()
+    req.params.owner,
+    req.params.repo,
+    0//force new page
+  );
+  
+  reply('submitted');
+};
+
+
+module.exports = internals;
+
+
+
+
+
+
+
+
+
+

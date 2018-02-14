@@ -1,0 +1,87 @@
+[
+    {
+        "device": "mobile",
+        "browserName": "Chrome",
+        "platformName": "Android",
+        "deviceName": "Nexus 6"
+    },
+    {
+        "device": "mobile",
+        "browserName": "Chrome",
+        "platformName": "Android",
+        "deviceName": "Galaxy S6"
+    },
+    {
+        "device": "mobile",
+        "browserName": "Safari",
+        "platformName": "iOS",
+        "deviceName": "iPad Pro Simulator"
+    },
+    {
+        "device": "mobile",
+        "browserName": "Safari",
+        "platformName": "iOS",
+        "deviceName": "iPad Air 2 Simulator"
+    },
+    {
+        "device": "mobile",
+        "browserName": "Safari",
+        "platformName": "iOS",
+        "deviceName": "iPhone 7 Plus Simulator"
+    },
+    {
+        "device": "mobile",
+        "browserName": "Safari",
+        "platformName": "iOS",
+        "deviceName": "iPhone 7 Simulator"
+    },
+    {
+        "device": "desktop",
+        "browserName": "Chrome",
+        "version": "62x64",
+        "platformName": "Mac OSX 10.12",
+        "deviceName": ""
+    },
+    {
+        "device": "desktop",
+        "browserName": "Firefox",
+        "version": "55",
+        "platformName": "Mac OSX 10.12",
+        "deviceName": ""
+    },
+    {
+        "device": "desktop",
+        "browserName": "Safari",
+        "version": "10",
+        "platformName": "Mac OSX 10.12",
+        "deviceName": ""
+    },
+    {
+        "device": "desktop",
+        "browserName": "Chrome",
+        "version": "63",
+        "platformName": "Windows 10",
+        "deviceName": ""
+    },
+    {
+        "device": "desktop",
+        "browserName": "Firefox",
+        "version": "55",
+        "platformName": "Windows 10",
+        "deviceName": ""
+    },
+    {
+        "device": "desktop",
+        "browserName": "Internet Explorer",
+        "version": "11",
+        "platformName": "Windows 10",
+        "deviceName": ""
+    },
+    {
+        "device": "desktop",
+        "browserName": "MicrosoftEdge",
+        "version": "16",
+        "platformName": "Windows 10",
+        "deviceName": ""
+    }
+]

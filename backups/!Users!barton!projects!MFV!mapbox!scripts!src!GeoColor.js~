@@ -1,0 +1,15 @@
+var geocolor = require('geocolor');
+
+class GeoColor {
+  jenks (tiles) {
+
+    var z = 'stars',
+    numberOfBreaks = 5,
+    colors = ['pink','red','purple'];
+    
+    return Promise.resolve(geocolor.jenks(tiles, z, numberOfBreaks, colors));
+  }
+}
+module.exports = GeoColor;
+
+

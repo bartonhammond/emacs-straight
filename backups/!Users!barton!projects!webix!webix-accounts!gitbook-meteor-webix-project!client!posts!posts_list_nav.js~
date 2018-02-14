@@ -1,0 +1,16 @@
+Helpers.postslistPrevBtnClick = function() {
+  $$("postslistPager").select("prev");
+}
+
+Helpers.postslistNextBtnClick = function() {
+  $$('postslist').config.limit.set($$('postslist').config.limit.get()
+                                   + AppDefaults.pageIncrement);
+}
+Template.postsListBtn.helpers({
+  postsListPrevBtnClick: function() {
+    return "Helpers.postslistPrevBtnClick"
+  },
+  postsListNextBtnClick: function() {
+    return "Helpers.postslistNextBtnClick"
+  }
+});

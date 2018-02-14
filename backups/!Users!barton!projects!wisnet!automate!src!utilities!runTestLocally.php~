@@ -1,0 +1,23 @@
+<?php
+namespace Automate;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+require_once './src/utilities/RunTests.class.php';
+
+$username = "bhammond@wisnet.com";
+$authkey = "u0459a8738c4a60d";
+
+$command = new RunTests($username, $authkey);
+
+$command->callBrowsers($argv, $argc);
+
+/*
+//Get the current list of screenshots
+$directory = "/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions/output/2017-12-06-13-09";
+
+$screenShots = new ScreenShots($username,
+                               $authkey,
+                               $directory);
+$screenShots->takeAllScreenShots();
+*/

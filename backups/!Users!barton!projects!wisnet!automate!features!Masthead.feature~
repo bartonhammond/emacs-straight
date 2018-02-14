@@ -1,0 +1,12 @@
+Feature: masthead has menu options
+   Each page has menu links to other pages
+   As a customer or admin I need to choose these links
+
+Scenario: The menu options when not logged in
+   Given I have a browser
+   And I am not logged in
+   When I go to the "home" page
+   Then I should see "Course Catalog" link
+   Then I should see "My Account" link
+   Then I should see "Login" link      
+   

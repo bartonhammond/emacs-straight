@@ -1,0 +1,58 @@
+<?php
+require_once __DIR__ . "/../../../../src/pageObjects/Page.class.php";
+
+class TimeSlotsPage extends \Automate\Page {
+    private static $_selectors = [
+        "heading" =>
+        [
+            "css" => "h3.modal-title"
+        ],
+        "add_time_slot" =>
+        [
+            "css" => "div#time_slots a"
+        ],
+        "label" =>
+        [
+            "id" => "timeslot_description"
+        ],
+        "workshop" =>
+        [
+            "css" => ".row>label"
+        ],
+        "submit" =>
+        [
+            "css" => "#ajaxModal a.submit.btn.btn-sm.btn-primary"
+        ],
+        "time_slot_text" =>
+        [
+            "css" => "div#time_slots div.col-sm-10 > label"
+        ]
+             
+    ];
+    function clickAddTimeSlot() {
+        $this->click(self::$_selectors['add_time_slot']);
+    }
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors['heading'],
+                                          self::$_selectors['add_time_slot'],
+                                          self::$_selectors['label']
+        ]);
+    }
+    function getHeading() {
+        return $this->find(self::$_selectors['heading'])->getText();
+    }
+    function typeLabel($value) {
+        $this->type(self::$_selectors['label'], $value);
+    }
+    function clickWorkshop() {
+        if (!$this->find(self::$_selectors['workshop'])->isSelected()) {
+            $this->click(self::$_selectors['workshop']);
+        }
+    }
+    function submit() {
+        $this->click(self::$_selectors['submit']);
+    }
+    function getTimeSlotText() {
+        return $this->find(self::$_selectors['time_slot_text'])->getText();
+    }
+}

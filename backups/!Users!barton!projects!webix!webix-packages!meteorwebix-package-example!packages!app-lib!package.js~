@@ -1,0 +1,36 @@
+// App: Library (First layer)
+// * All packages used by the app (minus development-only packages) should
+//   be defined here.
+// * Code in this package is guaranteed to run before any other part of the app.
+// * All other packages depend on this package. This is a great place to define
+//   shared utilities as well as extend/add functionality to any packagee before
+//   the application loads it.
+Package.describe({
+  name: 'app:lib', // All modules should api.use() this.
+  summary: 'Application core library.',
+  version: '1.0.0',
+});
+
+Package.onUse(function(api) {
+
+  api.versionsFrom(['METEOR@1.0']);
+
+  var packages = [
+    'standard-app-packages'
+  ];
+
+  api.use(packages);
+
+
+  api.imply(packages);
+
+  api.addFiles([
+    'lib/core.js'
+  ], ['client', 'server']);
+
+
+  api.export([
+    '_',
+    'meteor'
+  ]);
+});

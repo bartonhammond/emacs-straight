@@ -1,0 +1,9 @@
+<template name="discuss">
+      <div data-id="discuss"
+       data-view="button"
+       data-label="Discuss"
+       data-click="{{dataClick}}"
+       data-width=100>
+      </div>
+      <a href='{{postPage}}'>Discuss</a>
+</template>

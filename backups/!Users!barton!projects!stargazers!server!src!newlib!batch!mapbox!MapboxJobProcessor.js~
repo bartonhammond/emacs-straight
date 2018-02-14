@@ -1,0 +1,86 @@
+'use strict';
+require('regenerator/runtime');
+
+import Bottleneck from 'bottleneck';
+import ProcessorClass from '../../ProcessorClass';
+
+
+
+class BatchStargazersForRepoByPageJobProcessor extends ProcessorClass{
+  constructor() {
+    super();
+    this.getStargazersLimiter = new Bottleneck(1, 800);        
+  }
+  
+  init(access_token) {
+    let self = this;
+
+    self.queue.process(
+      'batchStargazersForRepoByPage'
+        + '_'
+        + access_token,      
+      1,
+      function(job,
+               ctx,
+               done) {
+
+        self.gitHub.access_token = job.data.access_token;
+        self.gitHub.id = job.data.id;
+
+        self.gitHub.getStargazersByPage(
+          job.data.owner,
+          job.data.repo,
+          job.data.page)
+        
+          .then((result) => {
+            if (result
+                && result.json) {
+              
+              let CreateBatchGetUserFromRedisJob = require('../userFromRedis/CreateBatchGetUserFromRedisJob');
+
+              let createBatchGetUserFromRedisJob
+                    = CreateBatchGetUserFromRedisJob.creator(job.data.access_token);
+
+              for (let user of result.json) {
+                createBatchGetUserFromRedisJob.createJob(
+                  job.data.id,
+                  user.login);
+              }
+            }
+            
+            if (result 
+                && result.link
+                && result.link.last
+                && result.link.last.page) {
+
+              let CreateBatchStargazersForRepoByPageJob =
+                    require('./CreateBatchStargazersForRepoByPageJob');
+              
+              let createBatchStargazersForRepoByPageJob
+                    =
+                    CreateBatchStargazersForRepoByPageJob.creator(job.data.access_token);
+              
+              let page = job.data.page + 1;
+              
+              self.getStargazersLimiter.schedule(
+                createBatchStargazersForRepoByPageJob.createJob.bind(
+                  createBatchStargazersForRepoByPageJob,
+                  job.data.id,
+                  job.data.owner,
+                  job.data.repo,                  
+                  page));
+            }
+            
+             done();
+            
+          }).catch((err) => {
+            done(err);
+            self.needToPause(ctx, err);
+          });
+      });
+  }
+  
+}
+module.exports = BatchStargazersForRepoByPageJobProcessor;
+
+

@@ -1,0 +1,63 @@
+<?php
+
+class Screenshots{
+
+	protected $baseUrl = "https://crossbrowsertesting.com/api/v3/screenshots";
+
+	protected $currentTest = NULL;
+
+    protected $curlSupport;
+    
+	function __construct($username, $authkey) {
+		$this->user = $username;
+		$this->authkey = $authkey;
+        $this->curlSupport = new CurlSupport($username, $authkey);
+        
+	}
+
+	function isTestComplete(){
+		$this->currentTest = $this->updateTestInfo();
+		return !$this->currentTest->versions[0]->active;
+	}
+
+	function getTestId(){
+		return $this->currentTest->screenshot_test_id;
+	}
+
+    function updateTestInfo(){
+		$url = $this->baseUrl . "/" . $this->getTestId();
+		return $this->curlSupport->callApi($url, 'GET');
+	}
+    
+    function runNewTest($url){
+
+        //set parameters we want for the screenshot test
+        $params["url"] = $url;
+        $params["browser_list_name"] = "wisnet-browsers";
+        $params["login"] = "UWCE-admin";
+        $params["hide_fixed_elements"] = true;
+        $params["check_url"] = true;
+
+        $this->currentTest = $this->curlSupport->callApi($this->baseUrl, 'POST', $params);        
+
+        $screenshotID = $screenshot->getTestId();
+
+        while (TRUE) {
+        
+            if ($screenshot->isTestComplete()){
+                break;
+            }
+            else {
+                sleep(2);
+            }
+        }
+    }
+    function saveResults($directory) {
+        //Get the results and save
+        $url = "https://crossbrowsertesting.com/api/v3/screenshots/" . $screenshotID . '?format=json';
+        $response = $this->curlSupport->callApi($url, 'GET');
+    
+    }//runNewTest
+
+} //class
+?>

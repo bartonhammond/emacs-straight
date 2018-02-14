@@ -1,0 +1,127 @@
+<?php
+namespace Automation;
+require 'lib/globals.php';
+
+require 'lib/globals.php';
+
+class ProcessSessions {
+    protected $output_directory;
+    function __construct($output_directory) {
+        var_dump($output_directory);
+        $this->output_directory = $output_directory;
+   }
+    
+    //Start an HTML row 
+    protected function _htmlRowStart($pageName) {
+        return '<tr><td valign="middle">' .  $pageName . "</td>\n";
+    }
+    
+    //Create a TD
+    protected function _htmlTD($url) {
+        return '<td><img src="' . $url . '"></td>\n';
+    }
+    
+    //Create video in TD
+    protected function _htmlVideo($url) {
+        return '<td><video width="320" height="240" controls><source src="' . $url . '" type="video/mp4"></video></td>\n';
+    }
+    
+    //End the row
+    protected function _htmlRowEnd() {
+        return "</tr>\n";
+    }
+
+
+    public function _getLogs($sessionID) {
+        $CONFIG = $GLOBALS['CONFIG'];
+
+        $url= "https://www.browserstack.com/automate/sessions/" . $sessionID . '.json';
+        $username =  $GLOBALS['BROWSERSTACK_USERNAME'];
+        $password = $GLOBALS['BROWSERSTACK_ACCESS_KEY'];
+  
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
+  
+        $out = curl_exec($ch);
+        curl_close($ch);
+  
+        $out_array = explode("\n", $out);
+        $json = json_decode($out_array[0]);
+        $session = $json->automation_session;
+        $video_url = $session->video_url;
+  
+        //Store the results as a HTML row of cells
+        $url = "https://www.browserstack.com/automate/logs/" . $sessionID;
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
+
+        $out = curl_exec($ch);
+        curl_close($ch);
+
+        $device = "";
+
+        //Get the capabilities
+        $out_array = explode("\n", $out);
+        $json_string =substr($out_array[0], strpos($out_array[0],'{'), strpos($out_array[0],'}'));
+        $json = json_decode($json_string)->desiredCapabilities;
+
+        //Is Mobile?
+        if (isset($json->realMobile)) {
+            //Get unique name for file
+            $device =  $json->device . ' ' . $json->os_version;
+            $device = str_replace(' ', '_', $device);
+            $device = str_replace('.', '_', $device);
+            $device = trim($device) . ".html";
+        } else {
+            //Get unique name for file
+            $browserName = '';
+            if (isset($json->browser)) {
+                $browserName = $json->browser;
+            } else {
+                $browserName = $json->browserName;
+            }
+            $device =  $json->os . ' ' . $json->os_version . ' ' . $browserName . ' ' . $json->browser_version;
+            $device = str_replace(' ', '_', $device);
+            $device = str_replace('.', '_', $device);
+            $device = trim($device) . ".html";
+        }
+
+        // create new directory with 744 permissions if it does not exist yet
+        // owner will be the user/group the PHP script is run under
+        if ( !file_exists($this->output_directory) ) {
+            $oldmask = umask(0);  // helpful when used in linux server  
+            mkdir ($this->output_directory, 0744);
+        }
+
+        //Write out the file
+        ob_start();
+        print _htmlRowStart($device);
+  
+        //Video in first cell
+        print _htmlVideo(trim($video_url));
+
+        //Each debug is a screen shot
+        foreach($out_array as $line) {
+            if (strpos($line, 'DEBUG')) {
+                $line_array = explode(" ", $line);
+                print _htmlTD(trim($line_array[3]));
+            }
+        }
+
+        print _htmlRowEnd();
+        $resultsString = ob_get_clean();
+
+        file_put_contents($this->output_directory . '/screenshots.html', $resultsString, FILE_APPEND | LOCK_EX);
+
+
+    }
+}
+
+?>

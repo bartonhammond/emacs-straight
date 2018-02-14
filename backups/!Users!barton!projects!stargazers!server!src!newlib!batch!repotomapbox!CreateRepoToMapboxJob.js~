@@ -1,0 +1,64 @@
+'use strict';
+
+let logger = require('../../Bunyan').logger();
+
+import BatchRepositoryByPageProcessor from './BatchRepositoryByPageProcessor';
+
+class CreateBatchRepositoryByPageJob{
+  constructor(access_token) {
+    this.access_token = access_token;    
+    this.queue = require('../../Queue').queue();
+    this.processor = new BatchRepositoryByPageProcessor().init(access_token);
+  }
+  
+  createJob ( id,
+              currentPage,
+              minstars,
+              maxstars) {
+    let self = this;
+
+      self.queue.create(
+        'batchRepositoryByPage'
+          + '_'
+          + self.access_token, {
+            title: 'batchRepositoryByPage: '  + currentPage,
+            id: id,
+            access_token: self.access_token,
+            minstars: minstars,
+            maxstars: maxstars,
+            page: currentPage
+            
+          }).save((err) => {
+
+            if (err) {
+              logger.error(
+                'CreateBatchRepositoryByPageJob',                
+                {id: id,
+                 error: err,
+                 minstars: minstars,
+                 maxstars: maxstars,
+                 page: currentPage,
+                 access_token: self.access_token});
+            }
+          });
+  };
+
+  
+};//createJob
+
+let creators = {};
+function _getCreator(access_token) {
+
+  if (access_token in creators) {
+    return creators[access_token];
+  }
+   
+  creators[access_token] = new CreateBatchRepositoryByPageJob(access_token);
+  return creators[access_token];
+}
+
+module.exports = {
+  creator: function(access_token) {
+    return _getCreator(access_token);
+  }
+};

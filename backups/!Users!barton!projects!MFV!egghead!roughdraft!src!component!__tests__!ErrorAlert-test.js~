@@ -1,0 +1,25 @@
+'use strict';
+
+jest.autoMockOff();
+jest.mock('react-native-simpledialog-android');
+
+const SimpleAlert = require('react-native-simpledialog-android');
+
+jest.dontMock('../ErrorAlert');
+var ErrorAlert = require('../ErrorAlert');
+
+describe('ErrorAlert', () => {
+  it('call alert function with two parameters', () => {
+
+    const errorObject = {
+        error: 'Error occurred'
+    };
+    
+    new ErrorAlert().checkError(errorObject);
+    
+    expect(SimpleAlert.alert.mock.calls[0][0]).toEqual('Error');
+    expect(SimpleAlert.alert.mock.calls[0][1]).toEqual(errorObject.error);
+  });
+
+
+});

@@ -1,0 +1,42 @@
+'use strict';
+
+// Simply 'inherites' helpers from AccountsTemplates
+Template.atNavButton.helpers(AccountsTemplates.atNavButtonHelpers);
+Template.atNavButton.events(AccountsTemplates.atNavButtonEvents);
+
+
+var atNavButton = BlazeComponent.extendComponent({
+  template: function () {
+    return 'atNavButton';
+  },
+  onRendered: function() {
+    webix.ui({
+      view:"button",
+      label:this.text() ,  //from the Mixin
+      id:"_at-nav-button",
+      width: 100,
+      clickHandler: this.onClick,
+      click:function(_event) {
+        this.config.clickHandler();
+      }
+    }, $$('at-nav-button'));
+  },
+  mixins: function () {
+    return [ExposeTemplateHelpersMixin];
+  },
+  events: function () {
+    return [{
+    //  'click _at-nav_button': this.onClick; ////  this is what I'd like
+    }];
+  },
+  onClick: function (_event) {
+    var eventContext = {};
+    eventContext.currentTarget = $('#mybody')[0];
+    eventContext.templateInstance = function() {};
+    //call base class
+    Template.atNavButton.__eventMaps[0]["click #at-nav-button"].call(eventContext, event);
+  }
+}).register('atNavButton');
+// Simply 'inherites' events from AccountsTemplates
+
+

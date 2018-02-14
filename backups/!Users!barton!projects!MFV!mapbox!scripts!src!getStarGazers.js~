@@ -1,0 +1,24 @@
+'use strict';
+
+var MapBoxData = require('./MapBoxData');
+let mapBoxData = new MapBoxData();
+
+var fs = require('fs');
+
+try {
+  mapBoxData.getAllStarGazers('bartonhammond','OraclePubSub')
+  .then(function(results) {
+    debugger;
+    let stargazers = [];
+    for (let result in results) {
+      console.log(result.json());
+      stargazers.push(result.json());
+    }
+    debugger;
+    fs.writeFileSync('./starGazers2.geojson',
+                     JSON.stringify(stargazers, null, 2));
+    console.log('done');
+  });
+} catch (err) {
+  console.log('getStarGazer.error',err);
+}

@@ -1,0 +1,90 @@
+---
+format_version: 1.1.0
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+app:
+  envs:
+  - BITRISE_PROJECT_PATH: ios/snowflake.xcodeproj
+    opts:
+      is_expand: false
+  - BITRISE_SCHEME: snowflake
+    opts:
+      is_expand: false
+trigger_map:
+- pattern: "*"
+  is_pull_request_allowed: true
+  workflow: master
+workflows:
+  master:
+    steps:
+    - activate-ssh-key@3.1.0:
+        title: Activate App SSH key
+        inputs:
+        - ssh_key_save_path: "$HOME/.ssh/steplib_ssh_step_id_rsa"
+    - git-clone@3.1.0: {}
+    - script@1.1.0:
+        title: install node & npm
+        inputs:
+        - content: |-
+            #!/bin/bash
+            curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+            apt-get install -y nodejs
+
+            node --version
+            npm --version
+    - script@1.1.0:
+        title: npm install
+        inputs:
+        - content: |-
+            #!/bin/bash
+
+            npm install
+    - script@1.1.0:
+        title: npm test
+        inputs:
+        - content: |-
+            #!/bin/bash
+
+            npm test
+    - script@1.1.0:
+        title: npm install react-native -g
+        inputs:
+        - content: |-
+            #!/bin/bash
+
+            npm install -g react-native-cli
+    - script@1.1.0:
+        title: bundle-android
+        inputs:
+        - content: |-
+            #!/bin/bash
+
+            react-native bundle --entry-file ./index.android.js --platform android --bundle-output android/app/src/main/assets/index.android.bundle
+    - script@1.1.0:
+        title: keytool
+        inputs:
+        - content: |-
+            #!/bin/bash
+
+            keytool -genkey -noprompt  -alias my-key-alias  -dname "CN=fireball.acclivyx.com, OU=acclivyx.com, O=Unknown, L=Austin, ST=TX, C=US"  -keystore my-release-key.keystore  -storepass Parkl1fe! -keypass Parkl1fe!
+    - script@1.1.0:
+        title: cp keystore
+        inputs:
+        - content: |-
+            #!/bin/bash
+
+            cp ./my-release-key.keystore android/app
+    - script@1.1.0:
+        title: gradlew
+        inputs:
+        - content: "#!/bin/bash\n\ncd android \n\ngradlew -DFIREBALL_RELEASE_STORE_FILE=my-release-key.keystore\n-DFIREBALL_RELEASE_KEY_ALIAS=my-key-alias\n-DFIREBALL_RELEASE_STORE_PASSWORD=Parkl1fe!
+            -DFIREBALL_RELEASE_KEY_PASSWORD=Parkl1fe! assembleRelease"
+    - script@1.1.0:
+        title: cp apk
+        inputs:
+        - content: |-
+            #!/bin/bash
+
+            cp ./android/app/build/outputs/apk/app-release.apk ./dist
+    - deploy-to-bitrise-io@1.2.0:
+        inputs:
+        - deploy_path: "./dist"

@@ -1,0 +1,16 @@
+npm3 install --save immutable key-mirror react-native \
+react-native-gifted-spinner \
+react-native-navbar  react-native-router-flux \
+react-native-simple-store   react-native-simpledialog-android \
+react-native-vector-icons   react-redux   redux   redux-thunk \
+regenerator   tcomb-form-native   underscore   validate.js 
+
+
+  devDependencies: {
+    babel-core
+    babel-jest
+    docker
+    istanbul
+    jest-cli
+    react
+    react-addons-test-utils

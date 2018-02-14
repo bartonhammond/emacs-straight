@@ -1,0 +1,59 @@
+'use strict';
+
+let logger = require('../../Bunyan').logger();
+
+/**
+ * 
+ */
+let CreateRepoPagoJob
+      = function(
+        queue,
+        id,
+        access_token,
+        owner,
+        repo,
+        user) {
+        return new Promise((resolve, reject) => {
+          try {
+            let job = queue.create('repopago', {
+              title: 'repopago: '
+                + owner
+                + ':'
+                + repo
+                + ':'
+                + user,
+              id: id,
+              access_token: access_token,
+              owner: owner,
+              repo: repo,
+              user: user
+            }).save((err) => {
+              if (err) {
+                reject(err);
+              }
+            });
+            
+            job.on('complete', (results) => {
+              resolve(results);
+            });
+            
+            job.on('failed', (err) => {
+              logger.error( 'CreateRepoPagoJob.inside',
+                            { id: id,
+                              error: err,
+                              access_token: access_token});
+              
+              reject(err);
+            });
+          } catch(err) {
+            reject(err);
+            logger.error( 'CreateRepoPagoJob',
+                          { id: id,
+                            error: err,
+                            access_token: access_token});
+          }
+        });
+        
+      };//createJob
+
+module.exports = CreateRepoPagoJob;

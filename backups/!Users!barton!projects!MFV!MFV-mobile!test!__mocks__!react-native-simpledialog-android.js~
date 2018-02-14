@@ -1,0 +1,14 @@
+// Get the automatic mock for `fs`
+var simpleAlertmock =
+      jest.genMockFromModule('react-native-simpledialog-android');
+
+function alert(type,message) {
+  console.log('type',type);
+  console.log('message',message);
+}
+
+// Override the default behavior of the `alert` mock
+simpleAlertmock.alert.mockImplementation(alert);
+
+
+module.exports = simpleAlertmock;

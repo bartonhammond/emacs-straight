@@ -1,0 +1,26 @@
+module.exports = {
+  SESSION_TOKEN_KEY: 'SESSION_TOKEN_KEY',
+  backend: {
+    hapiRemote: false,
+    hapiLocal: false,
+    parseRemote: true,
+    parseLocal: false
+  },
+  HAPI: {
+    local: {
+      url: 'http://192.168.0.13:5000'
+    },
+    remote: {
+      url: 'https://snowflakeserver-bartonhammond.rhcloud.com/'
+    }
+  },
+  PARSE: {
+    appId: 'snowflake',                           
+    local: {
+      url: 'http://localhost:1337/parse'
+    },
+    remote: {
+      url: 'https://snowflake-parse.herokuapp.com/parse'  
+    }
+  }
+}

@@ -1,0 +1,10 @@
+//Add variable name for the POM
+protected $main;
+
+
+public function constructor(RemoteWebDriver $driver, $isMobile) {
+    $this->main = new MainPage($driver, $isMobile);
+    ///
+    // Add POM creation here
+}
+

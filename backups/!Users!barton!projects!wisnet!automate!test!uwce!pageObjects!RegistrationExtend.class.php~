@@ -1,0 +1,333 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickBillingLink3",
+        "attributeType": "link",
+       "attributeName": "billing3",
+        "attributeStrategy": "css",
+        "attributeValue": "#cart div.stepwizard span:nth-of-type(2) a:nth-of-type(3)"
+     },
+
+    {     
+        "operationName": "clickBwh1514920858Ham1514920858Link",
+        "attributeType": "link",
+       "attributeName": "bwh1514920858Ham1514920858",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/admin/user/account/312&#x27;]"
+     },
+
+    {     
+        "operationName": "clickBwhMusicCourse12345BwhLink",
+        "attributeType": "link",
+       "attributeName": "bwhMusicCourse12345Bwh",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/catalog/-bwh-music-course/419&#x27;]"
+     },
+
+    {     
+        "operationName": "clickCheckoutButton",
+        "attributeType": "button",
+       "attributeName": "checkout",
+        "attributeStrategy": "css",
+        "attributeValue": "#cart form.general-validation table.checkout-table tbody tr.bottomline.hidden-print td:nth-of-type(4) button.btn.btn-primary"
+     },
+
+    {     
+        "operationName": "clickConfirmLink2",
+        "attributeType": "link",
+       "attributeName": "confirm2",
+        "attributeStrategy": "css",
+        "attributeValue": "#cart div.stepwizard span:nth-of-type(2) a:nth-of-type(2)"
+     },
+
+    {     
+        "operationName": "clickPaymentLink4",
+        "attributeType": "link",
+       "attributeName": "payment4",
+        "attributeStrategy": "css",
+        "attributeValue": "#cart div.stepwizard span:nth-of-type(2) a:nth-of-type(4)"
+     },
+
+    {     
+        "operationName": "clickSelectRegistrantsLink1",
+        "attributeType": "link",
+       "attributeName": "selectRegistrants1",
+        "attributeStrategy": "css",
+        "attributeValue": "#cart div.stepwizard span:nth-of-type(2) a:nth-of-type(1)"
+     },
+
+    {     
+        "operationName": "clickStep2Of4Link",
+        "attributeType": "link",
+       "attributeName": "step2Of4",
+        "attributeStrategy": "css",
+        "attributeValue": "#cart div.stepwizard span:nth-of-type(1) a"
+     },
+
+
+
+    {     
+        "operationName": "setDonateToOurContinuingEducationProgramNumberField",
+        "operationArgument" : "donateToOurContinuingEducationProgramValue",
+        "attributeType": "text",
+       "attributeName": "donateToOurContinuingEducationProgram",
+        "attributeStrategy": "name",
+        "attributeValue": "amount_donation"
+     },
+
+    {     
+        "operationName": "setPurchaseAGiftCertificatetotal10NumberField",
+        "operationArgument" : "purchaseAGiftCertificatetotal10Value",
+        "attributeType": "text",
+       "attributeName": "purchaseAGiftCertificatetotal10",
+        "attributeStrategy": "name",
+        "attributeValue": "amount_gc"
+     },
+
+    {     
+        "operationName": "setWorkshopsDropDownListField",
+        "operationArgument" : "workshopsValue",
+        "attributeType": "select",
+       "attributeName": "workshops",
+        "attributeStrategy": "name",
+        "attributeValue": "amount_250"
+     },
+
+
+    {     
+        "operationName": "unsetWorkshopsDropDownListField",
+        "operationArgument" : "workshopsValue",
+        "attributeType": "select",
+       "attributeName": "workshops",
+        "attributeStrategy": "name",
+        "attributeValue": "amount_250"
+     },
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class Registration extends \Automate\Page {
+
+
+
+
+
+
+     protected $pageLoadedText = "Donate to our Continuing Education Program Fund";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/registration";
+
+
+
+
+
+   private static $_selectors = [
+    "billing3" =>
+    [
+       "css" => "#cart div.stepwizard span:nth-of-type(2) a:nth-of-type(3)"
+    ],
+
+    "bwh1514920858Ham1514920858" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/admin/user/account/312']"
+    ],
+
+    "bwhMusicCourse12345Bwh" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/catalog/-bwh-music-course/419']"
+    ],
+
+    "checkout" =>
+    [
+       "css" => "#cart form.general-validation table.checkout-table tbody tr.bottomline.hidden-print td:nth-of-type(4) button.btn.btn-primary"
+    ],
+
+    "confirm2" =>
+    [
+       "css" => "#cart div.stepwizard span:nth-of-type(2) a:nth-of-type(2)"
+    ],
+
+    "donateToOurContinuingEducationProgram" =>
+    [
+       "name" => "amount_donation"
+    ],
+
+
+
+    "payment4" =>
+    [
+       "css" => "#cart div.stepwizard span:nth-of-type(2) a:nth-of-type(4)"
+    ],
+
+    "purchaseAGiftCertificatetotal10" =>
+    [
+       "name" => "amount_gc"
+    ],
+
+    "selectRegistrants1" =>
+    [
+       "css" => "#cart div.stepwizard span:nth-of-type(2) a:nth-of-type(1)"
+    ],
+
+    "step2Of4" =>
+    [
+       "css" => "#cart div.stepwizard span:nth-of-type(1) a"
+    ],
+
+    "workshops" =>
+    [
+       "name" => "amount_250"
+    ],
+    ];
+    /**
+     * Click on 3billing Link.
+     *
+     */
+    function clickBillingLink3() {
+        //link
+        $this->click(self::$_selectors['billing3']);
+    }
+
+    /**
+     * Click on Bwh1514920858 Ham1514920858 Link.
+     *
+     */
+    function clickBwh1514920858Ham1514920858Link() {
+        //link
+        $this->click(self::$_selectors['bwh1514920858Ham1514920858']);
+    }
+
+    /**
+     * Click on Bwh Music Course 12345 Bwh Session Title 222018 Link.
+     *
+     */
+    function clickBwhMusicCourse12345BwhLink() {
+        //link
+        $this->click(self::$_selectors['bwhMusicCourse12345Bwh']);
+    }
+
+    /**
+     * Click on Checkout Button.
+     *
+     */
+    function clickCheckoutButton() {
+        //button
+        $this->click(self::$_selectors['checkout']);
+    }
+
+    /**
+     * Click on 2confirm Link.
+     *
+     */
+    function clickConfirmLink2() {
+        //link
+        $this->click(self::$_selectors['confirm2']);
+    }
+
+    /**
+     * Click on 4payment Link.
+     *
+     */
+    function clickPaymentLink4() {
+        //link
+        $this->click(self::$_selectors['payment4']);
+    }
+
+    /**
+     * Click on 1select Registrants Link.
+     *
+     */
+    function clickSelectRegistrantsLink1() {
+        //link
+        $this->click(self::$_selectors['selectRegistrants1']);
+    }
+
+    /**
+     * Click on Step 2 Of 4 Link.
+     *
+     */
+    function clickStep2Of4Link() {
+        //link
+        $this->click(self::$_selectors['step2Of4']);
+    }
+
+
+
+    /**
+     * Set default value to Donate To Our Continuing Education Program Fund Number field.
+     *
+     */
+    function setDonateToOurContinuingEducationProgramNumberField($donateToOurContinuingEducationProgramValue) {
+         //text
+        $this->type(self::$_selectors['donateToOurContinuingEducationProgram'],$donateToOurContinuingEducationProgramValue);
+    }
+
+    /**
+     * Set default value to Purchase A Gift Certificatetotal10 Number field.
+     *
+     */
+    function setPurchaseAGiftCertificatetotal10NumberField($purchaseAGiftCertificatetotal10Value) {
+         //text
+        $this->type(self::$_selectors['purchaseAGiftCertificatetotal10'],$purchaseAGiftCertificatetotal10Value);
+    }
+
+    /**
+     * Set default value to Workshops Drop Down List field.
+     *
+     */
+    function setWorkshopsDropDownListField($workshopsValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["workshops"]));
+        $webDriverSelect->selectByVisibleText($workshopsValue);        
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickCheckoutButton();
+    }
+
+    /**
+     * Unset default value from Workshops Drop Down List field.
+     *
+     */
+    function unsetWorkshopsDropDownListField($workshopsValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["workshops"]));
+        $webDriverSelect->selectByVisibleText($workshopsValue);        
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+         $text = $this->pageLoadedText;
+        $driver = $this->driver;
+        return $driver->wait(self::WAIT_TIME, self::ITERATE_TIME)->until(
+            function () use ($driver, $text)  {
+                try {
+                    $source = $driver->getPageSource();
+                    if (strpos($source,$text) !== false) {
+                        return true;
+                    }
+                    return false;
+                } catch (\Exception $e) {
+                    return false;
+                }
+        });
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return strpos($this->driver->getCurrentURL(), $this->pageUrl) !== false;
+    }
+}

@@ -1,0 +1,16 @@
+module.exports = {
+  mongodb: {
+    ip: '127.0.0.1',
+    port: '27017',
+    app: 'nodejs'
+  },
+  crypto: {
+    privateKey: '37LvDSm4XvjYOh9Yaa.p3id#IEYDNeaken'
+  },
+  email: {
+    username: "bartonhammond@gmail.com",
+    password: "%A4w6417",
+    accountName: "Snowflake",
+    verifyEmailUrl: "verifyEmail"
+  }
+};

@@ -1,0 +1,29 @@
+ /**
+  * Sample React Native App
+  * https://github.com/facebook/react-native
+  */
+ 'use strict';
+ 
+ var React = require('react-native');
+ var {
+   AppRegistry,
+   StyleSheet,
+   Text,
+   View,
+ } = React;
+ 
+var HelloWorld = React.createClass({
+   render: function() {
+     return React.createElement(React.Text, {style: styles.text}, "Hello World!");
+   }
+ });
+ 
+ var styles = StyleSheet.create({
+   text: {
+     color: 'black',
+     backgroundColor: 'white',
+     fontSize: 30,
+     margin: 80
+ });
+ 
+ AppRegistry.registerComponent('HelloWorld', () => HelloWorld);

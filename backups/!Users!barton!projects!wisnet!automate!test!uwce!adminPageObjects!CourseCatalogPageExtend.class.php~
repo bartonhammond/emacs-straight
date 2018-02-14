@@ -1,0 +1,417 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+use Facebook\WebDriver\WebDriverSelect;
+use Facebook\WebDriver\WebDriverBy;
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickBwh1516907385Ham15169073851Link",
+        "attributeType": "link",
+       "attributeName": "bwh1516907385Ham15169073851",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.course.session.detail div:nth-of-type(2) div.col-sm-12 div.form-group.ajax-target section.course-cart form div.table-responsive table:nth-of-type(1) tbody tr.session-registration.status-registered td:nth-of-type(2) a"
+     },
+
+    {     
+        "operationName": "clickBwh1516907385Ham15169073852Link",
+        "attributeType": "link",
+       "attributeName": "bwh1516907385Ham15169073852",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.course.session.detail div:nth-of-type(4) table.table.table-condensed.table-hover.table-striped tbody:nth-of-type(2) tr td:nth-of-type(3) a"
+     },
+
+    {     
+        "operationName": "clickBwhMusicCourseLink",
+        "attributeType": "link",
+       "attributeName": "bwhMusicCourse",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/catalog/bwh-music-course&#x27;]"
+     },
+
+    {     
+        "operationName": "clickCourseCatalogLink",
+        "attributeType": "link",
+       "attributeName": "courseCatalog",
+        "attributeStrategy": "css",
+        "attributeValue": "#b a"
+     },
+
+    {     
+        "operationName": "clickEdit1Link",
+        "attributeType": "link",
+       "attributeName": "edit1",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.course.session.detail div:nth-of-type(2) div.col-sm-12 div.form-group.ajax-target section.course-cart form div.table-responsive table:nth-of-type(1) tbody tr.session-registration.status-registered td:nth-of-type(2) div div:nth-of-type(3) a.label.label-danger"
+     },
+
+    {     
+        "operationName": "clickEdit2Link",
+        "attributeType": "link",
+       "attributeName": "edit2",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.course.session.detail div:nth-of-type(2) div.col-sm-12 div.form-group.ajax-target section.course-cart form div.table-responsive table:nth-of-type(1) tbody tr.session-registration.status-registered td:nth-of-type(2) div div:nth-of-type(5) a.label.label-danger"
+     },
+
+    {     
+        "operationName": "clickFindDescriptionsAndDetailsOnAllLink",
+        "attributeType": "link",
+       "attributeName": "findDescriptionsAndDetailsOnAll",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/catalog/bwh-music-course/535#workshops&#x27;]"
+     },
+
+    {     
+        "operationName": "clickHomeLink",
+        "attributeType": "link",
+       "attributeName": "home",
+        "attributeStrategy": "css",
+        "attributeValue": "#a a"
+     },
+
+    {     
+        "operationName": "clickPrint1Link",
+        "attributeType": "link",
+       "attributeName": "print1",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.course.session.detail div:nth-of-type(2) div.col-sm-12 div.form-group.ajax-target section.course-cart div:nth-of-type(1) div.table-responsive.col-sm-12 a.btn.btn-xs.btn-danger.report-type.pull-right"
+     },
+
+    {     
+        "operationName": "clickPrint2Link",
+        "attributeType": "link",
+       "attributeName": "print2",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.course.session.detail div:nth-of-type(3) div.table-responsive.col-sm-12 a.btn.btn-xs.btn-danger.report-type.pull-right"
+     },
+
+    {     
+        "operationName": "clickSendAMessageLink",
+        "attributeType": "link",
+       "attributeName": "sendAMessage",
+        "attributeStrategy": "css",
+        "attributeValue": "a.btn.btn-primary"
+     },
+
+    {     
+        "operationName": "clickShareToFacebookfacebookLink",
+        "attributeType": "link",
+       "attributeName": "shareToFacebookfacebook",
+        "attributeStrategy": "css",
+        "attributeValue": "a.at-icon-wrapper.at-share-btn.at-svc-facebook"
+     },
+
+    {     
+        "operationName": "clickShareToGooglegoogleLink",
+        "attributeType": "link",
+       "attributeName": "shareToGooglegoogle",
+        "attributeStrategy": "css",
+        "attributeValue": "a.at-icon-wrapper.at-share-btn.at-svc-google_plusone_share"
+     },
+
+    {     
+        "operationName": "clickShareToLinkedinlinkedinLink",
+        "attributeType": "link",
+       "attributeName": "shareToLinkedinlinkedin",
+        "attributeStrategy": "css",
+        "attributeValue": "a.at-icon-wrapper.at-share-btn.at-svc-linkedin"
+     },
+
+    {     
+        "operationName": "clickShareToPinterestpinterestLink",
+        "attributeType": "link",
+       "attributeName": "shareToPinterestpinterest",
+        "attributeStrategy": "css",
+        "attributeValue": "a.at-icon-wrapper.at-share-btn.at-svc-pinterest_share"
+     },
+
+    {     
+        "operationName": "clickShareToTwittertwitterLink",
+        "attributeType": "link",
+       "attributeName": "shareToTwittertwitter",
+        "attributeStrategy": "css",
+        "attributeValue": "a.at-icon-wrapper.at-share-btn.at-svc-twitter"
+     },
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class CourseCatalogPage extends \Automate\Page {
+
+
+
+
+
+
+
+
+     protected $pageLoadedText = "Find descriptions and details on all workshops offered in this program below";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/catalog/bwh-music-course/535";
+
+
+
+
+
+
+
+
+   protected static $_selectors = [
+    "bwh1516907385Ham15169073851" =>
+    [
+       "css" => "#primary div.container-fluid section.course.session.detail div:nth-of-type(2) div.col-sm-12 div.form-group.ajax-target section.course-cart form div.table-responsive table:nth-of-type(1) tbody tr.session-registration.status-registered td:nth-of-type(2) a"
+    ],
+
+    "bwh1516907385Ham15169073852" =>
+    [
+       "css" => "#primary div.container-fluid section.course.session.detail div:nth-of-type(4) table.table.table-condensed.table-hover.table-striped tbody:nth-of-type(2) tr td:nth-of-type(3) a"
+    ],
+
+    "bwhMusicCourse" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/catalog/bwh-music-course']"
+    ],
+
+    "courseCatalog" =>
+    [
+       "css" => "#b a"
+    ],
+
+    "edit1" =>
+    [
+       "css" => "#primary div.container-fluid section.course.session.detail div:nth-of-type(2) div.col-sm-12 div.form-group.ajax-target section.course-cart form div.table-responsive table:nth-of-type(1) tbody tr.session-registration.status-registered td:nth-of-type(2) div div:nth-of-type(3) a.label.label-danger"
+    ],
+
+    "edit2" =>
+    [
+       "css" => "#primary div.container-fluid section.course.session.detail div:nth-of-type(2) div.col-sm-12 div.form-group.ajax-target section.course-cart form div.table-responsive table:nth-of-type(1) tbody tr.session-registration.status-registered td:nth-of-type(2) div div:nth-of-type(5) a.label.label-danger"
+    ],
+
+    "findDescriptionsAndDetailsOnAll" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/catalog/bwh-music-course/535#workshops']"
+    ],
+
+    "home" =>
+    [
+       "css" => "#a a"
+    ],
+
+
+
+    "print1" =>
+    [
+       "css" => "#primary div.container-fluid section.course.session.detail div:nth-of-type(2) div.col-sm-12 div.form-group.ajax-target section.course-cart div:nth-of-type(1) div.table-responsive.col-sm-12 a.btn.btn-xs.btn-danger.report-type.pull-right"
+    ],
+
+    "print2" =>
+    [
+       "css" => "#primary div.container-fluid section.course.session.detail div:nth-of-type(3) div.table-responsive.col-sm-12 a.btn.btn-xs.btn-danger.report-type.pull-right"
+    ],
+
+    "sendAMessage" =>
+    [
+       "css" => "a.btn.btn-primary"
+    ],
+
+    "shareToFacebookfacebook" =>
+    [
+       "css" => "a.at-icon-wrapper.at-share-btn.at-svc-facebook"
+    ],
+
+    "shareToGooglegoogle" =>
+    [
+       "css" => "a.at-icon-wrapper.at-share-btn.at-svc-google_plusone_share"
+    ],
+
+    "shareToLinkedinlinkedin" =>
+    [
+       "css" => "a.at-icon-wrapper.at-share-btn.at-svc-linkedin"
+    ],
+
+    "shareToPinterestpinterest" =>
+    [
+       "css" => "a.at-icon-wrapper.at-share-btn.at-svc-pinterest_share"
+    ],
+
+    "shareToTwittertwitter" =>
+    [
+       "css" => "a.at-icon-wrapper.at-share-btn.at-svc-twitter"
+    ],
+    ];
+    /**
+     * Click on Bwh1516907385 Ham1516907385 Link.
+     *
+     */
+    function clickBwh1516907385Ham15169073851Link() {
+        //link
+        $this->click(self::$_selectors['bwh1516907385Ham15169073851']);
+    }
+
+    /**
+     * Click on Bwh1516907385 Ham1516907385 Link.
+     *
+     */
+    function clickBwh1516907385Ham15169073852Link() {
+        //link
+        $this->click(self::$_selectors['bwh1516907385Ham15169073852']);
+    }
+
+    /**
+     * Click on Bwh Music Course Link.
+     *
+     */
+    function clickBwhMusicCourseLink() {
+        //link
+        $this->click(self::$_selectors['bwhMusicCourse']);
+    }
+
+    /**
+     * Click on Course Catalog Link.
+     *
+     */
+    function clickCourseCatalogLink() {
+        //link
+        $this->click(self::$_selectors['courseCatalog']);
+    }
+
+    /**
+     * Click on Edit Link.
+     *
+     */
+    function clickEdit1Link() {
+        //link
+        $this->click(self::$_selectors['edit1']);
+    }
+
+    /**
+     * Click on Edit Link.
+     *
+     */
+    function clickEdit2Link() {
+        //link
+        $this->click(self::$_selectors['edit2']);
+    }
+
+    /**
+     * Click on Find Descriptions And Details On All Workshops Offered In This Program Below. Link.
+     *
+     */
+    function clickFindDescriptionsAndDetailsOnAllLink() {
+        //link
+        $this->click(self::$_selectors['findDescriptionsAndDetailsOnAll']);
+    }
+
+    /**
+     * Click on Home Link.
+     *
+     */
+    function clickHomeLink() {
+        //link
+        $this->click(self::$_selectors['home']);
+    }
+
+    /**
+     * Click on Print Link.
+     *
+     */
+    function clickPrint1Link() {
+        //link
+        $this->click(self::$_selectors['print1']);
+    }
+
+    /**
+     * Click on Print Link.
+     *
+     */
+    function clickPrint2Link() {
+        //link
+        $this->click(self::$_selectors['print2']);
+    }
+
+    /**
+     * Click on Send A Message Link.
+     *
+     */
+    function clickSendAMessageLink() {
+        //link
+        $this->click(self::$_selectors['sendAMessage']);
+    }
+
+    /**
+     * Click on Share To Facebookfacebook Link.
+     *
+     */
+    function clickShareToFacebookfacebookLink() {
+        //link
+        $this->click(self::$_selectors['shareToFacebookfacebook']);
+    }
+
+    /**
+     * Click on Share To Googlegoogle Link.
+     *
+     */
+    function clickShareToGooglegoogleLink() {
+        //link
+        $this->click(self::$_selectors['shareToGooglegoogle']);
+    }
+
+    /**
+     * Click on Share To Linkedinlinkedin Link.
+     *
+     */
+    function clickShareToLinkedinlinkedinLink() {
+        //link
+        $this->click(self::$_selectors['shareToLinkedinlinkedin']);
+    }
+
+    /**
+     * Click on Share To Pinterestpinterest Link.
+     *
+     */
+    function clickShareToPinterestpinterestLink() {
+        //link
+        $this->click(self::$_selectors['shareToPinterestpinterest']);
+    }
+
+    /**
+     * Click on Share To Twittertwitter Link.
+     *
+     */
+    function clickShareToTwittertwitterLink() {
+        //link
+        $this->click(self::$_selectors['shareToTwittertwitter']);
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+         $text = $this->pageLoadedText;
+        $driver = $this->driver;
+        return $driver->wait(self::WAIT_TIME, self::ITERATE_TIME)->until(
+            function () use ($driver, $text)  {
+                try {
+                    $source = $driver->getPageSource();
+                    if (strpos($source,$text) !== false) {
+                        return true;
+                    }
+                    return false;
+                } catch (\Exception $e) {
+                    return false;
+                }
+        });
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return $this->verifyPageUrlToLastSlash($this->driver->getCurrentURL(),
+                                               $this->pageUrl);                     
+    }
+}

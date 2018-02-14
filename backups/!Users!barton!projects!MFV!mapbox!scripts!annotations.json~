@@ -1,0 +1,1778 @@
+[
+  {
+    "id": "0",
+    "coordinates": [
+      [
+        -122.34375,
+        49.82947720038445
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 4",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+    }
+  },
+  {
+    "id": "1",
+    "coordinates": [
+      [
+        -91.40625,
+        30.743695900486706
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "2",
+    "coordinates": [
+      [
+        -43.59375,
+        -23.235090178017984
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "3",
+    "coordinates": [
+      [
+        -1.40625,
+        51.60961767954443
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 12",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "4",
+    "coordinates": [
+      [
+        -94.21875,
+        44.078961669500316
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "5",
+    "coordinates": [
+      [
+        1.40625,
+        42.02439292189487
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 3",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "6",
+    "coordinates": [
+      [
+        4.21875,
+        51.60961767954443
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "7",
+    "coordinates": [
+      [
+        -7.03125,
+        53.32260709507301
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 3",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "8",
+    "coordinates": [
+      [
+        -77.34375,
+        -12.55090288571757
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "9",
+    "coordinates": [
+      [
+        -122.34375,
+        46.06460885481884
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 4",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+    }
+  },
+  {
+    "id": "10",
+    "coordinates": [
+      [
+        -113.90625,
+        59.52677644285336
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 3",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "11",
+    "coordinates": [
+      [
+        -9.84375,
+        37.710240054623654
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "12",
+    "coordinates": [
+      [
+        -77.34375,
+        39.90124452289863
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "13",
+    "coordinates": [
+      [
+        -88.59375,
+        42.02439292189487
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 4",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+    }
+  },
+  {
+    "id": "14",
+    "coordinates": [
+      [
+        -80.15625,
+        25.793130303485924
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 4",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+    }
+  },
+  {
+    "id": "15",
+    "coordinates": [
+      [
+        1.40625,
+        46.06460885481884
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 5",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+    }
+  },
+  {
+    "id": "16",
+    "coordinates": [
+      [
+        1.40625,
+        47.98134070428246
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 7",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "17",
+    "coordinates": [
+      [
+        -74.53125,
+        39.90124452289863
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 6",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+    }
+  },
+  {
+    "id": "18",
+    "coordinates": [
+      [
+        99.84375,
+        59.52677644285336
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 3",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "19",
+    "coordinates": [
+      [
+        122.34375,
+        30.743695900486706
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 5",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+    }
+  },
+  {
+    "id": "20",
+    "coordinates": [
+      [
+        -97.03125,
+        30.743695900486706
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 3",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "21",
+    "coordinates": [
+      [
+        21.09375,
+        44.078961669500316
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "22",
+    "coordinates": [
+      [
+        150.46875,
+        -33.129653047156495
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "23",
+    "coordinates": [
+      [
+        7.03125,
+        46.06460885481884
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 4",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+    }
+  },
+  {
+    "id": "24",
+    "coordinates": [
+      [
+        -80.15625,
+        33.129653047156495
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "25",
+    "coordinates": [
+      [
+        32.34375,
+        -30.743695900486706
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "26",
+    "coordinates": [
+      [
+        12.65625,
+        54.96950349336775
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 3",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "27",
+    "coordinates": [
+      [
+        116.71875,
+        30.743695900486706
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "28",
+    "coordinates": [
+      [
+        105.46875,
+        -7.011576991378204
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "29",
+    "coordinates": [
+      [
+        -54.84375,
+        -9.792785018656431
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "30",
+    "coordinates": [
+      [
+        -122.34375,
+        47.98134070428246
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 3",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "31",
+    "coordinates": [
+      [
+        -119.53125,
+        33.129653047156495
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "32",
+    "coordinates": [
+      [
+        -94.21875,
+        30.743695900486706
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "33",
+    "coordinates": [
+      [
+        -113.90625,
+        53.32260709507301
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "34",
+    "coordinates": [
+      [
+        -122.34375,
+        37.710240054623654
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 10",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "35",
+    "coordinates": [
+      [
+        15.46875,
+        47.98134070428246
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "36",
+    "coordinates": [
+      [
+        -46.40625,
+        -23.235090178017984
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "37",
+    "coordinates": [
+      [
+        -102.65625,
+        33.129653047156495
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "38",
+    "coordinates": [
+      [
+        175.78125,
+        -37.710240054623654
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "39",
+    "coordinates": [
+      [
+        18.28125,
+        54.96950349336775
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "40",
+    "coordinates": [
+      [
+        4.21875,
+        49.82947720038445
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "41",
+    "coordinates": [
+      [
+        -49.21875,
+        -25.793130303485924
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "42",
+    "coordinates": [
+      [
+        -82.96875,
+        42.02439292189487
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "43",
+    "coordinates": [
+      [
+        -57.65625,
+        -35.45251649467912
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "44",
+    "coordinates": [
+      [
+        -1.40625,
+        44.078961669500316
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "45",
+    "coordinates": [
+      [
+        -82.96875,
+        28.29717767366126
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "46",
+    "coordinates": [
+      [
+        113.90625,
+        23.235090178017984
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 5",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+    }
+  },
+  {
+    "id": "47",
+    "coordinates": [
+      [
+        -77.34375,
+        33.129653047156495
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "48",
+    "coordinates": [
+      [
+        139.21875,
+        35.45251649467912
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 3",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "49",
+    "coordinates": [
+      [
+        -85.78125,
+        12.550902885717568
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "50",
+    "coordinates": [
+      [
+        102.65625,
+        4.213678506243226
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "51",
+    "coordinates": [
+      [
+        18.28125,
+        59.52677644285336
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "52",
+    "coordinates": [
+      [
+        9.84375,
+        49.82947720038445
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "53",
+    "coordinates": [
+      [
+        9.84375,
+        56.55154712194239
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "54",
+    "coordinates": [
+      [
+        -99.84375,
+        39.90124452289863
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "55",
+    "coordinates": [
+      [
+        71.71875,
+        23.235090178017984
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "56",
+    "coordinates": [
+      [
+        29.53125,
+        42.02439292189487
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "57",
+    "coordinates": [
+      [
+        122.34375,
+        25.793130303485924
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 5",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+    }
+  },
+  {
+    "id": "58",
+    "coordinates": [
+      [
+        116.71875,
+        39.90124452289863
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 7",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "59",
+    "coordinates": [
+      [
+        111.09375,
+        39.90124452289863
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "60",
+    "coordinates": [
+      [
+        -74.53125,
+        46.06460885481884
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "61",
+    "coordinates": [
+      [
+        35.15625,
+        33.129653047156495
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "62",
+    "coordinates": [
+      [
+        -116.71875,
+        33.129653047156495
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "63",
+    "coordinates": [
+      [
+        12.65625,
+        53.32260709507301
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "64",
+    "coordinates": [
+      [
+        102.65625,
+        1.4056855966655575
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "65",
+    "coordinates": [
+      [
+        21.09375,
+        46.06460885481884
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "66",
+    "coordinates": [
+      [
+        37.96875,
+        54.96950349336775
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "67",
+    "coordinates": [
+      [
+        -1.40625,
+        53.32260709507301
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "68",
+    "coordinates": [
+      [
+        23.90625,
+        59.52677644285336
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "69",
+    "coordinates": [
+      [
+        -99.84375,
+        28.29717767366126
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "70",
+    "coordinates": [
+      [
+        -66.09375,
+        9.792785018656431
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "71",
+    "coordinates": [
+      [
+        82.96875,
+        54.96950349336775
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "72",
+    "coordinates": [
+      [
+        122.34375,
+        23.235090178017984
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "73",
+    "coordinates": [
+      [
+        -97.03125,
+        33.129653047156495
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "74",
+    "coordinates": [
+      [
+        29.53125,
+        46.06460885481884
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "75",
+    "coordinates": [
+      [
+        9.84375,
+        62.2608147054312
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "76",
+    "coordinates": [
+      [
+        144.84375,
+        -37.710240054623654
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "77",
+    "coordinates": [
+      [
+        105.46875,
+        9.792785018656431
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "78",
+    "coordinates": [
+      [
+        -71.71875,
+        42.02439292189487
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 3",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "79",
+    "coordinates": [
+      [
+        -1.40625,
+        54.96950349336775
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "80",
+    "coordinates": [
+      [
+        9.84375,
+        51.60961767954443
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 3",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "81",
+    "coordinates": [
+      [
+        37.96875,
+        44.078961669500316
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "82",
+    "coordinates": [
+      [
+        127.96875,
+        37.710240054623654
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "83",
+    "coordinates": [
+      [
+        7.03125,
+        47.98134070428246
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "84",
+    "coordinates": [
+      [
+        9.84375,
+        53.32260709507301
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "85",
+    "coordinates": [
+      [
+        29.53125,
+        59.52677644285336
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "86",
+    "coordinates": [
+      [
+        18.28125,
+        47.98134070428246
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "87",
+    "coordinates": [
+      [
+        9.84375,
+        54.96950349336775
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "88",
+    "coordinates": [
+      [
+        -74.53125,
+        7.011576991378204
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "89",
+    "coordinates": [
+      [
+        -66.09375,
+        17.973667616731152
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "90",
+    "coordinates": [
+      [
+        -97.03125,
+        35.45251649467912
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "91",
+    "coordinates": [
+      [
+        77.34375,
+        12.550902885717568
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "92",
+    "coordinates": [
+      [
+        -85.78125,
+        33.129653047156495
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "93",
+    "coordinates": [
+      [
+        26.71875,
+        -25.793130303485924
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "94",
+    "coordinates": [
+      [
+        -105.46875,
+        39.90124452289863
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "95",
+    "coordinates": [
+      [
+        57.65625,
+        58.07013147046246
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "96",
+    "coordinates": [
+      [
+        80.15625,
+        20.627094444251416
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "97",
+    "coordinates": [
+      [
+        9.84375,
+        59.52677644285336
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "98",
+    "coordinates": [
+      [
+        119.53125,
+        -4.213678506243226
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "99",
+    "coordinates": [
+      [
+        -4.21875,
+        39.90124452289863
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "100",
+    "coordinates": [
+      [
+        74.53125,
+        25.793130303485924
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "101",
+    "coordinates": [
+      [
+        -85.78125,
+        35.45251649467912
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 2",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+    }
+  },
+  {
+    "id": "102",
+    "coordinates": [
+      [
+        21.09375,
+        51.60961767954443
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "103",
+    "coordinates": [
+      [
+        35.15625,
+        30.743695900486706
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "104",
+    "coordinates": [
+      [
+        -80.15625,
+        44.078961669500316
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "105",
+    "coordinates": [
+      [
+        23.90625,
+        54.96950349336775
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "106",
+    "coordinates": [
+      [
+        29.53125,
+        49.82947720038445
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "107",
+    "coordinates": [
+      [
+        71.71875,
+        17.973667616731152
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "108",
+    "coordinates": [
+      [
+        105.46875,
+        20.627094444251416
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "109",
+    "coordinates": [
+      [
+        -49.21875,
+        -23.235090178017984
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  },
+  {
+    "id": "110",
+    "coordinates": [
+      [
+        80.15625,
+        15.279797888060497
+      ]
+    ],
+    "type": "point",
+    "title": "Stargazers: 1",
+    "annotationImage": {
+      "height": 25,
+      "width": 25,
+      "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+    }
+  }
+]

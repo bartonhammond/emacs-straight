@@ -1,0 +1,18 @@
+# Step 1
+
+## Do these things
+
+* ```src/components/Home.js```
+    * Add two buttons
+        * Increment
+        * Decrement
+    * Display: ```this.props.counter```
+
+* add ```src/actions/counterActions.js```
+    * add constants INCREMENT & DECREMENT
+    * add functions for each
+
+* add ```src/reducers/counterReducer.js``` 
+    * import the ```counterActions```
+    * create ```counter``` reducer
+

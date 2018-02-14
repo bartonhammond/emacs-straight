@@ -1,0 +1,23 @@
+public function navigateToCourseAndProgramPage() {
+    //Start from Admin dashboard
+    $this->adminPage->clickAdminMenu();
+
+    $this->adminPage->clickCourseAndProgram();
+
+    $this->cpPage->waitPageLoaded();
+    $this->takeSnapShot();
+
+    $this->cpPage->typeCourseSearch("BWH Music Course");
+    $this->cpPage->submit();
+
+    $this->takeSnapShot();
+    $this->assertEquals("BWH Music Course", $this->cpPage->getFirstSearchResultText());
+
+    $this->cpPage->selectFirstSearchResult();
+    $this->takeSnapShot();
+
+
+    $this->cpDisplayPage->waitPageLoaded();
+
+    $this->assertContains("BWH Music Course", $this->cpDisplayPage->getH2HeadingText());
+}

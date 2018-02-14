@@ -1,0 +1,224 @@
+<?php
+namespace Automate;
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once './src/utilities/curlSupport.php';
+
+/**
+ * Establish the unique key of the desktop or mobile device so
+ * that the last instance will be the most recent version since
+ * BrowserStack returns the devices in increasing order
+ */
+class DeviceHashableObject implements \Ds\Hashable
+{
+    public $value;
+
+    public function __construct($value) {
+        $this->value = $value;
+    }
+
+    public function hash() {
+        return $this->value;
+    }
+
+    public function equals($obj): bool {
+        return
+            $this->value->device === $obj->value->device //desktop or mobile
+            &&
+            $this->value->deviceName === $obj->value->deviceName //mobile
+            &&
+            $this->value->platformName === $obj->value->platformName //mobile
+            //or desktop
+            &&
+            $this->value->browserName === $obj->value->browserName;
+    
+    }
+}
+
+/** 
+ * Make a CURL call to retreive all the supported devices and 
+ * loop through and retain those that satisfy the type requested 
+ * by a customer
+ */
+class GetBrowsers
+{
+    public $username = '';
+    public $authkey = '';
+    public $url = 'https://crossbrowsertesting.com/api/v3/selenium/browsers';
+    public $curlSupport;
+    public $ch;
+    
+    public function __construct($username, $authkey) {
+        $this->username = $username;
+        $this->authkey = $authkey;
+        $this->curlSupport = new CurlSupport($username, $authkey);
+    }
+
+    function endsWith($haystack, $needle) {
+        $length = strlen($needle);
+        
+        return $length === 0 || 
+                       (substr($haystack, -$length) === $needle);
+    }
+    
+    public function get() {
+        return $this->curlSupport->callApi($this->url);
+    }
+
+    public function makeMobileCapability($device,
+                                         $browserName,
+                                         $platformName,
+                                         $deviceName) {
+        $obj = new \stdClass();
+        $obj->device = $device;
+        $obj->browserName = $browserName;
+        $obj->platformName = $platformName;
+        $obj->deviceName = $deviceName;
+        return $obj;
+        
+    }
+    public function makeDesktopCapability($device,
+                                          $browserName,
+                                          $version,
+                                          $platform) {
+        $obj = new \stdClass();
+        $obj->device = $device;
+        $obj->browserName = $browserName;
+        $obj->version = $version;
+        $obj->platformName = $platform;
+        $obj->deviceName = "";
+        return $obj;
+    }
+
+    public function parse($jsonData, $option) {
+        $map = new \Ds\Map();
+    
+        foreach ($jsonData as $device) {
+            
+            foreach ($device->browsers as $browser) {
+                $test = '';
+
+                switch($device->device) {
+                case "mobile":
+                    $test = $this->makeMobileCapability($device->device,
+                                                        $browser->caps->browserName,
+                                                        $device->caps->platformName,
+                                                        $device->caps->deviceName);
+                    break;
+                
+                case "desktop":
+                    $test = $this->makeDesktopCapability($device->device,
+                                                         $browser->caps->browserName,
+                                                         $browser->caps->version,
+                                                         $device->caps->platform);
+                    break;
+                }//switch
+
+                
+                if ($option === "ios" || $option === 'modern' || $option === 'mobile') {
+                    
+                    if ($test->platformName === 'iOS') {
+
+                        if ($test->deviceName === 'iPhone 7 Simulator'
+                            ||
+                            $test->deviceName === 'iPhone 7 Plus Simulator'
+                            ||
+                            $test->deviceName === 'iPad Pro Simulator'
+                            ||
+                            $test->deviceName === 'iPad Air 2 Simulator') {
+                            $map->put(new \Automate\DeviceHashableObject($test),
+                                      $test);
+                        }
+                    }
+                }
+                    
+                if ($option === "android" || $option === 'modern' || $option === 'mobile') {
+                    if ($test->platformName === 'Android') {
+                        if ($test->deviceName === 'Galaxy S6'
+                            ||
+                            $test->deviceName === 'Nexus 6') {
+                            $map->put(new \Automate\DeviceHashableObject($test),
+                                      $test);
+                        }
+                    }
+                }
+
+                
+                if ($option === "windows" || $option === 'modern' ||  $option === "desktop") {
+                    if ($test->platformName === "Windows 10") {
+                        if ($test->browserName === 'Firefox') {
+                            if ($test->version === '55') {
+                                $map->put(new \Automate\DeviceHashableObject($test),
+                                          $test);
+                            }
+                        } else {
+                            $map->put(new \Automate\DeviceHashableObject($test),
+                                      $test);                            
+                        }
+                    }
+                }
+                
+                if ($option === "windows8") {
+                    if ($test->platformName === "Windows 8") {
+                        $map->put(new \Automate\DeviceHashableObject($test),
+                                  $test);
+                    }
+                }
+                
+                if ($option === "windows81") {
+                    if ($test->platformName === "Windows 8.1") {
+                        $map->put(new \Automate\DeviceHashableObject($test),
+                                  $test);
+                    }
+                }
+                
+                if ($option === "mac" || $option === 'modern' || $option==="desktop") {
+                    if ($test->platformName === 'Mac OSX 10.13'
+                        ||
+                        $test->platformName === 'Mac OSX 10.12') {
+                        if ($test->browserName === 'Firefox') {
+                            if ($test->version === '55') {
+                                $map->put(new \Automate\DeviceHashableObject($test),
+                                          $test);
+                            }
+                        } else {
+                             $map->put(new \Automate\DeviceHashableObject($test),
+                                       $test);                            
+                        }                        
+                    }
+                }
+                    
+                if ($option ===  "all") {
+                    $map->put(new \Automate\DeviceHashableObject($test),
+                              $test);                        
+                }
+                
+                //Uncomment for testing
+                /*
+                if (!$map->isEmpty()) {
+                  return $map;///testing          
+                  }*/
+
+            }//for each $device->browsers
+        }//foreach $jsonData as $device
+        
+        return $map;
+    }
+}
+
+$username = "bhammond@wisnet.com";
+$authkey = "u0459a8738c4a60d";
+
+$getBrowsers = new GetBrowsers($username, $authkey);
+$browsers = $getBrowsers->get();
+$devices = $getBrowsers->parse($browsers, "modern");
+
+$keys = $devices->keys();
+$deviceBrowsers = [];
+foreach($keys as $key) {
+    // array_push($deviceBrowsers, json_encode((array)$devices->get($key)));
+    array_push($deviceBrowsers,(array)$devices->get($key));
+}
+file_put_contents('./browserDevices.json'
+                  ,json_encode($deviceBrowsers,
+                               JSON_PRETTY_PRINT)
+                  ,LOCK_EX);                

@@ -1,0 +1,12 @@
+CLASS({
+  package: 'com.todo.u2',
+  name: 'TodoCitationView',
+  extends: 'foam.u2.View',
+  templates: [
+    function initE() {/*#U2
+      <div class="^">
+        {{this.data.title}}
+      </div>
+    */},
+  ]
+});

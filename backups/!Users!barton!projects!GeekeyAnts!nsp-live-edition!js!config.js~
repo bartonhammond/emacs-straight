@@ -1,0 +1,10 @@
+module.exports = {
+  backend: {
+    hapi: true,
+    serverless: false
+  },
+  hapi: {
+    ip: '127.0.0.1',
+    port: '8080'
+  }
+};

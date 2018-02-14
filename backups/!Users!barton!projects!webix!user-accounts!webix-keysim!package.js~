@@ -1,0 +1,110 @@
+Package.describe({
+  summary: 'Application core library.',
+  version: '1.0.2',
+  name: 'useraccounts:webix'
+});
+
+// Declare NPM modules for Meteor to download into .npm/package
+Npm.depends({
+  'keysim':'1.3.0'
+});
+
+Package.onUse(function(api) {
+
+  api.versionsFrom(['METEOR@1.0']);
+
+  //Support for keysim which requires browserify
+  api.use(['cosmos:browserify@0.5.1'], 'client'); // need this package
+  
+  api.addFiles([
+      'lib/vendor/keysim/client.browserify.js',           // browserify file
+      'lib/vendor/keysim/client.browserify.options.json'  // browserify options file
+    ], 'client' );
+
+  // export it to global app scope
+  api.export('Keysim','client');
+  
+  
+  api.use([
+    'templating',
+    'underscore',
+    'peerlibrary:blaze-components'
+//    'webix:webix@2.5.14'
+  ], 'client');
+
+  api.use([
+    'useraccounts:core',
+  ], ['client', 'server']);
+
+    // Requires all routing packages loads before this asking for weak dependencies.
+  api.use('useraccounts:flow-routing@1.12.1', ['client', 'server'], {weak: true});
+  api.use('useraccounts:iron-routing@1.12.1', ['client', 'server'], {weak: true});
+
+  api.imply([
+    'useraccounts:core@1.12.3',
+  ], ['client', 'server']);
+  
+  //Support for webix
+  api.addFiles([
+    'lib/vendor/webix/webix_debug.js',
+    'lib/vendor/webix/compact.css',
+    'lib/vendor/webix/meteor_data.js',
+  ], ['client']);
+  
+  api.export('webix', 'client');
+  
+  api.add_files([
+    'lib/lib/ExposeTemplateHelpersMixin.js',
+    'lib/lib/BaseController.js',
+    /**
+    'lib/at_error.html',
+    'lib/at_error.js',
+*/
+    'lib/at_form.html',
+    'lib/at_form.js',
+    'lib/at_input.html',
+    'lib/at_input.js',
+    /*
+    'lib/at_message.html',
+    'lib/at_message.js',
+********/
+    'lib/at_nav_button.html',
+    'lib/at_nav_button.js',
+    /***
+    'lib/at_oauth.html',
+    'lib/at_oauth.js',
+    */
+    'lib/at_pwd_form.html',
+    'lib/at_pwd_form.js',
+/**
+    'lib/at_pwd_form_btn.html',
+    'lib/at_pwd_form_btn.js',
+    'lib/at_pwd_link.html',
+    'lib/at_pwd_link.js',
+    'lib/at_reCaptcha.html',
+    'lib/at_reCaptcha.js',
+    'lib/at_result.html',
+    'lib/at_result.js',
+    'lib/at_sep.html',
+    'lib/at_sep.js',
+    'lib/at_signin_link.html',
+    'lib/at_signin_link.js',
+    'lib/at_signup_link.html',
+    'lib/at_signup_link.js',
+    'lib/at_social.html',
+    'lib/at_social.js',
+    'lib/at_terms_link.html',
+    'lib/at_terms_link.js',
+    'lib/at_resend_verification_email_link.html',
+    'lib/at_resend_verification_email_link.js',
+*/
+    'lib/at_title.html',
+    'lib/at_title.js',
+    'lib/full_page_at_form.html',
+    'lib/at_webix.css',
+
+  ], ['client']);
+  
+  api.export('BaseController');
+});
+

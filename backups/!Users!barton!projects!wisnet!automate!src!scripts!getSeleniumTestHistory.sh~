@@ -1,0 +1,2 @@
+curl --user bhammond@wisnet.com:u0459a8738c4a60d https://crossbrowsertesting.com/api/v3/screenshots/?format=json&num=10&active=true
+

@@ -1,0 +1,30 @@
+'use strict';
+require('regenerator/runtime');
+
+import SearchRepositoriesProcessor from './SearchRepositoriesProcessor';
+
+class SearchRepositories{
+  constructor(queue) {
+    this.queue = queue;
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process(
+      'searchRepositories',
+      1,
+      function(job,
+               ctx,
+               done) {
+
+        new SearchRepositoriesProcessor(
+          self.queue,
+          job,
+          ctx,
+          done).run();
+      });
+  }
+}
+module.exports = SearchRepositories;
+
+

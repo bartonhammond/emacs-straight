@@ -1,0 +1,19 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class WorkshopPage extends \Automate\Page {
+    private static $_selectors = [
+        "title" =>
+        [
+            "css" => "h3.modal-title"
+        ]
+    ];
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors(self::$_selectors);
+    }
+
+    function getTitle() {
+        return $this->find(self::$_selectors['title'])->getText();
+    }
+}

@@ -1,0 +1,70 @@
+ <div data-view="layout"
+       data-autoheight=1
+       data-padding=5
+       data-stack="rows">
+         
+<div data-id="commentsDataTable"
+       data-view="datatable"
+       data-fixed-row-height=""
+       data-line-height=''
+       data-row-line-height=''
+       data-row-height=''>
+    
+    <div data-view="column"
+         data-sort="string"
+         data-fillspace=1
+         data-id="comment">
+      <strong>Comment</strong>
+    </div>
+         
+         <ul data-view="data">
+           <li data-comment="comment"></li>
+            <li data-comment="comment"></li> 
+           <li data-comment="comment"></li> 
+           <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+           <li data-comment="comment"></li>
+            <li data-comment="comment"></li> 
+           <li data-comment="comment"></li> 
+           <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+           <li data-comment="comment"></li>
+            <li data-comment="comment"></li> 
+           <li data-comment="comment"></li> 
+           <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+           <li data-comment="comment"></li>
+            <li data-comment="comment"></li> 
+           <li data-comment="comment"></li> 
+           <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+           <li data-comment="comment"></li>
+            <li data-comment="comment"></li> 
+           <li data-comment="comment"></li> 
+           <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+            <li data-comment="comment"></li>
+	    </ul>
+    
+  </div>
+        <div data-view="template"
+         data-template="<div style='text-align:center'><h4>End of list</h4><div>"
+         data-height=50
+         data-type="clean">
+        </div>
+
+</div>

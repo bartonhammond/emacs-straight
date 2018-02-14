@@ -1,0 +1,20 @@
+/**
+* Webix components do not create/destroy, instead they show/hide
+* It's a race condition to get the content displayed in the correct 
+* position if it is displayed before the nav.  So create it
+* with the "web.ui.delay" method and delay ('timeout') it's
+* appearance so that nav has chance to display
+*/
+
+BaseController = {
+  showOrDelay: function(config) {
+    if (webix.ui.views[config.id]) {
+      $$(config.id).show();
+    } else {
+      webix.ui.delay(config,$$(config.id));
+      webix.delay(function() {
+        webix.$$(config.id);
+      });
+    }
+  }
+};

@@ -1,0 +1,11 @@
+'use strict';
+
+var gitHub = require('GitHub');
+
+gitHub('f67c3239d00c2cbc7abfe41743b56f2915c3506e').getProfile('bartonhammond')
+  .then((response) => {
+    console.log(response);
+  })
+  .error((err) => {
+    console.log('err',err);
+  });

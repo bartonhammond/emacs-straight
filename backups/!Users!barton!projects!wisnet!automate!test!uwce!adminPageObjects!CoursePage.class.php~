@@ -1,0 +1,241 @@
+<?php
+require_once __DIR__ . "/../../../../src/pageObjects/Page.class.php";
+use Facebook\WebDriver\WebDriverSelect;
+
+class CoursePage extends \Automate\Page {
+    private static $_selectors = [
+        "course_or_program" =>
+        [
+            "css" => "select#course_isCamp"
+        ],
+        "course_title" =>
+        [
+            "id" => "course_title"
+        ],
+        "course_number" =>
+        [
+            "id" => "course_courseNumber"
+        ],
+        "course_description" =>
+        [
+            "script" => ""
+        ],
+        "additional_info" =>
+        [
+            "script" => ""
+        ],
+        "category" =>
+        [
+            "css" => "form#editCourseForm div:nth-child(7) > div > div > select"
+        ],
+        "category_add_button" =>
+        [
+            "css" => "form#editCourseForm div:nth-child(7) > div > div > input"
+        ],
+        "course_instructorNotes" =>
+        [
+            "css" => "form#editCourseForm div:nth-child(3) > textarea"
+        ],
+        "inner_action_message" =>
+        [ 
+            "css" => "form#editCourseForm div.alert.alert-success.alert-dismissible"
+        ],
+        "h2_heading" =>
+        [
+            "css" => "div#primary h2"
+        ],
+        "action_inner_message_close" =>
+        [
+            "css" => "button.close"
+        ],
+        "question" =>
+        [
+            "id" => "question_question"
+        ],
+        "question_option" =>
+        [
+            "id" => "question_options"
+        ],
+        "question_required" =>
+        [
+            "id" => "question_required"
+        ],
+        "add_question" =>
+        [
+            "css" => "form#editCourseForm div:nth-child(4) > div > input"
+        ],
+        "course_ceu" =>
+        [
+            "css" => "input[name='course_ceu']"
+        ],
+        "course_fee" =>
+        [
+            "id" => "course_fee"
+        ],
+        "course_earlyRegistrationFee" =>
+        [
+            "id" => "course_earlyRegistrationFee"
+        ],
+        "course_lateRegistrationFee" =>
+        [
+            "id" => "course_lateRegistrationFee"
+        ],
+        "course_initialPayment" =>
+        [
+            "id" => "course_initialPayment"
+        ],
+        "course_secondInstallment" =>
+        [
+            "id" => "course_secondInstallment"
+        ],
+        "critical_analysis" =>
+        [
+            "css" => "select#course_criticalAnalysis"
+        ],
+        "submit" =>
+        [
+            "css" => "form#editCourseForm button[type='submit'].btn.btn-primary"
+        ],
+        "action_error_message" =>
+        [
+            "css" => "div#primary div.alert.alert-danger.alert-dismissible"
+        ],
+        "action_message" =>
+        [
+            "css" => "div#primary div.alert.alert-success.alert-dismissible"
+        ],        
+        "action_message_close" =>
+        [
+            "css" => "div#primary button[type='button'] > span"
+        ],
+        "senior_discount" =>
+        [
+            "xpath" => "//input[@name='course_applySeniorDiscount']"
+        ]
+        
+    ];
+
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors['course_title'],
+                                          self::$_selectors['course_number']
+        ]);
+    }
+    function selectProgram() {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["course_or_program"]));
+        $webDriverSelect->selectByVisibleText("Program");
+
+    }
+    function typeTitle($title) {
+        $this->type(self::$_selectors['course_title'], $title);
+    }
+    
+    function typeCourseNumber($title) {
+        $this->type(self::$_selectors['course_number'], $title);
+    }
+
+    //Avoid error on mobile:
+    //Blocked a frame with origin \"https://www.secured-site7.com\" from accessing a cross-origin framen
+    function typeCourseDescription($title) {
+        if (!$this->isMobile) {
+            $selector = self::$_selectors['course_description'];
+            $selector["script"] = "window.frames[0].document.body.innerText = '"
+                                . $title
+                            . "'";
+            $this->find($selector);
+        }
+    }
+    //Avoid error on mobile:
+    //Blocked a frame with origin \"https://www.secured-site7.com\" from accessing a cross-origin frame    
+    function typeAdditionalInformation($info) {
+        if (!$this->isMobile) {        
+            $selector = self::$_selectors['additional_info'];
+            $selector["script"] = "window.frames[1].document.body.innerText = '"
+                                . $info
+                                . "'";
+            $this->find($selector);
+        }
+    }
+
+    function setCategory() {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors['category']));
+        $webDriverSelect->selectByVisibleText("Fond du Lac (Staging) - BWH Music Category Name");
+    
+    }
+
+    function getInnerActionMessage() {
+        $this->scrollIntoView(self::$_selectors['category_add_button']);
+        sleep(2); //running local is too fast
+        return $this->find(self::$_selectors['inner_action_message'])->getText();
+    }
+    
+    function closeInnerActionMessage() {
+        $this->scrollIntoView(self::$_selectors['inner_action_message']);        
+        $this->click(self::$_selectors['action_inner_message_close']);
+    }
+    
+    function getH2HeadingText() {
+        return $this->find(self::$_selectors['h2_heading'])->getText();
+    }
+    
+    function typeInstructorNotes($notes) {
+        $this->type(self::$_selectors["course_instructorNotes"], $notes);
+    }
+    function typeQuestion($question) {
+        $this->type(self::$_selectors["question"], $question);
+    }
+    function typeQuestionOption($option) {
+        $this->type(self::$_selectors["question_option"], $option);
+    }
+    function setQuestionRequired($state) {
+        $question = $this->find(self::$_selectors['question_required']);
+        if (!$question->isSelected() === $state) {
+            $this->click(self::$_selectors['question_required']);
+        }
+    }
+    function addQuestion() {
+        $this->click(self::$_selectors['add_question']);
+    }
+    function typeCourseCEU($value) {
+        $this->type(self::$_selectors['course_ceu'], $value);
+    }
+    function typeCourseFee($value) {
+        $this->type(self::$_selectors['course_fee'], $value);
+    }
+    function typeEarlyRegistrationFee($value) {
+           $this->type(self::$_selectors['course_earlyRegistrationFee'], $value);
+    }
+    function typeLateRegistrationFee($value) {
+           $this->type(self::$_selectors['course_lateRegistrationFee'], $value);
+    }
+    function typeInitialPayment($value) {
+            $this->type(self::$_selectors['course_initialPayment'], $value);
+    }
+    function typeSecondPayment($value) {
+           $this->type(self::$_selectors['course_secondInstallment'], $value);
+    }
+    function selectCriticalAnalysis() {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["critical_analysis"]));
+        $webDriverSelect->selectByVisibleText("Computer Skills");
+    }
+    function submit() {
+        $this->click(self::$_selectors['submit']);
+    }
+    function getActionMessage(){
+        $this->waitPageLoadedBySelectors([self::$_selectors["action_message"]]);
+        return $this->find(self::$_selectors['action_message'])->getText();
+    }    
+    function getActionErrorMessage(){
+        $this->waitPageLoadedBySelectors([self::$_selectors["action_error_message"]]);
+        return $this->find(self::$_selectors['action_error_message'])->getText();
+    }
+    function closeActionMessage() {
+        $this->click(self::$_selectors['action_message_close']);
+    }
+    function setSeniorDiscount($value) {
+        if ($this->find(self::$_selectors['senior_discount'])->isSelected() !== $value) {
+            $this->click(self::$_selectors['senior_discount']);
+        }
+    }
+}
+

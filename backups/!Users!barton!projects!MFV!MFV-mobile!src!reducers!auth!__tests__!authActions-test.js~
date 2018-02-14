@@ -1,0 +1,218 @@
+'use strict';
+
+jest.autoMockOff();
+
+import assert from 'assert';
+import * as actions from '../authActions';
+import mockStore from '../../../__mocks__/Store';
+
+//
+// the first parameter is what authActions imports,
+// the second paramter is where the mock actually is
+//jest.setMock('../../../lib/AppAuthToken',require.requireActual('../../../__mocks__/AppAuthToken'));
+
+//jest.setMock('../../../lib/Parse',require.requireActual('../../../__mocks__/Parse'));
+jest.mock('Parse');
+jest.mock('AppAuthToken');
+
+
+import {
+  SESSION_TOKEN_REQUEST,
+  SESSION_TOKEN_SUCCESS,
+  SESSION_TOKEN_FAILURE,
+
+  LOGIN_STATE_LOGOUT,
+  LOGIN_STATE_REGISTER,
+  LOGIN_STATE_LOGIN,
+  LOGIN_STATE_FORGOT_PASSWORD,
+
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
+
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  
+  ON_AUTH_FORM_FIELD_CHANGE,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
+
+  EMIT_LOGGED_IN,
+  EMIT_LOGGED_OUT,
+
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAILURE
+
+} from '../../../lib/constants';
+
+describe('authActions', () => {
+  it('should set logoutState', () => {
+    assert.deepEqual(actions.logoutState(), {
+      type: LOGIN_STATE_LOGOUT
+    });
+  });
+
+  it('should set registerState', () => {
+    assert.deepEqual(actions.registerState(), {
+      type: LOGIN_STATE_REGISTER
+    });
+  });
+
+  it('should set loginState', () => {
+    assert.deepEqual(actions.loginState(), {
+      type: LOGIN_STATE_LOGIN
+    });
+  });
+  
+  it('should set forgotPasswordState', () => {
+    assert.deepEqual(actions.forgotPasswordState(), {
+      type: LOGIN_STATE_FORGOT_PASSWORD
+    });
+  });
+
+  it('should set logoutRequest', () => {
+    assert.deepEqual(actions.logoutRequest(), {
+      type: LOGOUT_REQUEST
+    });
+  });
+
+  it('should set logoutRequest', () => {
+    assert.deepEqual(actions.logoutRequest(), {
+      type: LOGOUT_REQUEST
+    });
+  });
+
+  it('should set logoutSuccess', () => {
+    assert.deepEqual(actions.logoutSuccess(), {
+      type: LOGOUT_SUCCESS
+    });
+  });
+
+  it('should set logoutFailure', () => {
+    let error = {error: 'test error'};
+    assert.deepEqual(actions.logoutFailure(error), {
+      type: LOGOUT_FAILURE,
+      payload: error
+    });
+  });
+
+  it('should set onAuthFormFieldChange', () => {
+    let field = 'field';
+    let value = 'value';
+    assert.deepEqual(actions.onAuthFormFieldChange(field, value), {
+      type: ON_AUTH_FORM_FIELD_CHANGE,
+      payload: {field: field, value: value}
+    });
+  });
+
+  it('should set signupRequest', () => {
+    assert.deepEqual(actions.signupRequest(), {
+      type: SIGNUP_REQUEST
+    });
+  });
+
+  it('should set signupSuccess', () => {
+    assert.deepEqual(actions.signupSuccess(), {
+      type: SIGNUP_SUCCESS
+    });
+  });
+
+  it('should set sessionTokenRequest', () => {
+    assert.deepEqual(actions.sessionTokenRequest(), {
+      type: SESSION_TOKEN_REQUEST
+    });
+  });
+
+  it('should set sessionTokenRequestSuccess', () => {
+    let token = {token: 'thisisthetoken'};
+    assert.deepEqual(actions.sessionTokenRequestSuccess(token), {
+      type: SESSION_TOKEN_SUCCESS,
+      payload: token
+    });
+  });
+
+  it('should set sessionTokenRequestFailure', () => {
+    let error = {error: 'thisistheerror'};
+    assert.deepEqual(actions.sessionTokenRequestFailure(error), {
+      type: SESSION_TOKEN_FAILURE,
+      payload: error            
+    });
+  });
+
+  it('should set emitLoggedIn', () => {
+    assert.deepEqual(actions.emitLoggedIn(), {
+      type: EMIT_LOGGED_IN
+    });
+  });
+
+  it('should set emitLoggedOut', () => {
+    assert.deepEqual(actions.emitLoggedOut(), {
+      type: EMIT_LOGGED_OUT
+    });
+  });
+
+  it('should set signupFailure', () => {
+    let error = {error: 'thisistheerror'};
+    assert.deepEqual(actions.signupFailure(error), {
+      type: SIGNUP_FAILURE,
+      payload: error
+    });
+  });
+
+  it('should set loginRequest', () => {
+    assert.deepEqual(actions.loginRequest(), {
+      type: LOGIN_REQUEST
+    });
+  });
+
+  it('should set loginSuccess', () => {
+    assert.deepEqual(actions.loginSuccess(), {
+      type: LOGIN_SUCCESS
+    });
+  });
+
+  it('should set loginFailure', () => {
+    let error = {error: 'thisistheerror'};
+    assert.deepEqual(actions.loginFailure(error), {
+      type: LOGIN_FAILURE,
+      payload: error
+    });
+  });
+
+  it('should set resetPasswordRequest', () => {
+    assert.deepEqual(actions.resetPasswordRequest(), {
+      type: RESET_PASSWORD_REQUEST
+    });
+  });
+
+  it('should set resetPasswordSuccess', () => {
+    assert.deepEqual(actions.resetPasswordSuccess(), {
+      type: RESET_PASSWORD_SUCCESS
+    });
+  });
+
+  it('should set resetPasswordFailure', () => {
+    let error = {error: 'thisistheerror'};
+    assert.deepEqual(actions.resetPasswordFailure(error), {
+      type: RESET_PASSWORD_FAILURE,
+      payload: error
+    });
+  });
+
+  it.only('should logout', (done) => {
+    const expectedActions = [
+      {type: actions.LOGOUT_REQUEST},
+      {type: actions.LOGIN_STATE_REGISTER},
+      {type: actions.SESSION_TOKEN_REQUEST},
+      {type: actions.LOGOUT_SUCCESS},
+      {type: actions.EMIT_LOGGED_OUT}
+    ];
+    
+    const store = mockStore({}, expectedActions, done);
+    store.dispatch(actions.logout());
+  });
+
+});

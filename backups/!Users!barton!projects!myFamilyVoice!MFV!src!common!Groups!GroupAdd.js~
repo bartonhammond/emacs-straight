@@ -1,0 +1,215 @@
+'use strict';
+
+var React = require('react-native');
+
+var {
+  Modal,
+  StyleSheet,
+  SwitchIOS,
+  Text,
+  TouchableHighlight,
+  View,
+} = React;
+
+var CurrentUser = require('../component/CurrentUser');
+var GroupNew = require('../component/GroupNew')
+var _ = require('underscore');
+
+var Subscribable = require('Subscribable');
+var t = require('tcomb-form-native');
+var Form = t.form.Form;
+
+
+
+var Group = t.struct({
+  name: t.String,
+  description: t.String,
+  admin: t.String,
+  private: t.Boolean
+});
+
+var RadioButton = require('../component/RadioButton');
+
+
+
+var GroupAdd = React.createClass({
+  mixins: [Subscribable.Mixin],
+  appAccessToken(token) {
+    this.setState({
+      app_access_token: token.app_access_token
+    })
+  },
+  showGroupAdd() {
+    this.setState({
+      modalVisible: true,
+    })
+  },
+  hideGroupAdd() {
+    this.setState({
+      modalVisible: false
+    })
+  },
+  componentDidMount: function() {
+    var currentUser = new CurrentUser({
+      onRequest: (user) => {
+        this.setState({
+          currentUser: user,
+          value: {
+            admin: user.name
+          }
+        })
+      }
+    });
+    currentUser.makeRequest();
+    this.addListenerOn(this.props.eventEmitter, 'showGroupAdd', this.showGroupAdd);
+    this.addListenerOn(this.props.eventEmitter, 'app_access_token', this.appAccessToken);
+  },
+  getInitialState() {
+     return {
+       animated: true,
+       modalVisible: false,
+       transparent: false,
+       currentUser: {name: '', id: ''}
+     };
+   },
+   _onPress() {
+    // call getValue() to get the values of the form
+    var value = this.refs.form.getValue();
+    if (!_.isNull(value)) { // if validation fails, value will be null
+      //Make new group
+      var groupNew = new GroupNew({
+        name: value.name,
+        description: value.description,
+        privacy: value.private,
+        admin: this.state.currentUser.id,
+        app_access_token: this.state.app_access_token,
+        onRequest: (group) => {
+          this.setState({modalVisible: false});
+        }
+      });
+
+      groupNew.makeRequest();
+
+    }
+   },
+   render() {
+     var options = {
+       auto: 'placeholders',
+       fields: {
+         name: {
+           label: 'Family Name',
+           help: 'Name of person this Family Voice is about'
+         },
+         description: {
+           label: 'Family Description',
+           help: 'Brief summary of person (from, born, nickname...)'
+         },
+         admin: {
+           label: 'Administrator',
+           help: 'Person to administer this Family Voice',
+           value: this.state.currentUser.name
+         },
+         private: {
+           label: 'Membership',
+           config: {_true: {
+              description: "Anyone can see the group and who's in it but only members can see posts",
+              title: 'Private'
+            },
+            _false: {
+              description: "Anyone can see the group, who's in it and what members post.",
+              title: 'Closed'
+            }},
+            factory: RadioButton
+         }
+       }
+     };
+     return (
+       <View>
+         <Modal
+         animated={this.state.animated}
+         transparent={this.state.transparent}
+         visible={this.state.modalVisible}>
+         <View style={styles.container}>
+            <Text style={styles.title}>
+              Add Family Voice
+            </Text>
+             <Form
+               ref="form"
+               type={Group}
+               value={this.state.value}
+               options={options}
+              />
+            <Text style={styles.notification}>
+              A Facebook Group will be added for your Family Voice.
+            </Text>
+            <View style={{
+               flex: 1,
+               flexDirection: 'row',
+               alignSelf: 'center',
+              }}>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={this._onPress.bind(this, false)}>
+                <Text style={styles.buttonText}>Add</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => this.setState({modalVisible: false})}>
+                <Text style={styles.buttonText}>Cancel</Text>
+              </TouchableHighlight>
+              </View>
+         </View>
+       </Modal>
+       </View>
+     )
+   }
+
+});
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: 'white'
+  },
+  notification: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginBottom: 10
+  },
+  title: {
+   fontSize: 30,
+   alignSelf: 'center',
+   marginBottom: 30
+ },
+  row: {
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    marginBottom: 20,
+  },
+  rowTitle: {
+    flex: 1,
+    fontWeight: 'bold',
+  },
+  buttonText: {
+      fontSize: 18,
+      color: 'white',
+      alignSelf: 'center',
+    },
+  button: {
+    height: 36,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginLeft: 10,
+    padding: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  }
+
+});
+module.exports = GroupAdd;

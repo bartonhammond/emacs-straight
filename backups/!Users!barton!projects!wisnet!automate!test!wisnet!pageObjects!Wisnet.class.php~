@@ -1,0 +1,869 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+use Facebook\WebDriver\WebDriverSelect;
+use Facebook\WebDriver\WebDriverBy;
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickAbout1Link",
+        "attributeType": "link",
+       "attributeName": "about1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-22 a"
+     },
+
+    {     
+        "operationName": "clickAbout2Link",
+        "attributeType": "link",
+       "attributeName": "about2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(10) a"
+     },
+
+    {     
+        "operationName": "clickBlog1Link",
+        "attributeType": "link",
+       "attributeName": "blog1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-7858 a"
+     },
+
+    {     
+        "operationName": "clickBlog2Link",
+        "attributeType": "link",
+       "attributeName": "blog2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(8) a"
+     },
+
+    {     
+        "operationName": "clickBlog3Link",
+        "attributeType": "link",
+       "attributeName": "blog3",
+        "attributeStrategy": "css",
+        "attributeValue": ".home.page-template.page-template-front-page.page-template-front-page-php.page.page-id-2 div:nth-of-type(2) div.off-canvas-wrap div.inner-wrap div:nth-of-type(3) p a:nth-of-type(3)"
+     },
+
+    {     
+        "operationName": "clickCareersLink",
+        "attributeType": "link",
+       "attributeName": "careers",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/careers/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickClientLogins1Link",
+        "attributeType": "link",
+       "attributeName": "clientLogins1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-35 a"
+     },
+
+    {     
+        "operationName": "clickClientLogins2Link",
+        "attributeType": "link",
+       "attributeName": "clientLogins2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(14) a"
+     },
+
+    {     
+        "operationName": "clickContact1Link",
+        "attributeType": "link",
+       "attributeName": "contact1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-24 a"
+     },
+
+    {     
+        "operationName": "clickContact2Link",
+        "attributeType": "link",
+       "attributeName": "contact2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(12) a"
+     },
+
+    {     
+        "operationName": "clickContactUsLink",
+        "attributeType": "link",
+       "attributeName": "contactUs",
+        "attributeStrategy": "css",
+        "attributeValue": "a.btns"
+     },
+
+    {     
+        "operationName": "clickLabs1Link",
+        "attributeType": "link",
+       "attributeName": "labs1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-7359 a"
+     },
+
+    {     
+        "operationName": "clickLabs2Link",
+        "attributeType": "link",
+       "attributeName": "labs2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(6) a"
+     },
+
+    {     
+        "operationName": "clickLogoLink",
+        "attributeType": "link",
+       "attributeName": "logo",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com&#x27;]"
+     },
+
+    {     
+        "operationName": "clickMarkeyDs1Link",
+        "attributeType": "link",
+       "attributeName": "markeyDs1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-7283 a"
+     },
+
+    {     
+        "operationName": "clickMarkeyDs2Link",
+        "attributeType": "link",
+       "attributeName": "markeyDs2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(14) ul.sub-menu.dropdown.right-neg li:nth-of-type(3) a"
+     },
+
+    {     
+        "operationName": "clickOurWork1Link",
+        "attributeType": "link",
+       "attributeName": "ourWork1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-26 a"
+     },
+
+    {     
+        "operationName": "clickOurWork2Link",
+        "attributeType": "link",
+       "attributeName": "ourWork2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(2) a"
+     },
+
+    {     
+        "operationName": "clickPhone9203229522Link",
+        "attributeType": "link",
+       "attributeName": "phone9203229522",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;tel:1-920-322-9522&#x27;]"
+     },
+
+    {     
+        "operationName": "clickPrivacyPolicyLink",
+        "attributeType": "link",
+       "attributeName": "privacyPolicy",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/privacy-policy/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickResellerLink",
+        "attributeType": "link",
+       "attributeName": "reseller",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/reseller/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickSeeAllArticlesLink",
+        "attributeType": "link",
+       "attributeName": "seeAllArticles",
+        "attributeStrategy": "css",
+        "attributeValue": "a.moreRow"
+     },
+
+    {     
+        "operationName": "clickServices1Link",
+        "attributeType": "link",
+       "attributeName": "services1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-34 a"
+     },
+
+    {     
+        "operationName": "clickServices2Link",
+        "attributeType": "link",
+       "attributeName": "services2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(4) a"
+     },
+
+    {     
+        "operationName": "clickSubmitButton",
+        "attributeType": "button",
+       "attributeName": "submit",
+        "attributeStrategy": "css",
+        "attributeValue": "input.button.prefix"
+     },
+
+    {     
+        "operationName": "clickSupportLink",
+        "attributeType": "link",
+       "attributeName": "support",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/support/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickWebmailLogin1Link",
+        "attributeType": "link",
+       "attributeName": "webmailLogin1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-1207 a"
+     },
+
+    {     
+        "operationName": "clickWebmailLogin2Link",
+        "attributeType": "link",
+       "attributeName": "webmailLogin2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(14) ul.sub-menu.dropdown.right-neg li:nth-of-type(1) a"
+     },
+
+    {     
+        "operationName": "clickWisnetNewsBadDayOrLink",
+        "attributeType": "link",
+       "attributeName": "wisnetNewsBadDayOr",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/read-this-if-youre-struggling-then-go-fearless/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickWisnetNewsEverydayfitReadMoreLink",
+        "attributeType": "link",
+       "attributeName": "wisnetNewsEverydayfitReadMore",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/everydayfit/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickWisnetNewsStoriesFromAnLink",
+        "attributeType": "link",
+       "attributeName": "wisnetNewsStoriesFromAn",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/stories-from-an-extern/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickWisnetoneClientLogin1Link",
+        "attributeType": "link",
+       "attributeName": "wisnetoneClientLogin1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-1208 a"
+     },
+
+    {     
+        "operationName": "clickWisnetoneClientLogin2Link",
+        "attributeType": "link",
+       "attributeName": "wisnetoneClientLogin2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(14) ul.sub-menu.dropdown.right-neg li:nth-of-type(2) a"
+     },
+
+
+
+    {     
+        "operationName": "setWorkWithOurTeamOfGeeks1TextField",
+        "operationArgument" : "workWithOurTeamOfGeeks1Value",
+        "attributeType": "text",
+       "attributeName": "workWithOurTeamOfGeeks1",
+        "attributeStrategy": "name",
+        "attributeValue": "EMAIL"
+     },
+
+    {     
+        "operationName": "setWorkWithOurTeamOfGeeks2TextField",
+        "operationArgument" : "workWithOurTeamOfGeeks2Value",
+        "attributeType": "text",
+       "attributeName": "workWithOurTeamOfGeeks2",
+        "attributeStrategy": "name",
+        "attributeValue": "_mc4wp_honeypot"
+     },
+
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class Home extends \Automate\Page {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     protected $pageLoadedText = "Work with our team of";
+
+     protected $pageUrl = "/";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   protected static $_selectors = [
+    "about1" =>
+    [
+       "css" => "#menu-item-22 a"
+    ],
+
+    "about2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(10) a"
+    ],
+
+    "blog1" =>
+    [
+       "css" => "#menu-item-7858 a"
+    ],
+
+    "blog2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(8) a"
+    ],
+
+    "blog3" =>
+    [
+       "css" => ".home.page-template.page-template-front-page.page-template-front-page-php.page.page-id-2 div:nth-of-type(2) div.off-canvas-wrap div.inner-wrap div:nth-of-type(3) p a:nth-of-type(3)"
+    ],
+
+    "careers" =>
+    [
+       "css" => "a[href='/careers/']"
+    ],
+
+    "clientLogins1" =>
+    [
+       "css" => "#menu-item-35 a"
+    ],
+
+    "clientLogins2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(14) a"
+    ],
+
+    "contact1" =>
+    [
+       "css" => "#menu-item-24 a"
+    ],
+
+    "contact2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(12) a"
+    ],
+
+    "contactUs" =>
+    [
+       "css" => "a.btns"
+    ],
+
+    "labs1" =>
+    [
+       "css" => "#menu-item-7359 a"
+    ],
+
+    "labs2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(6) a"
+    ],
+
+    "logo" =>
+    [
+       "css" => "a[href='https://www.wisnet.com']"
+    ],
+
+    "markeyDs1" =>
+    [
+       "css" => "#menu-item-7283 a"
+    ],
+
+    "markeyDs2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(14) ul.sub-menu.dropdown.right-neg li:nth-of-type(3) a"
+    ],
+
+    "ourWork1" =>
+    [
+       "css" => "#menu-item-26 a"
+    ],
+
+    "ourWork2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(2) a"
+    ],
+
+
+
+    "phone9203229522" =>
+    [
+       "css" => "a[href='tel:1-920-322-9522']"
+    ],
+
+    "privacyPolicy" =>
+    [
+       "css" => "a[href='/privacy-policy/']"
+    ],
+
+    "reseller" =>
+    [
+       "css" => "a[href='/reseller/']"
+    ],
+
+    "seeAllArticles" =>
+    [
+       "css" => "a.moreRow"
+    ],
+
+    "services1" =>
+    [
+       "css" => "#menu-item-34 a"
+    ],
+
+    "services2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(4) a"
+    ],
+
+    "submit" =>
+    [
+       "css" => "input.button.prefix"
+    ],
+
+    "support" =>
+    [
+       "css" => "a[href='/support/']"
+    ],
+
+    "webmailLogin1" =>
+    [
+       "css" => "#menu-item-1207 a"
+    ],
+
+    "webmailLogin2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(14) ul.sub-menu.dropdown.right-neg li:nth-of-type(1) a"
+    ],
+
+    "wisnetNewsBadDayOr" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/read-this-if-youre-struggling-then-go-fearless/']"
+    ],
+
+    "wisnetNewsEverydayfitReadMore" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/everydayfit/']"
+    ],
+
+    "wisnetNewsStoriesFromAn" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/stories-from-an-extern/']"
+    ],
+
+    "wisnetoneClientLogin1" =>
+    [
+       "css" => "#menu-item-1208 a"
+    ],
+
+    "wisnetoneClientLogin2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(14) ul.sub-menu.dropdown.right-neg li:nth-of-type(2) a"
+    ],
+
+    "workWithOurTeamOfGeeks1" =>
+    [
+       "name" => "EMAIL"
+    ],
+
+    "workWithOurTeamOfGeeks2" =>
+    [
+       "name" => "_mc4wp_honeypot"
+    ],
+    ];
+    /**
+     * Click on About Link.
+     *
+     */
+    function clickAbout1Link() {
+        //link
+        $this->click(self::$_selectors['about1']);
+    }
+
+    /**
+     * Click on About Link.
+     *
+     */
+    function clickAbout2Link() {
+        //link
+        $this->click(self::$_selectors['about2']);
+    }
+
+    /**
+     * Click on Blog Link.
+     *
+     */
+    function clickBlog1Link() {
+        //link
+        $this->click(self::$_selectors['blog1']);
+    }
+
+    /**
+     * Click on Blog Link.
+     *
+     */
+    function clickBlog2Link() {
+        //link
+        $this->click(self::$_selectors['blog2']);
+    }
+
+    /**
+     * Click on Blog Link.
+     *
+     */
+    function clickBlog3Link() {
+        //link
+        $this->click(self::$_selectors['blog3']);
+    }
+
+    /**
+     * Click on Careers Link.
+     *
+     */
+    function clickCareersLink() {
+        //link
+        $this->click(self::$_selectors['careers']);
+    }
+
+    /**
+     * Click on Client Logins Link.
+     *
+     */
+    function clickClientLogins1Link() {
+        //link
+        $this->click(self::$_selectors['clientLogins1']);
+    }
+
+    /**
+     * Click on Client Logins Link.
+     *
+     */
+    function clickClientLogins2Link() {
+        //link
+        $this->click(self::$_selectors['clientLogins2']);
+    }
+
+    /**
+     * Click on Contact Link.
+     *
+     */
+    function clickContact1Link() {
+        //link
+        $this->click(self::$_selectors['contact1']);
+    }
+
+    /**
+     * Click on Contact Link.
+     *
+     */
+    function clickContact2Link() {
+        //link
+        $this->click(self::$_selectors['contact2']);
+    }
+
+    /**
+     * Click on Contact Us Link.
+     *
+     */
+    function clickContactUsLink() {
+        //link
+        $this->click(self::$_selectors['contactUs']);
+    }
+
+    /**
+     * Click on Labs Link.
+     *
+     */
+    function clickLabs1Link() {
+        //link
+        $this->click(self::$_selectors['labs1']);
+    }
+
+    /**
+     * Click on Labs Link.
+     *
+     */
+    function clickLabs2Link() {
+        //link
+        $this->click(self::$_selectors['labs2']);
+    }
+
+    /**
+     * Click on Logo Link.
+     *
+     */
+    function clickLogoLink() {
+        //link
+        $this->click(self::$_selectors['logo']);
+    }
+
+    /**
+     * Click on Markey Ds Link.
+     *
+     */
+    function clickMarkeyDs1Link() {
+        //link
+        $this->click(self::$_selectors['markeyDs1']);
+    }
+
+    /**
+     * Click on Markey Ds Link.
+     *
+     */
+    function clickMarkeyDs2Link() {
+        //link
+        $this->click(self::$_selectors['markeyDs2']);
+    }
+
+    /**
+     * Click on Our Work Link.
+     *
+     */
+    function clickOurWork1Link() {
+        //link
+        $this->click(self::$_selectors['ourWork1']);
+    }
+
+    /**
+     * Click on Our Work Link.
+     *
+     */
+    function clickOurWork2Link() {
+        //link
+        $this->click(self::$_selectors['ourWork2']);
+    }
+
+    /**
+     * Click on Phone 920 3229522 Link.
+     *
+     */
+    function clickPhone9203229522Link() {
+        //link
+        $this->click(self::$_selectors['phone9203229522']);
+    }
+
+    /**
+     * Click on Privacy Policy Link.
+     *
+     */
+    function clickPrivacyPolicyLink() {
+        //link
+        $this->click(self::$_selectors['privacyPolicy']);
+    }
+
+    /**
+     * Click on Reseller Link.
+     *
+     */
+    function clickResellerLink() {
+        //link
+        $this->click(self::$_selectors['reseller']);
+    }
+
+    /**
+     * Click on See All Articles Link.
+     *
+     */
+    function clickSeeAllArticlesLink() {
+        //link
+        $this->click(self::$_selectors['seeAllArticles']);
+    }
+
+    /**
+     * Click on Services Link.
+     *
+     */
+    function clickServices1Link() {
+        //link
+        $this->click(self::$_selectors['services1']);
+    }
+
+    /**
+     * Click on Services Link.
+     *
+     */
+    function clickServices2Link() {
+        //link
+        $this->click(self::$_selectors['services2']);
+    }
+
+    /**
+     * Click on Submit Button.
+     *
+     */
+    function clickSubmitButton() {
+        //button
+        $this->click(self::$_selectors['submit']);
+    }
+
+    /**
+     * Click on Support Link.
+     *
+     */
+    function clickSupportLink() {
+        //link
+        $this->click(self::$_selectors['support']);
+    }
+
+    /**
+     * Click on Webmail Login Link.
+     *
+     */
+    function clickWebmailLogin1Link() {
+        //link
+        $this->click(self::$_selectors['webmailLogin1']);
+    }
+
+    /**
+     * Click on Webmail Login Link.
+     *
+     */
+    function clickWebmailLogin2Link() {
+        //link
+        $this->click(self::$_selectors['webmailLogin2']);
+    }
+
+    /**
+     * Click on Wisnet News Bad Day Or Second Guessing Your 2018 Resolutions Read This If Youre Struggling Then Go Fearless. Read More Link.
+     *
+     */
+    function clickWisnetNewsBadDayOrLink() {
+        //link
+        $this->click(self::$_selectors['wisnetNewsBadDayOr']);
+    }
+
+    /**
+     * Click on Wisnet News Everydayfit Read More Link.
+     *
+     */
+    function clickWisnetNewsEverydayfitReadMoreLink() {
+        //link
+        $this->click(self::$_selectors['wisnetNewsEverydayfitReadMore']);
+    }
+
+    /**
+     * Click on Wisnet News Stories From An Extern A Tale In Two Parts Read More Link.
+     *
+     */
+    function clickWisnetNewsStoriesFromAnLink() {
+        //link
+        $this->click(self::$_selectors['wisnetNewsStoriesFromAn']);
+    }
+
+    /**
+     * Click on Wisnetone Client Login Link.
+     *
+     */
+    function clickWisnetoneClientLogin1Link() {
+        //link
+        $this->click(self::$_selectors['wisnetoneClientLogin1']);
+    }
+
+    /**
+     * Click on Wisnetone Client Login Link.
+     *
+     */
+    function clickWisnetoneClientLogin2Link() {
+        //link
+        $this->click(self::$_selectors['wisnetoneClientLogin2']);
+    }
+
+
+
+    /**
+     * Set default value to Work With Our Team Of Geeks Creatives And Go Fearless Into The Net Text field.
+     *
+     */
+    function setWorkWithOurTeamOfGeeks1TextField($workWithOurTeamOfGeeks1Value) {
+         //text
+        $this->type(self::$_selectors['workWithOurTeamOfGeeks1'],$workWithOurTeamOfGeeks1Value);
+    }
+
+    /**
+     * Set default value to Work With Our Team Of Geeks Creatives And Go Fearless Into The Net Text field.
+     *
+     */
+    function setWorkWithOurTeamOfGeeks2TextField($workWithOurTeamOfGeeks2Value) {
+         //text
+        $this->type(self::$_selectors['workWithOurTeamOfGeeks2'],$workWithOurTeamOfGeeks2Value);
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickSubmitButton();
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+         $text = $this->pageLoadedText;
+        $driver = $this->driver;
+        return $driver->wait(self::WAIT_TIME, self::ITERATE_TIME)->until(
+            function () use ($driver, $text)  {
+                try {
+                    $source = $driver->getPageSource();
+                    if (strpos($source,$text) !== false) {
+                        return true;
+                    }
+                    return false;
+                } catch (\Exception $e) {
+                    return false;
+                }
+        });
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return $this->verifyPageUrlToLastSlash($this->driver->getCurrentURL(),
+                                               $this->pageUrl);                     
+    }
+}

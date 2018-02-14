@@ -1,0 +1,14 @@
+   if(isset($_GET['call'])){
+   $cur = getcwd();
+   
+   error_log('cwd:' . getcwd());
+   try {
+   $test = $cur . '/../../test/barton';
+   error_log('mytest:' . $test);
+   mkdir($test, 0777);
+   error_log('create barton was good!');
+   } catch(Exception $err) {
+   error_log('barton exception' . $err);
+   }
+   
+   }

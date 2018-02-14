@@ -1,0 +1,23 @@
+<template name="nav">
+  <div data-id="nav"
+       data-css="nav"
+       data-view="toolbar">
+
+    <div data-view="label"
+         data-label="Accounts Templates"
+         data-width=200>
+    </div>
+
+    <div data-view="menu">
+      <ul data-view="data">
+        <li data-id="menuHome" data-href="/">Home</li>
+        <li data-id="menuPrivate" data-href="/postsLists">Posts</li>
+      </ul>
+    </div>
+
+    {{>navButton}}
+  </div>
+
+</template>
+
+

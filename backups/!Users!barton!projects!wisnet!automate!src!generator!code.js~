@@ -1,0 +1,11 @@
+function compare() {
+  var kantu = document.getElementById("kantu").value;
+
+  var selector = document.getElementById("selector").value;
+  
+  console.log(JSON.parse(selector));
+
+  var splitted = selector.split("\n");
+  splitted.forEach(function(line, index) {
+    console.log(index + " " + line);
+  });

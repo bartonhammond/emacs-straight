@@ -1,0 +1,7 @@
+<template name="atSignIn">
+  <div data-view="cols"> <!--layout-->
+    <div data-view="template" data-width="35">My left</div>
+    <div data-view="template" data-width="35">Center</div>
+    <div data-view="template" data-width="35">My Right</div> 
+  </div>
+</div>

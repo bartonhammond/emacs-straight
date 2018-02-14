@@ -1,0 +1,18 @@
+var geocolor = require('geocolor');
+
+var fs = require('fs');
+
+try {
+  var heatmap = JSON.parse(fs.readFileSync('./heatmap.geojson'));
+} catch (err) {
+  console.log('err',err);
+}
+
+var z = 'stars',
+    numberOfBreaks = 5,
+    colors = ['red', 'blue', 'white'];
+
+// jenks
+var geoJenks = geocolor.jenks(heatmap, z, numberOfBreaks, colors);
+
+fs.writeFileSync('./jenks.geojson', JSON.stringify(geoJenks));

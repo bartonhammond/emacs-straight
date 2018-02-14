@@ -1,0 +1,34 @@
+'use strict';
+
+let Kue = require('kue');
+var _queue;
+
+function _createQueue() {
+  if(process.env.OPENSHIFT_REDIS_DB_HOST){
+    return Kue.createQueue({
+      prefix: 'ht',
+      redis: {
+        port: process.env.OPENSHIFT_REDIS_DB_PORT,  
+        host: process.env.OPENSHIFT_REDIS_DB_HOST,
+        auth:  process.env.OPENSHIFT_REDIS_DB_PASSWORD
+      }
+    });
+  } else {
+    return Kue.createQueue();
+  }
+}
+
+function _connect() {
+  if (_queue) {
+    return _queue;
+  }
+  _queue = _createQueue();
+  Kue.app.listen(3000);
+  return _queue;
+}
+
+module.exports = {
+  connect: function() {
+    return _connect();
+  }
+};

@@ -1,0 +1,8 @@
+<template name="private">
+  <div data-id="_private"
+       data-view="label"
+       data-height=80
+       data-css="container"
+       data-template="<h1>Private</h1>">
+  </div>
+</template>

@@ -1,0 +1,12 @@
+Template.home.rendered = function() {
+   this.ui =
+    webix.ui({
+      view:"label", template: "<div>Hello World!</div>"},
+  }, this.find("nav"));
+};
+
+Template.home.destroyed = function() {
+  if (this.ui) {
+    this.ui.destructor();
+  }
+};

@@ -1,0 +1,153 @@
+We will create the Todo app by selecting Create
+
+The next screen provides input for the name of the app.
+
+With the Designer selecting application, let's review some options and
+make some changes.
+
+This approach is a data driven approach - it's one way of approaching
+a application development.  We'll now define our database schema and
+reference later in our UI development.
+
+So first, select Collections and click Add New.
+
+1) Name = Todos
+2) Owner Field = owner id - since we have User Account we have the
+"ownerId" - be sure to match the case.
+3) Roles allowed to read: owner.  "owner" is one of the special roles
+predefined.
+4)Roles allowed to insert: by default, the creator of the document has
+the right to insert.  So do not enter any other role.
+5) Roles to update: owner - only the owner can update their document
+6) Roles allowed to delete: owner - only the owner can update their
+document
+Save!!!!
+
+Now we are ready to add some fields. We will only be adding 2 - the
+"title" and "completed"
+
+Click the Todos collection -> fields
+
+Click Add new
+1) Name: title - the column of the mongo db
+2) Title: this is the label to identify the field
+3) Type: string - the user will use a text field to enter the value
+4) Required: true - this field is required before persisting to the
+collection
+5) Searchable: true - this is the default - we can search using this
+field
+6) Sortable : true - this is the default - when we view a table of
+Todos, the column heading can be clicked and the rows will sort by
+that column.  Clicking again is reverse sort.
+- the rest of the options are fine. The field will be displayed in
+subsequent
+7)Inpur: text is the default - the user will use a TextField to enter data
+a) dataview
+b)insert
+c)update
+d) read only - for this applicatin we will not have a read only form
+
+To add the next field of our Todos collection,
+Collection-> Todos -> Fields -> Add New
+1) Name: completed
+2) Title: Commpleted
+3) Type: bool - this is a boolean value true or false.  Select from
+the options
+4) Default value: false.  Let's assume the Todo is not completed
+5) Required: false (default) be sure this is not required otherwise
+you have to toggle it repeatedly to make it turn "false".
+6) Leave the Searchable and Sortable as true.
+7) Input: checkbox - the user interface for true/false.
+8) Leave the remaining fields with their default values as these allow
+the completed field to display everywhere.
+
+
+
+
+
+Application
+
+1). The first change is the Theme.  Meteor Kitchen has themes for
+Bootstrap from https://bootswatch.com/. Select the theme and see those
+available.  We'll pick the bootswatch-paper which has features of the
+Google Material Design specifications.
+
+2) With Login With Password - the default is checked - just verify for
+now
+
+3) Save the changes - scroll to the bottom and click save
+
+Application -> Public Zone -> Pages -> Home Public -> Components ->
+Home_JumboTron
+
+We want to override two fields
+A. The Text field with changes that point to our GitHub acccount.
+
+From: 
+<b>This <a href="https://www.meteor.com" target="_blank">Meteor</a>
+application is made with <a href="http://www.meteorkitchen.com"
+target="_blank">meteor-kitchen</a> without manual coding.</b><br />It
+demonstrates how to create application with login, register and forgot
+password functions.<br />Source code (input file for generator) is <a
+href="https://github.com/perak/kitchen-examples/tree/master/example-accounts"
+target="_blank">here</a>.
+
+B. More importantly, we change the Button Route from Login to
+Register. Select it from the drop downs.
+
+The public facing website is now ok for our purposes.
+
+The next thing to do is change the private side of the application.
+The default page for the private side is home_private
+
+See Application -> Private Zone -> Pages -> home_private
+We will change the name of this page so that when a user is viewing
+the todos, the URL is appropriate.
+
+Change
+1) private_zone -> pages -> home_private to "todos"
+2) remove the Page Title
+
+Save the changes
+
+Let's generate our app at this time and see what we get!
+
+What I do is start a different tab w/ Kitchen.  On this 2nd tab, I
+keep the Edit Source open so I can download quickly but more
+importantly I keep Designer at the same location. That way, if there
+is an error, I am still position in Designer to fix the error.
+
+Go to Edit Source and press download.
+
+WARNING WARNING WARNING
+Be sure to have the script to mv & generate ready to go. Maybe start a
+brand new account and reuse ToDo.
+
+Now is a good time to use the bash script from the git hub.  Copy and
+paste that to a shell and run it.
+
+Once you are registered you should see a private page w/ the URL of
+"todos" and a blank page.  For now anyway.
+
+With todos in place we're going to make some sub pages - one for
+insert and the other for edit.  We're going to make these pages for so
+that we can refer back to them later when we describe what the list of
+todos should do when Editing or Inserting them.
+
+Click the private zone -> pages -> todos -> pages.  We're going to
+define pages that are associated w/ our List of Todos.
+
+The first page we'll create is the "insert" page. Click the "add new"
+Page.
+
+1) set the name "insert"
+2) set page title to "New Todo"
+3) save!
+
+
+
+
+
+
+
+

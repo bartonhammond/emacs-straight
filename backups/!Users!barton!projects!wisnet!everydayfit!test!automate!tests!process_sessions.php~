@@ -1,0 +1,79 @@
+<?php
+
+
+ //Start an HTML row 
+  function _htmlRowStart($pageName) {
+    return '<tr><td valign="middle">' .  $pageName . "</td>\n";
+  }
+  //Create a TD
+  function _htmlTD($url) {
+    return '<td><img src="' . $url . "></td>\n";
+  }
+  //End the row
+  function _htmlRowEnd() {
+    return "</t\n";
+  }
+
+    //Store the results as a HTML row of cells
+    $url = "https://www.browserstack.com/automate/logs/" . $this->sessionID;
+
+    $username = "bartonhammond1";
+    $password = "UXXHAju9asdQAp1R2LcN";
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+    curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
+
+    $out = curl_exec($ch);
+    curl_close($ch);
+    
+    $file_name = "";
+
+    //Get the capabilities
+    $out_array = explode("\n", $out);
+    $json_string =substr($out_array[0], strpos($out_array[0],'{'), strpos($out_array[0],'}'));
+    $json = json_decode($json_string)->desiredCapabilities;
+
+    //Is Mobile?
+    if (isset($json->realMobile)) {
+      //Get unique name for file
+      $file_name =  $json->device . ' ' . $json->os_version;
+      $file_name = str_replace(' ', '_', $file_name);
+      $file_name = str_replace('.', '_', $file_name);
+      $file_name = trim($file_name) . ".txt";
+    } else {
+      //Get unique name for file
+      $file_name =  $json->os . ' ' . $json->os_version . ' ' . $json->browser . ' ' . $json->browser_version;
+      $file_name = str_replace(' ', '_', $file_name);
+      $file_name = str_replace('.', '_', $file_name);
+      $file_name = trim($file_name) . ".txt";
+    }
+
+    // create new directory with 744 permissions if it does not exist yet
+    // owner will be the user/group the PHP script is run under
+    if ( !file_exists($this->output_directory) ) {
+      $oldmask = umask(0);  // helpful when used in linux server  
+      mkdir ($this->output_directory, 0744);
+    }
+
+    //Write out the file
+    ob_start();
+    print $this->_htmlRowStart($file_name);
+    foreach($out_array as $line) {
+      //  var_dump($line);
+      if (strpos($line, 'DEBUG')) {
+        $line_array = explode(" ", $line);
+        print $this->_htmlTD($line_array[3]);
+      }
+    }
+    
+    print $this->_htmlRowEnd();
+    $resultsString = ob_get_clean();
+
+    $handle = fopen($this->output_directory . '/' . $file_name, 'w') or die('Cannot open file:  '.$file_name);
+    fwrite($handle, $resultsString);
+    fclose($handle);
+
+  }

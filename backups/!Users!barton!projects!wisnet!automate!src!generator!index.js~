@@ -1,0 +1,17 @@
+$(function() {
+
+  $('#btn').click(function(){
+    var _projectName = $("#projectName").val();
+    var _testName = $("#testName").val();
+
+    $.ajax({
+      url:'index.php?',
+      type:'POST',
+      data: {projectName: _projectName, testName: _testName},
+      success:function(data){
+        console.log('data', data);
+      }
+    });
+
+  })
+});             

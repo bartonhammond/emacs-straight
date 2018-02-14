@@ -1,0 +1,211 @@
+'use strict';
+
+/**
+ *  Thanks to: http://browniefed.com/blog/2015/06/07/react-native-layout-examples/
+ *
+ */
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux/native';
+import * as profileActions from '../reducers/profile/profileActions';
+import {Map} from 'immutable';
+import GiftedSpinner from 'react-native-gifted-spinner';
+
+import React,
+{
+  Component,
+  Image,
+  StyleSheet,
+  Text,
+  View
+}
+from 'react-native';
+
+import Button from 'apsl-react-native-button';
+import ItemCheckbox from '../components/ItemCheckbox';
+
+import  _ from 'underscore';
+import t from 'tcomb-form-native';
+
+let Form = t.form.Form;
+
+import {
+} from '../lib/constants';
+
+
+var styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    flex: 1,
+    backgroundColor: 'transparent'
+  },
+  header: {
+    marginTop: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent'
+  },
+  mark: {
+    width: 150,
+    height: 150
+  },
+  button: {
+    marginLeft: 10,
+    marginRight: 10
+  },
+  inputs: {
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10
+  }
+});
+
+const actions = [
+  profileActions
+];
+
+function mapStateToProps(state) {
+  return {
+      ...state
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  const creators = Map()
+          .merge(...actions)
+          .filter(value => typeof value === 'function')
+          .toObject();
+
+  return {
+    actions: bindActionCreators(creators, dispatch),
+    dispatch
+  };
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
+
+  
+export default class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formValues: {
+        username: '',
+        email: ''
+      }
+    };
+  }
+  onChange(value) {
+    console.log('onchange',value);
+    if (!_.isUndefined(_.property('username')(value))) {
+      this.props.actions.onProfileFormFieldChange('username',value.username);
+    } else if (!_.isUndefined(_.property('email')(value))) {
+      this.props.actions.onProfileFormFieldChange('email',value.email);
+    }
+    this.setState({value});
+  }
+  
+  componentDidMount() {
+    this.props.actions.getProfile();
+  }
+  componentWillReceiveProps(props) {
+    console.log('pwrp');
+    this.setState({
+      formValues: {
+        username: props.profile.form.fields.username,
+        email: props.profile.form.fields.email
+      }
+    });
+  }
+
+  render() {
+    let spinner = <Text/>;
+    if (this.props.profile.form.isFetching) {
+      spinner = <GiftedSpinner/>;
+    }
+    
+    let self = this;
+    if (!_.isNull(this.props.profile.form.error)) {
+      if (!_.isUndefined(this.props.profile.form.error.error)) {
+        if (!_.isUndefined(this.props.profile.form.error.error.error)) {
+          alert(this.props.profile.form.error.error.error);
+        } else {
+          alert(this.props.profile.form.error.error);
+        }
+      } else {
+        alert(this.props.profile.form.error);
+      }
+    }
+    
+    let ProfileForm = t.struct({
+      username: t.String,
+      email: t.String
+    });
+    
+    let options = {
+      auto: 'placeholders',
+      fields: {
+        username: {
+          label: 'Username',
+          maxLength: 12,
+          hasError: this.props.profile.form.fields.usernameHasError,
+          error: 'Must have 6-12 characters and/or numbers'
+        },
+        email: {
+          label: 'Email',
+          keyboardType: 'email-address',
+          hasError: this.props.profile.form.fields.emailHasError,
+          error: 'Please enter valid email'
+        }
+      }
+    };
+
+    
+    let profileButtonText = 'Update Profile';
+    let onButtonPress = () => {
+      this.props.actions.updateProfile(
+        this.props.profile.form.originalProfile.objectId,
+        this.props.profile.form.fields.username,
+        this.props.profile.form.fields.email);
+    };
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Image style={styles.mark} source={{uri: 'http://i.imgur.com/da4G0Io.png'}} />
+        </View>
+        {spinner}
+        <View style={styles.inputs}>
+          <Form
+              ref="form"
+              type={ProfileForm}
+              options={options}
+              value={this.state.formValues}
+              onChange={this.onChange.bind(self)}
+          />
+          <ItemCheckbox text="Email verified"
+                        disabled={true}
+                        checked={this.props.profile.form.fields.emailVerified}
+          />
+        </View>
+
+        <View style={styles.button}>
+          <Button
+              style={{
+                  backgroundColor: '#FF3366',
+                  borderColor:  '#FF3366'
+                }}
+              isDisabled={!this.props.profile.form.isValid || this.props.profile.form.isFetching}
+              j              onPress={onButtonPress.bind(self)}
+          >
+            {profileButtonText}
+          </Button>
+        </View>
+      </View>
+    )
+  }
+}
+
+
+
+

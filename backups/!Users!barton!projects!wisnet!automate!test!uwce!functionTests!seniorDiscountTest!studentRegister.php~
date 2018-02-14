@@ -1,0 +1,17 @@
+<?php
+file_get_contents("http://www.secured-site7.com/uwce-staging/www/staging-student-reset");
+$this->account = new Account($this->driver, $this->isMobile, $this->isLocal);
+$this->cardInfo = new CardInfo($this->driver, $this->isMobile, $this->isLocal);        
+$this->billing = new BillingExtend($this->driver, $this->isMobile, $this->isLocal);
+$this->catalog = new Catalog($this->driver, $this->isMobile, $this->isLocal);
+$this->catalogCourse = new CatalogCourseExtend($this->driver, $this->isMobile, $this->isLocal);
+$this->catalogSearch = new CatalogSearchExtend($this->driver, $this->isMobile, $this->isLocal);    
+$this->createAccount = new CreateAccountExtend($this->driver, $this->isMobile, $this->isLocal);    
+$this->login = new Login($this->driver, $this->isMobile, $this->isLocal);
+$this->masthead = new MastheadExtend($this->driver, $this->isMobile, $this->isLocal);
+$this->registration = new Registration($this->driver, $this->isMobile, $this->isLocal);
+
+include "studentNavigateToCreateAccount.php";
+include "studentRegistration.php";
+include "registerStudentForCourse.php";
+?>

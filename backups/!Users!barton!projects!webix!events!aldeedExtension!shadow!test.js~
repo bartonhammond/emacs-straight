@@ -1,0 +1,7 @@
+  Template.foo2.inheritsHelpersFrom("foo");
+  Template.foo2.inheritsEventsFrom("foo");
+  Template.foo2.helpers({
+    bar: function() {
+      return 'foo2.bar';
+    }
+  });

@@ -1,0 +1,13 @@
+# Step 3
+
+## Install Redux, wire the UI
+
+* ```src/components/Home.js```
+    * Remove welcome and instructions
+    * Add two buttons
+        * Increment
+        * Decrement
+        * add ```styles.text```
+    * Display: ```this.props.counter```
+
+

@@ -1,0 +1,522 @@
+<h1 id="snowflake-snowflake">Snowflake <img src="https://cloud.githubusercontent.com/assets/4646826/19122050/1d051e6e-8b29-11e6-92c4-a21972b2d55e.png" alt="snowflake" /></h1>
+<p>A React-Native starter mobile app, or maybe just an example, or maybe a boilerplate (you decide) for iOS and Android with a single code base, with 2 backends to chose from: a Hapi or Parse Server solution- <a href="#screens">Demo</a></p>
+<p><a href="http://standardjs.com/"><img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg" alt="JavaScript Style Guide" /></a><br /><a href="https://www.codacy.com/app/bartonhammond/snowflake?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartonhammond/snowflake&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/c072e4c80b2e477591170553b149772b" alt="Codacy Badge" /></a><br /><a href="https://gitter.im/bartonhammond/snowflake?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/bartonhammond/snowflake" /></a><br /><img src="https://img.shields.io/badge/IOS--blue.svg" alt="ios" /> <a href="https://www.bitrise.io/app/348ae0a97c5e147a"><embed src="https://www.bitrise.io/app/348ae0a97c5e147a.svg?token=RmDwzjeIGuo7i9MeazE1fg" /></a><br /><img src="https://img.shields.io/badge/Android--blue.svg" alt="andriod" /> <a href="https://www.bitrise.io/app/1e0425744dcc7ce3"><embed src="https://www.bitrise.io/app/1e0425744dcc7ce3.svg?token=uvZDZvo89BLXvjrArJJreQ" /></a><br /><a href="https://github.com/bartonhammond/snowflake/blob/master/LICENSE"><embed src="https://img.shields.io/badge/license-MIT-green.svg?style=flat" /></a></p>
+<h2 id="installation">Installation</h2>
+<ul>
+<li><a href="https://facebook.github.io/react-native/docs/getting-started.html#content">Install React-Native</a></li>
+</ul>
+<h3 id="install-snowflake">Install Snowflake</h3>
+<ul>
+<li><p>Clone snowflake: <code>git clone https://github.com/bartonhammond/snowflake.git</code></p></li>
+<li><p>install dependencies</p></li>
+</ul>
+<pre><code>cd snowflake
+
+npm install</code></pre>
+<h3 id="using-snowflake-hapi-server">Using Snowflake Hapi Server</h3>
+<h4 id="use-the-local-or-remote-snowflake-hapi-server">Use the local or remote Snowflake Hapi Server</h4>
+<p>To make things easy for you, the <code>config.example.js</code> has been initialized to use the remote <strong>Snowflake Hapi Server</strong> which is running on <strong>Redhat OpenShift</strong>.</p>
+<p>This <strong>Snowflake Hapi Server</strong> is Open Source. It can run either locally or on <strong>RedHat OpenShift</strong>. For your convince a server is running at: <a href="https://snowflakeserver-bartonhammond.rhcloud.com/"><a href="https://snowflakeserver-bartonhammond.rhcloud.com">https://snowflakeserver-bartonhammond.rhcloud.com</a></a></p>
+<p>Please refer to <a href="https://github.com/bartonhammond/snowflake-hapi-openshift"><a href="https://github.com/bartonhammond/snowflake-hapi-openshift">https://github.com/bartonhammond/snowflake-hapi-openshift</a></a> for more information about the code and instructions for installation and setup of the server.</p>
+<h4 id="copy-config.example.js-and-setup-the-remote-or-local-option">Copy <code>config.example.js</code> and setup the remote or local option</h4>
+<ul>
+<li>Copy the <code>src/lib/config.example.js</code> to <code>src/lib/config.js</code>.<br /></li>
+<li><strong>Note</strong>: the <code>.gitignore</code> includes <code>config.js</code> from being committed to GitHub<br /></li>
+<li><strong>Note</strong>: you must select either <code>hapiLocal</code> or <code>hapiRemote</code> for the <code>backend</code> as shown below with <code>hapiRemote</code> set as the default.</li>
+</ul>
+<pre><code>  backend: {
+    hapiLocal: false,
+    hapiRemote: true,
+    parseLocal: false,
+    parseRemote: false
+  },</code></pre>
+<ul>
+<li>To run Hapi locally, follow the instructions at <a href="https://github.com/bartonhammond/snowflake-hapi-openshift"><a href="https://github.com/bartonhammond/snowflake-hapi-openshift">https://github.com/bartonhammond/snowflake-hapi-openshift</a></a>. You will have to install <strong>MongoDB</strong> and <strong>Redis</strong>.<br /></li>
+<li><strong>Note</strong>: The default is to run remotely on the <strong>RedHat OpenShift Snowflake Server</strong> so there is nothing more to do if you want to use it! In that case, just use the <code>config.js</code> as is.<br /></li>
+<li>If you want to install and run the <strong>Snowflake Hapi Server</strong> locally, then update the <code>src/lib/config.js</code> file as shown below.<br /></li>
+<li><strong>Note</strong>: use the ip from the <code>ifconfig</code> command for the <code>local</code>. This ip matches the <strong>Snowflake Hapi Server</strong> setup.<br /></li>
+<li>An example of the <code>url</code> is shown below assuming the <code>ifconfig</code> shows the local ip to be <code>192.168.0.5</code><br /></li>
+<li><strong>Note</strong>: You don't have to provide the <code>local.url</code> value if you are using the <code>remote</code></li>
+</ul>
+<pre><code>  HAPI: {
+    local: {
+      url: &#39;http://192.168.0.5:5000&#39;
+    },
+    remote: {
+      url: &#39;https://snowflakeserver-bartonhammond.rhcloud.com/&#39;
+    }
+  }
+</code></pre>
+<h3 id="using-parse-server">Using Parse Server</h3>
+<ul>
+<li>Copy the <code>src/lib/config.example.js</code> to <code>src/lib/config.js</code>.<br /></li>
+<li><strong>Note</strong>: the <code>.gitignore</code> includes <code>config.js</code> from being committed to GitHub<br /></li>
+<li>Set <code>parseLocal</code> to true if you are running a local instance of parse-server<br /></li>
+<li>Otherwise, set <code>parseRemote</code> to true to indicate your parse server instance is hosted in the cloud</li>
+</ul>
+<pre><code>  backend: {
+    hapiLocal: false,
+    hapiRemote: false,
+    parseLocal: true,
+    parseRemote: false
+  },</code></pre>
+<ul>
+<li>To setup parse-server, follow the instructions at <a href="https://github.com/ParsePlatform/parse-server-example">https://github.com/ParsePlatform/parse-server-example</a><br /></li>
+<li>Set the <code>local.url</code> value if you are running parse-server <code>local</code><br /></li>
+<li>Set the <code>remote.url</code> value if you are running parse-server <code>remote</code></li>
+</ul>
+<pre><code>  PARSE: {
+    appId: &#39;snowflake&#39;,                              // match APP_ID in parse-server&#39;s index.js
+    masterKey: &#39;F6NmZRK2VBncbdJCJRvPPJWyMLTjzPeWeX&#39;, // match MASTER_KEY in parse-server&#39;s index.js
+    local: {
+        url: &#39;http://localhost:1337/parse&#39;             // match SERVER_URL in parse-server&#39;s index.js
+    },
+    remote: {
+        url: &#39;https://enter_your_snowflake_host.com&#39;   // match SERVER_URL in parse-server&#39;s index.js
+    }
+  }
+  </code></pre>
+<h3 id="to-run">To run:</h3>
+<ul>
+<li>For iOS, from the command line, run via command: <code>react-native run-ios</code> or open XCode and load project, Run <code>Product -&gt; Run (⌘+R)</code><br /></li>
+<li>For android, from the command line, run via the command: <code>react-native run-android</code> assuming you have an emulator or device running and attached<br /></li>
+<li>To run Jest, <code>npm test</code><br /></li>
+<li>To debug Jest unit cases, install <a href="https://github.com/node-inspector/node-inspector">node_inspector</a> and run <code>npm run test-chrome</code><br /></li>
+<li>Enjoy!</li>
+</ul>
+<hr />
+<hr />
+<h2 id="notes">Notes</h2>
+<p>Code is written to <a href="https://github.com/feross/standard">JS Standard</a> and validated with <a href="http://eslint.org/">Eslint</a>. To setup your favorite editor using the Eslint configuration, see <a href="http://eslint.org/docs/user-guide/integrations#editors">Editors</a></p>
+<p>Navigation is handled with <a href="https://github.com/aksonov/react-native-router-flux">React Native Router Flux</a>. Multiple scenes support <strong>Login, Register, and Reset Password</strong>. Once successfully logged in, there are 3 more scenes: <strong>Logout, Subview, and Profile</strong>.</p>
+<p>A user can <strong>change</strong> their <strong>Email Address</strong> and <strong>User Name</strong> once they are logged in using the <strong>Profile</strong> form.</p>
+<p>The icons used throughout the app are from <a href="https://github.com/oblador/react-native-vector-icons">React Native Vector Icons</a>, namely using <strong>FontAwesome</strong></p>
+<p><strong>Form building</strong> is extremely easy and consistent by using <a href="https://github.com/gcanti/tcomb-form-native">Tcomb Form Library</a> by using <strong>domain models</strong> and writing less code.</p>
+<p>Using <a href="https://github.com/reactjs/react-redux">Redux</a> and <a href="https://facebook.github.io/immutable-js/">Immutable</a>, the state of the application is <strong>testable</strong> with <a href="https://facebook.github.io/jest/">Jest</a>, which includes <a href="http://facebook.github.io/jest/blog/2016/07/27/jest-14.html">Snapshot tests</a> currently with 85 tests and ~90% coverage!!!</p>
+<p>To ease the pain of Redux Action definitions, Snowflake uses <a href="https://github.com/STRML/keyMirror">Key Mirror</a>.</p>
+<p>Using the <a href="https://validatejs.org/">Validate.JS</a> Library, all <strong>user input is validated</strong>. Appropriate messages are displayed to the user guiding them in the input requirements.</p>
+<p>Once a user is logged in, their <strong>Session State is stored</strong> in <a href="https://github.com/jasonmerino/react-native-simple-store">AsyncStorage</a> so that subsequent usage does not require logging in again.</p>
+<p>Snowflake supports <strong>multiple languages</strong> using <a href="https://github.com/AlexanderZaytsev/react-native-i18n">I18n</a> with English, French and Spanish.</p>
+<p>Snowflake supports <strong>Hot Reloading</strong> of its state.</p>
+<p>Snowflake uses CI with <a href="https://www.bitrise.io">Bitrise.io</a> and has <strong>extensive docs and 45+ min of video</strong> demonstating implementation.</p>
+<p>Snowflake has a <strong>choice of servers</strong>, either</p>
+<ul>
+<li><p><strong>Hapi Server</strong> that runs on <strong>RedHat Openshift</strong> and <strong>locally</strong>.</p>
+<p>See <a href="https://github.com/bartonhammond/snowflake-hapi-openshift"><a href="https://github.com/bartonhammond/snowflake-hapi-openshift">https://github.com/bartonhammond/snowflake-hapi-openshift</a></a> for more information about the OpenShift Hapi server. The setup instructions below describe how to select the server you desire.</p></li>
+<li><p><strong>Parse Server</strong> that runs <strong>remotely</strong> or <strong>locally</strong><br /> See <a href="https://github.com/ParsePlatform/parse-server-example"><a href="https://github.com/ParsePlatform/parse-server-example">https://github.com/ParsePlatform/parse-server-example</a></a> for more information.</p></li>
+</ul>
+<hr />
+<h1 id="content">Content</h1>
+<ul>
+<li><a href="#editor-configuration">Editor Configuration</a><br /></li>
+<li><a href="#screens">Screens</a><br /></li>
+<li><a href="#summary">Summary</a><br /></li>
+<li><a href="#quotes">Quotes</a><br /></li>
+<li><a href="#technologies">Technologies</a><br /></li>
+<li><a href="#continuous-integration">Continuous Integration</a><br /></li>
+<li><a href="#redux-state-management">Redux State Management</a><br /></li>
+<li><a href="#hot-reloading">Hot Reloading</a><br /></li>
+<li><a href="#faq">FAQ</a><br /></li>
+<li><a href="http://bartonhammond.github.io/snowflake/snowflake.js.html">Source documentation</a></li>
+</ul>
+<hr />
+<h2 id="editor-configuration">Editor Configuration</h2>
+<p><strong>Atom</strong></p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">apm</span> install editorconfig es6-javascript javascript-snippets linter linter-eslint language-babel</code></pre>
+<p><strong>Sublime</strong></p>
+<ul>
+<li><a href="https://github.com/sindresorhus/editorconfig-sublime#readme">https://github.com/sindresorhus/editorconfig-sublime#readme</a><br /></li>
+<li><a href="https://github.com/SublimeLinter/SublimeLinter3">https://github.com/SublimeLinter/SublimeLinter3</a><br /></li>
+<li><a href="https://github.com/roadhump/SublimeLinter-eslint">https://github.com/roadhump/SublimeLinter-eslint</a><br /></li>
+<li><a href="https://github.com/babel/babel-sublime">https://github.com/babel/babel-sublime</a></li>
+</ul>
+<p><strong>Others</strong></p>
+<ul>
+<li><a href="http://editorconfig.org/#download">Editorconfig</a><br /></li>
+<li><a href="http://eslint.org/docs/user-guide/integrations#editors">ESLint</a><br /></li>
+<li>Babel Syntax Plugin</li>
+</ul>
+<h2 id="screens">Screens</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Platform</th>
+<th align="center">Register</th>
+<th align="center">Login</th>
+<th align="center">Profile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">iOS</td>
+<td align="center"><img src="https://cloud.githubusercontent.com/assets/1282364/11598478/b2b1b5e6-9a87-11e5-8be9-37cbfa478a71.gif" alt="ios Profile" /></td>
+<td align="center"><img src="https://cloud.githubusercontent.com/assets/1282364/11598580/6d360f02-9a88-11e5-836b-4171f789a41d.gif" alt="ios Login" /></td>
+<td align="center"><img src="https://cloud.githubusercontent.com/assets/1282364/11598582/6d392750-9a88-11e5-9839-05127dfba96b.gif" alt="ios Register" /></td>
+</tr>
+<tr class="even">
+<td align="center">Android</td>
+<td align="center"><img src="https://cloud.githubusercontent.com/assets/1282364/11598579/6d3487b8-9a88-11e5-9e95-260283a6951e.gif" alt="Android Register" /></td>
+<td align="center"><img src="https://cloud.githubusercontent.com/assets/1282364/11598577/6d2f140e-9a88-11e5-8cd4-1ba8c9cbc603.gif" alt="Android Login" /></td>
+<td align="center"><img src="https://cloud.githubusercontent.com/assets/1282364/11598578/6d314ee0-9a88-11e5-9a6c-512a313535ee.gif" alt="Android Profile" /></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="summary">Summary</h2>
+<ol>
+<li>The application runs on <strong>both iOS and Android</strong> with a <strong>single code</strong> base<br /></li>
+<li>A User can <strong>Register, Login, Logout, Reset their Password</strong> and modify their <strong>Profile</strong><br /></li>
+<li>The Forms display messages for <strong>help and field validation</strong>.<br /></li>
+<li>The Forms are <strong>protected</strong> when fetching.<br /></li>
+<li>The Forms display <strong>spinner</strong> when fetching.<br /></li>
+<li>Form submission <strong>errors are displayed</strong> (see above Login)<br /></li>
+<li><strong>All state changes</strong>* are actions to the Redux store.<br /></li>
+<li>The backend is provided by either a Hapi server or Parse server using the <strong>Rest API</strong><br /></li>
+<li><strong>Every action</strong> performed by the UI interfaces with the <strong>Redux actions</strong> and subsequently to the Redux Store. This <strong>reduces the complexity</strong> of the JSX Components <strong>tremendously</strong>and makes them easily testable.<br /></li>
+<li><strong>Jest Unit Tests cover ~90%</strong> of the application statements.<br /></li>
+<li>Demonstrates how to <strong>setup React-Native to perform Jest testing</strong> with Mock modules<br /></li>
+<li>Includes ability to <strong>debug Jest unit tests</strong> with Chrome<br /></li>
+<li>Instructions and videos for <strong>continuous integration with Bitrise.io</strong></li>
+</ol>
+<hr />
+<h2 id="quotes">Quotes</h2>
+<p>Some quotes from users of <strong>Snowflake</strong></p>
+<p><strong>Open Source Mag: Learn best of React Native with these open source projects</strong>:<a href="http://opensourceforu.com/2016/05/learn-best-of-react-native-with-these-open-source-projects/"><a href="http://opensourceforu.com/2016/05/learn-best-of-react-native-with-these-open-source-projects/">http://opensourceforu.com/2016/05/learn-best-of-react-native-with-these-open-source-projects/</a></a></p>
+<p><strong>ICICletech Blog: Mobile App Development With 8 Awesome React-Native Starter Kits</strong>: We have listed some of our favorite starter kits and boilerplates to get started quickly.<br /><a href="https://www.icicletech.com/blog/react-native-starter-kits"><a href="https://www.icicletech.com/blog/react-native-starter-kits">https://www.icicletech.com/blog/react-native-starter-kits</a></a></p>
+<p><strong>Infinite.Red: Ignite Your Mobile Development:</strong></p>
+<blockquote>
+<p>awesome releases as Barton Hammond’s snowflake.</p>
+</blockquote>
+<p><a href="https://shift.infinite.red/ignite-your-mobile-development-32417590ed3e#.pz7u3djtm"><a href="https://shift.infinite.red/ignite-your-mobile-development-32417590ed3e">https://shift.infinite.red/ignite-your-mobile-development-32417590ed3e</a>#.pz7u3djtm</a></p>
+<p><strong>AdtMag: New Community Projects for React Native: Deco IDE and Pepperoni Boilerplate</strong> <a href="https://adtmag.com/articles/2016/05/26/react-native-projects.aspx"><a href="https://adtmag.com/articles/2016/05/26/react-native-projects.aspx">https://adtmag.com/articles/2016/05/26/react-native-projects.aspx</a></a> Snowflake mentioned</p>
+<p><strong>Pepperoni App Kit</strong> (see <a href="https://github.com/futurice/pepperoni-app-kit#credits">Credits</a> )</p>
+<blockquote>
+<p>This project was initially motivated by Snowflake....you should check it out to see if it's a good fit for your app.</p>
+</blockquote>
+<p><strong>Viktor</strong></p>
+<blockquote>
+<p>Just saw the tweets, still watching the vids. It's awesome!! It's really really high quality, I'm truly amazed</p>
+</blockquote>
+<p><strong>John</strong></p>
+<blockquote>
+<p>project is awesome, thank you for providing it!</p>
+</blockquote>
+<p><strong>Eric</strong>:</p>
+<blockquote>
+<p>I've been going through snowflake and love what you have done!</p>
+</blockquote>
+<p><strong>Nikos</strong>:</p>
+<blockquote>
+<p>wow new videos, nice</p>
+</blockquote>
+<p><strong>Josh</strong></p>
+<blockquote>
+<p>thanks for the thorough videos!</p>
+</blockquote>
+<p><strong>Patrick</strong></p>
+<blockquote>
+<p>just wanna snowflake is awesome</p>
+</blockquote>
+<p><strong>Justin</strong></p>
+<blockquote>
+<p>Congrats - the project is super helpful</p>
+</blockquote>
+<p><strong>Stephen</strong></p>
+<blockquote>
+<p>Thanks so much for this amazing foundation!</p>
+</blockquote>
+<p><strong>Jim</strong></p>
+<blockquote>
+<p>Neat project</p>
+</blockquote>
+<hr />
+<h2 id="technologies">Technologies</h2>
+<p><em>The following are brief descriptions of the technologies used</em></p>
+<h3 id="react-native"><a href="https://facebook.github.io/react-native/">React-Native</a></h3>
+<p><em>React Native enables you to build world-class application experiences on native platforms using a consistent developer experience based on JavaScript and React.</em></p>
+<p>What more can I say? It's a fantastic leap forward in providing the ability to write native applications with Javascript that target both iOS and Android.</p>
+<p>This application provides one code base that works on both platforms. It demonstrates Form interactions, Navigation, and use of many other components.</p>
+<h3 id="jest"><a href="https://facebook.github.io/jest/">Jest</a></h3>
+<p><em>85 Unit tests that cover plain objects and JSX components</em></p>
+<p>The de-facto standard for React/Native testing. This app demonstrates how to mock <strong>ReactNative, node_modules, classes</strong> and to properly <strong>test JSX components</strong> by programmatically changing the props, and throughly <strong>test the applications data state and the actions</strong> in conjunction with Redux.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1282364/17187737/19524234-5400-11e6-8350-53e653a4c1f6.png" alt="Jest Coverage Analysis" /></p>
+<h3 id="redux"><a href="http://redux.js.org/">Redux</a></h3>
+<p><em>Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.</em></p>
+<p>Before Redux, application state was managed by all the various components in the app. Now, the state is managed in a <strong>predictable and consistent manner</strong> and it can be <strong>tested with Jest</strong> and best of all, it is <strong>independent</strong> of the UI. This is a major advancement in application design!</p>
+<h3 id="hapi"><a href="http://hapijs.com/">Hapi</a></h3>
+<p>For me, Hapi provided a clear way for defining APIs and managing things clearly. Some folks like Express, I've used Express myself, and I wanted to try Hapi. I'm very satisfied with Hapi. As you may or may not know, WalMart Labs produced Hapi and they've used it in their business.</p>
+<p>One of the needs of any application is server side processing. With the ability to run Hapi locally or on OpenShift, I'm able to write my server logic and test it locally. When I'm &quot;happy&quot; I can push the code to OpenShift. The same code runs in both environments.</p>
+<h3 id="parse-server"><a href="https://github.com/ParsePlatform/parse-server">Parse Server</a></h3>
+<p>As an alternative to Hapi, Snowflake also supports Parse Server. Parse Server is an open source version of the Parse backend that can be deployed to any infrastructure that can run Node.js.</p>
+<p>Parse Server works with the Express web application framework. You can test it locally and push changes to your parse remote server when you are ready.</p>
+<h3 id="openshift"><a href="https://www.openshift.com/">OpenShift</a></h3>
+<p>I chose OpenShift because I could get a reasonable performing application for free. The Snowflake server (<a href="https://github.com/bartonhammond/snowflake-hapi-openshift"><a href="https://github.com/bartonhammond/snowflake-hapi-openshift">https://github.com/bartonhammond/snowflake-hapi-openshift</a></a> uses 3 gears with MongoDB and Redis.</p>
+<h3 id="tcomb"><a href="https://github.com/gcanti/tcomb-form-native">TComb</a></h3>
+<p><em>A structured model based approach to declarative forms</em></p>
+<p>*With this library, you <strong>simplify form processing</strong> incredibly! Write a lot <strong>less code</strong>, get <strong>usability</strong> and <strong>accessibility for free</strong> (automatic labels, inline validation, etc) and no need to update forms when domain model changes. This application <strong>demonstrates how to test these forms</strong> also!</p>
+<h3 id="validate.js"><a href="http://validatejs.org/">Validate.js</a></h3>
+<p><em>Validate.js provides a declarative way of validating javascript objects.</em></p>
+<p>Using Validate.js for the Form processing was a breeze! And with the ability to test the validations to the Redux state was very easy!</p>
+<hr />
+<h2 id="continuous-integration">Continuous Integration</h2>
+<p>CI proves to the developer that everything required to build and test<br />the application is well defined and repeatable. Without CI, one would<br />not know, for a fact, that all the required tools and assests are<br />available for everyone to build with. CI gives us developers some<br />&quot;peace of mind&quot; that our build process is repeatable.</p>
+<p>The following videos will walk you through setting up CI with BitRise.io</p>
+<ul>
+<li><a href="#introduction">Introduction</a><br /></li>
+<li><a href="#bitrise-overview">Bitrise Overview</a><br /></li>
+<li><a href="#ios-xcode-modifications">iOS XCode Modifications</a><br /></li>
+<li><a href="#xcode-certs-provision-profiles-app-id">XCode Certs Provision Profiles App Id</a><br /></li>
+<li><a href="#create-ios-app">Create iOS App</a><br /></li>
+<li><a href="#ios-install">iOS install</a><br /></li>
+<li><a href="#android-setup">Android Setup</a><br /></li>
+<li><a href="#addendum-#1">Addendum #1</a><br /></li>
+<li><a href="#things-not-addressed">Things not addressed</a></li>
+</ul>
+<hr />
+<h5 id="introduction">Introduction</h5>
+<ul>
+<li><p><strong>Video 1/7</strong>: <a href="https://youtu.be/EYafslJvXz8"><a href="https://youtu.be/EYafslJvXz8">https://youtu.be/EYafslJvXz8</a></a><br /><a
+href="http://www.youtube.com/watch?feature=player_embedded&v=EYafslJvXz8"
+target="_blank"><br /><img src="http://img.youtube.com/vi/EYafslJvXz8/0.jpg"
+alt="Introduction" width="240" height="180" border="10"
+/></a></p></li>
+<li>Snowflake is a <em>starter app</em> so all tutorials are basic in nature<br /></li>
+<li>There are a bizzilion ways of doing any of this - I'm showing one<br /></li>
+<li>There's a number of CI sites, I chose Bitrise.io<br /></li>
+<li>There's a general understanding of why to us a CI<br /></li>
+<li>The build will be done on Bitrise.io - not locally<br /></li>
+<li>The <strong>only</strong> goal is to get the build to run on Bitrise.io<br /></li>
+<li><p>You can <strong>still</strong> run applications locally with simulators</p></li>
+</ul>
+<h5 id="bitrise-overview">Bitrise Overview</h5>
+<ul>
+<li><p><strong>Video 2/7</strong>:<a href="https://youtu.be/JAHlfNUKoLg"><a href="https://youtu.be/JAHlfNUKoLg">https://youtu.be/JAHlfNUKoLg</a></a><br /><a
+href="http://www.youtube.com/watch?feature=player_embedded&v=JAHlfNUKoLg"
+target="_blank"><br /><img src="http://img.youtube.com/vi/JAHlfNUKoLg/0.jpg"
+alt="Bitrise.io Overview" width="240" height="180" border="10"
+/></a></p></li>
+<li>Introduction to Bitrise.io <a href="https://www.bitrise.io/"><a href="https://www.bitrise.io/">https://www.bitrise.io/</a></a><br /></li>
+<li>Overview of what it does for us<br /></li>
+<li><p>Overview of the two WorkFlows</p>
+<ul>
+<li>iOS<br /></li>
+<li>Android</li>
+</ul></li>
+</ul>
+<h5 id="ios-xcode-modifications">iOS XCode Modifications</h5>
+<ul>
+<li><strong>Video 3/7</strong>:<a href="https://youtu.be/3y72adWNRSU"><a href="https://youtu.be/3y72adWNRSU">https://youtu.be/3y72adWNRSU</a></a><br /><a
+href="http://www.youtube.com/watch?feature=player_embedded&v=3y72adWNRSU"
+target="_blank"><br /><img src="http://img.youtube.com/vi/3y72adWNRSU/0.jpg"
+alt="iOS XCode Modifications" width="240" height="180" border="10"
+/></a><br /></li>
+<li><p>XCode</p>
+<ul>
+<li>Icons - Asset Catalog Creator Free - see App Store<br /></li>
+<li>Bundler ID<br /></li>
+<li><a href="https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/ConfiguringYourApp/ConfiguringYourApp.html"><a href="https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/ConfiguringYourApp/ConfiguringYourApp.html">https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/ConfiguringYourApp/ConfiguringYourApp.html</a></a><br /></li>
+<li>AppDelegate.m<br /></li>
+<li>Versioning<br /></li>
+<li><a href="https://developer.apple.com/library/ios/qa/qa1827/_index.html"><a href="https://developer.apple.com/library/ios/qa/qa1827/_index.html">https://developer.apple.com/library/ios/qa/qa1827/_index.html</a></a><br /></li>
+<li>Automatic Certificate &amp; Development</li>
+</ul></li>
+</ul>
+<h5 id="xcode-certs-provision-profiles-app-id">XCode Certs Provision Profiles App Id</h5>
+<ul>
+<li><strong>Video 4/7</strong>:<br /> <a href="https://youtu.be/zJXoHIaJg7Y"><a href="https://youtu.be/zJXoHIaJg7Y">https://youtu.be/zJXoHIaJg7Y</a></a><br /><a
+href="http://www.youtube.com/watch?feature=player_embedded&v=zJXoHIaJg7Y"
+target="_blank"><br /><img src="http://img.youtube.com/vi/zJXoHIaJg7Y/0.jpg"
+alt="XCode Certs Provision Profiles" width="240" height="180" border="10"
+/></a><br /></li>
+<li>see <a href="https://developer.apple.com/library/ios/qa/qa1814/_index.html"><a href="https://developer.apple.com/library/ios/qa/qa1814/_index.html">https://developer.apple.com/library/ios/qa/qa1814/_index.html</a></a><br /></li>
+<li><p>App Development Center</p>
+<ul>
+<li>Remove all Certs, App Ids, and Profiles<br /></li>
+</ul></li>
+<li><p>Generating Certificates and Provision Profile<br /> * Update XCode appDelegate.m w/ ifconfig value<br /> * Xcode -&gt; Run with device attached<br /> * Select option for Xcode to fix signing</p></li>
+</ul>
+<h5 id="create-ios-app">Create iOS App</h5>
+<ul>
+<li><strong>Video 5/7</strong>:<br /><a href="https://youtu.be/olfpwEjVlZ4">Bitrise, YML, Profile, P12</a><br /><a
+href="http://www.youtube.com/watch?feature=player_embedded&v=olfpwEjVlZ4"
+target="_blank"><br /><img src="http://img.youtube.com/vi/olfpwEjVlZ4/0.jpg"
+alt="Create iOS App" width="240" height="180" border="10"
+/></a><br /></li>
+<li>Login/Register Bitrise.io<br /></li>
+<li>Dashboard<br /></li>
+<li>Add App<br /></li>
+<li>Authenticate GitHub<br /></li>
+<li>Select repository, branch<br /></li>
+<li>Import YML<br /></li>
+<li>Download Certifications<br /></li>
+<li>Update KeyChain<br /></li>
+<li>Save .p12<br /></li>
+<li>Download Provision<br /></li>
+<li>Load .p12 and provision to Bitrise.io<br /></li>
+<li>Setup Secret and Env Vars<br /></li>
+<li>Build</li>
+</ul>
+<h5 id="ios-install">iOS install</h5>
+<ul>
+<li><p><strong>Video 6/7</strong>: <a href="https://youtu.be/nQWXJI0ncns"><a href="https://youtu.be/nQWXJI0ncns">https://youtu.be/nQWXJI0ncns</a></a><br /><a
+href="http://www.youtube.com/watch?feature=player_embedded&v=nQWXJI0ncns"
+target="_blank"><br /><img src="http://img.youtube.com/vi/nQWXJI0ncns/0.jpg"
+alt="iOS install from email" width="240" height="180" border="10"
+/></a></p></li>
+<li>From device, open email app<br /></li>
+<li>Open <strong>letsconnect</strong><br /></li>
+<li>Follow instructions to load in Safarie<br /></li>
+<li><p>Follow prompts and enjoy!</p></li>
+</ul>
+<h5 id="android-setup">Android Setup</h5>
+<ul>
+<li><p><strong>Video 7/7</strong>: <a href="https://youtu.be/o4RQZodbzIU">Android YML, Setup</a><br /><a
+href="http://www.youtube.com/watch?feature=player_embedded&v=o4RQZodbzIU"
+target="_blank"><br /><img src="http://img.youtube.com/vi/o4RQZodbzIU/0.jpg"
+alt="Android Setup" width="240" height="180" border="10"/><br /></a></p></li>
+<li>Settings -&gt; Docker Image<br /></li>
+<li>Secret Variables<br /></li>
+<li>App/build.gradle<br /></li>
+<li>Setup Secret and Env Vars<br /></li>
+<li>Import YML<br /></li>
+<li><p>Run build</p></li>
+</ul>
+<h5 id="addendum-1">Addendum #1</h5>
+<ul>
+<li><p><strong>Video </strong>: <a href="https://youtu.be/mP5D2MQboxw">XCode Edge Stack, WorkFlow</a><br /><a
+href="http://www.youtube.com/watch?feature=player_embedded&v=mP5D2MQboxw"
+target="_blank"><br /><img src="https://i9.ytimg.com/vi/mP5D2MQboxw/1.jpg?sqp=CPDqzb0F&rs=AOn4CLBdpVDIWghF_-wSuaSKnbPdxHE1hw"
+alt="XCode Edge Stack" width="240" height="180" border="10"/><br /></a></p></li>
+<li>&quot;XCode Edge Stack&quot; for iOS<br /></li>
+<li>New React-Native steps for Install &amp; Bundle<br /></li>
+<li>Upgraded Step versions<br /></li>
+<li><p>GitHub branch triggers</p></li>
+</ul>
+<h5 id="things-not-addressed">Things not addressed</h5>
+<ul>
+<li>Submission to any store<br /></li>
+<li>Working with other CIs<br /></li>
+<li>Complex setups for either ios or andriod<br /></li>
+<li>Debugging any failures<br /></li>
+<li>Shiny new things<br /></li>
+<li>No local builds with Bitrise CLI<br /></li>
+<li>No local builds with Fastlane<br /></li>
+<li>No tutorial on all the features of Fastlane</li>
+</ul>
+<hr />
+<h2 id="redux-state-management">Redux State Management</h2>
+<p>This section explains a little about what I've learned with Redux and the management of application state.</p>
+<h3 id="without-redux">Without Redux</h3>
+<p>[Alt text](<a href="http://g.gravizo.com/g">http://g.gravizo.com/g</a>?<br /> digraph G {<br /> aize =&quot;4,4&quot;;<br /> login [shape=box];<br /> login -&gt; validate [style=bold,label=&quot;1&quot;];<br /> login -&gt; restful [style=bold,label=&quot;2&quot;];<br /> restful -&gt; parse [style=bold,label=&quot;3&quot;];<br /> login -&gt; router [style=bold,label=&quot;4&quot;];<br /> router-&gt; new_page [style=bold,label=&quot;5&quot;];<br /> }<br />)</p>
+<p>A typical app, at least those I've written before, have logic and state scattered all through out. Frameworks help to organize but typically the developer has to know how to &quot;stitch&quot; it together by remembering to update certain state at certain times.</p>
+<p>In the above diagram, the Login component is responsible for calling the Validate and making sure the rules are applied and errors are displayed. Then it has to have logic that confirms everything is in the right state, and pass that data to a Restul API to interact, in this case, with Parse. When that activity is complete the Router has to be informed and a new_page can be displayed.</p>
+<p>This makes testing hard as the logic is partially contained in the Login component itself and the sequence of those events are encapsulated there too!</p>
+<h3 id="with-redux">With Redux</h3>
+<p>[Alt text](<a href="http://g.gravizo.com/g">http://g.gravizo.com/g</a>?<br /> digraph G {<br /> aize =&quot;4,4&quot;;<br /> login [shape=box];<br /> login -&gt; Action[style=bold,label=&quot;1&quot;];<br /> Action -&gt; Reducer [style=bold,label=&quot;2&quot;];<br /> Reducer -&gt; login [style=bold,label=&quot;3&quot;];<br /> login -&gt; Action [style=bold,label=&quot;4&quot;];<br /> Action -&gt; restful [style=bold,label=&quot;5&quot;];<br /> restful -&gt; parse [style=bold,label=&quot;6&quot;];<br /> Action -&gt; Reducer [style=bold,label=&quot;7&quot;];<br /> Reducer -&gt; new_page [style=bold,label=&quot;8&quot;];<br /> }<br />)</p>
+<p>What the above diagram depicts is that the logic for login is contained in the Actions and Reducer and can be tested in isolation from the UI. This also makes the UI Component Login much simpler to write as it just renders content based on props that are provided. The props are actually the Reducer Store.</p>
+<p>So what is happening in this diagram? Where's the Validation? That would be in step 1. When the user enters characters on the form, they are sent to an action. The action packages them up and sends them to the Reducer. The reducer looks at what Type the Action is and performs the operation, in this case, Validate the parameters.</p>
+<p>How does Login respond? Well, it recieves the updated Props - the properties which are the store. It then renders it's output based on those properties. Just straight forward logic - nothing more then checking the properties and display approptiately. At no time does the Login component change any property state.</p>
+<p>The responsibility of changing state belongs to the Reducer.</p>
+<p>Every time an Action is called, that Action interacts w/ the Reducer. The Reducer does state changes on the State or Store model.</p>
+<p>Let's look at a concrete example, Resetting a Password. Now the UI is pretty simple, provide a Text Input for the email entry and a Button to click. Let's further assume that the email has been validated and the user clicks the &quot;Reset Password&quot; button. All that Login does is call an Action function called <code>resetPassword</code> passing the email value.</p>
+<p>So don't get too overwhelmed with the following code. You can think of the <code>dispatch</code> calls as meerly as a messaging system. Each <code>dispatch</code> call invokes a function - it just calls a function in a Promise chain.</p>
+<p>I want to now look at one specific Action and trace it's path. That action is the <code>dispatch(resetPasswordRequest());</code> call. That call signals that the &quot;<strong>reset password request</strong>&quot; processing is starting. We'll look at that next and how it trickles all the way back to the Login ui.</p>
+<blockquote>
+<p>Action.resetPassword</p>
+</blockquote>
+<pre><code>export function resetPassword(email) {
+  return dispatch =&gt; {
+    dispatch(resetPasswordRequest());
+    return new Parse().resetPassword({
+      email: email
+    })
+      .then((response) =&gt; {
+        if (response.status === 200 || response.status === 201) {
+          dispatch(loginState());
+          dispatch(resetPasswordSuccess());
+        } else {
+          dispatch(resetPasswordFailure(JSON.parse(response._bodyInit)));
+        }
+        return response;
+      })
+      .then((response) =&gt; {
+        if (response.status === 200 || response.status === 201) {
+          dispatch(emitLoggedOut());
+        }
+      })
+      .catch((error) =&gt; {
+        dispatch(resetPasswordFailure(error));
+      });
+
+  };
+}</code></pre>
+<p>The simple function returns an object with type <code>RESET_PASSWORD_REQUEST</code>. All of the activities performed have this pattern, make a REQUEST and then either have a SUCCESS or a FAILURE.</p>
+<p>Now Redux is responsible for taking this returned Action object and passing it to the Reducer. What does the Reducer do with this Action? We'll look at that next.</p>
+<blockquote>
+<p>Action.resetPasswordRequest</p>
+</blockquote>
+<pre><code>export function resetPasswordRequest() {
+  return {
+    type: RESET_PASSWORD_REQUEST
+  };
+}</code></pre>
+<p>The Reducer is a function with 2 parameters, state and action. What it does is to make modifications to the state depending upon the action. The state is any javascript object you like. This application uses Immutable.js for it's state so to guarantee the state is always immutable.</p>
+<p>Notice the <code>switch</code> statement - it's looking at that Action.type value - all Actions have a type value. In our case, the type is RESET_PASSWORD_REQUEST.</p>
+<p>So what's happening here. If any request type comes to the Reducer, including RESET_PASSWORD_REQUEST, we change the state by setting the <code>form.isFetching</code> to <code>true</code> and the <code>form.error</code> field to null. The returned new state value has these two fields set.</p>
+<p>What happens with that new state? Well Redux makes that state available in the Login component <code>props</code>. And since the <code>props</code> have changed, Login needs to <code>render</code>. Let's look at that next.</p>
+<blockquote>
+<p>Reducer.Action.ResetPasswordRequest snippet</p>
+</blockquote>
+<pre><code>export default function authReducer(state = initialState, action) {
+  if (!(state instanceof InitialState)) return initialState.mergeDeep(state);
+  switch (action.type) {
+
+  case SESSION_TOKEN_REQUEST:
+  case SIGNUP_REQUEST:
+  case LOGOUT_REQUEST:
+  case LOGIN_REQUEST:
+  case RESET_PASSWORD_REQUEST:
+      let nextState =  state.setIn([&#39;form&#39;, &#39;isFetching&#39;], true)
+        .setIn([&#39;form&#39;,&#39;error&#39;],null);
+    return nextState;
+.....</code></pre>
+<p>So here in the <code>render</code> component we need to decide if a <code>spinner</code> should be displayed. It should display when the <code>props.isFetching</code> is <code>true</code>. That's the value set above in the Reducer! All the Login <code>render()</code> has to do is check that property and set the UI appropriately.</p>
+<blockquote>
+<p>Login.Header.render snippet</p>
+</blockquote>
+<pre><code>  render() {
+    let spinner = &lt;Text&gt; &lt;/Text&gt;;
+    if (this.props.isFetching) {
+      spinner =  &lt;GiftedSpinner/&gt;;
+    }
+
+    return (
+      &lt;View style={styles.header}&gt;
+        &lt;Image style={styles.mark} source={{uri:
+                                            &#39;http://i.imgur.com/da4G0Io.png&#39;}}
+        /&gt;
+        {spinner}
+      &lt;/View&gt;
+    );
+  }</code></pre>
+<p>Hopefully this gives you some insight into how Redux is integrated into the application. In my opinion, this is a huge step in application logic.</p>
+<p>If you'd like to read an excellent tutorial on Redux I can't recommend this one enough: <a href="http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html"><a href="http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html">http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html</a></a></p>
+<hr />
+<h2 id="hot-reloading">Hot Reloading</h2>
+<p>This video shows Snowflake exporting and importing state from Redux. It demonstrates, with the iOS Simulator, the process of copying the state for import at a later time. After the demo, I walk through the code to clarify how I achieved this. It's assumed you have some familiarity with Redux. Hopefully it helps you gain a better understanding of what Redux provides you!</p>
+<p><a href="http://www.youtube.com/watch?feature=player_embedded&v=b4eqQUA3O6o" target="_blank"><img src="http://img.youtube.com/vi/b4eqQUA3O6o/0.jpg"
+alt="Snowflake Hot Loading" width="240" height="180" border="10" /></a></p>
+<hr />
+<h2 id="faq">Faq</h2>
+<h3 id="how-do-i-change-the-language-of-the-app">How do I change the Language of the App?</h3>
+<p>Just use the Settings of your Device or Simulator.</p>
+<h3 id="why-did-you-use-the-restapi-instead-of-the-js-sdk-parsereact">Why did you use the RestAPI instead of the (JS-sdk | ParseReact)</h3>
+<p>I looked at it initially and, imo, it had too much magic. For example, I couldn't see how I was going to isolate my JSX components easily and keep all my &quot;state&quot; in Redux. ParseReact is right there in the middle of your JSX component which would tie me to a very particular vendor and implementation detail. If I decided to later move away from ParseReact I'd have to rewrite a lot of code and tests.</p>
+<p>Also, it had this statement</p>
+<blockquote>
+<p>Mutations are dispatched in the manner of Flux Actions, allowing updates to be synchronized between many different components without requiring views to talk to each other</p>
+</blockquote>
+<p>I don't want to deal w/ wrapping my head around Flux Actions and have to monkey-patch or something to get Redux Actions.</p>
+<p>In a previous life, I worked with Parse JS SDK and it's based on backbone.js. So I didn't go that direction either, because, again, I didn't want to have another data model to deal with. Plus, at the time I was using it, the SDK was buggy and it was difficult to work with.</p>
+<p>With the Parse Rest API, it's simple, can be tested itself from the command line with curl, it's clear, it's succinct and it's easily replaced with something else, an example such as Mongo/Mongoose without much, if any, impact on the code base.</p>
+<h6 id="barton-hammond">-barton hammond</h6>

@@ -1,0 +1,27 @@
+/**
+ * 
+ * 
+ */
+'use strict';
+
+import React, { Component, AppRegistry } from 'react-native';
+import { Provider } from 'react-redux/native';
+import App from './src/containers/App';
+import configureStore from './src/store/configureStore';
+
+var VERSION='0.0.2';
+
+const store = configureStore();
+
+class MyFamilyVoice  extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+      {() => <App />}
+      </Provider>
+    );
+    
+  }
+}
+
+AppRegistry.registerComponent('MyFamilyVoice', () => MyFamilyVoice);

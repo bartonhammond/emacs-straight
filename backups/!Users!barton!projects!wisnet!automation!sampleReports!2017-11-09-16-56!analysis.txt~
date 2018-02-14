@@ -1,0 +1,18 @@
+Build:
+https://www.browserstack.com/automate/builds/c8be0e1e5fe0b94ad19b8ec86905fbb2683b2ff7
+
+Errors:
+CONFIG_FILE=config/fit.conf.json  OS='Windows' OS_VERSION='XP' BROWSER='ie' BROWSER_VERSION='7.0' PROJECT='Wisnet' NAME='everyday fit' BUILD='2017-11-09-16-56' DIRECTORY='./tests/everydayfit/output/2017-11-09-16-56' Vendor/bin/phpunit ./tests/everydayfit/test.php
+PHPUnit 6.4.4 by Sebastian Bergmann and contributors.
+
+From curl -u "wisnetcom:G6SBfwFVrpR5mMAPysJG" >> https://www.browserstack.com/automate/browsers.json
+
+These are the only two Windows XP IE versions
+
+{"os":"Windows","os_version":"XP","browser":"ie","device":null,"browser_version":"6.0","real_mobile":null}
+ ,{"os":"Windows","os_version":"XP","browser":"ie","device":null,"browser_version":"7.0","real_mobile":null}
+
+Question: Why are we testing Windows XP?
+
+=======================
+

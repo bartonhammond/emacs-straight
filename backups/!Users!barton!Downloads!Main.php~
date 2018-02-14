@@ -1,0 +1,175 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+/*
+var json = [
+    {
+        "operationName": "clickForgotYourPasswordLink",
+       "attributeName": "forgotYourPassword",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;password/reset&#x27;]"
+     }
+
+    {
+        "operationName": "clickLogInButton",
+       "attributeName": "logIn",
+        "attributeStrategy": "css",
+        "attributeValue": "input.btns.btn2"
+     }
+
+    {
+        "operationName": "clickOrCreateAnAccountLink",
+       "attributeName": "orCreateAnAccount",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;register&#x27;]"
+     }
+
+
+
+    {
+        "operationName": "setEmailTextField",
+        "operationArgument" : "emailValue",
+       "attributeName": "email",
+        "attributeStrategy": "id",
+        "attributeValue": "email"
+     }
+
+    {
+        "operationName": "setPasswordPasswordField",
+        "operationArgument" : "passwordValue",
+       "attributeName": "password",
+        "attributeStrategy": "id",
+        "attributeValue": "password"
+     }
+
+    {
+        "operationName": "submit",
+          "submit": "clickLogInButton"
+       "attributeName": "",
+        "attributeStrategy": "",
+        "attributeValue": ""
+     }
+
+    {
+        "operationName": "verifyPageLoaded",
+       "attributeName": "pageLoadedText",
+        "attributeStrategy": "",
+        "attributeValue": "These credentials do not match our records"
+     }
+
+    {
+        "operationName": "verifyPageUrl",
+       "attributeName": "pageUrl",
+        "attributeStrategy": "",
+        "attributeValue": "/login"
+     }
+];
+*/
+class Main extends \Automate\Page {
+
+
+
+
+     protected $pageLoadedText = "These credentials do not match our records";
+
+     protected $pageUrl = "/login";
+
+   private static $_selectors = [
+    "email" =>
+    [
+       "id" => "email"
+    ],
+
+    "forgotYourPassword" =>
+    [
+       "css" => "a[href='password/reset']"
+    ],
+
+    "logIn" =>
+    [
+       "css" => "input.btns.btn2"
+    ],
+
+    "orCreateAnAccount" =>
+    [
+       "css" => "a[href='register']"
+    ],
+
+
+
+    "password" =>
+    [
+       "id" => "password"
+    ],
+    ];
+    /**
+     * Click on Forgot Your Password Link.
+     *
+     */
+    function clickForgotYourPasswordLink() {
+        //link
+        $this->click(self::$_selectors['forgotYourPassword']);
+    }
+
+    /**
+     * Click on Log In Button.
+     *
+     */
+    function clickLogInButton() {
+        //button
+        $this->click(self::$_selectors['logIn']);
+    }
+
+    /**
+     * Click on Or Create An Account Link.
+     *
+     */
+    function clickOrCreateAnAccountLink() {
+        //link
+        $this->click(self::$_selectors['orCreateAnAccount']);
+    }
+
+
+
+    /**
+     * Set default value to Email Text field.
+     *
+     */
+    function setEmailTextField($emailValue) {
+         //text
+        $this->type(self::$_selectors['email'],$emailValue);
+    }
+
+    /**
+     * Set default value to Password Password field.
+     *
+     */
+    function setPasswordPasswordField($passwordValue) {
+         //text
+        $this->type(self::$_selectors['password'],$passwordValue);
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickLogInButton();
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+        //Update w/ appropriate selector
+        $this->waitPageLoadedBySelectors(self::$_selectors);    
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return strpos($this->driver->getCurrentURL(), $this->pageUrl) !== false;
+    }
+}

@@ -1,0 +1,241 @@
+'use strict';
+
+import {
+  SESSION_TOKEN_REQUEST,
+  SESSION_TOKEN_SUCCESS,
+  SESSION_TOKEN_FAILURE,
+
+  LOGIN_STATE_LOGOUT,
+  LOGIN_STATE_REGISTER,
+  LOGIN_STATE_LOGIN,
+  LOGIN_STATE_FORGOT_PASSWORD,
+
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
+
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  
+  ON_AUTH_FORM_FIELD_CHANGE,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE
+
+} from '../constants';
+
+import Parse from '../lib/Parse';
+import AppAuthToken from '../lib/AppAuthToken';
+import _ from 'underscore';
+
+export function logoutState() {
+  return {
+    type: LOGIN_STATE_LOGOUT
+  };
+
+}
+export function registerState() {
+  return {
+    type: LOGIN_STATE_REGISTER
+  };
+}
+
+export function loginState() {
+  return {
+    type: LOGIN_STATE_LOGIN
+  };
+}
+
+export function forgotPasswordState() {
+  return {
+    type: LOGIN_STATE_FORGOT_PASSWORD
+  };
+}
+
+export function logoutRequest() {
+  return {
+    type: LOGOUT_REQUEST
+  };
+} 
+
+export function logoutSuccess() {
+  return {
+    type: LOGOUT_SUCCESS
+  };
+} 
+export function logoutFailure(error) {
+  return {
+    type: LOGOUT_FAILURE,
+    payload: error
+  };
+} 
+
+export function logout() {
+  return dispatch => {
+    
+    dispatch(logoutRequest);
+    return new AppAuthToken().getSessionToken()
+      .then((token) => {
+        return new Parse(token.sessionToken.sessionToken).logout();
+      })
+      .then((response) => {
+        if (response.status === 200 || response.status === 201) {
+          dispatch(registerState());
+          dispatch(deleteSessionToken());
+          dispatch(logoutSuccess());
+        } else {
+          dispatch(logoutFailure(JSON.parse(response._bodyInit)));
+        }
+      })
+      .catch((error) => {
+        dispatch(logoutFailure(error));
+      });
+  };
+
+}
+
+export function onAuthFormFieldChange(field,value) {
+  return {
+    type: ON_AUTH_FORM_FIELD_CHANGE,
+    payload: {field: field, value: value}
+  };
+}
+export function signupRequest() {
+  return {
+    type: SIGNUP_REQUEST
+  };
+} 
+export function signupSuccess() {
+  return {
+    type: SIGNUP_SUCCESS
+  };
+}
+export function sessionTokenRequest() {
+  return {
+    type: SESSION_TOKEN_REQUEST
+  };
+}
+export function sessionTokenRequestSuccess(token) {
+  return {
+    type: SESSION_TOKEN_SUCCESS,
+    payload: token
+  };
+}
+export function sessionTokenRequestFailure(error) {
+  return {
+    type: SESSION_TOKEN_FAILURE,
+    payload: _.isUndefined(error) ? null:error
+  };
+}
+
+export function deleteSessionToken() {
+  return dispatch => {
+    dispatch(sessionTokenRequest);
+    return new  AppAuthToken().deleteSessionToken();
+  };
+}
+export function getSessionToken() {
+  return dispatch => {
+    dispatch(sessionTokenRequest);
+    return new AppAuthToken().getSessionToken()
+      .then((token) => {
+        debugger;
+        if (token) {
+          dispatch(logoutState());
+          dispatch(sessionTokenRequestSuccess(token));
+        } else {
+          dispatch(sessionTokenRequestFailure());
+        }
+      })
+      .catch((error) => {
+        dispatch(sessionTokenRequestFailure(error));
+      });
+  };
+}
+
+export function saveSessionToken(action, json) {
+  return dispatch => {
+    return new AppAuthToken().storeSessionToken(json)
+      .then(() => {
+        switch(action) {
+        case SIGNUP_REQUEST:
+          dispatch(logoutState());
+          dispatch(signupSuccess(json));
+          
+        case LOGIN_REQUEST:
+          dispatch(logoutState());          
+          dispatch(loginSuccess(json));
+        }
+      });
+  };
+}
+
+export function signupFailure(error) {
+  return {
+    type: SIGNUP_FAILURE,
+    payload: {error}
+  };
+}
+export function signup(email, password) {
+  return dispatch => {
+    
+    dispatch(signupRequest);
+
+    return new Parse().signup({
+      username: email,
+      password: password
+    })
+      .then((response) => {
+        if (response.status === 200 || response.status === 201) {
+          dispatch(saveSessionToken(SIGNUP_REQUEST,JSON.parse(response._bodyInit)));
+        } else {
+          dispatch(signupFailure(JSON.parse(response._bodyInit)));
+        }
+      })
+      .catch((error) => {
+        console.log('signup error', error);
+        dispatch(signupFailure(error));
+      });
+  };
+}
+
+export function login(email , password) {
+  return dispatch => {
+    dispatch(loginRequest);
+    return new Parse().login({
+      username: email,
+      password: password
+    })
+      .then((response) => {
+        if (response.status === 200 || response.status === 201) {
+          dispatch(saveSessionToken(LOGIN_REQUEST,JSON.parse(response._bodyInit)));
+        } else {
+          dispatch(loginFailure(JSON.parse(response._bodyInit)));
+        }
+      })
+      .catch((error) => {
+        dispatch(loginFailure(error));
+      });
+
+  };
+}
+
+export function loginRequest() {
+  return {
+    type: LOGIN_REQUEST
+  };
+}
+
+export function loginSuccess() {
+  return {
+    type: LOGIN_SUCCESS
+  };
+}
+
+export function loginFailure(error) {
+  return {
+    type: LOGIN_FAILURE,
+    payload: error
+  };
+}

@@ -1,0 +1,18 @@
+
+//Navigate to New Cateory
+$element = $this->driver->findElement(WebDriverBy::linkText("Edit Categories"));
+$this->assertNotNull($element);        
+$element->click();
+
+//On Category new page
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("h1.pagetitle"), 'Campus Categories'));
+$url = $this->driver->getCurrentURL();
+$this->assertContains('category', $url);
+
+$this->driver->findElement(WebDriverBy::linkText("Add New"));
+$this->assertNotNull($element);        
+$element->click();
+        
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("h2.sectionheading"), 'New Category'));        
+$url = $this->driver->getCurrentURL();
+$this->assertContains('category/new', $url);

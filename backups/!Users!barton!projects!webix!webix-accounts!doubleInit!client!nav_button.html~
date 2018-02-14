@@ -1,0 +1,14 @@
+<template name="navButton">
+  <div data-id="nav-button"
+       data-name="nav-button"
+       data-view="button"
+       data-label="{{text}}"
+       data-click="{{dataClick}}"
+       data-width=100>
+  <config name="on"
+          onAfterRender="Helpers.navButtonOnAfterRender">
+  </config>
+</div>
+</template>
+
+

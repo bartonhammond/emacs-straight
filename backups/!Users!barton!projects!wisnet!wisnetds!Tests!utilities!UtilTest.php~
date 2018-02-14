@@ -1,0 +1,27 @@
+<?php
+
+require __DIR__ . "/../../utilities/Util.php";
+
+class Util extends \PHPUnit\Framework\TestCase
+{
+    public function testPasswordFailsDueToLength() {
+        $result = \Util::validatePassword('pass');
+        $this->assertFalse($result);
+    }
+    public function testPasswordFailsWithNoUpperCaseLetter() {
+        $result = \Util::validatePassword('123456789');
+        $this->assertFalse($result);
+    }
+    public function testPasswordSuccessed() {
+        $result = \Util::validatePassword('1234567A');
+        $this->assertTrue($result);
+    }
+    public function testEmailFails() {
+        $result = \Util::validateEmail('barton');
+        $this->assertFalse($result);
+    }
+    public function testEmailSucceeds() {
+        $result = \Util::validateEmail("barton@gmail.com");
+        $this->assertEquals($result, "barton@gmail.com");
+    }    
+}

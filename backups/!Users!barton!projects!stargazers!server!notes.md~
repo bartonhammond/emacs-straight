@@ -1,0 +1,21 @@
+FreeCodeCamp/FreeCodeCamp  81K  128  203  335  415 -> total
+angular/angular.js         47K  
+mbostock/d3                47K   85
+jquery/jquery              38K
+facebook/react             36K   69  132
+h5bp/html5-boilerplate     33K
+meteor/meteor              33K   63
+airbnb/javascript          30K
+getify/You-Dont-Know-JS    27K   53  80    80
+impress/impress.js         26K
+hakimel/reveal.js          27K   27
+                       -------
+
+
+415K stargazers x 5 pieces of data: 2M x 150
+11 repositories w/ 2 pices of data: 22
+
+81K x
+
+The below object is a User which is 150 chars
+{login:'bartonhammond',avatar_url:'https://avatars.githubusercontent.com/u/1282364?v=3',name:'Barton Hammond',location:'Columbia, MO',public_repos:58}

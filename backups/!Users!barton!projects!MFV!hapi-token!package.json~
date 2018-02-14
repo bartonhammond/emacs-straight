@@ -1,0 +1,33 @@
+{
+  "name": "hapi-token",
+  "version": "1.0.0",
+  "description": "hapijs with jwt auth starter project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stoianmarius/hapi-token.git"
+  },
+  "keywords": [
+    "hapi",
+    "jwt",
+    "auth",
+    "node"
+  ],
+  "author": "Marius Stoian <stoianmarius@live.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stoianmarius/hapi-token/issues"
+  },
+  "homepage": "https://github.com/stoianmarius/hapi-token#readme",
+  "dependencies": {
+    "hapi": "^10.0.1",
+    "hapi-auth-jwt": "^3.0.0",
+    "joi": "^6.7.1",
+    "jsonwebtoken": "^5.0.5",
+    "mongoose": "^4.1.8",
+    "nodemailer": "^1.11.0"
+  }
+}

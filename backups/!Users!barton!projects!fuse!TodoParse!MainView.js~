@@ -1,0 +1,136 @@
+var Observable = require("FuseJS/Observable");
+
+//Fill in your own keys to make Parse functionality work
+var appID = "insert your applicationID";
+var jsKey = "insert your own JavaScript key";
+
+var Parse = require("Parse").Parse;
+
+Parse.initialize(appID, jsKey);
+
+var ParseTask = Parse.Object.extend("Task");
+
+function Task(title, checked, id, parseObject){
+	var self = this;
+	this.title = title;
+	this.checked = Observable(checked);
+	this.id = id;
+	this.hidden = Observable(function(){
+		if (currentTab.value == "all")
+			return false;
+		else if (currentTab.value == "active")
+			return self.checked.value ? true : false;
+		else
+			return self.checked.value ? false : true;
+	});
+	this.parseObject = parseObject;
+}
+
+var todoList = Observable();
+var titleInput = Observable("Enter task here");
+var currentTab = Observable("all");
+
+
+var remainingCount = todoList.count(function(x){
+	return x.checked.not();
+});
+
+var remainingText = remainingCount.map(function(x){
+	return x + " " + ((x == 1) ? "task" : "tasks") + " remaining";
+});
+
+var canClearCompleted = todoList.count(function(x){
+	return x.checked;
+}).map(function(x){
+	return x > 0;
+});
+
+function refreshItems()
+{
+	var query = new Parse.Query(ParseTask);
+	query.find().then(function(results){
+		todoList.refreshAll(results,
+
+			// Compare function - used by refreshAll to identify matching objects
+			// We compare the tasks by id
+			function(existing, fromParse) { return existing.id === fromParse.id; },
+
+			// Match function - When refreshAll finds a match, it will be updated using this function
+			// We set the checked-property of the exiting Task using data from Parse
+			function(existing, fromParse) { existing.checked.value = fromParse.get("checked"); },
+
+			// New function - Called when refreshAll finds new object in the database that did not exist in the todoList
+			// We create a new Task in response
+			function(fromParse) { return new Task(fromParse.get("title"), fromParse.get("checked"), fromParse.id, fromParse); }
+		);
+	});
+}
+
+refreshItems();
+
+function addItem(arg) {
+	var task = new ParseTask();
+	task.set("title", titleInput.value);
+	task.set("checked", false);
+	task.save().then(function(result){
+		refreshItems();
+	});
+}
+
+function deleteItem(arg){
+	todoList.remove(arg.data);
+	arg.data.parseObject.destroy();
+}
+
+function toggleAll(arg) {
+	var remaining = remainingCount.value;
+	todoList.forEach(function(x){
+		x.checked.value = (remaining == 0) ? false : true;
+		x.parseObject.set("checked", x.checked.value);
+		x.parseObject.save();
+	});
+}
+
+function toggleItem(arg) {
+	arg.data.checked.value = !arg.data.checked.value;
+	arg.data.parseObject.set("checked", arg.data.checked.value);
+	arg.data.parseObject.save();
+}
+
+function clearCompleted() {
+	todoList.removeWhere(function(x) {
+		if(x.checked.value) {
+			x.parseObject.destroy();
+			return true;
+		}
+		return false;
+	});
+}
+
+function showAll() {
+	currentTab.value = "all";
+}
+
+function showActive() {
+	currentTab.value = "active";
+}
+
+function showCompleted() {
+	currentTab.value = "completed";
+}
+
+module.exports = {
+	todoList: todoList,
+	titleInput: titleInput,
+	currentTab: currentTab,
+	remainingText: remainingText,
+	canClearCompleted: canClearCompleted,
+	addItem: addItem,
+	deleteItem: deleteItem,
+	toggleAll: toggleAll,
+	toggleItem: toggleItem,
+	clearCompleted: clearCompleted,
+	showAll: showAll,
+	showActive: showActive,
+	showCompleted: showCompleted
+};

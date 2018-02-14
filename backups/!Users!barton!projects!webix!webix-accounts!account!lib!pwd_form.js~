@@ -1,0 +1,9 @@
+'use strict';
+
+Template.pwdForm.helpers({
+  fields: function() {
+    var fields =  WebixDefaults.getFields();
+    return fields;
+  }
+});
+

@@ -1,0 +1,9 @@
+<template name="postForm">
+  <div data-view="form"
+       data-type="line"
+       data-borderless="true"
+       data-id="pwd-form"
+       data-name="pwd-form">
+
+  </div>
+</template>

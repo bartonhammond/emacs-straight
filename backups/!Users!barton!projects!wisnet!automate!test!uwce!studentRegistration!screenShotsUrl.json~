@@ -1,0 +1,98 @@
+[
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/catalog",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/login",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course?courseSearch_recordStart=0&courseSearch_termId=&courseSearch_categoryId=&courseSearch_status=0&courseSearch_keyword=BWH+Music+Course",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course\/943",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/create-account",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/account",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/catalog\/search",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/catalog\/bwh-music-course\/539",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/registration",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/billing\/587",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/card-info\/587",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/billing\/588",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/card-info\/588",
+        "base_test_id": "",
+        "base_version_id": "",
+        "target_version_id": ""
+    }
+]

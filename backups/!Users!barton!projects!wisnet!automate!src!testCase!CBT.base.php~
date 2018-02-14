@@ -1,0 +1,188 @@
+<?php
+namespace Automate;
+
+use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDrniver\WebDriverExpectedConditions;
+use PHPUnit\Framework\TestCase;
+
+require_once './src/utilities/CurlSupport.class.php';
+require_once './src/utilities/ScreenShots.class.php';
+require_once './src/utilities/AutomateFile.class.php';
+require_once './src/utilities/ProjectFile.class.php';
+
+class BaseTestCase extends TestCase {
+
+    protected $seleniumTestId="";
+    protected $driver;    
+    protected $ch;
+    protected $directory;
+    protected $isMobile = false;
+    protected $isLocal = false;    
+
+    protected $curlSupport;
+    protected $screenShots;
+    protected $screenShotsWereEmpty;
+    protected $automateFile;
+    protected $projectFile;
+    protected $isFunctionTest = false;
+    
+    public function setUp() {
+        if (!$this->isFunctionTest) {
+            $name = getenv('NAME');
+            $build = getenv('BUILD');
+            $this->directory = getenv('DIRECTORY');
+            $browserName = getenv("BROWSER_NAME");
+            $version = getenv("VERSION");
+            $platform = getenv("PLATFORM_NAME");
+            $deviceName = getenv("DEVICE_NAME");
+            $this->username = getenv("USER_NAME");
+            $this->authkey = getenv("AUTHKEY");
+            $this->isLocal = getenv("ISLOCAL");
+            echo "BaseTestCase.isLocal: " . $this->isLocal . "\n";
+            
+            $this->curlSupport = new CurlSupport($this->username,
+                                                 $this->authkey);
+        
+            $this->screenShots = new ScreenShots($this->username,
+                                                 $this->authkey);
+
+            $this->automateFile = new AutomateFile($this->directory . '/../../');
+
+            $this->projectFile = new ProjectFile($this->directory . '/../../../');
+         
+            $mapOfUrls = $this->screenShots->getScreenShotURLs($this->directory . '/../../');
+            $this->screenShotsWereEmpty = $mapOfUrls->isEmpty();
+        }
+
+        
+        if (!$this->isFunctionTest) {
+            if ($deviceName === false) {
+                //desktop
+                $this->isMobile = false;
+                $capabilities = array("name"=> $name,
+                                      "build"=> $build,
+                                      "browserName" => $browserName,
+                                      "version" => $version,
+                                      "platform" => $platform,
+                                      "record_video" => "true",
+                                      "take_snapshot" => "true",
+                                      "record_network" => "true",
+                                      "max_duration" => 14400);
+            } else {
+                //mobile
+                $this->isMobile = true;            
+                $capabilities = array("name"=> $name,
+                                      "build"=> $build,
+                                      "browserName" => $browserName,
+                                      "deviceName" => $deviceName,
+                                      "record_video" => "true",
+                                      "max_duration" => 14400);
+            }
+        }
+        
+        $attempts = 0;
+        $MAX_ATTEMPTS = 3;
+        do {
+            try {
+                if ($this->isLocal) {
+                    $host = 'http://0.0.0.0:4444/wd/hub';                    
+                    echo "BaseTestCase starting local\n";
+                    $this->driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome(), 50000, 50000);
+                } else {
+                    echo "BaseTestCase starting CBT\n";
+                    $host = "http://" . $this->username . ":" . $this->authkey . "@hub.crossbrowsertesting.com:80/wd/hub";                    
+                    $this->driver = RemoteWebDriver::create($host, $capabilities, 500000, 500000 );                    
+                }
+                $attempts = $MAX_ATTEMPTS;
+            } catch (\Exception $e) {
+                echo "Failed to create RemoteWebDriver\n";
+                $attempts++;
+            }
+            
+        }  while ($attempts < $MAX_ATTEMPTS);
+        $this->getSeleniumTestId();                
+    }
+    public function setScreenShotVariableInProject($key, $value) {
+        $this->projectFile->addScreenShotVariable($key, $value);
+    }    
+    public function setScreenShotVariableInAutomate($key, $value) {
+        $this->automateFile->addScreenShotVariable($key, $value);
+    }
+    /*
+     * Print value to console so runTest can snarf it
+     */ 
+    public function getSeleniumTestId() {
+        if ($this->isLocal) {
+            return;
+        }
+        $url = "https://crossbrowsertesting.com/api/v3/selenium?format=json&num=1&active=true";
+        
+        $json = $this->curlSupport->callApi($url);
+
+        $this->seleniumTestId = $json->selenium[0]->selenium_test_id;
+        print "seleniumTestId=" . $this->seleniumTestId . "\n";
+    }
+    
+    public function addDescriptiontoSnapshot($hash) {
+        if ($this->isLocal) {
+            return;
+        }        
+        sleep(2);
+        $url = 'https://crossbrowsertesting.com/api/v3/selenium/'
+             . $this->seleniumTestId
+             . '/snapshots/'
+             . $hash;
+
+        $description = $this->driver->getCurrentURL();
+        
+        //Track which URLs are used in the test
+        //But only when first running.
+        //Deleet the file if wanting to recreate the list
+        if ($this->screenShotsWereEmpty) {
+            $this->screenShots->saveUrlIfNeeded($description);
+        }
+
+        $data = array(
+            'description' => $description
+        );
+
+        $jsonData = $this->curlSupport->callApi($url, "PUT", $data);
+    }
+    
+    public function takeSnapShot() {
+        if ($this->isLocal) {
+            return;
+        }        
+        sleep(2);
+        $url = 'https://crossbrowsertesting.com/api/v3/selenium/' . $this->seleniumTestId . '/snapshots';
+
+        $attempts = 0;
+        $MAX_ATTEMPTS = 3;
+        do {
+            try {
+                sleep(2);
+                $jsonData = $this->curlSupport->callApi($url, "POST", array());
+                $this->addDescriptiontoSnapshot($jsonData->hash);
+                $attempts = $MAX_ATTEMPTS;
+            } catch(\Exception $e) {
+                $attempts++;
+                echo "\nFailed takeSnapShot " . $attempts . "\n";
+                echo $e;
+            }//try
+        } while ($attempts < $MAX_ATTEMPTS);
+    }
+
+    /* This is the actual function that gets run by PhpUnit
+     * Sometimes it fails so try 3 times
+     */
+    public function testRunner() {
+        $this->thisFunction();
+    }
+
+    
+    public function tearDown() {
+        $this->driver->quit();
+    }
+}

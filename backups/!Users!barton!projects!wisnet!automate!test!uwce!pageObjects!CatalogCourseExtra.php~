@@ -1,0 +1,625 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickAddNewRegistrantLink",
+        "attributeType": "link",
+       "attributeName": "addNewRegistrant",
+        "attributeStrategy": "css",
+        "attributeValue": "a.ajax-action.btn.btn-default"
+     },
+
+    {     
+        "operationName": "clickBillingLink3",
+        "attributeType": "link",
+       "attributeName": "billing3",
+        "attributeStrategy": "css",
+        "attributeValue": "#registrantsform div:nth-of-type(1) span:nth-of-type(2) a:nth-of-type(3)"
+     },
+
+    {     
+        "operationName": "clickBwhMusicCourseLink",
+        "attributeType": "link",
+       "attributeName": "bwhMusicCourse",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/catalog/bwh-music-course&#x27;]"
+     },
+
+    {     
+        "operationName": "clickConfirmLink2",
+        "attributeType": "link",
+       "attributeName": "confirm2",
+        "attributeStrategy": "css",
+        "attributeValue": "#registrantsform div:nth-of-type(1) span:nth-of-type(2) a:nth-of-type(2)"
+     },
+
+    {     
+        "operationName": "clickContinueToCartButton",
+        "attributeType": "button",
+       "attributeName": "continueToCart",
+        "attributeStrategy": "css",
+        "attributeValue": "button.btn.btn-primary.add-to-cart.disabled"
+     },
+
+    {     
+        "operationName": "clickCourseCatalogLink",
+        "attributeType": "link",
+       "attributeName": "courseCatalog",
+        "attributeStrategy": "css",
+        "attributeValue": "#b a"
+     },
+
+    {     
+        "operationName": "clickFindDescriptionsAndDetailsOnAllLink",
+        "attributeType": "link",
+       "attributeName": "findDescriptionsAndDetailsOnAll",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/catalog/bwh-music-course/407#workshops&#x27;]"
+     },
+
+    {     
+        "operationName": "clickHomeLink",
+        "attributeType": "link",
+       "attributeName": "home",
+        "attributeStrategy": "css",
+        "attributeValue": "#a a"
+     },
+
+    {     
+        "operationName": "clickPaymentLink4",
+        "attributeType": "link",
+       "attributeName": "payment4",
+        "attributeStrategy": "css",
+        "attributeValue": "#registrantsform div:nth-of-type(1) span:nth-of-type(2) a:nth-of-type(4)"
+     },
+
+    {     
+        "operationName": "clickSelectRegistrantsLink1",
+        "attributeType": "link",
+       "attributeName": "selectRegistrants1",
+        "attributeStrategy": "css",
+        "attributeValue": "a.current"
+     },
+
+    {     
+        "operationName": "clickShareToFacebookfacebookLink",
+        "attributeType": "link",
+       "attributeName": "shareToFacebookfacebook",
+        "attributeStrategy": "css",
+        "attributeValue": "a.at-icon-wrapper.at-share-btn.at-svc-facebook"
+     },
+
+    {     
+        "operationName": "clickShareToGooglegoogleLink",
+        "attributeType": "link",
+       "attributeName": "shareToGooglegoogle",
+        "attributeStrategy": "css",
+        "attributeValue": "a.at-icon-wrapper.at-share-btn.at-svc-google_plusone_share"
+     },
+
+    {     
+        "operationName": "clickShareToLinkedinlinkedinLink",
+        "attributeType": "link",
+       "attributeName": "shareToLinkedinlinkedin",
+        "attributeStrategy": "css",
+        "attributeValue": "a.at-icon-wrapper.at-share-btn.at-svc-linkedin"
+     },
+
+    {     
+        "operationName": "clickShareToPinterestpinterestLink",
+        "attributeType": "link",
+       "attributeName": "shareToPinterestpinterest",
+        "attributeStrategy": "css",
+        "attributeValue": "a.at-icon-wrapper.at-share-btn.at-svc-pinterest_share"
+     },
+
+    {     
+        "operationName": "clickShareToTwittertwitterLink",
+        "attributeType": "link",
+       "attributeName": "shareToTwittertwitter",
+        "attributeStrategy": "css",
+        "attributeValue": "a.at-icon-wrapper.at-share-btn.at-svc-twitter"
+     },
+
+    {     
+        "operationName": "clickStep1Of4Link",
+        "attributeType": "link",
+       "attributeName": "step1Of4",
+        "attributeStrategy": "css",
+        "attributeValue": "#registrantsform div:nth-of-type(1) span:nth-of-type(1) a"
+     },
+
+
+
+    {     
+        "operationName": "setIAmRegisteringMyselfCheckboxField",
+        "attributeType": "checkbox",
+       "attributeName": "iAmRegisteringMyself",
+        "attributeStrategy": "id",
+        "attributeValue": "registerself"
+     },
+
+    {     
+        "operationName": "setIAmRegisteringOtherPeopleCheckboxField",
+        "attributeType": "checkbox",
+       "attributeName": "iAmRegisteringOtherPeople",
+        "attributeStrategy": "id",
+        "attributeValue": "registerothers"
+     },
+
+    {     
+        "operationName": "setWorkshops1DropDownListField",
+        "operationArgument" : "workshops1Value",
+        "attributeType": "checkbox",
+       "attributeName": "workshops1",
+        "attributeStrategy": "name",
+        "attributeValue": "reg_userId[]"
+     },
+
+    {     
+        "operationName": "setWorkshops2DropDownListField",
+        "operationArgument" : "workshops2Value",
+        "attributeType": "select",
+       "attributeName": "workshops2",
+        "attributeStrategy": "name",
+        "attributeValue": "reg_292_q341_answer"
+     },
+
+    {     
+        "operationName": "setWorkshops3DropDownListField",
+        "operationArgument" : "workshops3Value",
+        "attributeType": "select",
+       "attributeName": "workshops3",
+        "attributeStrategy": "name",
+        "attributeValue": "reg_292_wts84_workshopId"
+     },
+
+
+    {     
+        "operationName": "unsetIAmRegisteringMyselfCheckboxField",
+        "attributeType": "checkbox",
+       "attributeName": "iAmRegisteringMyself",
+        "attributeStrategy": "id",
+        "attributeValue": "registerself"
+     },
+
+    {     
+        "operationName": "unsetIAmRegisteringOtherPeopleCheckboxField",
+        "attributeType": "checkbox",
+       "attributeName": "iAmRegisteringOtherPeople",
+        "attributeStrategy": "id",
+        "attributeValue": "registerothers"
+     },
+
+    {     
+        "operationName": "unsetWorkshops1DropDownListField",
+        "operationArgument" : "workshops1Value",
+        "attributeType": "checkbox",
+       "attributeName": "workshops1",
+        "attributeStrategy": "name",
+        "attributeValue": "reg_userId[]"
+     },
+
+    {     
+        "operationName": "unsetWorkshops2DropDownListField",
+        "operationArgument" : "workshops2Value",
+        "attributeType": "select",
+       "attributeName": "workshops2",
+        "attributeStrategy": "name",
+        "attributeValue": "reg_292_q341_answer"
+     },
+
+    {     
+        "operationName": "unsetWorkshops3DropDownListField",
+        "operationArgument" : "workshops3Value",
+        "attributeType": "select",
+       "attributeName": "workshops3",
+        "attributeStrategy": "name",
+        "attributeValue": "reg_292_wts84_workshopId"
+     },
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class CatalogCourse extends \Automate\Page {
+
+
+
+
+
+
+
+
+
+
+     protected $pageLoadedText = "Find descriptions and details on all workshops offered in this program below";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/catalog/bwh-music-course/407";
+
+
+
+
+
+
+
+
+
+
+
+   private static $_selectors = [
+    "addNewRegistrant" =>
+    [
+       "css" => "a.ajax-action.btn.btn-default"
+    ],
+
+    "billing3" =>
+    [
+       "css" => "#registrantsform div:nth-of-type(1) span:nth-of-type(2) a:nth-of-type(3)"
+    ],
+
+    "bwhMusicCourse" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/catalog/bwh-music-course']"
+    ],
+
+    "confirm2" =>
+    [
+       "css" => "#registrantsform div:nth-of-type(1) span:nth-of-type(2) a:nth-of-type(2)"
+    ],
+
+    "continueToCart" =>
+    [
+       "css" => "button.btn.btn-primary.add-to-cart.disabled"
+    ],
+
+    "courseCatalog" =>
+    [
+       "css" => "#b a"
+    ],
+
+    "findDescriptionsAndDetailsOnAll" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/catalog/bwh-music-course/407#workshops']"
+    ],
+
+    "home" =>
+    [
+       "css" => "#a a"
+    ],
+
+    "iAmRegisteringMyself" =>
+    [
+       "id" => "registerself"
+    ],
+
+    "iAmRegisteringOtherPeople" =>
+    [
+       "id" => "registerothers"
+    ],
+
+
+
+    "payment4" =>
+    [
+       "css" => "#registrantsform div:nth-of-type(1) span:nth-of-type(2) a:nth-of-type(4)"
+    ],
+
+    "selectRegistrants1" =>
+    [
+       "css" => "a.current"
+    ],
+
+    "shareToFacebookfacebook" =>
+    [
+       "css" => "a.at-icon-wrapper.at-share-btn.at-svc-facebook"
+    ],
+
+    "shareToGooglegoogle" =>
+    [
+       "css" => "a.at-icon-wrapper.at-share-btn.at-svc-google_plusone_share"
+    ],
+
+    "shareToLinkedinlinkedin" =>
+    [
+       "css" => "a.at-icon-wrapper.at-share-btn.at-svc-linkedin"
+    ],
+
+    "shareToPinterestpinterest" =>
+    [
+       "css" => "a.at-icon-wrapper.at-share-btn.at-svc-pinterest_share"
+    ],
+
+    "shareToTwittertwitter" =>
+    [
+       "css" => "a.at-icon-wrapper.at-share-btn.at-svc-twitter"
+    ],
+
+    "step1Of4" =>
+    [
+       "css" => "#registrantsform div:nth-of-type(1) span:nth-of-type(1) a"
+    ],
+
+    "workshops1" =>
+    [
+       "name" => "reg_userId[]"
+    ],
+
+    "workshops2" =>
+    [
+       "name" => "reg_292_q341_answer"
+    ],
+
+    "workshops3" =>
+    [
+       "name" => "reg_292_wts84_workshopId"
+    ],
+    ];
+    /**
+     * Click on Add New Registrant Link.
+     *
+     */
+    function clickAddNewRegistrantLink() {
+        //link
+        $this->click(self::$_selectors['addNewRegistrant']);
+    }
+
+    /**
+     * Click on 3billing Link.
+     *
+     */
+    function clickBillingLink3() {
+        //link
+        $this->click(self::$_selectors['billing3']);
+    }
+
+    /**
+     * Click on Bwh Music Course Link.
+     *
+     */
+    function clickBwhMusicCourseLink() {
+        //link
+        $this->click(self::$_selectors['bwhMusicCourse']);
+    }
+
+    /**
+     * Click on 2confirm Link.
+     *
+     */
+    function clickConfirmLink2() {
+        //link
+        $this->click(self::$_selectors['confirm2']);
+    }
+
+    /**
+     * Click on Continue To Cart Button.
+     *
+     */
+    function clickContinueToCartButton() {
+        //button
+        $this->click(self::$_selectors['continueToCart']);
+    }
+
+    /**
+     * Click on Course Catalog Link.
+     *
+     */
+    function clickCourseCatalogLink() {
+        //link
+        $this->click(self::$_selectors['courseCatalog']);
+    }
+
+    /**
+     * Click on Find Descriptions And Details On All Workshops Offered In This Program Below. Link.
+     *
+     */
+    function clickFindDescriptionsAndDetailsOnAllLink() {
+        //link
+        $this->click(self::$_selectors['findDescriptionsAndDetailsOnAll']);
+    }
+
+    /**
+     * Click on Home Link.
+     *
+     */
+    function clickHomeLink() {
+        //link
+        $this->click(self::$_selectors['home']);
+    }
+
+    /**
+     * Click on 4payment Link.
+     *
+     */
+    function clickPaymentLink4() {
+        //link
+        $this->click(self::$_selectors['payment4']);
+    }
+
+    /**
+     * Click on 1select Registrants Link.
+     *
+     */
+    function clickSelectRegistrantsLink1() {
+        //link
+        $this->click(self::$_selectors['selectRegistrants1']);
+    }
+
+    /**
+     * Click on Share To Facebookfacebook Link.
+     *
+     */
+    function clickShareToFacebookfacebookLink() {
+        //link
+        $this->click(self::$_selectors['shareToFacebookfacebook']);
+    }
+
+    /**
+     * Click on Share To Googlegoogle Link.
+     *
+     */
+    function clickShareToGooglegoogleLink() {
+        //link
+        $this->click(self::$_selectors['shareToGooglegoogle']);
+    }
+
+    /**
+     * Click on Share To Linkedinlinkedin Link.
+     *
+     */
+    function clickShareToLinkedinlinkedinLink() {
+        //link
+        $this->click(self::$_selectors['shareToLinkedinlinkedin']);
+    }
+
+    /**
+     * Click on Share To Pinterestpinterest Link.
+     *
+     */
+    function clickShareToPinterestpinterestLink() {
+        //link
+        $this->click(self::$_selectors['shareToPinterestpinterest']);
+    }
+
+    /**
+     * Click on Share To Twittertwitter Link.
+     *
+     */
+    function clickShareToTwittertwitterLink() {
+        //link
+        $this->click(self::$_selectors['shareToTwittertwitter']);
+    }
+
+    /**
+     * Click on Step 1 Of 4 Link.
+     *
+     */
+    function clickStep1Of4Link() {
+        //link
+        $this->click(self::$_selectors['step1Of4']);
+    }
+
+
+
+    /**
+     * Set I Am Registering Myself. Checkbox field.
+     *
+     */
+    function setIAmRegisteringMyselfCheckboxField() {
+    }
+
+    /**
+     * Set I Am Registering Other People Checkbox field.
+     *
+     */
+    function setIAmRegisteringOtherPeopleCheckboxField() {
+    }
+
+    /**
+     * Set default value to Workshops Drop Down List field.
+     *
+     */
+    function setWorkshops1DropDownListField($workshops1Value) {
+    }
+
+    /**
+     * Set default value to Workshops Drop Down List field.
+     *
+     */
+    function setWorkshops2DropDownListField($workshops2Value) {
+        //select
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["workshops2"]));
+        $webDriverSelect->selectByVisibleText($workshops2Value);        
+    }
+
+    /**
+     * Set default value to Workshops Drop Down List field.
+     *
+     */
+    function setWorkshops3DropDownListField($workshops3Value) {
+        //select
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["workshops3"]));
+        $webDriverSelect->selectByVisibleText($workshops3Value);        
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickContinueToCartButton();
+    }
+
+    /**
+     * Unset I Am Registering Myself. Checkbox field.
+     *
+     */
+    function unsetIAmRegisteringMyselfCheckboxField() {
+    }
+
+    /**
+     * Unset I Am Registering Other People Checkbox field.
+     *
+     */
+    function unsetIAmRegisteringOtherPeopleCheckboxField() {
+    }
+
+    /**
+     * Unset default value from Workshops Drop Down List field.
+     *
+     */
+    function unsetWorkshops1DropDownListField($workshops1Value) {
+    }
+
+    /**
+     * Unset default value from Workshops Drop Down List field.
+     *
+     */
+    function unsetWorkshops2DropDownListField($workshops2Value) {
+        //select
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["workshops2"]));
+        $webDriverSelect->selectByVisibleText($workshops2Value);        
+    }
+
+    /**
+     * Unset default value from Workshops Drop Down List field.
+     *
+     */
+    function unsetWorkshops3DropDownListField($workshops3Value) {
+        //select
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["workshops3"]));
+        $webDriverSelect->selectByVisibleText($workshops3Value);        
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+         $text = $this->pageLoadedText;
+        $driver = $this->driver;
+        return $driver->wait(self::WAIT_TIME, self::ITERATE_TIME)->until(
+            function () use ($driver, $text)  {
+                try {
+                    $source = $driver->getPageSource();
+                    if (strpos($source,$text) !== false) {
+                        return true;
+                    }
+                    return false;
+                } catch (\Exception $e) {
+                    return false;
+                }
+        });
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return strpos($this->driver->getCurrentURL(), $this->pageUrl) !== false;
+    }
+}

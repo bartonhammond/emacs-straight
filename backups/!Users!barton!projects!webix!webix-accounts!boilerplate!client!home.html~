@@ -1,0 +1,6 @@
+<template name="home">
+  <div data-id="_home" data-view="label"
+       data-height=80 data-css="container"
+       data-template="<h1>Hello World</h1>">
+  </div>
+</template>

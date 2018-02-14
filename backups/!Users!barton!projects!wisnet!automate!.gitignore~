@@ -1,0 +1,8 @@
+.idea/
+/vendor/
+**/.DS_Store
+*.log
+browsers.json
+**/test.php
+**/output/*
+**/screenShotsUrl.json

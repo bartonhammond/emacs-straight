@@ -1,0 +1,37 @@
+'use strict';
+
+var MapBoxData = require('./MapBoxData');
+let mapBoxData = new MapBoxData();
+
+var fs = require('fs');
+
+let _ = require('underscore');
+
+class getLongsTest {
+  async test() {
+    try {
+      let results = await mapBoxData.getAllStarGazers('bartonhammond','snowflake');
+      debugger;
+      let stargazers = [];
+      if (_.isArray(results) && _.isArray(results[0])){
+        for (let result of results) {
+          stargazers.push(...result);
+        }
+      } else {
+        stargazers = results;
+      }
+      debugger;
+      let stargazerBios = await mapBoxData.getAllStarGazersBio(stargazers);
+
+      debugger;
+      let allGPS = await mapBoxData.getAllGPS(stargazerBios);
+
+      fs.writeFileSync('./allGPS.geojson', JSON.stringify(allGPS, null, 2));
+      debugger;
+      
+    } catch (err) {
+      console.log('getStarGazer.error',err);
+    }
+  }
+}
+(new getLongsTest()).test();

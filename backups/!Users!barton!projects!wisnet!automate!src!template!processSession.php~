@@ -1,0 +1,110 @@
+<?php
+namespace Automate;
+
+class ProcessSessions {
+    protected $username;
+    protected $authkey;
+    protected $output_directory;
+    protected $selenium;
+    protected $curlSupport;
+    protected $url = "https://crossbrowsertesting.com/api/v3/selenium/";
+    protected $filename;
+    
+    function __construct($username, $authkey, $output_directory, $filename) {
+        $this->username = $username;
+        $this->authkey = $authkey;
+        $this->curlSupport = new CurlSupport($username, $authkey);
+        $this->output_directory = $output_directory;
+        $this->filename = $filename;
+   }
+    
+    //Start an HTML row
+    //Display green if ok
+    protected function _htmlRowStart($pageName, $hasError) {
+        
+        $class = "test-success";
+        if ($hasError) {
+            $class =  "test-failed";
+        }
+      
+        $button = '<button type="button"'
+        .  ' class="viewLog" data-toggle="modal" data-target="#logModal"'
+        . ' data-whatever="' . $pageName . '">View Log</button>';
+        
+        return '<tr><th class="'
+        . $class .'" valign="middle">'
+        . $pageName
+        . '<br> '
+        . $button
+        . '</th>';
+
+    }
+    
+    //Create a TD
+    protected function _htmlTD($url, $pageName, $pageUrl) {
+        return '<td>'
+        . '<p class="screenshot-name">'
+        . $pageUrl
+        . '</p>'
+        . '<p class="screenshot-os">'
+        . $pageName
+        . '</p>'
+        . '<img class="screenshot-img" src="' . $url
+        . '"></td>';
+    }
+    
+    //Create video in TD
+    protected function _htmlVideo($url) {
+        return '<td><video width="320" height="240" controls><source src="' . $url . '" type="video/mp4"></video></td>';
+    }
+    
+    //End the row
+    protected function _htmlRowEnd() {
+        return "</tr>";
+    }
+
+    public function printBrowser() {
+        print "Browser: \n";
+        print "  name: " . $this->selenium->browser->name . "\n";
+        print "  version: " . $this->selenium->browser->version . "\n";
+        print "  api_name: " . $this->selenium->browser->api_name . "\n";
+    }
+
+    /*
+     * Save json for automation tests
+     */
+    public function getLogs($seleniumTestId) {
+        $url = $this->url . $seleniumTestId;
+        $this->selenium = $this->curlSupport->callApi($url);
+         file_put_contents($this->output_directory
+                           . '/'
+                           . $this->filename
+                           . '.auto.json'
+                           , json_encode($this->selenium,
+                                         JSON_PRETTY_PRINT)
+                           ,FILE_APPEND | LOCK_EX);
+    }
+
+    public function printSnapShots($hasError, $device) {
+        //Write out the file
+        ob_start();
+        print $this->_htmlRowStart($device, $hasError);
+  
+        //Video in first cell
+        print $this->_htmlVideo($this->selenium->videos[0]->video);
+
+        //Each debug is a screen shot
+        foreach($this->selenium->snapshots as $image) {
+            print $this->_htmlTD($image->image, $device, $image->description);
+        }
+
+        print $this->_htmlRowEnd();
+        $resultsString = ob_get_clean();
+
+        file_put_contents($this->output_directory . '/snapshots.html', $resultsString, FILE_APPEND | LOCK_EX);
+
+
+    }
+}
+
+?>

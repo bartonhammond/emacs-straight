@@ -1,0 +1,29 @@
+protected $main;
+protected $courseCatalogPage;
+protected $loginPage;
+protected $adminPage;
+protected $categoryPage;
+protected $coursePage;
+protected $session;
+protected $termPage;
+protected $cpPage;
+protected $cpDisplayPage;
+protected $workshopPage;
+protected $timeSlotsPage;
+
+
+public function constructor(RemoteWebDriver $driver, $isMobile) {
+    $this->main = new MainPage($driver, $isMobile,["css" => "div#primary h2"]);
+    $this->courseCatalogPage = new CourseCatalogPage($driver, $isMobile, ["css" => "div#primary h1"]);
+    $this->loginPage = new LoginPage($driver, $isMobile, [ "css" => "div#primary header > h1"]);
+    $this->adminPage = new AdminPage($driver, $isMobile, ["css" => "div#primary h1"]);
+    $this->categoryPage = new CategoryPage($driver, $isMobile, ["css" => "h2.sectionheading"]);
+    $this->coursePage = new CoursePage($driver, $isMobile, ["css" => "div#primary h2"]);
+    $this->session = new SessionPage($driver, $isMobile, ["css" => "div#primary section > div > h3"]);
+    $this->termPage = new TermPage($driver, $isMobile, [ "css" => "h2.sectionheading"]);
+    $this->cpPage = new CourseAndProgramPage($driver, $isMobile,["css" => "div#primary h1"]);
+    $this->cpDisplayPage = new CourseProgramDisplayPage($driver, $isMobile,["css" => "div#primary h2"]);
+    $this->workshopPage = new WorkshopPage($driver, $isMobile, [ "css" => "h3.modal-title"]);
+    $this->timeSlotsPage = new TimeSlotsPage($driver, $isMobile, ["css" => "h3.modal-title"]);            
+}
+

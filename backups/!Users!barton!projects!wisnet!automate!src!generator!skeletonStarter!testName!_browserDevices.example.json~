@@ -1,0 +1,9 @@
+[
+    {
+        "device": "desktop",
+        "browserName": "Chrome",
+        "version": "62x64",
+        "platformName": "Mac OSX 10.12",
+        "deviceName": ""
+    }
+  ]

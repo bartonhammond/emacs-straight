@@ -1,0 +1,43 @@
+Snowflake has 1000 stargazer
+
+For each of these stargazers we can find the other projects they have
+starred
+
+                User 1   User 2 User 3  User 4    Total
+project 1        Y               Y                  2  - Project to checkout
+project 2                 Y                         1
+project 3                               Y           1
+
+
+
+Each person is followed by people
+
+               User 1   User 2   User 3   Total
+person a        Y                           1
+person b                Y         Y         2 -> Person to follow
+person c                          Y         1
+
+
+Each person follows people
+              User 1    User 2  User 3
+person a        Y        Y
+person b        Y
+person c                          Y
+                ^
+                Follow user 1
+
+
+Popular Github Project
+Project to follow
+{}  key is repo full name
+  properties:
+      array of logins
+
+
+Which stargazer is followed the most?
+
+Who is followed the most by the stargazers?
+{} followed person: key is login
+   properties:
+      array of stargazer logins
+ 

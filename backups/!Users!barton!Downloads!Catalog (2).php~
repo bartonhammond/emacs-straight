@@ -1,0 +1,232 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class Catalog extends \Automate\Page {
+
+
+
+
+
+
+
+     protected $pageLoadedText = "UW-Fond du Lac (Staging)";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/catalog";
+
+
+
+
+
+    
+   private static $_selectors = [
+    "bartonsCategoryCategoryDescFor1" =>
+    [
+       "css" => "a.upcomingprogram.jkboxshadow"
+    ],
+
+    "bartonsCategoryCategoryDescFor2" =>
+    [
+       "css" => "#primary div.container-fluid div:nth-of-type(2) ul.row li.col-md-6 a.upcomingprogram.jkboxshadow table tbody tr th.body a"
+    ],
+
+    "cancel" =>
+    [
+       "css" => "#universalModal div.modal-dialog div.modal-content div:nth-of-type(3) button:nth-of-type(1)"
+    ],
+
+    "courseCatalog" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/catalog']"
+    ],
+
+    "home" =>
+    [
+       "css" => "#a a"
+    ],
+
+    "login" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/login']"
+    ],
+
+    "myAccount" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/account']"
+    ],
+
+
+
+    "privacyAndRefundPolicy" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/privacy']"
+    ],
+
+    "searchCatalog1" =>
+    [
+       "id" => "catalogSearch_keyword"
+    ],
+
+    "searchCatalog2" =>
+    [
+       "css" => "button.btn.btn-default.btn-sm"
+    ],
+
+    "universityOfWisconsinFondDu" =>
+    [
+       "css" => "a[title='University of Wisconsin - Fond du Lac (Staging)']"
+    ],
+
+    "yesActivate" =>
+    [
+       "css" => "button.btn.btn-primary.universalModalConfirm"
+    ],
+    ];
+
+    /**
+     * Click on Bartons Category Category Desc For Bartons Category Link.
+     *
+     */
+    function clickBartonsCategoryCategoryDescFor1Link() {
+        //link
+        $this->click(self::$_selectors['bartonsCategoryCategoryDescFor1']);
+    }
+
+    /**
+     * Click on Bartons Category Category Desc For Bartons Category Link.
+     *
+     */
+    function clickBartonsCategoryCategoryDescFor2Link() {
+        //link
+        $this->click(self::$_selectors['bartonsCategoryCategoryDescFor2']);
+    }
+
+    /**
+     * Click on Cancel Button.
+     *
+     */
+    function clickCancelButton() {
+        //button
+        $this->click(self::$_selectors['cancel']);
+    }
+
+    /**
+     * Click on Course Catalog Link.
+     *
+     */
+    function clickCourseCatalogLink() {
+        //link
+        $this->click(self::$_selectors['courseCatalog']);
+    }
+
+    /**
+     * Click on Home Link.
+     *
+     */
+    function clickHomeLink() {
+        //link
+        $this->click(self::$_selectors['home']);
+    }
+
+    /**
+     * Click on Login Link.
+     *
+     */
+    function clickLoginLink() {
+        //link
+        $this->click(self::$_selectors['login']);
+    }
+
+    /**
+     * Click on My Account Link.
+     *
+     */
+    function clickMyAccountLink() {
+        //link
+        $this->click(self::$_selectors['myAccount']);
+    }
+
+    /**
+     * Click on Privacy And Refund Policy Link.
+     *
+     */
+    function clickPrivacyAndRefundPolicyLink() {
+        //link
+        $this->click(self::$_selectors['privacyAndRefundPolicy']);
+    }
+
+    /**
+     * Click on Search Catalog Button.
+     *
+     */
+    function clickSearchCatalog1Button() {
+         //text
+        searchCatalog1.sendKeys(searchCatalogValue);
+    }
+
+    /**
+     * Click on Search Catalog Button.
+     *
+     */
+    function clickSearchCatalog2Button() {
+        //button
+        $this->click(self::$_selectors['searchCatalog2']);
+    }
+
+    /**
+     * Click on University Of Wisconsin Fond Du Lac Staging Link.
+     *
+     */
+    function clickUniversityOfWisconsinFondDuLink() {
+        //link
+        $this->click(self::$_selectors['universityOfWisconsinFondDu']);
+    }
+
+    /**
+     * Click on Yes Activate Button.
+     *
+     */
+    function clickYesActivateButton() {
+        //button
+        $this->click(self::$_selectors['yesActivate']);
+    }
+
+    /**
+     * Fill every fields in the page.
+     *
+     */
+    function fill() {
+    }
+
+    /**
+     * Fill every fields in the page and submit it to target page.
+     *
+     */
+    function fillAndSubmit() {
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+        $this->driver->wait(self::WAIT_TIME,self::ITERATE_TIME)->until(function ($driver) use ($this->pageLoadedText) {
+            return strpos($driver->getPageSource(), pageLoadedText) !== false;
+            }
+        );
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return strpos($this->driver->getCurrentURL(), $this->pageUrl) !== false;
+    }
+}

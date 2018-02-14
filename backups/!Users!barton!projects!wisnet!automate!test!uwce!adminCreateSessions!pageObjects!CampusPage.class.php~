@@ -1,0 +1,1175 @@
+<?php
+require_once __DIR__ . "/../../../../src/pageObjects/Page.class.php";
+use Facebook\WebDriver\WebDriverSelect;
+use Facebook\WebDriver\WebDriverBy;
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickAdministrationLink",
+        "attributeType": "link",
+       "attributeName": "administration",
+        "attributeStrategy": "css",
+        "attributeValue": "#b a"
+     },
+
+    {     
+        "operationName": "clickBackLink",
+        "attributeType": "link",
+       "attributeName": "back",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form a.btn.btn-default"
+     },
+
+    {     
+        "operationName": "clickBoldLink",
+        "attributeType": "link",
+       "attributeName": "bold",
+        "attributeStrategy": "css",
+        "attributeValue": "a[title=&#x27;CTRL+B&#x27;]"
+     },
+
+    {     
+        "operationName": "clickCampusesLink",
+        "attributeType": "link",
+       "attributeName": "campuses",
+        "attributeStrategy": "css",
+        "attributeValue": "#c a"
+     },
+
+    {     
+        "operationName": "clickCancel1Link",
+        "attributeType": "link",
+       "attributeName": "cancel1",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(5) div.bootstrap-wysihtml5-insert-link-modal.modal.fade div.modal-dialog. div.modal-content div:nth-of-type(3) a:nth-of-type(1)"
+     },
+
+    {     
+        "operationName": "clickCancel2Link",
+        "attributeType": "link",
+       "attributeName": "cancel2",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(6) div.bootstrap-wysihtml5-insert-image-modal.modal.fade div.modal-dialog. div.modal-content div:nth-of-type(3) a:nth-of-type(1)"
+     },
+
+    {     
+        "operationName": "clickDeleteButton",
+        "attributeType": "button",
+       "attributeName": "delete",
+        "attributeStrategy": "css",
+        "attributeValue": "button.btn.btn-delete.pull-right"
+     },
+
+    {     
+        "operationName": "clickHeading1Link",
+        "attributeType": "link",
+       "attributeName": "heading1",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(2) a"
+     },
+
+    {     
+        "operationName": "clickHeading2Link",
+        "attributeType": "link",
+       "attributeName": "heading2",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(3) a"
+     },
+
+    {     
+        "operationName": "clickHeading3Link",
+        "attributeType": "link",
+       "attributeName": "heading3",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(4) a"
+     },
+
+    {     
+        "operationName": "clickHeading4Link",
+        "attributeType": "link",
+       "attributeName": "heading4",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(5) a"
+     },
+
+    {     
+        "operationName": "clickHeading5Link",
+        "attributeType": "link",
+       "attributeName": "heading5",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(6) a"
+     },
+
+    {     
+        "operationName": "clickHeading6Link",
+        "attributeType": "link",
+       "attributeName": "heading6",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(7) a"
+     },
+
+    {     
+        "operationName": "clickHomeLink",
+        "attributeType": "link",
+       "attributeName": "home",
+        "attributeStrategy": "css",
+        "attributeValue": "#a a"
+     },
+
+    {     
+        "operationName": "clickInsertImageLink",
+        "attributeType": "link",
+       "attributeName": "insertImage",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(6) div.bootstrap-wysihtml5-insert-image-modal.modal.fade div.modal-dialog. div.modal-content div:nth-of-type(3) a:nth-of-type(2)"
+     },
+
+    {     
+        "operationName": "clickInsertLinkLink",
+        "attributeType": "link",
+       "attributeName": "insertLink",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;#&#x27;]"
+     },
+
+    {     
+        "operationName": "clickItalicLink",
+        "attributeType": "link",
+       "attributeName": "italic",
+        "attributeStrategy": "css",
+        "attributeValue": "a[title=&#x27;CTRL+I&#x27;]"
+     },
+
+    {     
+        "operationName": "clickNormalText1Link",
+        "attributeType": "link",
+       "attributeName": "normalText1",
+        "attributeStrategy": "css",
+        "attributeValue": "a.btn.btn-default.dropdown-toggle"
+     },
+
+    {     
+        "operationName": "clickNormalText2Link",
+        "attributeType": "link",
+       "attributeName": "normalText2",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(1) a"
+     },
+
+    {     
+        "operationName": "clickSaveButton",
+        "attributeType": "button",
+       "attributeName": "save",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form button:nth-of-type(2)"
+     },
+
+    {     
+        "operationName": "clickSmallLink",
+        "attributeType": "link",
+       "attributeName": "small",
+        "attributeStrategy": "css",
+        "attributeValue": "a[title=&#x27;CTRL+S&#x27;]"
+     },
+
+    {     
+        "operationName": "clickUnderlineLink",
+        "attributeType": "link",
+       "attributeName": "underline",
+        "attributeStrategy": "css",
+        "attributeValue": "a[title=&#x27;CTRL+U&#x27;]"
+     },
+
+    {     
+        "operationName": "clickUpdate1Button",
+        "attributeType": "button",
+       "attributeName": "update1",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(2) div div:nth-of-type(3) div:nth-of-type(2) input.btn.btn-default.btn-sm[type=&#x27;submit&#x27;]"
+     },
+
+    {     
+        "operationName": "clickUpdate2Button",
+        "attributeType": "button",
+       "attributeName": "update2",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(3) div div:nth-of-type(2) div:nth-of-type(2) input.btn.btn-default.btn-sm[type=&#x27;submit&#x27;]"
+     },
+
+    {     
+        "operationName": "clickX1Link",
+        "attributeType": "link",
+       "attributeName": "x1",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(5) div.bootstrap-wysihtml5-insert-link-modal.modal.fade div.modal-dialog. div.modal-content div:nth-of-type(1) a.close"
+     },
+
+    {     
+        "operationName": "clickX2Link",
+        "attributeType": "link",
+       "attributeName": "x2",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(6) div.bootstrap-wysihtml5-insert-image-modal.modal.fade div.modal-dialog. div.modal-content div:nth-of-type(1) a.close"
+     },
+
+
+
+    {     
+        "operationName": "setAddress1TextField",
+        "operationArgument" : "address1Value",
+        "attributeType": "text",
+       "attributeName": "address1",
+        "attributeStrategy": "name",
+        "attributeValue": "campus_address1"
+     },
+
+    {     
+        "operationName": "setAddress2TextField",
+        "operationArgument" : "address2Value",
+        "attributeType": "text",
+       "attributeName": "address2",
+        "attributeStrategy": "name",
+        "attributeValue": "campus_address2"
+     },
+
+    {     
+        "operationName": "setApplyDiscountToRegistrantsOverNumberField",
+        "operationArgument" : "applyDiscountToRegistrantsOverValue",
+        "attributeType": "text",
+       "attributeName": "applyDiscountToRegistrantsOver",
+        "attributeStrategy": "name",
+        "attributeValue": "campus_seniorDiscountStartAt"
+     },
+
+    {     
+        "operationName": "setCampusDomainUrlTextField",
+        "operationArgument" : "campusDomainUrlValue",
+        "attributeType": "text",
+       "attributeName": "campusDomainUrl",
+        "attributeStrategy": "name",
+        "attributeValue": "campus_host"
+     },
+
+    {     
+        "operationName": "setCityTextField",
+        "operationArgument" : "cityValue",
+        "attributeType": "text",
+       "attributeName": "city",
+        "attributeStrategy": "id",
+        "attributeValue": "campus_city"
+     },
+
+    {     
+        "operationName": "setContactFormUrlTextField",
+        "operationArgument" : "contactFormUrlValue",
+        "attributeType": "text",
+       "attributeName": "contactFormUrl",
+        "attributeStrategy": "name",
+        "attributeValue": "campus_contactURL"
+     },
+
+    {     
+        "operationName": "setContinuingEducationHomepageUrlTextField",
+        "operationArgument" : "continuingEducationHomepageUrlValue",
+        "attributeType": "text",
+       "attributeName": "continuingEducationHomepageUrl",
+        "attributeStrategy": "name",
+        "attributeValue": "campus_campusURL"
+     },
+
+    {     
+        "operationName": "setCustomStyleSheetFileField",
+        "attributeType": "file",
+       "attributeName": "customStyleSheet",
+        "attributeStrategy": "name",
+        "attributeValue": "upload_css"
+     },
+
+    {     
+        "operationName": "setDefaultCancellationPolicyTextareaField",
+        "operationArgument" : "defaultCancellationPolicyValue",
+        "attributeType": "text",
+       "attributeName": "defaultCancellationPolicy",
+        "attributeStrategy": "name",
+        "attributeValue": "campus_cancellationPolicy"
+     },
+
+    {     
+        "operationName": "setGeneralEmailEmailField",
+        "operationArgument" : "generalEmailValue",
+        "attributeType": "text",
+       "attributeName": "generalEmail",
+        "attributeStrategy": "name",
+        "attributeValue": "campus_email"
+     },
+
+    {     
+        "operationName": "setGeneralPhoneTelField",
+        "operationArgument" : "generalPhoneValue",
+        "attributeType": "text",
+       "attributeName": "generalPhone",
+        "attributeStrategy": "id",
+        "attributeValue": "campus_phone"
+     },
+
+    {     
+        "operationName": "setLogoFileField",
+        "attributeType": "file",
+       "attributeName": "logo",
+        "attributeStrategy": "name",
+        "attributeValue": "upload_image"
+     },
+
+    {     
+        "operationName": "setOpenLinkInNewWindow1CheckboxField",
+        "operationArgument" : "openLinkInNewWindowValue",
+        "attributeType": "text",
+       "attributeName": "openLinkInNewWindow1",
+        "attributeStrategy": "css",
+        "attributeValue": "input.bootstrap-wysihtml5-insert-link-url.form-control"
+     },
+
+    {     
+        "operationName": "setOpenLinkInNewWindow2CheckboxField",
+        "attributeType": "checkbox",
+       "attributeName": "openLinkInNewWindow2",
+        "attributeStrategy": "css",
+        "attributeValue": "input.bootstrap-wysihtml5-insert-link-target"
+     },
+
+    {     
+        "operationName": "setOpenLinkInNewWindow3TextField",
+        "operationArgument" : "openLinkInNewWindow3Value",
+        "attributeType": "text",
+       "attributeName": "openLinkInNewWindow3",
+        "attributeStrategy": "css",
+        "attributeValue": "input.bootstrap-wysihtml5-insert-image-url.form-control"
+     },
+
+    {     
+        "operationName": "setPrimaryColorColorField",
+        "attributeType": "color",
+       "attributeName": "primaryColor",
+        "attributeStrategy": "name",
+        "attributeValue": "campus_color1"
+     },
+
+    {     
+        "operationName": "setSeniorDiscountTextField",
+        "operationArgument" : "seniorDiscountValue",
+        "attributeType": "text",
+       "attributeName": "seniorDiscount",
+        "attributeStrategy": "name",
+        "attributeValue": "campus_seniorDiscountPercent"
+     },
+
+    {     
+        "operationName": "setStateDropDownListField",
+        "operationArgument" : "stateValue",
+        "attributeType": "select",
+       "attributeName": "state",
+        "attributeStrategy": "id",
+        "attributeValue": "campus_state"
+     },
+
+    {     
+        "operationName": "setTitleTextField",
+        "operationArgument" : "titleValue",
+        "attributeType": "text",
+       "attributeName": "title",
+        "attributeStrategy": "name",
+        "attributeValue": "campus_title"
+     },
+
+    {     
+        "operationName": "setZipCodeTextField",
+        "operationArgument" : "zipCodeValue",
+        "attributeType": "text",
+       "attributeName": "zipCode",
+        "attributeStrategy": "id",
+        "attributeValue": "campus_postalCode"
+     },
+
+
+    {     
+        "operationName": "unsetOpenLinkInNewWindow2CheckboxField",
+        "attributeType": "checkbox",
+       "attributeName": "openLinkInNewWindow2",
+        "attributeStrategy": "css",
+        "attributeValue": "input.bootstrap-wysihtml5-insert-link-target"
+     },
+
+    {     
+        "operationName": "unsetStateDropDownListField",
+        "operationArgument" : "stateValue",
+        "attributeType": "select",
+       "attributeName": "state",
+        "attributeStrategy": "id",
+        "attributeValue": "campus_state"
+     },
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class Campus extends \Automate\Page {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     protected $pageLoadedText = "The URL for this campus's main Continuing Education webpage";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/admin/campus/edit/1";
+
+
+
+
+
+
+
+
+
+
+
+
+   private static $_selectors = [
+    "address1" =>
+    [
+       "name" => "campus_address1"
+    ],
+
+    "address2" =>
+    [
+       "name" => "campus_address2"
+    ],
+
+    "administration" =>
+    [
+       "css" => "#b a"
+    ],
+
+    "applyDiscountToRegistrantsOver" =>
+    [
+       "name" => "campus_seniorDiscountStartAt"
+    ],
+
+    "back" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form a.btn.btn-default"
+    ],
+
+    "bold" =>
+    [
+       "css" => "a[title='CTRL+B']"
+    ],
+
+    "campusDomainUrl" =>
+    [
+       "name" => "campus_host"
+    ],
+
+    "campuses" =>
+    [
+       "css" => "#c a"
+    ],
+
+    "cancel1" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(5) div.bootstrap-wysihtml5-insert-link-modal.modal.fade div.modal-dialog. div.modal-content div:nth-of-type(3) a:nth-of-type(1)"
+    ],
+
+    "cancel2" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(6) div.bootstrap-wysihtml5-insert-image-modal.modal.fade div.modal-dialog. div.modal-content div:nth-of-type(3) a:nth-of-type(1)"
+    ],
+
+    "city" =>
+    [
+       "id" => "campus_city"
+    ],
+
+    "contactFormUrl" =>
+    [
+       "name" => "campus_contactURL"
+    ],
+
+    "continuingEducationHomepageUrl" =>
+    [
+       "name" => "campus_campusURL"
+    ],
+
+    "customStyleSheet" =>
+    [
+       "name" => "upload_css"
+    ],
+
+    "defaultCancellationPolicy" =>
+    [
+       "name" => "campus_cancellationPolicy"
+    ],
+
+    "delete" =>
+    [
+       "css" => "button.btn.btn-delete.pull-right"
+    ],
+
+    "generalEmail" =>
+    [
+       "name" => "campus_email"
+    ],
+
+    "generalPhone" =>
+    [
+       "id" => "campus_phone"
+    ],
+
+    "heading1" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(2) a"
+    ],
+
+    "heading2" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(3) a"
+    ],
+
+    "heading3" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(4) a"
+    ],
+
+    "heading4" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(5) a"
+    ],
+
+    "heading5" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(6) a"
+    ],
+
+    "heading6" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(7) a"
+    ],
+
+    "home" =>
+    [
+       "css" => "#a a"
+    ],
+
+    "insertImage" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(6) div.bootstrap-wysihtml5-insert-image-modal.modal.fade div.modal-dialog. div.modal-content div:nth-of-type(3) a:nth-of-type(2)"
+    ],
+
+    "insertLink" =>
+    [
+       "css" => "a[href='#']"
+    ],
+
+    "italic" =>
+    [
+       "css" => "a[title='CTRL+I']"
+    ],
+
+    "logo" =>
+    [
+       "name" => "upload_image"
+    ],
+
+    "normalText1" =>
+    [
+       "css" => "a.btn.btn-default.dropdown-toggle"
+    ],
+
+    "normalText2" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(1) ul.dropdown-menu li:nth-of-type(1) a"
+    ],
+
+    "openLinkInNewWindow1" =>
+    [
+       "css" => "input.bootstrap-wysihtml5-insert-link-url.form-control"
+    ],
+
+    "openLinkInNewWindow2" =>
+    [
+       "css" => "input.bootstrap-wysihtml5-insert-link-target"
+    ],
+
+    "openLinkInNewWindow3" =>
+    [
+       "css" => "input.bootstrap-wysihtml5-insert-image-url.form-control"
+    ],
+
+
+
+    "primaryColor" =>
+    [
+       "name" => "campus_color1"
+    ],
+
+    "save" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form button:nth-of-type(2)"
+    ],
+
+    "seniorDiscount" =>
+    [
+       "name" => "campus_seniorDiscountPercent"
+    ],
+
+    "small" =>
+    [
+       "css" => "a[title='CTRL+S']"
+    ],
+
+    "state" =>
+    [
+       "id" => "campus_state"
+    ],
+
+    "title" =>
+    [
+       "name" => "campus_title"
+    ],
+
+    "underline" =>
+    [
+       "css" => "a[title='CTRL+U']"
+    ],
+
+    "update1" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(2) div div:nth-of-type(3) div:nth-of-type(2) input.btn.btn-default.btn-sm[type='submit']"
+    ],
+
+    "update2" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(3) div div:nth-of-type(2) div:nth-of-type(2) input.btn.btn-default.btn-sm[type='submit']"
+    ],
+
+    "x1" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(5) div.bootstrap-wysihtml5-insert-link-modal.modal.fade div.modal-dialog. div.modal-content div:nth-of-type(1) a.close"
+    ],
+
+    "x2" =>
+    [
+       "css" => "#primary div.container-fluid section.campus.edit form div.row div:nth-of-type(2) div:nth-of-type(4) ul.wysihtml5-toolbar li:nth-of-type(6) div.bootstrap-wysihtml5-insert-image-modal.modal.fade div.modal-dialog. div.modal-content div:nth-of-type(1) a.close"
+    ],
+
+    "zipCode" =>
+    [
+       "id" => "campus_postalCode"
+    ],
+    "action_message" =>
+    [
+        "css" => "div#primary div.alert.alert-success.alert-dismissible"
+    ]
+    ];
+    /**
+     * Click on Administration Link.
+     *
+     */
+    function clickAdministrationLink() {
+        //link
+        $this->click(self::$_selectors['administration']);
+    }
+
+    /**
+     * Click on Back Link.
+     *
+     */
+    function clickBackLink() {
+        //link
+        $this->click(self::$_selectors['back']);
+    }
+
+    /**
+     * Click on Bold Link.
+     *
+     */
+    function clickBoldLink() {
+        //link
+        $this->click(self::$_selectors['bold']);
+    }
+
+    /**
+     * Click on Campuses Link.
+     *
+     */
+    function clickCampusesLink() {
+        //link
+        $this->click(self::$_selectors['campuses']);
+    }
+
+    /**
+     * Click on Cancel Link.
+     *
+     */
+    function clickCancel1Link() {
+        //link
+        $this->click(self::$_selectors['cancel1']);
+    }
+
+    /**
+     * Click on Cancel Link.
+     *
+     */
+    function clickCancel2Link() {
+        //link
+        $this->click(self::$_selectors['cancel2']);
+    }
+
+    /**
+     * Click on Delete Button.
+     *
+     */
+    function clickDeleteButton() {
+        //button
+        $this->click(self::$_selectors['delete']);
+    }
+
+    /**
+     * Click on Heading 1 Link.
+     *
+     */
+    function clickHeading1Link() {
+        //link
+        $this->click(self::$_selectors['heading1']);
+    }
+
+    /**
+     * Click on Heading 2 Link.
+     *
+     */
+    function clickHeading2Link() {
+        //link
+        $this->click(self::$_selectors['heading2']);
+    }
+
+    /**
+     * Click on Heading 3 Link.
+     *
+     */
+    function clickHeading3Link() {
+        //link
+        $this->click(self::$_selectors['heading3']);
+    }
+
+    /**
+     * Click on Heading 4 Link.
+     *
+     */
+    function clickHeading4Link() {
+        //link
+        $this->click(self::$_selectors['heading4']);
+    }
+
+    /**
+     * Click on Heading 5 Link.
+     *
+     */
+    function clickHeading5Link() {
+        //link
+        $this->click(self::$_selectors['heading5']);
+    }
+
+    /**
+     * Click on Heading 6 Link.
+     *
+     */
+    function clickHeading6Link() {
+        //link
+        $this->click(self::$_selectors['heading6']);
+    }
+
+    /**
+     * Click on Home Link.
+     *
+     */
+    function clickHomeLink() {
+        //link
+        $this->click(self::$_selectors['home']);
+    }
+
+    /**
+     * Click on Insert Image Link.
+     *
+     */
+    function clickInsertImageLink() {
+        //link
+        $this->click(self::$_selectors['insertImage']);
+    }
+
+    /**
+     * Click on Insert Link Link.
+     *
+     */
+    function clickInsertLinkLink() {
+        //link
+        $this->click(self::$_selectors['insertLink']);
+    }
+
+    /**
+     * Click on Italic Link.
+     *
+     */
+    function clickItalicLink() {
+        //link
+        $this->click(self::$_selectors['italic']);
+    }
+
+    /**
+     * Click on Normal Text Link.
+     *
+     */
+    function clickNormalText1Link() {
+        //link
+        $this->click(self::$_selectors['normalText1']);
+    }
+
+    /**
+     * Click on Normal Text Link.
+     *
+     */
+    function clickNormalText2Link() {
+        //link
+        $this->click(self::$_selectors['normalText2']);
+    }
+
+    /**
+     * Click on Save Button.
+     *
+     */
+    function clickSaveButton() {
+        //button
+        $this->click(self::$_selectors['save']);
+    }
+
+    /**
+     * Click on Small Link.
+     *
+     */
+    function clickSmallLink() {
+        //link
+        $this->click(self::$_selectors['small']);
+    }
+
+    /**
+     * Click on Underline Link.
+     *
+     */
+    function clickUnderlineLink() {
+        //link
+        $this->click(self::$_selectors['underline']);
+    }
+
+    /**
+     * Click on Update Button.
+     *
+     */
+    function clickUpdate1Button() {
+        //button
+        $this->click(self::$_selectors['update1']);
+    }
+
+    /**
+     * Click on Update Button.
+     *
+     */
+    function clickUpdate2Button() {
+        //button
+        $this->click(self::$_selectors['update2']);
+    }
+
+    /**
+     * Click on X Link.
+     *
+     */
+    function clickX1Link() {
+        //link
+        $this->click(self::$_selectors['x1']);
+    }
+
+    /**
+     * Click on X Link.
+     *
+     */
+    function clickX2Link() {
+        //link
+        $this->click(self::$_selectors['x2']);
+    }
+
+
+
+    /**
+     * Set default value to Address Text field.
+     *
+     */
+    function setAddress1TextField($address1Value) {
+         //text
+        $this->type(self::$_selectors['address1'],$address1Value);
+    }
+
+    /**
+     * Set default value to Address Text field.
+     *
+     */
+    function setAddress2TextField($address2Value) {
+         //text
+        $this->type(self::$_selectors['address2'],$address2Value);
+    }
+
+    /**
+     * Set default value to Apply Discount To Registrants Over Years Old Number field.
+     *
+     */
+    function setApplyDiscountToRegistrantsOverNumberField($applyDiscountToRegistrantsOverValue) {
+         //text
+        $this->type(self::$_selectors['applyDiscountToRegistrantsOver'],$applyDiscountToRegistrantsOverValue);
+    }
+
+    /**
+     * Set default value to Campus Domain Url Text field.
+     *
+     */
+    function setCampusDomainUrlTextField($campusDomainUrlValue) {
+         //text
+        $this->type(self::$_selectors['campusDomainUrl'],$campusDomainUrlValue);
+    }
+
+    /**
+     * Set default value to City Text field.
+     *
+     */
+    function setCityTextField($cityValue) {
+         //text
+        $this->type(self::$_selectors['city'],$cityValue);
+    }
+
+    /**
+     * Set default value to Contact Form Url Text field.
+     *
+     */
+    function setContactFormUrlTextField($contactFormUrlValue) {
+         //text
+        $this->type(self::$_selectors['contactFormUrl'],$contactFormUrlValue);
+    }
+
+    /**
+     * Set default value to Continuing Education Homepage Url Text field.
+     *
+     */
+    function setContinuingEducationHomepageUrlTextField($continuingEducationHomepageUrlValue) {
+         //text
+        $this->type(self::$_selectors['continuingEducationHomepageUrl'],$continuingEducationHomepageUrlValue);
+    }
+
+    /**
+     * Set Custom Style Sheet File field.
+     *
+     */
+    function setCustomStyleSheetFileField() {
+    }
+
+    /**
+     * Set default value to Default Cancellation Policy Textarea field.
+     *
+     */
+    function setDefaultCancellationPolicyTextareaField($defaultCancellationPolicyValue) {
+         //text
+        $this->type(self::$_selectors['defaultCancellationPolicy'],$defaultCancellationPolicyValue);
+    }
+
+    /**
+     * Set default value to General Email Email field.
+     *
+     */
+    function setGeneralEmailEmailField($generalEmailValue) {
+         //text
+        $this->type(self::$_selectors['generalEmail'],$generalEmailValue);
+    }
+
+    /**
+     * Set default value to General Phone Tel field.
+     *
+     */
+    function setGeneralPhoneTelField($generalPhoneValue) {
+         //text
+        $this->type(self::$_selectors['generalPhone'],$generalPhoneValue);
+    }
+
+    /**
+     * Set Logo File field.
+     *
+     */
+    function setLogoFileField() {
+    }
+
+    /**
+     * Set default value to Open Link In New Window Text field.
+     *
+     */
+    function setOpenLinkInNewWindow1CheckboxField($openLinkInNewWindowValue) {
+         //text
+        $this->type(self::$_selectors['openLinkInNewWindow1'],$openLinkInNewWindowValue);
+    }
+
+    /**
+     * Set Open Link In New Window Checkbox field.
+     *
+     */
+    function setOpenLinkInNewWindow2CheckboxField() {
+       if (!$this->find(self::$_selectors['openLinkInNewWindow2'])->isSelected()) {
+            $this->click(self::$_selectors['openLinkInNewWindow2']);
+        }    
+    }
+
+    /**
+     * Set default value to Open Link In New Window Text field.
+     *
+     */
+    function setOpenLinkInNewWindow3TextField($openLinkInNewWindow3Value) {
+         //text
+        $this->type(self::$_selectors['openLinkInNewWindow3'],$openLinkInNewWindow3Value);
+    }
+
+    /**
+     * Set Primary Color Color field.
+     *
+     */
+    function setPrimaryColorColorField() {
+    }
+
+    /**
+     * Set default value to Senior Discount Text field.
+     *
+     */
+    function setSeniorDiscountTextField($seniorDiscountValue) {
+         //text
+        $this->type(self::$_selectors['seniorDiscount'],$seniorDiscountValue);
+    }
+
+    /**
+     * Set default value to State Drop Down List field.
+     *
+     */
+    function setStateDropDownListField($stateValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["state"]));
+        $webDriverSelect->selectByVisibleText($stateValue);        
+    }
+
+    /**
+     * Set default value to Title Text field.
+     *
+     */
+    function setTitleTextField($titleValue) {
+         //text
+        $this->type(self::$_selectors['title'],$titleValue);
+    }
+
+    /**
+     * Set default value to Zip Code Text field.
+     *
+     */
+    function setZipCodeTextField($zipCodeValue) {
+         //text
+        $this->type(self::$_selectors['zipCode'],$zipCodeValue);
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickUpdateButton();
+    }
+
+    /**
+     * Unset Open Link In New Window Checkbox field.
+     *
+     */
+    function unsetOpenLinkInNewWindow2CheckboxField() {
+       if ($this->find(self::$_selectors['openLinkInNewWindow2'])->isSelected()) {
+            $this->click(self::$_selectors['openLinkInNewWindow2']);
+        }    
+    }
+
+    /**
+     * Unset default value from State Drop Down List field.
+     *
+     */
+    function unsetStateDropDownListField($stateValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["state"]));
+        $webDriverSelect->selectByVisibleText($stateValue);        
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+         $text = $this->pageLoadedText;
+        $driver = $this->driver;
+        return $driver->wait(self::WAIT_TIME, self::ITERATE_TIME)->until(
+            function () use ($driver, $text)  {
+                try {
+                    $source = $driver->getPageSource();
+                    if (strpos($source,$text) !== false) {
+                        return true;
+                    }
+                    return false;
+                } catch (\Exception $e) {
+                    return false;
+                }
+        });
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return $this->verifyPageUrlToLastSlash($this->driver->getCurrentURL(),
+                                               $this->pageUrl);                     
+    }
+    function getActionMessage() {
+        $this->waitPageLoadedBySelectors([self::$_selectors["action_message"]]);
+        return $this->find(self::$_selectors['action_message'])->getText();
+    }    
+}

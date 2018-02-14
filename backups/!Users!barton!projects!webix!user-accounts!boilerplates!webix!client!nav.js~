@@ -1,0 +1,20 @@
+
+  
+ // webix.ready(function(){ webix.markup.init(); });
+//  var config = webix.markup.parse(text, "html");
+  //  webix.ui(config);
+//  webix.ready(function(){ webix.markup.init(); });
+
+
+Template.nav.rendered = function() {
+  var node = $("#id");
+  webix.markup.init(node);
+  debugger;
+  var text = Blaze.toHTML(Template.nav);
+  console.log('nav.rendered: ' + text);
+  var config = webix.markup.parse(text,"html");
+  config.id="nav";
+  webix.ui(config);
+};
+
+

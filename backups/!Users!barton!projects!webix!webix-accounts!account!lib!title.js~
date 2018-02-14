@@ -1,0 +1,19 @@
+Template.atTitle.onCreated(function() {
+  console.log('atTitle.onCreated');
+});
+
+Template.atTitle.onRendered(function() {
+  if (_.isUndefined(webix.ui.views['atTitle'])) {
+    console.log('atTitle.rendered.markup.init');
+    var component =  webix.markup.init();
+     webix.event(window, 'resize', function(){
+       component.resize();
+     });
+  }
+});
+
+Template.atTitle.onDestroyed(function() {
+  console.log('signin.onDestroyed');
+  $$('signin').destructor();
+
+});

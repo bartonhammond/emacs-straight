@@ -1,0 +1,26 @@
+[
+    "cancel" =>
+    [
+       "css" => "a.btn.btn-default"
+    ],
+    "username2" =>
+    [
+       "id" => "new_username"
+    ],
+];
+---------
+
+[
+    {
+      "Command": "open",
+      "Target": "https://www.secured-site7.com/uwce-staging/www/fond-du-lac/login",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "//*[@id=\"loginform\"]/div/div[1]/form/button",
+      "Value": ""
+    }
+  ] 
+
+

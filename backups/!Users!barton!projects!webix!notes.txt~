@@ -1,0 +1,129 @@
+You can define validation for input or for the form like next
+
+# input
+
+<div data-view="form" data-id="f1">
+	<div data-view="text" data-name="fName" data-validate="isNotEmpty"></div>
+</div>
+
+
+# form
+
+<div data-view="form" data-id="f1">
+	<config name="rules" fname="isNotEmpty"></config>
+	<div data-view="text" data-name="fname" ></div>
+</div>
+
+(1) 
+validation rule can be assigned to the form or to an input in the form
+Be sure that input has a name ( data-name ) attribute, though. As only fields with names will be included in validation. 
+You can check snippets from a previous email. 
+
+
+(2) Just add your custom handler to webix.rules object
+
+webix.rules.isURL = function(value){ return value ? true: false; }
+
+----------------
+
+ One small suggestions, it is possible to use all attributes without "data-" prefix, 
+
+webix.markup.attribute = "";
+
+and you can use a less verbose HTML
+
+<div view="column"
+         fillspace=1
+         id="url">
+----------------
+
+It seems that as long as "data-disabled" is present, regardless if the value is 1, 0, true, false "true", "false".... it is disabled.  Unless I remove the config it will be disabled.
+
+What do I do?
+
+    <div data-view="text"
+         data-type="text" 
+         data-id="title"
+         data-name="title"
+         data-placeholder="{{t9n 'postForm.title.placeHolder' }}"
+         data-label="{{t9n 'postForm.title.displayName'}}"
+         data-width=300
+         data-labelWidth=50
+         data-disabled=false
+         data-required=1>{{title}}</div>
+
+Thanks!
+-bwh
+
+I can confirm the issue. 
+Fix will be included in the next build. 
+
+--
+Maksim Kozhukh
+support@webix.com
+
+-------------------------------
+
+I don't really sure how it can occur, as code of $$ looks like next
+
+webix.$$ = function(id){
+  if (!id) return null;
+  if (ui.views[id]) return ui.views[id];
+--------------------
+
+a) Hiding menu item
+Check http://docs.webix.com/desktop__menu.html#hidinganddisablingmenuitems
+or you can just use two data configs for menu and load the necessary one 
+
+In both cases you will need to define the behavior in the js code. 
+
+b) nav_button.js
+
+Similar code works for me
+http://webix.com/snippet/380fd9f7
+
+---------------0
+from js code it will be view.attachEvent(name, handler)
+
+from HTML code it will be 
+
+<script type="text/javascript">
+   	function myFunc(){ alert("In focus"); }
+</script>
+
+	<div data-view="text" data-name="fname">
+		<config name="on" onfocus="myFunc"></config>
+	</div>
+
+it will work for any event handler. 
+Just be sure to use only one config tag with name="on"
+If you need to define a multiple event handlers it will look like next
+
+	<div data-view="text" data-name="fname">
+		<config name="on" onchange="someHandler" onfocus="myFunc"></config>
+	</div>
+
+-------------
+Check the next snippet
+
+http://webix.com/snippet/e5e8ec66
+
+When you need to define a complex config object, you can use "config" tag
+
+<div data-view="datatable">
+  <config name="onClick" fa-trash-o="deleteRow"></config>
+It will be translated to JSON object, in above case it will be
+
+{ view:"datatable", onClick:{ fa-trash-o:"deleteRow" } }
+ bartonhbartonh 
+September 30
+Perfect! Thanks.
+
+ bartonhbartonh 
+September 30
+For those working w/ Meteor and HTML Markup, here's a gist of how I
+got it working in that environment, it was a little different
+https://gist.github.com/bartonhammond/fc2727c76eea6e23ae16
+
+
+

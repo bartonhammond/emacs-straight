@@ -1,0 +1,11 @@
+'use strict';
+Template.nav.rendered = function() {
+  _.extend(webix.markup,{_delay:true});
+  webix.markup.init();
+  webix.delay(function() {
+    webix.$$("_nav");
+  });
+  
+};
+
+

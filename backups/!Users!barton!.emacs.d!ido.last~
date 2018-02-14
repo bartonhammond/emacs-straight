@@ -1,0 +1,470 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Volumes/www/automate/src/" . "scripts/")
+ ("/Volumes/" . "www/")
+ ("/Volumes/www/automate/" . "test/")
+ ("/Users/barton/projects/wisnet/automate/test/" . "uwce/")
+ ("/Users/barton/projects/wisnet/Production/" . "automate/")
+ ("/Users/barton/projects/wisnet/Production/automate/" . "test/")
+ ("/Users/barton/projects/wisnet/automate/test/uwce/" . "adminCreateSessions/")
+ ("/Users/barton/projects/wisnet/automate/test/uwce/studentRegistration/" . "output/")
+ ("/var/log/" . "apache2/")
+ ("/Users/barton/projects/wisnet/selenium-page-object-generato/" . "build/")
+ ("/Users/barton/projects/anglican/" . "MouseFactory/")
+ ("/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions/" . "screenshots/")
+ ("/Users/barton/projects/wisnet/automate/src/" . "utilities/")
+ ("/Users/barton/projects/wisnet/automate/" . "src/")
+ ("/Users/barton/projects/wisnet/starhack/starhackit/" . "client/")
+ ("/Users/barton/projects/wisnet/everydayfit/test/" . "automate/")
+ ("/Users/barton/projects/wisnet/everydayfit/test/automate/" . "output/")
+ ("/Users/barton/projects/wisnet/" . "auto/")
+ ("/etc/" . "apache2/")
+ ("/private/etc/" . "apache2/")
+ ("/private/" . "etc/")
+ ("/Users/barton/projects/rv-help-work/" . "rv-help-orig/")
+ ("/Users/barton/projects/rv-help-work/rv-help/" . "android/")
+ ("/Users/barton/projects/snowflakework/snowflake-eslint/" . "src/")
+ ("/Users/barton/projects/snowflakework/snowflake/android/" . "app/")
+ ("/Users/barton/projects/snowflakework/snowflake/src/" . "images/")
+ ("/Users/barton/projects/snowflakework/snowflake/" . "ios/")
+ ("/Users/barton/projects/snowflakework/snowflake-wookiem/android/" . "app/")
+ ("/Users/barton/projects/snowflakework/snowflake-wookiem/" . "android/")
+ ("/Users/barton/projects/snowflakework/" . "snowflake/")
+ ("/Users/barton/projects/GeekeyAnts/nsp-live-edition-hapi/" . "src/")
+ ("/Users/barton/projects/GeekeyAnts/nsp-live-edition/js/components/" . "login/")
+ ("/Users/barton/projects/GeekeyAnts/nsp-live-edition/js/" . "lib/")
+ ("/Users/barton/projects/GeekeyAnts/flow-git/examples/" . "05_DynamicCode/")
+ ("/Users/barton/projects/GeekeyAnts/" . "flow-git/")
+ ("/Users/barton/projects/Serverless/" . "discuss/")
+ ("/Users/barton/projects/Serverless/notes-git/functions/" . "lib/")
+ ("/Users/barton/projects/FOAM/pullrequest/foam/" . "js/")
+ ("/Users/barton/projects/FOAM/pullrequest/" . "foam/")
+ ("/Users/barton/projects/MFV/snowflake-pullrequest/" . "snowflake/")
+ ("/Users/barton/projects/electron/electron-demo/" . "build/")
+ ("/Users/barton/projects/electron/" . "CopyEssence/")
+ ("/Users/barton/projects/MFV/snowflake-pullrequest/snowflake/" . "src/")
+ ("/Users/barton/projects/MFV/snowflake-pullrequest/snowflake/src/" . "lib/")
+ ("/Users/barton/projects/stargazers/server/src/newlib/batch/" . "runner/")
+ ("/Users/barton/projects/stargazers/server/src/routes/" . "batch/")
+ ("/Users/barton/projects/stargazers/server/src/newlib/" . "batch/")
+ ("/Users/barton/projects/stargazers/server/" . "src/")
+ ("/Users/barton/projects/stargazers/server/src/" . "database/")
+ ("/Users/barton/projects/stargazers/stars/src/newlib/" . "jobs/")
+ ("/Users/barton/projects/stargazers/stars/src/" . "newlib/")
+ ("/Users/barton/projects/stargazers/temp/mobservCounter/" . "node_modules/")
+ ("/Users/barton/projects/stargazers/temp/" . "mobservCounter/")
+ ("/Users/barton/projects/stargazers/" . "temp/")
+ ("/Users/barton/projects/stargazers/openshift-stargazers/src/routes/" . "jobs/")
+ ("/Users/barton/projects/stargazers/openshift-stargazers/src/newlib/jobs/" . "user/")
+ ("/Users/barton/projects/stargazers/openshift-stargazers/src/newlib/" . "jobs/")
+ ("/Users/barton/projects/stargazers/openshift-stargazers/src/" . "routes/")
+ ("/Users/barton/projects/stargazers/openshift-stargazers/" . "node_modules/")
+ ("/Users/barton/projects/egghead/" . "roughdraft/")
+ ("/Users/barton/projects/egghead/snowangel/3/src/" . "actions/")
+ ("/Users/barton/projects/egghead/snowangel/" . "4/")
+ ("/Users/barton/projects/MFV/egghead/" . "video/")
+ ("/Users/barton/projects/MFV/snowflake-hapi-openshift/src/" . "routes/")
+ ("/Users/barton/projects/MFV/mysnowflake/src/" . "lib/")
+ ("/Users/barton/projects/MFV/mysnowflake-WORKING/src/" . "docs/")
+ ("/Users/barton/projects/MFV/mysnowflake-WORKING/" . "src/")
+ ("/Users/barton/projects/MFV/mysnowflake/src/routes/" . "account/")
+ ("/Users/barton/projects/MFV/mysnowflake/" . "src/")
+ ("/Users/barton/projects/MFV/hapi-token/" . "lib/")
+ ("/Users/barton/projects/MFV/redhat/node/" . "node_modules/")
+ ("/Users/barton/projects/MFV/JWT-HAPI/server/" . "node_modules/")
+ ("/Users/barton/projects/MFV/JWT-HAPI/" . "server/")
+ ("/Users/barton/projects/MFV/hapi-plugins.com/" . "lib/")
+ ("/Users/barton/projects/MFV/redhat/nodejs/" . "node_modules/")
+ ("/Users/barton/projects/MFV/redhat/" . "hapi/")
+ ("/Users/barton/projects/MFV/mapbox/scripts/parse/" . "cloud/")
+ ("/Users/barton/projects/MFV/hold/" . "snowflake/")
+ ("/Users/barton/projects/MFV/snowflake/node_modules/react-native/" . "packager/")
+ ("/Users/barton/projects/MFV/snowflake/src/reducers/profile/" . "__tests__/")
+ ("/Users/barton/projects/MFV/snowflake/node_modules/" . "react-native/")
+ ("/Users/barton/projects/MFV/mapbox/scripts/" . "node_modules/")
+ ("/Users/barton/projects/MFV/mapbox/" . "scripts/")
+ ("/Users/barton/projects/MFV/myRelease16/android/" . "app/")
+ ("/Users/barton/projects/MFV/snowflake/android/" . "app/")
+ ("/Users/barton/projects/MFV/snowball/fastlane/" . "certificates/")
+ ("/Users/barton/projects/MFV/snowball/" . "android/")
+ ("/Users/barton/projects/MFV/fireball/" . "fastlane/")
+ ("/Users/barton/projects/MFV/snowflake/" . "src/")
+ ("/Users/barton/projects/MFV/docker/" . "extras/")
+ ("/usr/local/lib/" . "node_modules/")
+ ("/Users/barton/projects/MFV/snowflake/src/reducers/" . "auth/")
+ ("/Users/barton/projects/MFV/snowflake/src/components/" . "__tests__/")
+ ("/Users/barton/projects/MFV/snowflake/src/" . "components/")
+ ("/Users/barton/projects/MFV/MFV-mobile/src/components/" . "__tests__/")
+ ("/Users/barton/projects/MFV/MFV-mobile/test/__tests__/" . "components/")
+ ("/Users/barton/projects/MFV/componentTest/node_modules/" . "react-native/")
+ ("/Users/barton/projects/MFV/componentTest/" . "node_modules/")
+ ("/Users/barton/projects/MFV/react-native-component-test/src/" . "components/")
+ ("/Users/barton/projects/MFV/MFV-mobile/android/" . "app/")
+ ("/Users/barton/projects/MFV/MFV-mobile/src/reducers/" . "device/")
+ ("/Users/barton/projects/MFV/este/src/native/" . "components/")
+ ("/Users/barton/projects/MFV/MFV-mobile/src/" . "components/")
+ ("/Users/barton/projects/MFV/este/src/" . "common/")
+ ("/Users/barton/projects/MFV/este/src/common/" . "app/")
+ ("/Users/barton/projects/MFV/MFV-mobile/node_modules/react-native/" . "jestSupport/")
+ ("/Users/barton/projects/MFV/MFV-mobile/node_modules/" . "jest-cli/")
+ ("/Users/barton/projects/MFV/MFV-mobile/" . "node_modules/")
+ ("/Users/barton/projects/MFV/redux/" . "examples/")
+ ("/Users/barton/projects/emacs/" . "emacs/")
+ ("/Users/barton/projects/MFV/este/" . "src/")
+ ("/Users/barton/projects/MFV/redux/examples/async/" . "node_modules/")
+ ("/Users/barton/projects/MFV/redux/examples/" . "real-world/")
+ ("/Users/barton/projects/MFV/" . "snowflake-hapi-openshift/")
+ ("/Users/barton/projects/myFamilyVoice/CloudCode-Express/node_modules/" . "body-parser/")
+ ("/Users/barton/projects/myFamilyVoice/MFV/parse/" . "cloud/")
+ ("/Users/barton/projects/reactNative/react-native/Examples/" . "UIExplorer/")
+ ("/Users/barton/projects/reactNative/react-native/" . "Examples/")
+ ("/Users/barton/projects/reactNative/" . "react-native/")
+ ("/Users/barton/projects/myFamilyVoice/MFV/" . "node_modules/")
+ ("/Users/barton/projects/myFamilyVoice/" . "MFV/")
+ ("/Users/barton/projects/pluralSight/" . "githubBrowser/")
+ ("/Users/barton/Library/" . "Trigger Toolkit/")
+ ("/Users/barton/projects/ionic/ionic-audio-recoder/" . "app/")
+ ("/Users/barton/projects/ionic/" . "soundboard/")
+ ("/Users/barton/projects/xdk/" . "lastFB/")
+ ("/Users/barton/projects/nativescript/" . "sample-Groceries/")
+ ("/Users/barton/projects/cordova/workshop/www/" . "lib/")
+ ("/Users/barton/projects/meteor-facebook/fbloginagain/client/" . "templates/")
+ ("/Users/barton/projects/meteor-facebook/" . "fblogin/")
+ ("/Users/barton/projects/meteor-facebook/demo/client/" . "stylesheets/")
+ ("/Users/barton/projects/meteor-facebook/demo/" . ".meteor/")
+ ("/Users/barton/projects/meteor-facebook/fblogin/client/" . "templates/")
+ ("/Users/barton/Documents/" . "paytrust/")
+ ("/Users/barton/projects/webix/webix-accounts/gitbook-meteor-webix-project/client/" . "comments/")
+ ("/Users/barton/projects/webix/webix-accounts/webix-account-boilerplate/" . "lib/")
+ ("/Users/barton/projects/webix/webix-accounts/gitbook-meteor-webix-project/" . "client/")
+ ("/Users/barton/projects/webix/webix-accounts/boilerplate/client/" . "stylesheets/")
+ ("/Users/barton/projects/webix/webix-accounts/account/vendor/" . "webix/")
+ ("/Users/barton/projects/webix/webix-accounts/account/lib/" . "lib/")
+ ("/Users/barton/projects/webix/old/user-accounts/unstyled/" . "lib/")
+ ("/Users/barton/projects/webix/old/user-accounts/core/" . "lib/")
+ ("/Users/barton/projects/webix/webix-accounts/boilerplate/lib/" . "config/")
+ ("/Users/barton/projects/webix/webix-accounts/account/" . "lib/")
+ ("/Users/barton/projects/webix/old/user-accounts/boilerplates/" . "semantic-ui/")
+ ("/Users/barton/projects/webix/webix-accounts/webix-accounts/" . "lib/")
+ ("/Users/barton/projects/webix/webix-accounts/boilerplate/" . "packages/")
+ ("/Users/barton/projects/webix/old/user-accounts/webix/lib/" . "lib/")
+ ("/Users/barton/projects/webix/old/user-accounts/webix/" . "lib/")
+ ("/Users/barton/projects/webix/webix-accounts/" . "account/")
+ ("/Users/barton/projects/webix/old/user-accounts/boilerplates/webix/" . "lib/")
+ ("/Users/barton/projects/webix/old/user-accounts/" . "core/")
+ ("/Users/barton/projects/webix/old/" . "source/")
+ ("/Users/barton/projects/webix/events/" . "sample/")
+ ("/Users/barton/projects/webix/user-accounts/unstyled/" . "lib/")
+ ("/Users/barton/projects/webix/user-accounts/webix/lib/vendor/" . "webix/")
+ ("/Users/barton/projects/webix/cosmos/" . "cosmos-browserify-example/")
+ ("/Users/barton/projects/webix/user-accounts/semantic-ui/" . "lib/")
+ ("/Users/barton/projects/webix/user-accounts/webix/lib/" . "shadow/")
+ ("/Users/barton/projects/webix/user-accounts/boilerplates/webix/client/" . "lib/")
+ ("/Users/barton/projects/webix/source/" . "webix/")
+ ("/Users/barton/projects/webix/user-accounts/boilerplates/webix/" . "packages/")
+ ("/Users/barton/projects/webix/user-accounts/webix/" . "lib/")
+ ("/Users/barton/projects/webix/user-accounts/boilerplates/" . "webix/")
+ ("/Users/barton/projects/webix/" . "webix-accounts/")
+ ("/Users/barton/projects/webix/user-accounts/" . "base/")
+ ("/Users/barton/projects/fuse/" . "AnimatedMenuIcon/")
+ ("/System/Library/" . "Frameworks/")
+ ("/System/" . "Library/")
+ ("/Library/" . "WebServer/")
+ ("/Users/barton/projects/react/kanban_app/" . "app/")
+ ("/Users/barton/projects/react/" . "kanban_app/")
+ ("/Users/barton/Downloads/" . "elegant-opt-in-page-template/")
+ ("/Users/barton/projects/gh-pages/foo/" . "dist/")
+ ("/Users/barton/projects/gh-pages/halfmylife/" . "dist/")
+ ("/Users/barton/projects/gh-pages/" . "halfmylife/")
+ ("/Users/barton/projects/bootstrap-blog/livinlovin/client/styles/" . "css/")
+ ("/Users/barton/projects/bootstrap-blog/livinlovin/client/" . "public/")
+ ("/Users/barton/projects/bootstrap-blog/" . "livinlovin/")
+ ("/Users/barton/projects/bootstrap-blog/livinlovin/client/public/" . "blogPost/")
+ ("/Users/barton/projects/meteor/" . "voice-memos/")
+ ("/Users/barton/projects/bootstrap-blog/livinlovin/" . "server/")
+ ("/Users/barton/projects/meteor/todo-kitchen/app/" . "client/")
+ ("/Users/barton/projects/meteor/todo-kitchen/" . "app/")
+ ("/Users/" . "barton/")
+ ("/usr/local/" . "bin/")
+ ("/usr/" . "local/")
+ ("/" . "Volumes/")
+ ("/Users/barton/projects/meteor/example-invoices/client/views/customers/" . "details/")
+ ("/Users/barton/" . "projects/")
+ ("/Users/barton/projects/" . "wisnet/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/barton/projects/wisnet/automate/src/testCase/"
+ "/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions/"
+ "/Users/barton/projects/wisnet/automate/src/"
+ "/Users/barton/projects/wisnet/automate/test/uwce/adminPageObjects/"
+ "/Users/barton/projects/wisnet/automate/test/"
+ "/Users/barton/projects/wisnet/automate/"
+ "/Users/barton/projects/wisnet/automate/vendor/se/selenium-server-standalone/"
+ "/Users/barton/projects/wisnet/automate/vendor/bin/"
+ "/Users/barton/projects/wisnet/auto/"
+ "/Users/barton/projects/"
+ "/usr/local/bin/"
+ "/Users/barton/projects/wisnet/automate/vendor/facebook/webdriver/"
+ "/Users/barton/projects/wisnet/automate/vendor/"
+ "/Users/barton/projects/wisnet/automate/src/utilities/"
+ "/Users/barton/projects/wisnet/automate/vendor/phpunit/phpunit/src/Framework/"
+ "/Users/barton/projects/wisnet/automate/test/uwce/"
+ "/Volumes/www/automate/src/scripts/"
+ "/Volumes/www/automate/test/uwce/adminCreateSessions/output/2018-01-24-10-19/"
+ "/Volumes/www/automate/"
+ "/Volumes/www/"
+ "/Users/barton/projects/wisnet/automate/src/scripts/"
+ "/Users/barton/projects/wisnet/automate/test/uwce/studentRegistration/"
+ "/Volumes/www/automate/test/"
+ "/Volumes/"
+ "/Users/barton/projects/wisnet/automate/test/uwce/studentRegistration/screenshots/"
+ "/Users/barton/projects/wisnet/automate/src/template/"
+ "/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-30-05-00/"
+ "/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-30-05-00/screenshots/"
+ "/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions/screenshots/"
+ "/Volumes/www/automate/test/uwce/adminCreateSessions/"
+ "/Volumes/www/automate/test/uwce/"
+ "/Users/barton/projects/wisnet/automate/sampleOutput/"
+ "/Users/barton/projects/wisnet/automate/src/psysh/"
+ "/Users/barton/projects/wisnet/automate/src/pageObjects/"
+ "/Users/barton/projects/wisnet/"
+ "/Users/barton/projects/wisnet/gitProjects/linky_clicky/includes/features/drupal.org/context/"
+ "/Users/barton/projects/wisnet/gitProjects/linky_clicky/includes/features/drupal.org/always_visible/"
+ "/Users/barton/projects/wisnet/gitProjects/linky_clicky/includes/features/"
+ "/Users/barton/projects/wisnet/gitProjects/linky_clicky/includes/extensions/"
+ "/Users/barton/projects/wisnet/gitProjects/linky_clicky/includes/config/"
+ "/Users/barton/projects/wisnet/gitProjects/linky_clicky/includes/bootstrap/"
+ "/Users/barton/projects/wisnet/gitProjects/linky_clicky/environment/stanford_sites/"
+ "/Users/barton/projects/wisnet/gitProjects/linky_clicky/environment/"
+ "/Users/barton/projects/wisnet/gitProjects/linky_clicky/defaults/"
+ "/Users/barton/projects/wisnet/livewell/"
+ "/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-02-16-49/screenshots/"
+ "/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-02-16-49/"
+ "/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-03-18-43/"
+ "/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-03-18-43/screenshots/"
+ "/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-26-11-23/screenshots/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "search.sh"
+ "student.json"
+ "EditResponse.class.php"
+ "CourseCatalogPage.class.php"
+ "CreateAccountExtend.class.php"
+ "README.md"
+ "urlsForTabs.json"
+ "project.json"
+ "test.php"
+ "adminMakeWorkshop.php"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions/" (23157 61583 0 0) "test.php" "screenShotsUrl.json" "screenshots/" "README.md" "output/" "MySqlCommands.sql" "browserDevices.json" "automate.json" "AdminCreateSessionsTest.class.php" ".DS_Store" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/src/testCase/" (23157 60518 0 0) "UnitTest.class.php" "CBT.class.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/adminPageObjects/" (23157 57122 0 0) "WorkshopPage.class.php" "TimeSlotsPage.class.php" "TermPage.class.php" "SessionPage.class.php" "MainPage.class.php" "LoginPage.class.php" "EditResponse.class.php" "CourseProgramDisplayPage.class.php" "CoursePageExtend.class.php" "CoursePage.class.php" "CourseCatalogPageExtend.class.php" "CourseCatalogPage.class.php" "CourseAndProgramPage.class.php" "CategoryPage.class.php" "CampusPage.class.php" "AdminPage.class.php" "AdminMastHead.class.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/vendor/" (23156 45702 0 0) "webmozart/" "theseer/" "symfony/" "sebastian/" "se/" "psy/" "phpunit/" "phpspec/" "phpdocumentor/" "php-ds/" "phar-io/" "nikic/" "myclabs/" "jakub-onderka/" "facebook/" "doctrine/" "dnoegel/" "composer/" "bin/" "autoload.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/vendor/se/" (23156 45700 0 0) "selenium-server-standalone/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/vendor/se/selenium-server-standalone/" (23156 45700 0 0) "tests/" "README.md" "phpunit.xml.dist" "LICENSE" "composer.lock" "composer.json" "composer/" "bin/" ".travis.yml" ".gitignore" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/vendor/bin/" (23156 45700 0 0) "selenium-server-standalone" "psysh" "phpunit" "php-parse" "../" "./")
+
+ ("/Users/barton/projects/wisnet/auto/" (23061 50650 0 0) "vendor/" "tests.log" "test.log" "test/" "src/" "scripts/" "README.md" "examples/" "composer.lock" "composer.json" "browsers.json" ".gitignore" "../" "./")
+
+ ("/usr/local/bin/" (23138 13932 0 0) "🚀" "💪" "zipalign" "yo-complete" "yo" "yarnpkg" "yarn" "xzmore" "xzless" "xzgrep" "xzfgrep" "xzegrep" "xzdiff" "xzdec" "xzcmp" "xzcat" "xz" "xsp4" "xsp2" "xsp" "xsd" "xcversion" "xctool" "xcpretty-travis-formatter" "xcpretty" "xcodeproj" "xclap" "xbuild" "ww" "wsdl2" "wsdl" "wrjpgcom" "wget" "watchman-wait" "watchman-make" "watchman" "Wand-config" "vpnkit" "VirtualBox" "vboxwebsrv" "VBoxVRDP" "VBoxManage" "VBoxHeadless" "VBoxDTrace" "VBoxBalloonCtrl" "VBoxAutostart" "vbox-img" "vbnc2" "vbnc" "vagrant" "unxz" "unotest" "uno" "unlzma" "uglifyjs" "tron" "traceview" "tns" "tiffsplit" "tiffset" "tiffmedian" "tiffinfo" "tiffdump" "tiffdither" "tiffcrop" "tiffcp" "tiffcmp" "tiff2rgba" "tiff2ps" "tiff2pdf" "tiff2bw" "thumbnail" "tern" "terminal-notifier" "swagger-project" "swagger" "svcutil" "supply" "sublime" "stylus" "stream" "standard" "sqlsharp" "sqlmetal" "spaceship" "spaceauth" "soapsuds" "snapshot" "sn" "smtpd2.py" "smtpd2.7.py" "smtpd.py" "slss" "sls" "slencheck" "siphon" "signcode" "sigh" "shoutem" "sgen" "setreg" "serverless-run-python-handler" "serverless" "serve" "selenium-page-object-generator" "secutil" "screengrab" "scan" "scalingo" "sandbox-pod" "ruby" "rubocop" "rougify" "rnpm" "ri" "rhc" "rgb2ycbcr" "resgen2" "resgen" "react-native-git-upgrade" "react-native" "rdoc" "rdjpgcom" "raw2tiff" "ras2tiff" "rake" "pythonw2.7" "pythonw2" "pythonw" "python2.7-config" "python2.7" "python2-config" "python2" "python-config" "python" "pygmentize" "pydoc2.7" "pydoc2" "pydoc" "produce" "prj2make" "ppm2tiff" "pod" "pngfix" "png-fix-itxt" "pip2.7" "pip2" "pip" "pilot" "phpize" "php-config" "php-cgi" "php" "phar.phar" "phar" "peverify" "permview" "pem" "pedump" "pdb2mdb" "pcretest" "pcregrep" "pcre-config" "parsedev" "parse-develop" "parse-dashboard" "parse" "pal2rgb" "orion" "ohai" "odbcinst" "odbc_config" "nunit-console2" "nunit-console" "nuget" "npm" "notary" "node-inspector" "node-debug" "node" "nativescript" "mprof-report" "mozroots" "montage" "monop2" "monop" "monolinker" "monodocs2slashdoc" "monodocs2html" "monodocer" "monodis" "mono-xmltool" "mono-test-install" "mono-shlib-cop" "mono-sgen" "mono-service2" "mono-service" "mono-heapviz" "mono-gdb.py" "mono-find-requires" "mono-find-provides" "mono-configuration-crypto" "mono-cil-strip" "mono-boehm" "mono-api-info" "mono" "monkeyrunner" "monitor" "mongotop" "mongostat" "mongosniff" "mongos" "mongorestore" "mongoperf" "mongooplog" "mongoimport" "mongofiles" "mongoexport" "mongodump" "mongod" "mongo" "mogrify" "modulus" "mod-mono-server4" "mod-mono-server2" "mod-mono-server" "mod" "mocha" "mksdcard" "mkbundle" "minitar" "meteor-kitchen" "meteor" "mdvalidater" "mdoc-validate" "mdoc-update" "mdoc-export-msxdoc" "mdoc-export-html" "mdoc-assemble" "mdoc" "mdassembler" "mcs" "mconfig" "match" "markdox" "markdownb" "markdown" "makemehapi" "makecert" "MagickWand-config" "MagickCore-config" "Magick-config" "Magick++-config" "macpack" "lzmore" "lzmainfo" "lzmadec" "lzma" "lzless" "lzgrep" "lzfgrep" "lzegrep" "lzdiff" "lzcmp" "lzcat" "llvm-rs-cc" "lint" "libpng16-config" "libpng-config" "lc" "krausefx-ipa" "knife" "kitchen" "jspm" "jscodeshift" "js2coffee" "jpegtran" "iusql" "isql" "irw64" "irw" "IronRuby.Tests" "irb" "ir64" "ir" "ipyw64" "ipyw" "ipy64" "ipy" "ionic" "installvst" "import" "ilasm" "ikdasm" "ignite" "idle2.7" "idle2" "idle" "identify" "hyperkit" "httpclient" "httpcfg" "http-server" "hs" "hprof-conv" "hierarchyviewer" "heroku" "gym" "gulp" "grunt" "groc" "gradle" "glibtoolize" "glibtool" "gitk" "github-markdownb" "github-markdown" "gitbook" "git-upload-pack" "git-upload-archive" "git-subtree" "git-shell" "git-receive-pack" "git-flow" "git-cvsserver" "git-credential-osxkeychain" "git" "gif2tiff" "gh-pages" "genxs" "generate-api" "gem" "geckodriver" "gapi2-parser" "gapi2-fixup" "gapi2-codegen" "gacutil2" "gacutil" "fuzzy_match" "fuse" "fsharpi" "fsharpc" "freetype-config" "frameit" "foodcritic" "flow" "fax2tiff" "fax2ps" "fauxhai" "fastlane-credentials" "fastlane" "fastcgi-mono-server4" "fastcgi-mono-server2" "fastcgi-mono-server" "fastboot" "etc1tool" "eslint" "esdoc" "erb" "emulator-x86" "emulator-arm" "emulator" "elementary-electron" "electron" "easy_install-2.7" "easy_install" "dx" "dtd2xsd" "dtd2rng" "draw9patch" "dotenv" "dokker-watch" "dokker-init" "dokker" "documentation" "docker-machine" "docker-credential-osxkeychain" "docker-compose" "docker" "dmtracedump" "dmcs" "dltest" "djpeg" "display" "disco" "dexdump" "deliver" "ddms" "dbsessmgr4" "dbsessmgr2" "dbsessmgr" "csharp" "create-react-native-app" "cordova" "convert" "conjure" "composite" "composer" "compare" "commander" "ClassInitGenerator" "clap" "cjpeg" "chromedriver" "chktrust" "chef-solo" "chef-shell" "chef-client" "chef-apply" "chef" "certmgr" "cert2spc" "cert" "ccrewrite" "cccheck" "caspol" "buster" "bunyan" "bundler" "bundle" "bsondump" "browserify" "brew" "bower" "bmp2tiff" "binci" "berks" "babel-node" "babel-external-helpers" "babel-doctor" "babel" "atom" "asp-state4" "asp-state2" "asp-state" "apm" "animate" "android" "allure" "al2" "al" "aidl" "adb" "aapt" "_mocha" "2to3-2.7" "2to3-2" "2to3" "../" "./")
+
+ ("/usr/local/" (23027 42069 0 0) "var/" "siphon-cli/" "share/" "sbin/" "remotedesktop/" "php5-7.1.10-20171002-090111/" "php5-5.6.31-20170817-164511/" "php5/" "packager/" "opt/" "mysql-5.7.19-macos10.12-x86_64/" "mysql/" "Library/" "lib/" "include/" "Homebrew/" "heroku/" "Frameworks/" "etc/" "Deco/" "Cellar/" "Caskroom/" "bin/" "../" "./")
+
+ ("/usr/" (22500 2355 0 0) "X11R6/" "X11/" "standalone/" "share/" "sbin/" "local/" "libexec/" "lib/" "include/" "bin/" "adic/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/" (23157 53467 0 0) "vendor/" "testAllLocally.log" "test.log" "test/" "startServer.sh" "src/" "screenshots.log" "sampleOutput/" "README.md" "package.json" "gulpfile.js" "composer.lock" "composer.json" "browserDevices.json" "automate.sh" ".psysh.php" ".gitignore" ".git/" ".DS_Store" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/src/pageObjects/" (23156 45851 0 0) "Page.class.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions/output/" (23156 43817 0 0) "2018-02-02-12-17/" "2018-02-02-12-16/" "2018-02-02-12-12/" "2018-01-25-17-39/" "2018-01-23-16-06/" ".DS_Store" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions/output/2018-02-02-12-17/" (23156 45120 0 0) "https___www_secured-site7_com_uwce-staging_www_fond-du-lac_login.png" "https___www_secured-site7_com_uwce-staging_www_fond-du-lac_catalog.png" "https___www_secured-site7_com_uwce-staging_www_fond-du-lac_admin_term_new.png" "https___www_secured-site7_com_uwce-staging_www_fond-du-lac_admin_course_edit_978.png" "https___www_secured-site7_com_uwce-staging_www_fond-du-lac_admin_course_edit_977.png" "https___www_secured-site7_com_uwce-staging_www_fond-du-lac_admin_course_edit_976.png" "https___www_secured-site7_com_uwce-staging_www_fond-du-lac_admin_course_edit_975.png" "https___www_secured-site7_com_uwce-staging_www_fond-du-lac_admin_course_edit_974.png" "https___www_secured-site7_com_uwce-staging_www_fond-du-lac_admin_category_new.png" "https___www_secured-site7_com_uwce-staging_www_fond-du-lac_admin_campus_edit_1.png" "https___www_secured-site7_com_uwce-staging_www_fond-du-lac_admin.png" "https___www_secured-site7_com_uwce-staging_www_.png" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/vendor/facebook/webdriver/lib/" (23052 8217 0 0) "WebDriverWindow.php" "WebDriverWait.php" "WebDriverUpAction.php" "WebDriverTimeouts.php" "WebDriverTargetLocator.php" "WebDriverSelectInterface.php" "WebDriverSelect.php" "WebDriverSearchContext.php" "WebDriverPoint.php" "WebDriverPlatform.php" "WebDriverOptions.php" "WebDriverNavigation.php" "WebDriverMouse.php" "WebDriverKeys.php" "WebDriverKeyboard.php" "WebDriverHasInputDevices.php" "WebDriverExpectedCondition.php" "WebDriverEventListener.php" "WebDriverElement.php" "WebDriverDispatcher.php" "WebDriverDimension.php" "WebDriverCommandExecutor.php" "WebDriverCapabilities.php" "WebDriverBy.php" "WebDriverAlert.php" "WebDriverAction.php" "WebDriver.php" "Support/" "Remote/" "Net/" "JavaScriptExecutor.php" "Internal/" "Interactions/" "Firefox/" "Exception/" "Cookie.php" "Chrome/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/" (23156 43336 0 0) "studentRegistration/" "project.json" "pageObjects/" "adminRegisterChangeOnQuestionUpdate/" "adminPageObjects/" "adminCreateSessions/" ".DS_Store" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/" (23156 43403 0 0) "uwce/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/vendor/phpunit/phpunit/src/Framework/" (23094 3895 0 0) "WarningTestCase.php" "Warning.php" "UnintentionallyCoveredCodeError.php" "TestSuiteIterator.php" "TestSuite.php" "TestResult.php" "TestListenerDefaultImplementation.php" "TestListener.php" "TestFailure.php" "TestCase.php" "Test.php" "SyntheticError.php" "SkippedTestSuiteError.php" "SkippedTestError.php" "SkippedTestCase.php" "SkippedTest.php" "SelfDescribing.php" "RiskyTestError.php" "RiskyTest.php" "OutputError.php" "MissingCoversAnnotationException.php" "InvalidCoversTargetException.php" "IncompleteTestError.php" "IncompleteTestCase.php" "IncompleteTest.php" "ExpectationFailedException.php" "ExceptionWrapper.php" "Exception.php" "Error/" "DataProviderTestSuite.php" "CoveredCodeNotExecutedException.php" "Constraint/" "CodeCoverageException.php" "BaseTestListener.php" "AssertionFailedError.php" "Assert.php" "Assert/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/src/utilities/" (23156 38548 0 0) "Screenshots.class.php" "RunTests.class.php" "RunScreenshots.class.php" "RunFunctionTests.class.php" "ReadTestDirectory.class.php" "ProjectFile.class.php" "ProcessSession.class.php" "GetBrowsers.class.php" "CurlSupport.class.php" "CheckParallelTest.class.php" "AutomateFile.class.php" "../" "./")
+
+ ("/Volumes/www/automate/src/scripts/" (23146 13318 0 0) "test.php" "startScreenShotTest.sh" "runTests.php" "runTestLocally.php" "runScreenshots.php" "runFunctionTests.php" "getSeleniumTestInfo.sh" "getSeleniumTestHistory.sh" "getSeleniumScript.sh" "getScreenshots.sh" "getScreenShotInfo.sh" "getScreenShotBrowsers.sh" "getBrowsers.sh" "../" "./")
+
+ ("/Volumes/www/automate/src/" (23143 31888 0 0) "website/" "utilities/" "testCase/" "template/" "scripts/" "psysh/" "pageObjects/" "js/" "generator/" "css/" "../" "./")
+
+ ("/Volumes/www/automate/test/uwce/" (23156 37980 0 0) "studentRegistration/" "project.json~" "project.json" "pageObjects/" "adminRegisterChangeOnQuestionUpdate/" "adminPageObjects/" "adminCreateSessions/" "../" "./")
+
+ ("/Volumes/www/automate/test/uwce/adminCreateSessions/" (23156 37957 0 0) "test.php" "screenShotsUrl.json" "screenshots/" "README.md" "output/" "MySqlCommands.sql" "browserDevices.json" "bd-save.json" "automate.json" "AdminCreateSessionsTest.class.php" "../" "./")
+
+ ("/Volumes/www/automate/test/uwce/adminCreateSessions/output/" (23156 17594 0 0) "2018-02-02-05-00/" "2018-02-01-13-48/" "2018-02-01-13-33/" "2018-02-01-13-06/" "2018-02-01-12-45/" "2018-02-01-12-44/" "2018-02-01-12-42/" "2018-02-01-05-00/" "2018-01-30-05-00-save/" "2018-01-30-05-00/" "2018-01-29-12-22/" "2018-01-29-11-53/" "2018-01-29-10-23/" "2018-01-29-10-11/" "2018-01-29-10-06/" "2018-01-29-05-00/" "2018-01-28-05-00/" "2018-01-27-05-00/" "2018-01-26-11-23/" "2018-01-26-11-00/" "2018-01-25-14-03/" "2018-01-25-05-00/" "2018-01-24-10-19/" "2018-01-24-10-12/" "2018-01-24-10-07/" "2018-01-23-13-14/" "2018-01-23-13-02/" "2018-01-23-12-36/" "2018-01-23-12-33/" "../" "./")
+
+ ("/Volumes/www/automate/test/uwce/adminCreateSessions/output/2018-01-24-10-19/" (23144 52606 0 0) "site.min.js" "screenshots/" "projectInfo.html" "main.css" "Mac_OSX_10_12_Chrome.logs" "Mac_OSX_10_12_Chrome.json" "index.php" "includedLogs.html" "../" "./")
+
+ ("/Volumes/www/automate/" (23156 36683 0 0) "vendor/" "test.log" "test/" "startServer.sh" "src/" "search.sh" "screenshots.log" "sampleOutput/" "README.md" "package.json" "gulpfile.js" "composer.lock" "composer.json" "browserDevices.json" "automate.sh" ".psysh.php" ".gitignore" ".git/" ".DS_Store" "../" "./")
+
+ ("/Volumes/www/" (23137 1273 0 0) "index.php" "hold/" "automate/" ".DS_Store" "../" "./")
+
+ ("/Volumes/" (23156 36639 0 0) "www/" "Macintosh HD/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/src/scripts/" (23155 46086 0 0) "test.php" "startScreenShotTest.sh" "runTests.php" "runTestLocally.php" "runScreenshots.php" "runFunctionTests.php" "getSeleniumTestInfo.sh" "getSeleniumTestHistory.sh" "getSeleniumScript.sh" "getScreenshots.sh" "getScreenShotInfo.sh" "getScreenShotBrowsers.sh" "getBrowsers.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/studentRegistration/" (23155 44518 0 0) "test.php" "StudentRegistrationTest.class.php" "screenShotsUrl.json" "screenshots/" "README.md" "output/" "mySQLCommand.sql" "browserDevices.json" "automate.json" ".#StudentRegistrationTest.class.php" "../" "./")
+
+ ("/Volumes/www/automate/test/uwce/studentRegistration/" (23155 25403 0 0) "test.php" "StudentRegistrationTest.class.php" "screenShotsUrl.json" "README.md" "output/" "mySQLCommand.sql" "browserDevices.json" "automate.json" "../" "./")
+
+ ("/Volumes/www/automate/test/" (23147 23607 0 0) "uwce/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/studentRegistration/screenshots/" (23155 26369 0 0) "music-course.json" "card-info.json" "billing.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/src/template/" (23155 23876 0 0) "jquery.stickytable.min.js" "jquery.stickytable.min.css" "index-for-screenshots.php" "index-for-auto-results.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-30-05-00/screenshots/" (23155 23414 0 0) "index.php" "compare-9.json" "compare-8.json" "compare-7.json" "compare-6.json" "compare-5.json" "compare-4.json" "compare-3.json" "compare-2.json" "compare-16.json" "compare-15.json" "compare-14.json" "compare-13.json" "compare-12.json" "compare-11.json" "compare-10.json" "compare-1.json" "compare-0.json" "9.json" "8.json" "7.json" "6.json" "5.json" "4.json" "3.json" "2.json" "16.json" "15.json" "14.json" "13.json" "12.json" "11.json" "10.json" "1.json" "0.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-30-05-00/" (23155 23335 0 0) "site.min.js" "screenshots/" "projectInfo.html" "main.css" "Mac_OSX_10_12_Chrome.logs" "Mac_OSX_10_12_Chrome.json" "jquery.stickytable.min.js" "jquery.stickytable.min.css" "index.php" "includedLogs.html" ".DS_Store" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions/screenshots/" (23152 51436 0 0) "urlsForTabs.json" "README.md" "admin-course.json" "admin-course-edit.json" "admin-course-edit-tab-registration.json" "admin-course-edit-tab-location.json" "admin-course-edit-tab-instructor.json" "admin-course-edit-tab-date.json" "admin-course-edit-tab-additional.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/sampleOutput/" (23152 47835 0 0) "2018-01-30-05-00/" "2018-01-03-18-43/" "2018-01-02-16-49/" "2017-12-07-13-12/" ".DS_Store" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/src/psysh/" (23110 33376 0 0) "testUWCEAdmin.php" "testStudentRegistration.php" "test.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/gitProjects/linky_clicky/includes/features/drupal.org/context/" (23124 64934 0 0) "context.feature" "../" "./")
+
+ ("/Users/barton/projects/wisnet/gitProjects/linky_clicky/environment/" (23124 64934 0 0) "stanford_sites/" "README.md" "../" "./")
+
+ ("/Users/barton/projects/wisnet/livewell/" (23117 7880 0 0) "datamodel.txt" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-02-16-49/" (23151 20836 0 0) "Windows_10_MicrosoftEdge.logs" "Windows_10_MicrosoftEdge.json" "Windows_10_Internet_Explorer.logs" "Windows_10_Internet_Explorer.json" "Windows_10_Firefox.logs" "Windows_10_Firefox.json" "Windows_10_Chrome.logs" "Windows_10_Chrome.json" "site.min.js" "screenshots/" "projectInfo.html" "main.css" "Mac_OSX_10_12_Safari.logs" "Mac_OSX_10_12_Safari.json" "Mac_OSX_10_12_Firefox.logs" "Mac_OSX_10_12_Firefox.json" "Mac_OSX_10_12_Chrome.logs" "Mac_OSX_10_12_Chrome.json" "index.php" "includedLogs.html" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-02-16-49/screenshots/" (23151 20549 0 0) "index.php" "compare-9.json" "compare-8.json" "compare-7.json" "compare-6.json" "compare-5.json" "compare-4.json" "compare-3.json" "compare-2.json" "compare-15.json" "compare-14.json" "compare-13.json" "compare-12.json" "compare-11.json" "compare-10.json" "compare-1.json" "compare-0.json" "9.json" "8.json" "7.json" "6.json" "5.json" "4.json" "3.json" "2.json" "15.json" "14.json" "13.json" "12.json" "11.json" "10.json" "1.json" "0.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-03-18-43/" (23147 33110 0 0) "Windows_10_MicrosoftEdge.logs" "Windows_10_MicrosoftEdge.json" "Windows_10_Internet_Explorer.logs" "Windows_10_Internet_Explorer.json" "Windows_10_Firefox.logs" "Windows_10_Firefox.json" "Windows_10_Chrome.logs" "Windows_10_Chrome.json" "site.min.js" "screenshots/" "projectInfo.html" "main.css" "Mac_OSX_10_12_Firefox.logs" "Mac_OSX_10_12_Firefox.json" "Mac_OSX_10_12_Chrome.logs" "Mac_OSX_10_12_Chrome.json" "index.php" "includedLogs.html" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-03-18-43/screenshots/" (23147 33049 0 0) "index.php" "compare-9.json" "compare-8.json" "compare-7.json" "compare-6.json" "compare-5.json" "compare-4.json" "compare-3.json" "compare-2.json" "compare-15.json" "compare-14.json" "compare-13.json" "compare-12.json" "compare-11.json" "compare-10.json" "compare-1.json" "compare-0.json" "9.json" "8.json" "7.json" "6.json" "5.json" "4.json" "3.json" "2.json" "15.json" "14.json" "13.json" "12.json" "11.json" "10.json" "1.json" "0.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-26-11-23/screenshots/" (23147 28918 0 0) "index.php" "compare-1.json" "compare-0.json" "1.json" "0.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/sampleOutput/2018-01-26-11-23/" (23147 28275 0 0) "site.min.js" "screenshots/" "projectInfo.html" "main.css" "Mac_OSX_10_12_Chrome.logs" "Mac_OSX_10_12_Chrome.json" "index.php" "includedLogs.html" "../" "./")
+
+ ("/Users/" (22351 5359 0 0) "Shared/" "barton/" ".localized" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/adminRegisterChangeOnQuestionUpdate/" (23146 27100 0 0) "test.php" "screenshots/" "README.md" "pageObjects/" "output/" "browserDevices.json" "automate.json" "AdminRegisterChangeOnQuestionUpdate.class.php" "../" "./")
+
+ ("/Users/barton/Downloads/" (23146 8575 0 0) "xde-2.20.1.dmg" "WestCamp.csv" "Watercolor_Painting_Workshop_Hummingbird_with_Joel_Wright_+-demonoid.pw-+.TORRENT" "Watercolor.Postcards.2013.SWESUB.720p.BRRiP.x264.SW3SU8.mp4" "Watercolor Painting Workshop Hummingbird - with Joel Wright/" "Watercolor Painting Introduction to Light/" "Watercolor for the Absolute Beginner with Mark Willenbrink/" "VSCode-darwin-stable.zip" "VSCode-darwin-stable (1).zip" "VSCode-darwin-stable/" "VQb-flex.hex" "VisualPHPUnit-master/" "vagrant_2.0.0_x86_64.dmg" "vagrant_1.8.1.dmg" "v.php" "uTorrent.dmg" "untitled folder 2/" "untitled folder/" "Unconfirmed 909040.crdownload" "Unconfirmed 514417.crdownload" "Unconfirmed 497785.crdownload" "Unconfirmed 46879.crdownload" "unchain_.mid" "UFC_202_PPV_Diaz_vs_McGregor_HDTV_x264-FMN_[TJET].torrent" "UFC.220.PPV.Miocic.vs.Ngannou.HDTV.x264-Ebi.mp4" "UFC.212.PPV.Aldo.vs.Holloway.HDTV.x264-Ebi.mp4" "TrueFire_Installer_Mac.dmg" "Transaction History.csv" "Todd Johnson -  Walking Bass - 2 Bar Phrases - 26-06-17.zip" "Todd Johnson -  Walking Bass - 2 Bar Phrases - 26-06-17/" "theme_klass_moodle33_2017051700.zip" "theme_essential_moodle33_2017040304.zip" "The_Watercolor_Course_Youve_Always_Wanted_Guided_Lessons_for_Beginners_and_Experienced_Artists_(PDF).torrent" "The Watercolor Course You've Always Wanted Guided Lessons for Beginners and Experienced Artists (PDF)/" "TestComplete_T273171562017.exe" "test.php" "Terms.php" "Term.php" "Term (1).php" "stream.pls" "stream (2).pls" "stream (1).pls" "stations.geojson" "startbootstrap-logo-nav-gh-pages.zip" "Skype_7.30.274.dmg" "Sketch Your Life Create Expressive Sketches in Pen and Watercolor/" "shirt addresses RTL.xlsx" "Server (1).png" "sequel-pro-1.1.2.dmg" "ScreenFlow-5.0.5.dmg" "ScreenFlow-5.0.4.dmg" "screencapture-browserstack-automate-builds-c8be0e1e5fe0b94ad19b8ec86905fbb2683b2ff7-1510272082109.png" "Screen Shot 2016-01-22 at 5.22.03 PM.png" "SBL+Beginners+-+Lesson+17.mp3" "SafariDriver.safariextz" "Roster with Payment.xls" "Roster with Payment.csv" "Roster with Payment (1).csv" "RocketCake-1.5.dmg" "Robomongo-0.8.5-x86_64.dmg" "roboform-mac-v8.dmg" "roboform-mac-v8 (2).dmg" "roboform-mac-v8 (1).dmg" "RMA990634594_T.gif" "Rick.php" "Rick (1).php" "Registration.php" "Redwood_Rally_flyer_2016_v2.pdf" "redis.epub" "redis-desktop-manager-0.8.3-2550.dmg" "redis-3.2.1.tar.gz" "redis-2.8.24.tar.gz" "redfin_2017-07-27-07-16-35_results.csv" "redfin_2017-07-27-07-13-14_results.csv" "receipt.pdf" "ReactStudio_v111_build288.zip" "RDM.gz" "RDM (1).gz" "Profile.php" "Product Overview Retroflex RX2.pdf" "postgresql-9.6.5-1-osx.dmg" "Portrait Painting In Watercolor - (1973) Charles Reid (Kat) - superunitedkingdom.pdf" "Popcorn-Time.app/" "Popcorn-Time-0.3.10-Mac.zip" "Popcorn-Time-0.3.10-Mac (1).zip" "Popcorn-Time 2.app/" "Please_DocuSign_Cancellation_11th.pdf" "PhpStorm-2017.2.4.dmg" "Patient Registration and Medical History.docx" "PageCourse.php" "output.php" "OpenSongOSX-V2.1.2.dmg" "OpenSongImport_1.3.zip" "OpenSong Import 1.3/" "OnSong-wayne.backup" "OnSong-scott.backup" "OnSong-jewel.backup" "OnSong-david.backup" "notes.log" "node-v6.9.1.pkg" "node-v6.2.2.pkg" "node-v6.11.3.pkg" "node-v4.2.3.pkg" "Node Tuts - Kue Jobs-SD.mp4" "No Excuses Watercolor Painting Techniques for Sketching.epub" "NewHammondHome.jpg" "mysql-workbench-community-6.3.9-osx-x86_64.dmg" "mysql-5.7.19-macos10.12-x86_64.dmg" "MY15_RA4_16_16_13.zip" "my-release-key.keystore" "mp4.mp4" "Most of the important things in the world have been accomplished by people who have kept on trying when there seemed to be no help at all..zip" "Most of the important things in the world have been accomplished by people who have kept on trying when there seemed to be no help at all./" "Moot2016ConfigMgmt.pptx" "Moodle4Mac-33.dmg" "Moodle-FAQ.pdf" "Moodle-FAQ (1).pdf" "MongoDB_in_Action_Second_Edition_v16_MEAP.mobi" "mom_cristal_nicole_RU030716_368p_850.mp4" "mod_customcert_moodle33_2017050507.zip" "Mobirise4.dmg" "Mobirise.dmg" "mobirise-free-mac.zip" "mobirise-free-mac (2).zip" "mobirise-free-mac (1).zip" "MidwestCamp.gpx" "MidwestCamp.csv" "Max_Workout_by_Shin_Ohtake.torrent" "Masthead.php" "Masthead (7).php" "Masthead (6).php" "Masthead (5).php" "Masthead (4).php" "Masthead (3).php" "Masthead (2).php" "Masthead (13).php" "Masthead (1).php" "macx-video-converter-free-edition.dmg" "Lynda - moodle 3 Essential Training/" "LOVE_IS.MGU" "LOVE_IS.MG1" "LOVE#9.MGU" "LoginExtra.php" "Login.php" "Login (9).php" "Login (8).php" "Login (7).php" "Login (6).php" "Login (5).php" "Login (4).php" "Login (3).php" "Login (2).php" "Login (11).php" "Login (10).php" "Login (1).php" "letsleep-final-linkedup-2.pdf" "Learning Virtual Reality - Developing Immersive Experiences and Applications for Desktop, Web and Mobile - 1st Edition (2015) (Early Release) (Pdf & Mobi) Gooner/" "labeljoy5setup.exe" "La Bamba.MGU" "KindleForMac-42048.dmg" "Keto_Clarity_Your_Definitive_Guide_to_the_Benefits_of_a_Low-Carb,_High-Fat_Diet_by_Eric_Westman_MD.torrent" "Katalon_Studio.dmg" "JulyAug2017ParishBulletinWeb.docx" "JMeterPlugins-ExtrasLibs-1.3.1.zip" "JMeterPlugins-ExtrasLibs-1.3.1/" "Invoice-580187.pdf" "installation-php7.zip" "installation/" "if_v-03_1790676.svg" "if_v-03_1790676.png" "if_v-03_1790676.ico" "if_v-03_1790676 (1).svg" "if_v-03_1790676 (1).png" "Iconion.dmg" "iconion-mac-setup.zip" "IconFlyDemo_3.6.zip" "ic_3d_rotation_black_24dp.zip" "how_to_practice.pdf" "Home.php" "hls_vod_mvp.m3u8" "heroku-toolbelt.pkg" "Harmonic_Layering_Module_2_Workbooks.zip" "Harmonic_Layering_Module_2_Workbooks (1).zip" "hapi.js_in_Action_v8_MEAP.pdf" "hapi.js_in_Action_v8_MEAP.mobi" "hapi.js-in-action-master.zip" "hapi.js-in-action-master/" "googlewebdesigner_mac.dmg" "GoogleEarthMac-Intel.dmg" "googlechrome.dmg" "genymotion-2.8.1.dmg" "genymotion-2.6.0.dmg" "gatling-charts-highcharts-bundle-2.2.0-20151117.130512-378-bundle.zip" "fw-REC33A-040716.bin" "fuse_osx_0_12_4_6406.pkg" "fun.php" "FlashPlayer.dmg" "FlashPlayer (2).dmg" "FlashPlayer (1).dmg" "FLAMENCO Guitar Lessons Pack/" "FitbitConnect-v2.0.2.7169-2017-10-12.dmg" "FitbitConnect-v2.0.2.7169-2017-10-12 (2).dmg" "FitbitConnect-v2.0.2.7169-2017-10-12 (1).dmg" "firefox-48.0a1.en-US.mac.dmg" "Firefox 57.0.dmg" "Firefox 55.0.3.dmg" "Firefox 50.1.0.dmg" "Firefox 45.0.dmg" "Final-DRIcore-Smart-Wall-DNXHD-v2.mp4" "FileZilla_3.30.0_macosx-x86.app.tar.bz2" "FileZilla_3.29.0_macosx-x86_setup_bundled.dmg" "Files.zip" "filelist.xml" "Fearless Watercolor for Beginners/" "fastlane — Automation and Continuous Delivery for iOS Apps.mp4" "factilea.jpg" "fachsepa.gif" "facbul3a.gif" "facbul2a.gif" "facbul1a.gif" "fa-map-marker_256_0_fe2e2e_n.textClipping" "ezgif.com-video-to-gif.gif" "Erato.zip" "dsl-mac-v383.dmg" "Downloader_setup_mac.dmg" "Download Software Development Methodologies timeline.png" "Download Software Development Methodologies timeline (1).png" "Download Complaint Form.cf.rtf" "domainnameanalyzer.dmg" "Docker.dmg" "DIRECTV_Player_12.2.dmg" "deluge-1.3.13-osx-x64-0.dmg" "Deco.pkg" "Cyberduck.app/" "Cyberduck-6.3.2.27291.zip" "CreativeCloudInstaller.dmg" "CreateAccountExtend.php" "CreateAccount.php" "CreateAccount.java" "CreateAccount (6).php" "CreateAccount (5).php" "CreateAccount (4).php" "CreateAccount (3).php" "CreateAccount (2).php" "CreateAccount (1).php" "Course.php" "Course.java" "Course (9).php" "Course (8).php" "Course (7).php" "Course (6).php" "Course (5).php" "Course (4).php" "Course (3).php" "Course (2).php" "Course (14).php" "Course (13).php" "Course (12).php" "Course (11).php" "Course (10).php" "Course (1).php" "Coure.php" "Coure (2).php" "Coure (1).php" "Cour.php" "Cour (1).php" "contactinfo.htm" "confluence-101-getting-started-in-confluence.pdf" "colloquy-latest.zip" "clinton_foundation_report_public_9-10-13- Audited Financials 2012.pdf" "Church Website Project Presentation 2012-01-28.pdf" "chefdk-0.10.0-1.dmg" "charles-proxy-4.1.4.dmg" "charles-proxy-3.11.2.dmg" "CatalogSearch.php" "CatalogCourseExtra.php" "CatalogCourseExtra.java" "CatalogCourse.php" "CatalogCourse (5).php" "CatalogCourse (4).php" "CatalogCourse (3).php" "CatalogCourse (2).php" "CatalogCourse (1).php" "Catalog.php" "Catalog (3).php" "Catalog (2).php" "Catalog (1).php" "CardInfo.php" "CardInfo (1).php" "CampusEdit.php" "CampusEdit (1).php" "C2MCO9K3IS.txt" "C.php" "C (9).php" "C (8).php" "C (7).php" "C (6).php" "C (5).php" "C (4).php" "C (3).php" "C (2).php" "C (18).php" "C (17).php" "C (16).php" "C (15).php" "C (14).php" "C (13).php" "C (12).php" "C (11).php" "C (10).php" "c (1).php" "BulletproofRoadmap_Rebrand_outlined.pdf" "bs-video-logs-use.mp4" "bootstrap-3.3.7.zip" "bootstrap-3.3.7/" "Body.Heat.1981.720p.BluRay.x264.anoXmous/" "BLUHAWAI.MGU" "BLUEBERY.MGU" "Billing.php" "Billing (1).php" "beer2.lpa" "BCompareOSX-4.1.8.21575.zip" "basedonatruestorypodcast-logo.zip" "basedonatruestorypodcast-logo.jpg" "Barton_Hammond.doc" "Balsamiq_Mockups_3.3.3.dmg" "Bacon & Butter The Ultimate Ketogenic Diet Cookbook/" "atom-mac.zip" "Ariane+Cap+-+02-06-17+-+Backing+Tracks+©CapCat+Music+Publishing.zip" "AndroidTool1.56.zip" "androidfiletransfer.dmg" "ANCHORS.MGU" "All Songs.zip" "All Songs (2).zip" "All Songs (1).zip" "ai30bbg-014.gp5" "AdwareRemovalPro.dmg" "AdwareRemovalPro (1).dmg" "AdobeReader_dc_en_a_install.dmg" "AdobeFlashPlayer_25_a_install.dmg" "AccountExtend.php" "Account.php" "About.php" "[kat.cr]ufc.200.it.s.time.720p.web.dl.h264.fight.bb.torrent" "[kat.cr]ufc.199.ppv.rockhold.vs.bisping.2.hdtv.x264.fmn.tjet.torrent" "[kat.cr]bacon.butter.the.ultimate.ketogenic.diet.cookbook.torrent" "88E3A63A905E2CED920E48B1E2FCAFCB07010B67.torrent" "5C9C1CD91DB736306FE3C7A1963F56B2CF08E714.torrent" "5-11-2016.zip" "3JSBLUES.MGU" "399CAD88C3B8460E8CD59441F5D32CF8.zip" "310BLUES.MG7" "28240_AmourdeFemme_HoloGirlsVR_Iphone_3dh.m4v" "21dcfc299d50bf3a.log" "20170522_110045.jpg" "19103895_ASHDocuments.jpeg" "19103895_ASHDocuments (2).jpeg" "19103895_ASHDocuments (1).jpeg" "12.3-LearnGood-Moodle-3.0-Risks-associated-with-Roles-and-Permissions.pdf" "10-Questions-About-Orthodox-Christianity.pdf" "10-Questions-About-Orthodox-Christianity (1).pdf" "094384665553.pdf" ".localized" "(Disc 2 0) 06 - Beer For My Horses (Album Version) [feat  Willie Nelson].m3u" "#CampusEdit (1).php#" "../" "./")
+
+ ("/Users/barton/projects/" (23090 51367 0 0) "xdk/" "wisnet/" "walmart/" "wadehammond/" "VR/" "videos/" "udemy/" "trigger.io/" "todomvc/" "tern/" "tabris/" "stargazers/" "snowflakework/" "snippets/" "Serverless/" "rv-help-work/" "redux/" "redis-3.2.1/" "redis-2.8.24/" "reactNative/" "python/" "privateRepo/" "pluralSight/" "patterns_in_polymer_js/" "parse/" "orioncooker/" "notes/" "ngrok/" "neonto/" "nativescript/" "myFamilyVoice/" "Moodle/" "mobx/" "MFV/" "meteor-source/" "meteor-react/" "meteor-polymer/" "meteor-orion/" "meteor-facebook/" "meteor/" "listsToMaintain/" "lib/" "jobboard/" "javascript/" "ionic/" "host-backup" "HappyHour/" "gopro/" "gitCheat/" "gitbook/" "ghost-0.6.4/" "ghost/" "gh-pages/" "GeekeyAnts/" "gatling-charts-highcharts-bundle-2.2.0-SNAPSHOT/" "fuse/" "FOAM/" "falcor/" "facebook/" "emacs/" "electron/" "egghead/" "dennis/" "dashing/" "cordova/" "bootstrap-blog/" "apache-jmeter-2.13/" "anglican/" ".DS_Store" "../" "./")
+
+ ("/Users/barton/projects/wisnet/holdBehatCodeception/test/uwce/unit/report/" (23128 64190 0 0) "testdox.html" "../" "./")
+
+ ("/Users/barton/projects/wisnet/holdBehatCodeception/test/uwce/unit/" (23134 15774 0 0) "report/" "mastheadTest.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/holdBehatCodeception/" (23134 15846 0 0) "tests/" "test/" "phpunit.xml" "features/" "composer.json" "codeception.yml" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/src/generator/" (23145 15799 0 0) "test.txt" "skeletonStarter/" "runServerCode.sh" "newProjectServer.php" "newProject.php" "newProject.js" "main.css" "js/" "index.php" "header.html" "generator.php" "generator.js" "footer.html" "classes.js" "bootstrap-3.3.7-dist/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/MyProject/MyTest/" (23145 15496 0 0) "WisnetScript.class.php" "test.php" "README.md" "browserDevices.json" "automate.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/MyProject/" (23145 15496 0 0) "project.json" "pageObjects/" "MyTest/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/wisnet/pageObjects/" (23145 15129 0 0) "Wisnet.class.php" "README.md" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/wisnet/isAlive/" (23145 11614 0 0) "WisnetScript.class.php" "test.php" "README.md" "browserDevices.json" "automate.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/wisnet/" (23145 11305 0 0) "project.json" "pageObjects/" "isAlive/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/IsAlive/" (23145 11214 0 0) "TestTheSiteIsUp/" "project.json" "pageObjects/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/IsAlive/pageObjects/" (23145 11214 0 0) "Wisnet.class.php" "README.md" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/IsAlive/TestTheSiteIsUp/" (23145 11214 0 0) "WisnetScript.class.php" "test.php" "README.md" "browserDevices.json" "automate.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/proj/test/" (23145 11032 0 0) "WisnetScript.class.php" "test.php" "README.md" "browserDevices.json" "automate.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/prj/tst/" (23145 8915 0 0) "WisnetScript.class.php" "test.php" "README.md" "browserDevices.json" "automate.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/projename/" (23145 3147 0 0) "testname/" "project.json" "pageObjects/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/projectname/testname/" (23145 3026 0 0) "WisnetScript.class.php" "test.php" "README.md" "browserDevices.json" "automate.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/projectname/" (23145 3026 0 0) "testname/" "project.json" "pageObjects/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/src/generator/skeletonStarter/testName/" (23145 2653 0 0) "WisnetScript.class.php" "test.php" "README.md" "browserDevices.json" "automate.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/Proje/test/" (23145 2542 0 0) "WisnetScript.class.php" "test.php" "README.md" "browserDevices.json" "automate.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/Proje/pageObjects/" (23145 2542 0 0) "Wisnet.class.php" "README.md" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/Proje/" (23145 2542 0 0) "test/" "project.json" "pageObjects/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/src/generator/skeletonStarter/pageObjects/" (23145 2323 0 0) "Wisnet.class.php" "README.md" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/src/generator/skeletonStarter/" (23101 16116 0 0) "testName/" "README.md" "project.json" "pageObjects/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/ProjectName/" (23144 65401 0 0) "TestName/" "project.json" "pageObjects/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/ProjectName/TestName/" (23144 65401 0 0) "requires.php" "README.md" "login.php" "functions.php" "constructors.php" "browserDevices.json" "automate.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/pageObjects/" (23144 63744 0 0) "RegistrationExtend.class.php" "Registration.class.php" "MastheadExtend.class.php" "Masthead.class.php" "Login.class.php" "CreateAccountExtend.class.php" "CreateAccount.class.php" "CatalogSearchExtend.class.php" "CatalogSearch.class.php" "CatalogCourseExtend.class.php" "CatalogCourse.class.php" "Catalog.class.php" "CardInfoExtend.class.php" "CardInfo.class.php" "BillingExtend.class.php" "Billing.class.php" "AccountExtend.class.php" "Account.class.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions/output/2018-01-23-16-06/" (23143 46147 0 0) "site.min.js" "screenshots/" "projectInfo.html" "main.css" "Mac_OSX_10_12_Chrome.logs" "Mac_OSX_10_12_Chrome.json" "index.php" "includedLogs.html" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions/output/2018-01-23-16-06/screenshots/" (23143 51178 0 0) "index.php" "2.json" "1.json" "0.json" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/studentRegistration/output/" (23143 34307 0 0) "2018-01-23-12-59/" "2018-01-23-12-55/" "2018-01-23-12-40/" "2018-01-22-19-05/" "2018-01-22-19-03/" "2018-01-22-19-02/" "2018-01-22-19-01/" "2018-01-22-12-53/" "2018-01-22-12-52/" "2018-01-22-10-16/" "2018-01-19-12-40/" "2018-01-19-12-37/" "2018-01-19-12-32/" "2018-01-19-12-20/" "2018-01-19-12-09/" "2018-01-19-12-05/" "2018-01-19-11-34/" "2018-01-19-11-27/" "2018-01-19-11-26/" "2018-01-19-11-25/" "2018-01-19-11-14/" "2018-01-19-11-03/" "2018-01-19-10-58/" "2018-01-19-10-51/" "2018-01-19-10-43/" "2018-01-18-14-24/" "2018-01-18-14-22/" "2018-01-18-14-16/" "2018-01-18-13-32/" "2018-01-17-16-34/" "2018-01-17-16-28/" "2018-01-09-13-01/" "2018-01-09-12-59/" "2018-01-09-12-56/" "2018-01-09-12-55/" "2018-01-09-12-53/" "2018-01-09-12-51/" "2018-01-09-12-49/" "2018-01-09-12-47/" "2018-01-09-12-46/" "2018-01-09-12-45/" "2018-01-09-12-34/" "2018-01-09-12-33/" "2018-01-09-12-28/" "2018-01-09-12-25/" "2018-01-09-12-24/" "2018-01-05-13-55/" "2018-01-05-13-54/" "2018-01-05-13-42/" "2018-01-05-12-20/" "2018-01-05-12-19/" "2018-01-05-12-18/" "2018-01-05-11-35/" "2018-01-04-15-57/" "2018-01-04-15-52/" "2018-01-04-15-49/" "2018-01-04-12-53/" "2018-01-04-12-51/" "2018-01-04-12-11/" "2018-01-04-11-33/" "2018-01-04-11-31/" "2018-01-04-11-22/" "2018-01-04-11-18/" "2018-01-04-10-44/" "2018-01-04-10-21/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/vendor/facebook/" (23142 32171 0 0) "webdriver/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/vendor/facebook/webdriver/" (23142 32171 0 0) "README.md" "logs/" "LICENCE.md" "lib/" "ISSUE_TEMPLATE.md" "CONTRIBUTING.md" "composer.json" "CHANGELOG.md" ".php_cs.dist" ".coveralls.yml" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/vendor/phpunit/" (23134 15884 0 0) "phpunit-mock-objects/" "phpunit/" "php-token-stream/" "php-timer/" "php-text-template/" "php-file-iterator/" "php-code-coverage/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/vendor/phpunit/phpunit/" (23134 15885 0 0) "tests/" "src/" "README.md" "phpunit.xsd" "phpunit.xml" "phpunit" "LICENSE" "composer.json" "ChangeLog-6.5.md" "ChangeLog-6.4.md" "ChangeLog-6.3.md" "ChangeLog-6.2.md" "ChangeLog-6.1.md" "ChangeLog-6.0.md" "ChangeLog-5.7.md" "ChangeLog-5.6.md" "ChangeLog-5.5.md" "ChangeLog-5.4.md" "ChangeLog-5.3.md" "ChangeLog-5.2.md" "ChangeLog-5.1.md" "ChangeLog-5.0.md" "ChangeLog-4.8.md" "ChangeLog-4.7.md" "ChangeLog-4.6.md" "ChangeLog-4.5.md" "ChangeLog-4.4.md" "ChangeLog-4.3.md" "ChangeLog-4.2.md" "ChangeLog-4.1.md" "ChangeLog-4.0.md" "build.xml" "appveyor.yml" ".travis.yml" ".stickler.yml" ".php_cs" ".gitignore" ".github/" ".gitattributes" ".editorconfig" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions/pageObjects/" (23142 15788 0 0) "WorkshopPage.class.php" "TimeSlotsPage.class.php" "TermPage.class.php" "SessionPage.class.php" "MainPage.class.php" "LoginPage.class.php" "CourseProgramDisplayPage.class.php" "CoursePage.class.php" "CourseCatalog.class.php" "CourseAndProgramPage.class.php" "CategoryPage.class.php" "CampusPage.class.php" "AdminPage.class.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/selenium-page-object-generato/templates/" (23138 19140 0 0) "robot.handlebars" "php.handlebars" "java.handlebars" "cs.handlebars" "../" "./")
+
+ ("/Volumes/www/automate/test/uwce/pageObjects/" (23138 18994 0 0) "RegistrationExtend.class.php" "Registration.class.php" "MastheadExtend.class.php" "Masthead.class.php" "Login.class.php" "CreateAccountExtend.class.php" "CreateAccount.class.php" "CatalogSearchExtend.class.php" "CatalogSearch.class.php" "CatalogCourseExtend.class.php" "CatalogCourse.class.php" "Catalog.class.php" "CardInfo.class.php" "BillingExtend.class.php" "Billing.class.php" "Account.class.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/functionTests/seniorDiscountTest/" (23138 15431 0 0) "studentRegistration.php" "studentRegister.php" "studentNavigateToCreateAccount.php" "seniorDiscount_Admin.php" "registerStudentForCourse.php" "README.md" "navigateToCourse.php" "campusSettings.php" "adminMakeWorkshop.php" "adminLogin.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/test/uwce/functionTests/" (23136 63997 0 0) "seniorDiscountTest.php" "seniorDiscountTest/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/automate/src/" (23109 9657 0 0) "website/" "utilities/" "testCase/" "template/" "scripts/" "psysh/" "pageObjects/" "js/" "generator/" "css/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/" (23138 8544 0 0) "wisnetds-old/" "wisnetds/" "uwce/" "tutorials/" "shoutem/" "selenium-page-object-generato/" "react-native-ui-kitten/" "psysh/" "Production/" "phpstorm-workshop/" "notes.txt" "noetstoVA" "myftp.sh" "MobileEDF/" "michels-resume/" "markeyds-marketing-site/" "livewell/" "kittenTricks/" "katalon/" "jira/" "ionic/" "holdBehatCodeception/" "gitProjects/" "geekyants/" "everydayfit/" "devSetup/" "automation/" "automate/" "auto/" ".DS_Store" "#noetstoVA#" "../" "./")
+
+ ("/Users/barton/" (23110 44642 0 0) "WaveMaker/" "VirtualBox VMs/" "Sites/" "Public/" "projects/" "Pictures/" "notes.txt" "Music/" "Movies/" "Library/" "Kitchen Starting Guide.odp" "java_error_in_phpstorm.hprof" "imgUploadExample/" "genymotion-log.zip" "expo/" "Dropbox/" "Downloads/" "Documents/" "Desktop/" "Creative Cloud Files/" "bg.jpg" "bg 2.jpg" "Applications/" ".yo-rc-global.json" ".vscode-react-native/" ".vscode/" ".vnc/" ".viminfo" ".vagrant.d/" ".v8flags.5.1.281.107.3c895f944ee1cdd6e7319973ffc91f67.json" ".v8flags.5.0.71.52.barton.json" ".v8flags.4.5.103.35.barton.json" ".v8flags.3.28.71.19.barton.json" ".Trash/" ".subversion/" ".standard-cache/" ".ssh/" ".spaceship/" ".siphon/" ".shoutem/" ".rncache/" ".rediscli_history" ".plugman/" ".pgadmin/" ".parse/" ".oracle_jre_usage/" ".openshift/" ".npm/" ".node_repl_history" ".node-gyp/" ".ngrok/" ".netrc" ".nds/" ".mysql_history" ".mplayer/" ".mongorc.js" ".modulus/" ".meteorsession" ".meteor-kitchen/" ".meteor/" ".local/" ".lesshst" ".katalon/" ".jspm/" ".itmstransporter/" ".ionic/" ".heroku/" ".groovy/" ".gradle/" ".goodsync/" ".gitignore_global" ".gitconfig" ".gitbook/" ".Genymobile/" ".gem/" ".fuse/" ".fastlane_crash_reporting" ".expo/" ".eslintrc" ".emacs.elc" ".emacs.d/" ".emacs-save" ".emacs-pre-eslint" ".emacs" ".electron-gyp/" ".electron/" ".editor-framework/" ".DS_Store" ".dropbox/" ".did_show_opt_info" ".Deco/" ".dbshell" ".cups/" ".cordova/" ".config/" ".composer/" ".cocoapods/" ".CFUserTextEncoding" ".cache/" ".browserstack/" ".berkshelf/" ".bash_sessions/" ".bash_profile.pysave" ".bash_profile" ".bash_history" ".babel.json" ".aws/" ".atom/" ".android/" "../" "./")
+
+ ("/Volumes/www/automate/test/uwce/functionTests/seniorDiscountTest/" (23137 1375 0 0) "studentRegistration.php" "studentRegister.php" "studentNavigateToCreateAccount.php" "seniorDiscount_Admin.php" "registerStudentForCourse.php" "navigateToCourse.php" "campusSettings.php" "adminMakeWorkshop.php" "adminLogin.php" "../" "./")
+
+ ("/Volumes/www/automate/test/uwce/functionTests/" (23137 1375 0 0) "seniorDiscountTest.php" "seniorDiscountTest/" "../" "./")
+
+ ("/Volumes/www/automate/src/utilities/" (23138 7739 0 0) "Screenshots.class.php" "RunTests.class.php" "RunScreenshots.class.php" "RunFunctionTests.class.php" "ReadTestDirectory.class.php" "ProjectFile.class.php" "ProcessSession.class.php" "GetBrowsers.class.php" "CurlSupport.class.php" "CheckParallelTest.class.php" "AutomateFile.class.php" "../" "./")
+
+ ("/Users/barton/projects/wisnet/gitProjects/qa-tools/" (23063 13620 0 0) "tests/" "README.md" "phpunit.xml.dist" "LICENSE" "library/" "docs/" "CONTRIBUTING.md" "composer.lock" "composer.json" "codecov.yml" "CODE_OF_CONDUCT.md" "CHANGELOG.md" ".travis.yml" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/gitProjects/linky_clicky/sites/" (23124 64934 0 0) "vpge/" "undergrad/" "uat/" "sse/" "soap/" "provost/" "probo/" "mlk/" "lrp/" "itunconference/" "fddo/" "english/" "engineering-redesign/" "engineering/" "diversityworks/" "classics/" "caw/" "art/" "anchorage/" "adminguide/" "../" "./")
+
+ ("/Users/barton/projects/wisnet/gitProjects/linky_clicky/sites/anchorage/features/" (23124 64934 0 0) "stanford_courses.feature" "modules.feature" "features.feature" "create_node.feature" "context.feature" "calendar.feature" "bootstrap/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

@@ -1,0 +1,192 @@
+var _kantu = [];
+var _selectors = [];
+var _data = [];
+dataObs.observe('script', function(da) {
+  var theScript = "";
+  for (var i = 0; i < da.length; i++) {
+    theScript += da[i].toString() + "\n";
+  }
+  document.getElementById('codeScript').innerHTML = theScript;
+});
+
+dataObs.set('script', _data);
+
+
+function process() {
+  var kantu = document.getElementById("kantu").value;
+  _kantu = JSON.parse(kantu);
+  var kantuRows = makeKantuRow(_kantu);
+
+  var steps= document.getElementById("selectors").value;
+  _selectors =  JSON.parse(steps);
+  var stepsRows = makeStepsRow(_selectors);
+
+  document.getElementById("kantuTable").innerHTML = kantuRows;
+  document.getElementById("selectorsTable").innerHTML = stepsRows;  
+
+}
+
+function makeStepsRow(steps) {
+  var rows = '<tr><th onclick="unCheckAllBoxesOnSelectorsTable()">Select</th><th>Key</th><th>Locator</th><th>Value</th><th>Type</th><th>Function</th></tr>';
+  steps.forEach(function(obj,index) {
+    var row = '<tr onclick="selectStepsRow(this)" data-id="'
+        + index
+        + '"><td>'
+        + '<input type="checkbox"></td><td>'
+        + obj.attributeName
+        + '</td><td>'
+        + obj.attributeStrategy
+        + '</td><td>'
+        + obj.attributeValue
+        + '</td><td>'
+        + obj.attributeType
+        + '</td><td>'
+        + obj.operationName
+        + '</td></tr>';
+    rows = rows + row;
+  });
+  return rows;
+  
+}
+
+function makeKantuRow(steps) {
+  var rows = '<tr><th onclick="unCheckAllBoxesOnKantuTable()">Select</th><th>Command</th><th>Target</th><th>Value</th></tr>';
+  steps.forEach(function(obj,index) {
+    var row = '<tr onclick="selectKantuRow(this)"><td>'
+        + '<input type="checkbox" data-id="'
+        + index
+        + '"></td><td>'
+        + obj.Command
+        + '</td><td>'
+        + obj.Target
+        + '</td><td>'
+        + obj.Value
+        + '</td></1tr>';
+    rows = rows + row;
+  });
+  return rows;
+  
+}
+
+function unCheckAllBoxesOnSelectorsTable() {
+  unCheckAllBoxes(document.getElementById("selectorsTable").getElementsByTagName('input'));
+  showSelectorsTable();
+}
+
+function unCheckAllBoxesOnKantuTable() {
+  unCheckAllBoxes(document.getElementById("kantuTable").getElementsByTagName('input'));
+  showSelectorsTable();  
+}
+
+function unCheckAllBoxes(checkboxes) {
+  for (var i = 0; i < checkboxes.length; i++) {  
+    if (checkboxes[i].type === 'checkbox') {
+      checkboxes[i].checked = false;
+    }
+  }
+}
+function selectStepsRow(row)  {
+  unCheckAllBoxes(document.getElementById("selectorsTable").getElementsByTagName('input'));
+  console. log('id', row.getAttribute('data-id'));
+  var firstInput = row.getElementsByTagName('input')[0];
+  firstInput.checked = true;
+}
+function showSelectorsTable() {
+  var as = document.getElementById('selectorsTable');
+  for(var i=1;i<as.rows.length;i++) {
+    var trs = as.getElementsByTagName("tr")[i];
+    trs.style.display = '';
+  }
+}
+function selectKantuRow(row) {
+  showSelectorsTable();
+  
+  unCheckAllBoxes(document.getElementById("kantuTable").getElementsByTagName('input'));
+
+  var command = row.cells[1].innerHTML;
+  
+  var as = document.getElementById('selectorsTable');
+  for(var i=1;i<as.rows.length;i++) {
+    var trs = as.getElementsByTagName("tr")[i];
+    var type = trs.cells[4].innerText;
+    switch (command) {
+    case 'open':
+      trs.style.display = 'none';
+      break;
+    case 'type':
+      trs.style.display = (type === 'text') ? '' : 'none';
+      break;
+    case 'click':
+      trs.style.display = (type === 'link') ? '' : 'none';
+      break;
+    case 'clickAndWait':
+      trs.style.display = (type === 'link'
+                           ||
+                           type === 'button') ? '' : 'none';
+      break;
+    }
+  }
+  var firstInput = row.getElementsByTagName('input')[0];
+  firstInput.checked = true;
+}
+function getScriptName() {
+  return document.getElementById('scriptName').value;
+}
+function waitPageLoaded() {
+  var name = getScriptName();
+  var s = new WaitPageLoaded(name);
+  updateObs(s);  
+}
+function takeSnapShot() {
+  var s = new SnapShot();
+  updateObs(s);
+}
+function verifyPageUrl() {
+  var s = new VerifyPageUrl(getScriptName());
+  updateObs(s);  
+}
+function assertEquals() {
+
+}
+function findCheckedRow(tableName) {
+  var as = document.getElementById(tableName);
+
+  for(var i=1;i<as.rows.length;i++) {
+    var trs = as.getElementsByTagName("tr")[i];
+    if (trs.cells[0].firstChild.checked) {
+      return i - 1;//first row header
+    }
+    
+  }
+  return -1;
+}
+function updateObs(s) {
+  var data = dataObs.get('script');
+  data.value.push(s);
+  dataObs.set('script',data.value);
+}
+function makeScript() {
+  var checkedKanutRow = findCheckedRow('kantuTable'); 
+  var checkedSelectorsRow = findCheckedRow('selectorsTable');
+
+  var selectedCommand = _kantu[checkedKanutRow];
+  var selector = _selectors[checkedSelectorsRow];
+  
+  switch (selectedCommand.Command) {
+  case 'open':
+    updateObs(new Open(selectedCommand.Target));
+    break;
+  case 'type':
+    updateObs(new Type(getScriptName(),
+                       selectedCommand.Value,
+                       selector.operationName));
+    break;
+  case 'click':
+  case 'clickAndWait':
+    updateObs(new Click(getScriptName(),
+                        selector.operationName));
+    break;
+    
+  }
+  
+}

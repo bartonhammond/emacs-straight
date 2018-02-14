@@ -1,0 +1,12 @@
+    "collectCoverageOnlyFrom": {
+      "src/components/ErrorAlert.js": true,
+      "src/components/FormButton.js": true,
+      "src/components/Header.js": true,
+      "src/components/ItemCheckbox.js": true,
+      "src/components/LoginForm.js": true,
+      "src/reducers/auth/authForm.js": true,
+      "src/reducers/auth/authFormValidation.js": true,
+      "src/reducers/auth/authReducer.js": true,
+      "src/lib/fieldValidation.js": true
+    },
+    "collectCoverage": false,

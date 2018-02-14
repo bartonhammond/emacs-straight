@@ -1,0 +1,51 @@
+'use strict';
+
+/**
+ *
+
+
+
+ */
+class StarredData {
+  /**
+   * 
+   Expects array of objects
+
+   Object = {
+   repoName: 'full-repo-name', //e.g. bartonhammond/snowflake
+   stargazers: ['login', 'login']
+   }
+
+   */
+  constructor(data) {
+    this.data = data ? data: [];
+  }
+  
+  sortData() {
+    this.data.sort((a,b) => {
+      try {
+        return b.stargazers.length - a.stargazers.length;
+
+      } catch(err) {
+        console.log('sortdata.err',err);
+        console.log('sortdata.a',a);
+        console.log('sortdata.b',b);        
+        return -1;
+      }
+    });    
+  }
+
+  addStarred(repoName, stargazer) {
+    let self = this;
+    for (var i = 0; i < self.data.length; i++) {
+      if (self.data[i].repoName === repoName) {
+        self.data[i].stargazers.push(stargazer);
+        return;
+      }
+    }
+    self.data.push({
+      repoName: repoName,
+      stargazers: [stargazer]});
+  }
+}
+module.exports = StarredData;

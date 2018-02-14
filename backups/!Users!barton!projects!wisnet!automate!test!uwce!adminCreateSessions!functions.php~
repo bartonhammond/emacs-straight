@@ -1,0 +1,23 @@
+//Start from Admin dashboard
+$adminPage->clickAdminMenu();
+
+$adminPage->clickCourseAndProgram();
+
+
+$cpPage = new CourseAndProgramPage($this->driver);
+$cpPage->waitPageLoaded();
+$this->takeSnapShot();
+
+$cpPage->typeCourseSearch("BWH Music Course");
+$cpPage->submit();
+
+$this->takeSnapShot();
+$this->assertEquals("BWH Music Course", $cpPage->getFirstSearchResultText());
+
+$cpPage->selectFirstSearchResult();
+$this->takeSnapShot();
+
+$cpDisplayPage = new CourseProgramDisplayPage($this->driver, $this->isMobile);
+$cpDisplayPage->waitPageLoaded();
+
+$this->assertContains("BWH Music Course", $cpDisplayPage->getH2HeadingText());

@@ -1,0 +1,16 @@
+{
+    "testName": "Student Registration",
+    "results": "C:\\www\\automate\\src\\utilities\/..\/..\/test\/uwce\/studentRegistration\/output\/2018-01-20-05-09",
+    "screenshots": {
+        "browser_list_name_save": "wisnet-browsers",
+        "browser_list_name": "barton-test",
+        "login": "UWCE-student",
+        "variables": {
+            "username": "bhammond@wisnet.com",
+            "password": "12345678a",
+            "firstName": "BWH1516640192",
+            "lastName": "HAM1516640192",
+            "email": "BWH1516640192@HAM1516640192.com"
+        }
+    }
+}

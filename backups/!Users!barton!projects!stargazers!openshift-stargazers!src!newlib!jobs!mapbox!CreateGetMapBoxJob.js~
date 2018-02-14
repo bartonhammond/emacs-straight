@@ -1,0 +1,22 @@
+'use strict';
+/**
+ * Return promise that resolves to a user
+ */
+let CreateGetMapDataJob = function(queue, owner, repo)
+{
+  return new Promise((resolve, reject) => {
+    let job = queue.create('getMapData', {
+      title: 'getMapData owner: ' + owner + ''
+        + ' repo: ' + repo,
+      owner: owner,
+      repo: repo      
+    }).save((err) => {
+      if (err) {
+        reject(err);
+      }
+    });
+    resolve(job);
+  });
+};//createJob
+
+module.exports = CreateGetMapDataJob;

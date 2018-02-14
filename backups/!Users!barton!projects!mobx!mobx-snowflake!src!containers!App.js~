@@ -1,0 +1,73 @@
+/**
+ * # app.js
+ *  Display startup screen and 
+ *  getSessionTokenAtStartup which will navigate upon completion 
+ *
+ *   
+ *  
+ */
+'use strict';
+/*
+ * ## Imports
+ *  
+ * Imports from redux
+ */
+
+/**
+ * Immutable Map
+ */
+import {Map} from 'immutable';
+
+
+/**
+ * The components we need from ReactNative
+ */
+import React,
+{ 	
+  StyleSheet,
+  View,
+  Text
+}
+from 'react-native';
+
+import {Actions} from 'react-native-router-flux';
+
+var styles = StyleSheet.create({
+  container: {
+    borderTopWidth: 2,
+    borderBottomWidth:2,
+    marginTop: 80,
+    padding: 10
+  },
+  summary: {
+    fontFamily: 'BodoniSvtyTwoITCTT-Book',
+    fontSize: 18,
+    fontWeight: 'bold'
+  }
+});
+
+/**
+ * ## App class
+ */
+let App = React.createClass({
+  /**
+   * 
+   */
+  componentDidMount() {
+
+  },
+  
+  render() {
+    debugger;
+    return(
+      <View style={ styles.container }>
+	<Text style={ styles.summary }>App Startup Screen</Text>
+      </View>
+    );
+  }
+});
+
+/**
+
+ */
+export default App;

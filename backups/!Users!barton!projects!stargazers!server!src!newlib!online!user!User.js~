@@ -1,0 +1,205 @@
+y'use strict';
+require('regenerator/runtime');
+
+import  pako from 'pako';
+import ProcessorClass from '../../ProcessorClass';
+import _ from 'underscore';
+
+class User extends ProcessorClass{
+  constructor() {
+    super();
+    this.latinize = require('latinize');
+    this.limit = 800;//5000/hr 
+  }
+  
+  run(job,
+      ctx,
+      done) {
+    let self = this;
+    self.job = job;
+
+    self.gitHub.access_token = job.data.access_token;
+    self.gitHub.id = job.data.id;
+
+    let start = self.logger.now();
+    
+    try {
+      self.gitHub.getUser(
+        job.data.login)
+        .then((user) => {
+          //save user
+          user.starred_at = job.data.starred_at;
+          return self.saveUser(job, user);
+        })
+        .then((user) => {
+          return self.getUsersLocation(
+            job,
+            user);
+        })
+      
+        .then(() => {
+          return self.waitForRateLimit(
+            'getUser' + job.data.login,
+            start,
+            self.limit);
+        })
+      
+        .then(() => {
+          done();
+        })
+      
+        .catch((err) => {              
+          self.needToPause(ctx, err)
+            .then(() => {
+              done();
+              return self.createUserAgain(job);
+            })
+            .catch((err) => {
+              done(err);
+              self.logger.error(
+                'User.inside',              
+                {id: job.data.id,
+                 login: job.data.login,
+                 error:err,
+                 access_token: self.access_token});
+
+            });
+        });
+      
+    } catch (err) {
+      done(err);          
+      self.logger.error(
+        'User',              
+        {id: job.data.id,
+         login: job.data.login,
+         error:err,
+         access_token: self.access_token});
+    }
+
+  } //init
+  createUserAgain(job) {
+    return new Promise((resolve, reject) => {
+      try {
+
+        let CreateSplitter = '../splitter/CreateSplitter';
+        let createSplitter =
+              CreateSplitter.creator(job.data.access_token);
+        
+        createSplitter.createJob(
+          'User',
+          job.data.id,
+          job.data.owner,
+          job.data.repo,
+          job.data.user
+        );
+
+        resolve();
+      } catch(err) {
+        reject(err);
+      }
+
+    });
+  }
+  //http://stackoverflow.com/questions/7625251/compression-and-decompression-of-data-using-zlib-in-nodejs
+  saveUser(job, user) {
+    let self = this;
+    return new Promise((resolve, reject) => {
+      try {
+        let key = job.data.owner
+              + ':'
+              + job.data.repo
+              + ':'
+              + job.data.access_token;
+
+        self.getRedisValue(self.redisKeyStargazers,
+                           key)
+          .then((currentValues) => {
+
+            if (!currentValues) {
+              return  [];
+            } else {
+              let rtn = JSON.parse(pako.inflate(currentValues, { to:
+                                                                 'string'
+                                                               }));
+              //memory kill
+              currentValues = null;
+              return rtn;
+            }
+          })
+          .then((values) => {
+            let pickedUser = _.pick(user,
+                                    ['login',
+                                     'avatar_url',
+                                     'name',
+                                     'starred_at',
+                                     'followers',
+                                     'location',
+                                     'coords']);
+            
+            
+            values.push(pickedUser);
+
+            let rtn = {};
+            rtn.valuesToSave
+              = pako.deflate(JSON.stringify(values), {to: 'string' });
+            rtn.pickedUser = pickedUser;
+            //memory kill
+            values = null;
+            return rtn;
+          })
+          .then((object) => {
+            self.redisClient.set(
+              self.redisKeyStargazers + key,
+              object.valuesToSave);
+
+            //memory kill
+            object.valuesToSave = null;
+            return resolve(object.pickedUser);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      } catch(err) {
+        reject(err);
+      }
+    });//redisClient.git
+    
+  }
+  
+  getUsersLocation(job, user) {
+    let self = this;    
+    return new Promise((resolve, reject) => {
+      try {
+
+        if (user && user.location) {
+          let loc = self.latinize(user.location).toLowerCase();
+          var valid = /^[a-z\.\,\-_\s]+$/i.test(loc);
+
+          if (valid) {
+            self.getLocation(
+              job.data.id,
+              user.location,
+              job.data.access_token);
+          }//valid
+        }//user.location
+
+        resolve();
+      } catch(err)  {
+        reject(err);
+      }
+    });
+  }
+  getLocation(id, location, access_token) {
+    let CreateLocation = require('../location/CreateLocation');
+
+    //no need to limit as getUser is already limited
+    //and is slower then Mapzen
+    let createLocation
+          = CreateLocation.creator(access_token);
+    
+    createLocation.createJob(id, location);
+  }
+
+
+}
+module.exports = User;

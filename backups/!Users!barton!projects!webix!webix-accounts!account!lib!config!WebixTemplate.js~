@@ -1,0 +1,86 @@
+AccountTemplates = {}
+AccountTemplates.texts = {
+  
+  button: {
+    changePwd: "updateYourPassword",
+    //enrollAccount: "createAccount",
+    enrollAccount: "signUp",
+    forgotPwd: "emailResetLink",
+    resetPwd: "setPassword",
+    signIn: "signIn",
+    signUp: "signUp",
+    resendVerificationEmail: "Send email again",
+  },
+  /*
+  errors: {
+    accountsCreationDisabled: "Client side accounts creation is disabled!!!",
+    cannotRemoveService: "Cannot remove the only active service!",
+    captchaVerification: "Captcha verification failed!",
+    loginForbidden: "error.accounts.Login forbidden",
+    mustBeLoggedIn: "error.accounts.Must be logged in",
+    pwdMismatch: "error.pwdsDontMatch",
+    validationErrors: "Validation Errors",
+    verifyEmailFirst: "Please verify your email first. Check the email and follow the link!",
+  },
+*/
+  navSignIn: 'signIn',
+  navSignOut: 'signOut',
+  /*
+  
+  info: {
+    emailSent: "info.emailSent",
+    emailVerified: "info.emailVerified",
+    pwdChanged: "info.passwordChanged",
+    pwdReset: "info.passwordReset",
+    pwdSet: "Password Set",
+    signUpVerifyEmail: "Successful Registration! Please check your email and follow the instructions.",
+    verificationEmailSent: "A new email has been sent to you. If the email doesn't show up in your inbox, be sure to check your spam folder.",
+  },
+  inputIcons: {
+    isValidating: "fa fa-spinner fa-spin",
+    hasSuccess: "fa fa-check",
+    hasError: "fa fa-times",
+  },
+  maxAllowedLength: "Maximum allowed length",
+  minRequiredLength: "Minimum required length",
+  optionalField: "optional",
+  pwdLink_pre: "",
+  pwdLink_link: "forgotPassword",
+  pwdLink_suff: "",
+  requiredField: "Required Field",
+  resendVerificationEmailLink_pre: "Verification email lost?",
+  resendVerificationEmailLink_link: "Send again",
+  resendVerificationEmailLink_suff: "",
+  sep: "OR",
+  signInLink_pre: "ifYouAlreadyHaveAnAccount",
+  signInLink_link: "signin",
+  signInLink_suff: "",
+  signUpLink_pre: "dontHaveAnAccount",
+  signUpLink_link: "signUp",
+  signUpLink_suff: "",
+  socialAdd: "add",
+  socialConfigure: "configure",
+  socialIcons: {
+      "meteor-developer": "fa fa-rocket"
+  },
+  socialRemove: "remove",
+  socialSignIn: "signIn",
+  socialSignUp: "signUp",
+  socialWith: "with",
+  termsPreamble: "clickAgree",
+  termsPrivacy: "privacyPolicy",
+  termsAnd: "and",
+  termsTerms: "terms",
+*/
+  title: {
+    changePwd: "changePassword",
+    enrollAccount: "createAccount",
+    forgotPwd: "resetYourPassword",
+    resetPwd: "resetYourPassword",
+    signIn: "signIn",
+    signUp: "createAccount",
+    verifyEmail: "",
+    resendVerificationEmail: "Send the verification email again",
+  },
+
+};

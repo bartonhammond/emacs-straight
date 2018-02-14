@@ -1,0 +1,44 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class CategoryCatalogPage extends \Automate\Page {
+    private static $_selectors = [
+        "h2_heading" =>
+        [
+            "css" => "div#primary h2"
+        ],
+        "category_title" =>
+        [
+            "name" => "category_title"
+        ],
+        "category_title" =>
+        [
+            "xpath" => "category_title"
+        ],
+        "category_description" =>
+        [
+            "script" => ""
+        ],        
+    ];
+
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors(self::$_selectors);
+    }
+
+    function typeCategoryName($name) {
+        $this->type(self::$_selectors['category_title'], $name);        
+    }
+    function getH2HeadingText() {
+        return $this->find(self::$_selectors['h1_heading'])->getText();
+    }
+
+    function typeDescription($value) {
+        $selector = self::$_selectors['category_description'];
+        $selector["script"] = "window.frames[0].document.body.innerText = '"
+                            . $value
+                            . "'";
+        
+        return $this->find($selector);        
+    }
+}

@@ -1,0 +1,219 @@
+<?php
+namespace Automation;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+/**
+ * Establish the unique key of the desktop or mobile device so
+ * that the last instance will be the most recent version since
+ * BrowserStack returns the devices in increasing order
+ */
+class DeviceHashableObject implements \Ds\Hashable
+{
+    public $value;
+
+    public function __construct($value)
+    {
+        $this->value = $value;
+    }
+
+    public function hash()
+    {
+        return $this->value;
+    }
+
+    public function equals($obj): bool
+    {
+        return
+            $this->value->os === $obj->value->os
+            &&
+            $this->value->os_version === $obj->value->os_version
+            &&
+            $this->value->browser === $obj->value->browser
+            &&
+            $this->value->device === $obj->value->device;
+    
+    }
+}
+
+/** 
+ * Make a CURL call to retreive all the supported devices and 
+ * loop through and retain those that satisfy the type requested 
+ * by a customer
+ */
+class GetBrowsers
+{
+    public $login = 'wisnetcom';
+    public $password = 'G6SBfwFVrpR5mMAPysJG';
+    public $url = 'https://www.browserstack.com/automate/browsers.json';    
+  
+    public $ch;
+  
+    public function get() {
+        $ch = curl_init();    
+        curl_setopt($ch, CURLOPT_URL,$this->url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($ch, CURLOPT_USERPWD, "$this->login:$this->password");
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
+    }
+
+    public function parse($result, $option) {
+        $map = new \Ds\Map();
+    
+        $jsonData = json_decode($result);
+    
+        foreach ($jsonData as $browser) {
+            //per BS email, Opera is problematic and will be
+            //replaced
+            //Nov 9: We plan to remove Opera for Automate moving
+            //forward and will be working towards adding
+            //OperaChromiumDriver
+            //(supports Opera 15+) for Automate in the future.
+            if ($browser->browser == 'opera') {
+                continue;
+            }
+        
+            switch ($option) {
+            case "ios":
+                if ($browser->os == 'ios' && $browser->real_mobile) {
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+
+                }
+                break;           
+            case "android":
+                if ($browser->os == 'android' && $browser->real_mobile) {
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+                }
+                break;
+          
+            case "windows":
+                if ($browser->os == 'Windows') {
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+                }
+                break;
+            case "win81":
+                if ($browser->os == 'Windows'
+                    &&
+                    $browser->os_version == '8.1') {
+
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+                }
+                break;                                      
+            case "win8":
+                if ($browser->os == 'Windows'
+                    &&
+                    $browser->os_version == '8') {
+
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+                }
+                break;                                      
+            case "xp":
+                if ($browser->os == 'Windows'
+                    &&
+                    $browser->os_version = "XP") {
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+                }
+                break;                
+            case "osx":
+                if ($browser->os == 'OS X') {
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+                }
+                break;
+            case "desktops":
+                if ($browser->os == 'Windows'
+                    ||
+                    $browser->os == 'OS X') {
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+                }
+                break;          
+            case "real_mobiles":
+                if ($browser->real_mobile) {
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+
+                }
+                break;
+            case "sim_mobiles":
+                if ($browser->device
+                    &&
+                    !$browser->real_mobile) {        
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+                }        
+                break;
+            case "mobiles":
+                if ($browser->device) {
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+                }                
+                break;
+            case "all":
+                $map->put(new \Automation\DeviceHashableObject($browser),
+                          $browser);
+                break;
+            case "reals":
+                if ($browser->os == 'Windows'
+                    ||
+                    $browser->os == 'OS X'
+                    ||
+                    $browser->real_mobile == true) {
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+                }
+                break;
+            case "modern":
+                if (($browser->os == 'Windows'
+                     &&
+                     ($browser->os_version == '8'
+                      ||
+                      $browser->os_version == '8.1'
+                      ||
+                      $browser->os_version == '10'))
+                    ||
+                    ($browser->os == 'OS X'
+                     &&
+                     ($browser->os_version == 'Yosemite'
+                      ||
+                      $browser->os_version == 'El Capitan'
+                      ||
+                      $browser->os_version == 'Sierra'
+                      ||
+                      $browser->os_version == 'High Sierra'))
+                    ||
+                    $browser->real_mobile == true) {
+                    $map->put(new \Automation\DeviceHashableObject($browser),
+                              $browser);
+                }
+                break;                        
+            }
+            //Uncomment for testing
+
+              /*if (!$map->isEmpty()) {
+              return $map;///testing          
+              }*/
+
+        }//for each
+        return $map;
+    }
+
+    public function dump($devices) {
+        $keys = $devices->keys();
+    
+        foreach ($keys as $key) {
+            echo json_encode($devices->get($key)) . "\n";
+        }
+    }
+}
+
+

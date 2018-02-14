@@ -1,0 +1,65 @@
+'use strict';
+require('regenerator/runtime');
+
+import BaseClass from '../BaseClass';
+import CreateGetRepositoryByPageJob from '.CreateGetRepositoryByPageJob';
+
+class GetRepositoryByPageProcessor extends BaseClass{
+  constructor(queue) {
+    super(queue);
+  }
+  init() {
+    let self = this;
+
+    self.queue.process(
+      'batchGetRepositoryByPage',
+      4, //1 for each permission
+      function(job,
+               ctx,
+               done) {
+
+        self.gitHub.access_token = job.data.access_token;
+        self.gitHub.id = job.data.id;
+        
+        self.gitHub.searchRepositories(
+          '', //term
+          '', //inFields
+          '', //forks
+          '' + job.data.minstars + '..' + job.data.maxstars,//stars
+          '',//language
+          'stars', //sort
+          'desc', //order
+          job.data.page)
+        
+          .then((result) => {
+            debugger;
+            if (result) {
+              //loop through and create getStarGazers
+            }
+            if (result 
+                && result.link
+                && result.link.last
+                && result.link.last.page) {
+              
+              CreateGetRepositoryByPageJob(
+                self.queue,
+                self.job.data.id,
+                self.job.data.access_token,
+                self.job.data.page++,                
+                self.job.data.minstars,
+                self.job.data.maxstars);
+
+            }
+            done();
+            
+          }).catch((err) => {
+            done(err);
+            self.needToPause(ctx, err);
+          });
+      });
+  }
+  
+}
+module.exports = GetRepositoryByPageProcessor;
+
+

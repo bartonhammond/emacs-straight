@@ -1,0 +1,45 @@
+'use strict';
+require('regenerator/runtime');
+import GitHub from '../GitHub';
+
+class GetRepositoryByPage{
+  constructor(queue) {
+    this.queue = queue;
+    this.gitHub = new GitHub();
+    this.results = [];
+  }
+  
+  init() {
+    let self = this;
+
+    self.queue.process(
+      'getRepositoryByPage',
+      1,
+      function(job,
+               ctx,
+               done) {
+        debugger;
+        console.log('repository.job.stars',job.stars);
+        console.log('repository.job.language',job.language);
+
+        //ratelimit the search requests at 30/min
+        self.gitHub.searchRepositories(
+          '', //term
+          '', //inFields
+          '', //forks
+          '' + job.data.stars + '..' + job.data.stars,
+          '' + job.data.language,
+          'stars', //sort
+          'desc', //order
+          job.data.page)
+          .then((page) => {
+            debugger;
+            done(null, page);
+          });
+      });
+  }
+  
+}
+module.exports = GetRepositoryByPage;
+
+

@@ -1,0 +1,51 @@
+* create account
+```
+curl --data "username=barton&password=password&email=barton@acclivyx.com&firstName=Barton&lastName=Hammond@age=61" http://localhost:3000/account/register
+```
+
+* login
+```
+curl --data "username=barton&password=password" http://localhost:3000/account/login
+```
+** response
+
+```
+{"success":true,"message":"Authenticated.","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImJhcnRvbiIsImVtYWlsIjoiYmFydG9uQGFjY2xpdnl4LmNvbSIsImlhdCI6MTQ1MTMyNjMyMn0.TXIKx4fnItkhAtEYd5NQhSRr3jQcykOFniJ1QnNO30Q"}
+```
+
+* response
+```
+{"statusCode":201,"message":"User
+registered.","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImJhcnRvbiIsImVtYWlsIjoiYmFydG9uQGFjY2xpdnl4LmNvbSIsImlhdCI6MTQ1MTE1ODEwNn0.KNQ64HlY-QUxfXap3th6pKhFrj6Z49xLKm8lfGw4l9Y"}
+```
+
+* restricted
+```
+curl -v -H "Authorization: Bearer
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImJhcnRvbiIsImVtYWlsIjoiYmFydG9uQGFjY2xpdnl4LmNvbSIsImlhdCI6MTQ1MTMyNjMyMn0.TXIKx4fnItkhAtEYd5NQhSRr3jQcykOFniJ1QnNO30Q"
+http://localhost:3000/restricted
+```
+
+** response
+```
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 3000 (#0)
+> GET /restricted HTTP/1.1
+> Host: localhost:3000
+> User-Agent: curl/7.43.0
+> Accept: */*
+> Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImJhcnRvbiIsImVtYWlsIjoiYmFydG9uQGFjY2xpdnl4LmNvbSIsImlhdCI6MTQ1MTMyNjMyMn0.TXIKx4fnItkhAtEYd5NQhSRr3jQcykOFniJ1QnNO30Q
+> 
+< HTTP/1.1 200 OK
+< content-type: application/json; charset=utf-8
+< cache-control: no-cache
+< content-length: 49
+< accept-ranges: bytes
+< Date: Mon, 28 Dec 2015 18:14:50 GMT
+< Connection: keep-alive
+< 
+* Connection #0 to host localhost left intact
+{"message":"barton, welcome to restricted area!"}~
+```
+
+

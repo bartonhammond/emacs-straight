@@ -1,0 +1,7 @@
+    <script src="./js/data-obs.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+            type="javascript"></script>
+    <script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"
+            type="javascript"></script>
+    <script src="./js/underscore-min.js"
+            type="javascript"></script> 

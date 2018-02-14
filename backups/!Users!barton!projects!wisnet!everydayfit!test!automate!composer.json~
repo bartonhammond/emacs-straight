@@ -1,0 +1,18 @@
+{
+  "require": {
+    "browserstack/browserstack-local": "^1.1",
+    "phpunit/phpunit-selenium": "*",
+    "facebook/webdriver": "dev-master",
+    "alexschwarz89/browserstack": "0.0.2"
+  },
+  "scripts": {
+    "test": "composer single && composer local && composer parallel",
+    "single": "vendor/bin/phpunit tests/single_test.php",
+    "fit": "CONFIG_FILE=config/fit.conf.json vendor/bin/phpunit tests/everydayfit_test.php",   
+    "local": "CONFIG_FILE=config/local.conf.json vendor/bin/phpunit tests/local_test.php",
+    "parallel": "CONFIG_FILE=config/parallel.conf.json /usr/bin/env php lib/parallel.php"
+  },
+  "autoload": {
+    "classmap": ["lib/"]
+  }
+}

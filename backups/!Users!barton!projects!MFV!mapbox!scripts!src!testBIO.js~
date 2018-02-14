@@ -1,0 +1,1 @@
+var paths = JSON.parse(fs.readFileSync('./stargazers.json'));

@@ -1,0 +1,14 @@
+CLASS({
+  package: 'com.todo.server',
+  name: 'Agent',
+  imports: [
+    'exportDirectory',
+  ],
+
+  methods: [
+    function execute() {
+      this.exportDirectory('/js', 'js');
+      this.exportDirectory('/foam', 'foam');
+    },
+  ]
+});

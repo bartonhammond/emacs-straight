@@ -1,0 +1,113 @@
+'use strict';
+
+require('regenerator/runtime');
+import SearchRepositories from './jobs/search/SearchRepositories';
+import GetStargazersForRepo from './jobs/stargazers/GetStargazersForRepo';
+import GetRepositoryByPageProcessor from './jobs/repository/GetRepositoryByPageProcessor';
+import GetStargazersForRepoByPageJobProcessor from './jobs/stargazer/GetStargazersForRepoByPageJobProcessor';
+import GetUser from './jobs/user/GetUser';
+import GetUsersForRepo from './jobs/users/GetUsersForRepo';
+
+import GetLocation from './jobs/location/GetLocation';
+import GetMapData from './jobs/mapdata/GetMapData';
+import GetMapBox from './jobs/mapbox/GetMapBox';
+import CacheSearchRepositories from './jobs/cache/CacheSearchRespositories';
+
+import Kue from 'kue';
+
+var _theQueue;
+
+/**
+* To remove all jobs: 
+* ./redis-cli --scan --pattern "jq:jobs:*" | xargs -L 100 ./redis-cli DEL
+*
+*/
+function _createQueue() {
+  if(process.env.OPENSHIFT_REDIS_DB_HOST){
+    let temp = Kue.createQueue({
+      prefix: 'jq',
+      redis: {
+        port: process.env.OPENSHIFT_REDIS_DB_PORT,  
+        host: process.env.OPENSHIFT_REDIS_DB_HOST,
+        auth:  process.env.OPENSHIFT_REDIS_DB_PASSWORD
+      }
+    });
+    //Use specific ip so 'rhc port-forward' will work
+    //https://access.redhat.com/documentation/en-US/OpenShift_Online/2.0/html/User_Guide/sect-Binding_Applications_to_Ports.html    
+    Kue.app.listen(9678, process.env.OPENSHIFT_NODEJS_IP);    
+    return temp;
+  }  else if (process.env.REDIS_PORT_FORWARD) {
+    let temp = Kue.createQueue({
+      prefix: 'jq',
+      redis: {
+        port: process.env.REDIS_PORT_FORWARD,
+        host: process.env.OPENSHIFT_REDIS_DB_HOST,
+        auth:  process.env.REDIS_AUTH
+      }
+    });
+    Kue.app.listen(9678, process.env.OPENSHIFT_NODEJS_IP);    
+    return temp;
+  } else {
+    let temp = Kue.createQueue();    
+    Kue.app.listen(3000);
+    return temp;
+  }
+}
+
+function _queue() {
+  if (_theQueue) {
+    return _theQueue;
+  }
+  _theQueue = _createQueue();
+  
+  new SearchRepositories(_theQueue).init();
+  
+  new GetRepositoryByPageProcessor(_theQueue).init();  
+
+  new GetStargazersForRepo(_theQueue).init();
+  
+  new GetStargazersForRepoByPageJobProcessor(_theQueue).init();
+
+  new GetUser(_theQueue).init();
+  
+  new GetUsersForRepo(_theQueue).init();
+
+  new GetLocation(_theQueue).init();
+
+  new GetMapData(_theQueue).init();
+
+  new GetMapBox(_theQueue).init();
+
+  new CacheSearchRepositories(_theQueue).init();
+
+  // cleanup every job that has completed
+  // since we don't really care about the data
+
+  _theQueue.on('job complete', function(id) {
+    Kue.Job.get(id, function(err, job) {
+      if (job) {
+        job.remove();
+      }
+    });
+  });
+
+  _theQueue.on('job failed', function(id) {
+    Kue.Job.get(id, function(err, job) {
+      if (job) {
+        job.remove();
+      }
+    });
+  });    
+  return _theQueue;
+}
+
+module.exports = {
+  queue: function() {
+    return _queue();
+  }
+};
+
+
+
+
+

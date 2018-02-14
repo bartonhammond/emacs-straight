@@ -1,0 +1,44 @@
+Facebook ReactNative Jest:  Mock that Node_Module
+
+* How do you test a component that references a Node Module?
+
+##Class under test:
+notes:
+1) the convention is the test are in __tests__
+2) the class under test is in parent directory
+
+### The class is ErrorAlert.js -
+ 1) the sole purpose is to display an error message
+ 2) it interogates the object to find the message
+ 3) it calls a Node Module to display the alert
+   a) Look at node_modules/react-native-simpledialog-android
+   b) Simple iOS or Android alert is called
+
+### So what does the Jest test?
+
+1) That ErrorAlert successfully finds the error message
+2) That the react-native-simpledialog-android alert method is called
+
+### How do we determine the react-native-simpledialog-android alert message is called?
+1) We mock react-native-simpledialog-android
+   a) node_modules are mocked at the root level
+   b) use the same name as
+   node_module/react-native-simpledialog-android
+   c) use ```jest.genMockFunction()```
+   d) can validate function was called now
+
+
+### In testing class
+1) use ```autoMockOff()```
+2) inform jest that the react-native-simpledialog-android is mocked
+3) inject the mocked class into class under test
+   a) SimpleAlert injected into ErrorAlert
+4) call the tested method
+   a) call ErrorAlert.checkError()
+5) verify the mocked function was called with two parameters
+   a)SimpleAlert.alert.mock.calls[0][0] is first invocation w/ first parameter
+
+Let's run in debugger to see
+1) Show package.json 
+
+

@@ -1,0 +1,3651 @@
+{
+  "center": {
+    "latitude": 51.60961767954443,
+    "longtitude": -1.40625
+  },
+  "annotations": [
+    {
+      "id": "0",
+      "coordinates": [
+        49.82947720038445,
+        -122.34375
+      ],
+      "type": "point",
+      "title": "Vancouver, BC",
+      "subtitle": "Stargazers: 4",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/587461?v=3",
+          "login": "brianjd",
+          "html_url": "https://github.com/brianjd"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/389534?v=3",
+          "login": "markhazlett",
+          "html_url": "https://github.com/markhazlett"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/90494?v=3",
+          "login": "brentvatne",
+          "html_url": "https://github.com/brentvatne"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/7887446?v=3",
+          "login": "Bartekus",
+          "html_url": "https://github.com/Bartekus"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "1",
+      "coordinates": [
+        30.743695900486706,
+        -91.40625
+      ],
+      "type": "point",
+      "title": "New Orleans",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/997157?v=3",
+          "login": "GantMan",
+          "html_url": "https://github.com/GantMan"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1844458?v=3",
+          "login": "Connorelsea",
+          "html_url": "https://github.com/Connorelsea"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "2",
+      "coordinates": [
+        -23.235090178017984,
+        -43.59375
+      ],
+      "type": "point",
+      "title": "Rio de Janeiro",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/380816?v=3",
+          "login": "gusaiani",
+          "html_url": "https://github.com/gusaiani"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "3",
+      "coordinates": [
+        51.60961767954443,
+        -1.40625
+      ],
+      "type": "point",
+      "title": "Brighton",
+      "subtitle": "Stargazers: 12",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1387956?v=3",
+          "login": "jdelight",
+          "html_url": "https://github.com/jdelight"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/6459679?v=3",
+          "login": "HugoDF",
+          "html_url": "https://github.com/HugoDF"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/216566?v=3",
+          "login": "QuantumInformation",
+          "html_url": "https://github.com/QuantumInformation"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/391950?v=3",
+          "login": "will-hart",
+          "html_url": "https://github.com/will-hart"
+        },
+        "4": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3802023?v=3",
+          "login": "knowbody",
+          "html_url": "https://github.com/knowbody"
+        },
+        "5": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1191206?v=3",
+          "login": "sabarasaba",
+          "html_url": "https://github.com/sabarasaba"
+        },
+        "6": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/566215?v=3",
+          "login": "chriswitko",
+          "html_url": "https://github.com/chriswitko"
+        },
+        "7": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/798942?v=3",
+          "login": "AndrewJack",
+          "html_url": "https://github.com/AndrewJack"
+        },
+        "8": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/810438?v=3",
+          "login": "gaearon",
+          "html_url": "https://github.com/gaearon"
+        },
+        "9": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/677285?v=3",
+          "login": "anucreative",
+          "html_url": "https://github.com/anucreative"
+        },
+        "10": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3789113?v=3",
+          "login": "Eissek",
+          "html_url": "https://github.com/Eissek"
+        },
+        "11": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1342396?v=3",
+          "login": "gr4yscale",
+          "html_url": "https://github.com/gr4yscale"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913496/1ab2bf92-a62b-11e5-956d-484a8c4b595c.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "4",
+      "coordinates": [
+        44.078961669500316,
+        -94.21875
+      ],
+      "type": "point",
+      "title": "Minneapolis, USA",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/108938?v=3",
+          "login": "jimthedev",
+          "html_url": "https://github.com/jimthedev"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2348875?v=3",
+          "login": "alexanderjfink",
+          "html_url": "https://github.com/alexanderjfink"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "5",
+      "coordinates": [
+        42.02439292189487,
+        1.40625
+      ],
+      "type": "point",
+      "title": "Barcelona, Spain",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/491891?v=3",
+          "login": "mrcasals",
+          "html_url": "https://github.com/mrcasals"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/5175207?v=3",
+          "login": "Softsapiens",
+          "html_url": "https://github.com/Softsapiens"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/850057?v=3",
+          "login": "vdel26",
+          "html_url": "https://github.com/vdel26"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "6",
+      "coordinates": [
+        51.60961767954443,
+        4.21875
+      ],
+      "type": "point",
+      "title": "Amsterdam, NL",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/40102?v=3",
+          "login": "RickWong",
+          "html_url": "https://github.com/RickWong"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/140572?v=3",
+          "login": "thomasvm",
+          "html_url": "https://github.com/thomasvm"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "7",
+      "coordinates": [
+        53.32260709507301,
+        -7.03125
+      ],
+      "type": "point",
+      "title": "Dublin, Ireland",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4015939?v=3",
+          "login": "johnbrett",
+          "html_url": "https://github.com/johnbrett"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/907125?v=3",
+          "login": "hasnat",
+          "html_url": "https://github.com/hasnat"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1926968?v=3",
+          "login": "Danm72",
+          "html_url": "https://github.com/Danm72"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "8",
+      "coordinates": [
+        -12.55090288571757,
+        -77.34375
+      ],
+      "type": "point",
+      "title": "Lima, Peru",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4262050?v=3",
+          "login": "bjrmatos",
+          "html_url": "https://github.com/bjrmatos"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "9",
+      "coordinates": [
+        46.06460885481884,
+        -122.34375
+      ],
+      "type": "point",
+      "title": "Portland, Oregon",
+      "subtitle": "Stargazers: 4",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1714673?v=3",
+          "login": "browniefed",
+          "html_url": "https://github.com/browniefed"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1241700?v=3",
+          "login": "tylerbuchea",
+          "html_url": "https://github.com/tylerbuchea"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1474361?v=3",
+          "login": "joshbuchea",
+          "html_url": "https://github.com/joshbuchea"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/392649?v=3",
+          "login": "sarlalian",
+          "html_url": "https://github.com/sarlalian"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "10",
+      "coordinates": [
+        68.1328877948606,
+        -99.84375
+      ],
+      "type": "point",
+      "title": "Canada",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/68273?v=3",
+          "login": "skellock",
+          "html_url": "https://github.com/skellock"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/967050?v=3",
+          "login": "alinz",
+          "html_url": "https://github.com/alinz"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/5904649?v=3",
+          "login": "alferov",
+          "html_url": "https://github.com/alferov"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "11",
+      "coordinates": [
+        37.710240054623654,
+        -9.84375
+      ],
+      "type": "point",
+      "title": "Lisbon, Portugal",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/285497?v=3",
+          "login": "goblindegook",
+          "html_url": "https://github.com/goblindegook"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "12",
+      "coordinates": [
+        39.90124452289863,
+        -77.34375
+      ],
+      "type": "point",
+      "title": "MD",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/553376?v=3",
+          "login": "nishp1",
+          "html_url": "https://github.com/nishp1"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "13",
+      "coordinates": [
+        42.02439292189487,
+        -88.59375
+      ],
+      "type": "point",
+      "title": "Chicago, IL, USA",
+      "subtitle": "Stargazers: 4",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/440298?v=3",
+          "login": "jhabdas",
+          "html_url": "https://github.com/jhabdas"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/304495?v=3",
+          "login": "zsiegel",
+          "html_url": "https://github.com/zsiegel"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2453159?v=3",
+          "login": "mikechau",
+          "html_url": "https://github.com/mikechau"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1136388?v=3",
+          "login": "dillonhafer",
+          "html_url": "https://github.com/dillonhafer"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "14",
+      "coordinates": [
+        25.793130303485924,
+        -80.15625
+      ],
+      "type": "point",
+      "title": "Miami, Florida",
+      "subtitle": "Stargazers: 4",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/484084?v=3",
+          "login": "jorda0mega",
+          "html_url": "https://github.com/jorda0mega"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/7588299?v=3",
+          "login": "kwcto",
+          "html_url": "https://github.com/kwcto"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/465946?v=3",
+          "login": "litch",
+          "html_url": "https://github.com/litch"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1143417?v=3",
+          "login": "andreipopovici",
+          "html_url": "https://github.com/andreipopovici"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "15",
+      "coordinates": [
+        46.06460885481884,
+        1.40625
+      ],
+      "type": "point",
+      "title": "France",
+      "subtitle": "Stargazers: 5",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/582446?v=3",
+          "login": "jeromemacias",
+          "html_url": "https://github.com/jeromemacias"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/770061?v=3",
+          "login": "teabow",
+          "html_url": "https://github.com/teabow"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1472639?v=3",
+          "login": "williambout",
+          "html_url": "https://github.com/williambout"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/5665322?v=3",
+          "login": "risq",
+          "html_url": "https://github.com/risq"
+        },
+        "4": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/686101?v=3",
+          "login": "tlenclos",
+          "html_url": "https://github.com/tlenclos"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "16",
+      "coordinates": [
+        47.98134070428246,
+        1.40625
+      ],
+      "type": "point",
+      "title": "Paris",
+      "subtitle": "Stargazers: 7",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4534323?v=3",
+          "login": "Almouro",
+          "html_url": "https://github.com/Almouro"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1280130?v=3",
+          "login": "4ian",
+          "html_url": "https://github.com/4ian"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1412159?v=3",
+          "login": "Freddy03h",
+          "html_url": "https://github.com/Freddy03h"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3210177?v=3",
+          "login": "anaibol",
+          "html_url": "https://github.com/anaibol"
+        },
+        "4": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1368129?v=3",
+          "login": "xouabita",
+          "html_url": "https://github.com/xouabita"
+        },
+        "5": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2210950?v=3",
+          "login": "0x2Adr1",
+          "html_url": "https://github.com/0x2Adr1"
+        },
+        "6": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/231490?v=3",
+          "login": "SteedMonteiro",
+          "html_url": "https://github.com/SteedMonteiro"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913496/1ab2bf92-a62b-11e5-956d-484a8c4b595c.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "17",
+      "coordinates": [
+        39.90124452289863,
+        -74.53125
+      ],
+      "type": "point",
+      "title": "New York, NY",
+      "subtitle": "Stargazers: 6",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/26526?v=3",
+          "login": "mikedizon",
+          "html_url": "https://github.com/mikedizon"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/179645?v=3",
+          "login": "liamgriffiths",
+          "html_url": "https://github.com/liamgriffiths"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/587438?v=3",
+          "login": "morenoh149",
+          "html_url": "https://github.com/morenoh149"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/7025139?v=3",
+          "login": "christiansakai",
+          "html_url": "https://github.com/christiansakai"
+        },
+        "4": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2960797?v=3",
+          "login": "mhollweck",
+          "html_url": "https://github.com/mhollweck"
+        },
+        "5": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/7264296?v=3",
+          "login": "sndwch",
+          "html_url": "https://github.com/sndwch"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "18",
+      "coordinates": [
+        64.76747189512737,
+        116.71875
+      ],
+      "type": "point",
+      "title": "Russia",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1713789?v=3",
+          "login": "ewnd9",
+          "html_url": "https://github.com/ewnd9"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/359612?v=3",
+          "login": "exromany",
+          "html_url": "https://github.com/exromany"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/5345961?v=3",
+          "login": "danii1",
+          "html_url": "https://github.com/danii1"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "19",
+      "coordinates": [
+        30.743695900486706,
+        122.34375
+      ],
+      "type": "point",
+      "title": "Shanghai, China",
+      "subtitle": "Stargazers: 5",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/530732?v=3",
+          "login": "maboiteaspam",
+          "html_url": "https://github.com/maboiteaspam"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/8459?v=3",
+          "login": "cpunion",
+          "html_url": "https://github.com/cpunion"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2948087?v=3",
+          "login": "keviswang",
+          "html_url": "https://github.com/keviswang"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1681147?v=3",
+          "login": "serco-chen",
+          "html_url": "https://github.com/serco-chen"
+        },
+        "4": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1659391?v=3",
+          "login": "lidonghua",
+          "html_url": "https://github.com/lidonghua"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "20",
+      "coordinates": [
+        30.743695900486706,
+        -97.03125
+      ],
+      "type": "point",
+      "title": "Austin, Texas",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3901764?v=3",
+          "login": "joshblack",
+          "html_url": "https://github.com/joshblack"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/100535?v=3",
+          "login": "timtyrrell",
+          "html_url": "https://github.com/timtyrrell"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/444629?v=3",
+          "login": "namuol",
+          "html_url": "https://github.com/namuol"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "21",
+      "coordinates": [
+        44.078961669500316,
+        21.09375
+      ],
+      "type": "point",
+      "title": "Belgrade",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/249310?v=3",
+          "login": "gorangajic",
+          "html_url": "https://github.com/gorangajic"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "22",
+      "coordinates": [
+        -33.129653047156495,
+        150.46875
+      ],
+      "type": "point",
+      "title": "Sydney, Australia",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/578103?v=3",
+          "login": "igghera",
+          "html_url": "https://github.com/igghera"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/138681?v=3",
+          "login": "golimpio",
+          "html_url": "https://github.com/golimpio"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "23",
+      "coordinates": [
+        46.06460885481884,
+        7.03125
+      ],
+      "type": "point",
+      "title": "Switzerland",
+      "subtitle": "Stargazers: 4",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1672198?v=3",
+          "login": "livioso",
+          "html_url": "https://github.com/livioso"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/425397?v=3",
+          "login": "nrako",
+          "html_url": "https://github.com/nrako"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3669192?v=3",
+          "login": "raphaelameaume",
+          "html_url": "https://github.com/raphaelameaume"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1115749?v=3",
+          "login": "longle255",
+          "html_url": "https://github.com/longle255"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "24",
+      "coordinates": [
+        33.129653047156495,
+        -80.15625
+      ],
+      "type": "point",
+      "title": "Charleston, SC",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1137065?v=3",
+          "login": "mfunkie",
+          "html_url": "https://github.com/mfunkie"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "25",
+      "coordinates": [
+        -30.743695900486706,
+        32.34375
+      ],
+      "type": "point",
+      "title": "Durban, South Africa",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/98803?v=3",
+          "login": "shauntrennery",
+          "html_url": "https://github.com/shauntrennery"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "26",
+      "coordinates": [
+        54.96950349336775,
+        12.65625
+      ],
+      "type": "point",
+      "title": "Copenhagen",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/959142?v=3",
+          "login": "cem2ran",
+          "html_url": "https://github.com/cem2ran"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/34457?v=3",
+          "login": "voxpelli",
+          "html_url": "https://github.com/voxpelli"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3528296?v=3",
+          "login": "lucasalexsorensen",
+          "html_url": "https://github.com/lucasalexsorensen"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "27",
+      "coordinates": [
+        30.743695900486706,
+        116.71875
+      ],
+      "type": "point",
+      "title": "HeFei",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4961679?v=3",
+          "login": "heatroom",
+          "html_url": "https://github.com/heatroom"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "28",
+      "coordinates": [
+        -7.011576991378204,
+        105.46875
+      ],
+      "type": "point",
+      "title": "Jakarta, Indonesia",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/15750?v=3",
+          "login": "kriwil",
+          "html_url": "https://github.com/kriwil"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "29",
+      "coordinates": [
+        -9.792785018656431,
+        -52.03125
+      ],
+      "type": "point",
+      "title": "Brasil",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/6671184?v=3",
+          "login": "thiagoc7",
+          "html_url": "https://github.com/thiagoc7"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "30",
+      "coordinates": [
+        47.98134070428246,
+        -122.34375
+      ],
+      "type": "point",
+      "title": "Seattle",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1132214?v=3",
+          "login": "marty-wang",
+          "html_url": "https://github.com/marty-wang"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/236943?v=3",
+          "login": "damassi",
+          "html_url": "https://github.com/damassi"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/528945?v=3",
+          "login": "timwhite47",
+          "html_url": "https://github.com/timwhite47"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "31",
+      "coordinates": [
+        33.129653047156495,
+        -119.53125
+      ],
+      "type": "point",
+      "title": "Los Angeles, CA",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/5192517?v=3",
+          "login": "oxocode",
+          "html_url": "https://github.com/oxocode"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/170379?v=3",
+          "login": "krisneuharth",
+          "html_url": "https://github.com/krisneuharth"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "32",
+      "coordinates": [
+        30.743695900486706,
+        -94.21875
+      ],
+      "type": "point",
+      "title": "Houston, TX",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/6971336?v=3",
+          "login": "aaron7pm",
+          "html_url": "https://github.com/aaron7pm"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/207644?v=3",
+          "login": "matthewsimo",
+          "html_url": "https://github.com/matthewsimo"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "33",
+      "coordinates": [
+        53.32260709507301,
+        -113.90625
+      ],
+      "type": "point",
+      "title": "Edmonton, Alberta",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1236841?v=3",
+          "login": "bmcmahen",
+          "html_url": "https://github.com/bmcmahen"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "34",
+      "coordinates": [
+        37.710240054623654,
+        -122.34375
+      ],
+      "type": "point",
+      "title": "San Francisco, CA",
+      "subtitle": "Stargazers: 10",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/170299?v=3",
+          "login": "matthewmueller",
+          "html_url": "https://github.com/matthewmueller"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/153704?v=3",
+          "login": "clayallsopp",
+          "html_url": "https://github.com/clayallsopp"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4258?v=3",
+          "login": "bsy",
+          "html_url": "https://github.com/bsy"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/181635?v=3",
+          "login": "tbranyen",
+          "html_url": "https://github.com/tbranyen"
+        },
+        "4": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/696842?v=3",
+          "login": "tonyxiao",
+          "html_url": "https://github.com/tonyxiao"
+        },
+        "5": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/550411?v=3",
+          "login": "pcanterini",
+          "html_url": "https://github.com/pcanterini"
+        },
+        "6": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/290457?v=3",
+          "login": "gmaclennan",
+          "html_url": "https://github.com/gmaclennan"
+        },
+        "7": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/641673?v=3",
+          "login": "muraliv",
+          "html_url": "https://github.com/muraliv"
+        },
+        "8": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2359644?v=3",
+          "login": "FrankSalad",
+          "html_url": "https://github.com/FrankSalad"
+        },
+        "9": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2611?v=3",
+          "login": "mralex",
+          "html_url": "https://github.com/mralex"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913496/1ab2bf92-a62b-11e5-956d-484a8c4b595c.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "35",
+      "coordinates": [
+        47.98134070428246,
+        15.46875
+      ],
+      "type": "point",
+      "title": "Vienna",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/580492?v=3",
+          "login": "Swatinem",
+          "html_url": "https://github.com/Swatinem"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "36",
+      "coordinates": [
+        -23.235090178017984,
+        -46.40625
+      ],
+      "type": "point",
+      "title": "Campinas SP, Brazil",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/874370?v=3",
+          "login": "rbardini",
+          "html_url": "https://github.com/rbardini"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/838778?v=3",
+          "login": "octavioturra",
+          "html_url": "https://github.com/octavioturra"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "37",
+      "coordinates": [
+        33.129653047156495,
+        -102.65625
+      ],
+      "type": "point",
+      "title": "Earth",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/36491?v=3",
+          "login": "beeman",
+          "html_url": "https://github.com/beeman"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "38",
+      "coordinates": [
+        -37.710240054623654,
+        175.78125
+      ],
+      "type": "point",
+      "title": "Auckland, New Zealand",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2054503?v=3",
+          "login": "TomClarkson",
+          "html_url": "https://github.com/TomClarkson"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/941182?v=3",
+          "login": "andrewjamesford",
+          "html_url": "https://github.com/andrewjamesford"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "39",
+      "coordinates": [
+        54.96950349336775,
+        18.28125
+      ],
+      "type": "point",
+      "title": "Gdańsk, Poland",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2437969?v=3",
+          "login": "ertrzyiks",
+          "html_url": "https://github.com/ertrzyiks"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "40",
+      "coordinates": [
+        49.82947720038445,
+        4.21875
+      ],
+      "type": "point",
+      "title": "Lille",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1902323?v=3",
+          "login": "zoontek",
+          "html_url": "https://github.com/zoontek"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "41",
+      "coordinates": [
+        -25.793130303485924,
+        -49.21875
+      ],
+      "type": "point",
+      "title": "Jaraguá do Sul - Brazil",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1909761?v=3",
+          "login": "AgtLucas",
+          "html_url": "https://github.com/AgtLucas"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "42",
+      "coordinates": [
+        42.02439292189487,
+        -82.96875
+      ],
+      "type": "point",
+      "title": "Cleveland, OH",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3099999?v=3",
+          "login": "thebritican",
+          "html_url": "https://github.com/thebritican"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "43",
+      "coordinates": [
+        -35.45251649467912,
+        -57.65625
+      ],
+      "type": "point",
+      "title": "Buenos Aires, Argentina",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/165799?v=3",
+          "login": "impronunciable",
+          "html_url": "https://github.com/impronunciable"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/58519?v=3",
+          "login": "matagus",
+          "html_url": "https://github.com/matagus"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "44",
+      "coordinates": [
+        44.078961669500316,
+        -1.40625
+      ],
+      "type": "point",
+      "title": "Bordeaux, France",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4729938?v=3",
+          "login": "YannickDot",
+          "html_url": "https://github.com/YannickDot"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/6979207?v=3",
+          "login": "mr-wildcard",
+          "html_url": "https://github.com/mr-wildcard"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "45",
+      "coordinates": [
+        28.29717767366126,
+        -82.96875
+      ],
+      "type": "point",
+      "title": "Tampa, FL",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/5396631?v=3",
+          "login": "joshburgess",
+          "html_url": "https://github.com/joshburgess"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "46",
+      "coordinates": [
+        23.235090178017984,
+        113.90625
+      ],
+      "type": "point",
+      "title": "Hong Kong",
+      "subtitle": "Stargazers: 4",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2259834?v=3",
+          "login": "TangRufus",
+          "html_url": "https://github.com/TangRufus"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1059327?v=3",
+          "login": "coolzilj",
+          "html_url": "https://github.com/coolzilj"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3113374?v=3",
+          "login": "Gemerz",
+          "html_url": "https://github.com/Gemerz"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/19889?v=3",
+          "login": "Phr0ztByte",
+          "html_url": "https://github.com/Phr0ztByte"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "47",
+      "coordinates": [
+        33.129653047156495,
+        -77.34375
+      ],
+      "type": "point",
+      "title": "Wilmington, North Carolina",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/5148640?v=3",
+          "login": "Jpoliachik",
+          "html_url": "https://github.com/Jpoliachik"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "48",
+      "coordinates": [
+        35.45251649467912,
+        139.21875
+      ],
+      "type": "point",
+      "title": "Tokyo, Japan",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/10783208?v=3",
+          "login": "t-hiroyoshi",
+          "html_url": "https://github.com/t-hiroyoshi"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/855338?v=3",
+          "login": "suin",
+          "html_url": "https://github.com/suin"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "49",
+      "coordinates": [
+        12.550902885717568,
+        -85.78125
+      ],
+      "type": "point",
+      "title": "Managua, Nicaragua",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3151129?v=3",
+          "login": "neydroid",
+          "html_url": "https://github.com/neydroid"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "50",
+      "coordinates": [
+        37.710240054623654,
+        -82.96875
+      ],
+      "type": "point",
+      "title": "Seoul, Korea",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/380420?v=3",
+          "login": "yeoupooh",
+          "html_url": "https://github.com/yeoupooh"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3767680?v=3",
+          "login": "csbok",
+          "html_url": "https://github.com/csbok"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "51",
+      "coordinates": [
+        59.52677644285336,
+        18.28125
+      ],
+      "type": "point",
+      "title": "Stockholm",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/612703?v=3",
+          "login": "eldh",
+          "html_url": "https://github.com/eldh"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/14610?v=3",
+          "login": "frozzare",
+          "html_url": "https://github.com/frozzare"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "52",
+      "coordinates": [
+        49.82947720038445,
+        9.84375
+      ],
+      "type": "point",
+      "title": "Frankfurt am Main, Germany",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/25930?v=3",
+          "login": "haraball",
+          "html_url": "https://github.com/haraball"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "53",
+      "coordinates": [
+        56.55154712194239,
+        9.84375
+      ],
+      "type": "point",
+      "title": "Denmark",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/225662?v=3",
+          "login": "thulstrup",
+          "html_url": "https://github.com/thulstrup"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "54",
+      "coordinates": [
+        39.90124452289863,
+        -99.84375
+      ],
+      "type": "point",
+      "title": "United States",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/6352235?v=3",
+          "login": "clarkeharris",
+          "html_url": "https://github.com/clarkeharris"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "55",
+      "coordinates": [
+        33.129653047156495,
+        -85.78125
+      ],
+      "type": "point",
+      "title": "Silicon Valley",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/48764?v=3",
+          "login": "jw84",
+          "html_url": "https://github.com/jw84"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4663766?v=3",
+          "login": "FoxxMD",
+          "html_url": "https://github.com/FoxxMD"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1869117?v=3",
+          "login": "jurassix",
+          "html_url": "https://github.com/jurassix"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "56",
+      "coordinates": [
+        42.02439292189487,
+        29.53125
+      ],
+      "type": "point",
+      "title": "Istanbul",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/213978?v=3",
+          "login": "tarkanlar",
+          "html_url": "https://github.com/tarkanlar"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "57",
+      "coordinates": [
+        25.793130303485924,
+        122.34375
+      ],
+      "type": "point",
+      "title": "Taipei, Taiwan",
+      "subtitle": "Stargazers: 5",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3382565?v=3",
+          "login": "chentsulin",
+          "html_url": "https://github.com/chentsulin"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3001525?v=3",
+          "login": "jhen0409",
+          "html_url": "https://github.com/jhen0409"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/69736?v=3",
+          "login": "clkao",
+          "html_url": "https://github.com/clkao"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4408071?v=3",
+          "login": "jessy1092",
+          "html_url": "https://github.com/jessy1092"
+        },
+        "4": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4516396?v=3",
+          "login": "leeabc",
+          "html_url": "https://github.com/leeabc"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "58",
+      "coordinates": [
+        39.90124452289863,
+        116.71875
+      ],
+      "type": "point",
+      "title": "Beijing, China",
+      "subtitle": "Stargazers: 7",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1209159?v=3",
+          "login": "demohi",
+          "html_url": "https://github.com/demohi"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1289884?v=3",
+          "login": "riophae",
+          "html_url": "https://github.com/riophae"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/393294?v=3",
+          "login": "conglin",
+          "html_url": "https://github.com/conglin"
+        },
+        "3": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/12244689?v=3",
+          "login": "qynAUGMN",
+          "html_url": "https://github.com/qynAUGMN"
+        },
+        "4": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1115805?v=3",
+          "login": "MarshallChen",
+          "html_url": "https://github.com/MarshallChen"
+        },
+        "5": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2429369?v=3",
+          "login": "plrthink",
+          "html_url": "https://github.com/plrthink"
+        },
+        "6": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1866042?v=3",
+          "login": "yangchenghu",
+          "html_url": "https://github.com/yangchenghu"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913496/1ab2bf92-a62b-11e5-956d-484a8c4b595c.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "59",
+      "coordinates": [
+        23.235090178017984,
+        119.53125
+      ],
+      "type": "point",
+      "title": "Chaoyang District, Beijing",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4322531?v=3",
+          "login": "zhaoyu87",
+          "html_url": "https://github.com/zhaoyu87"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3784687?v=3",
+          "login": "Neson",
+          "html_url": "https://github.com/Neson"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "60",
+      "coordinates": [
+        39.90124452289863,
+        111.09375
+      ],
+      "type": "point",
+      "title": "Hohhot",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/734867?v=3",
+          "login": "shevawen",
+          "html_url": "https://github.com/shevawen"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "61",
+      "coordinates": [
+        46.06460885481884,
+        -74.53125
+      ],
+      "type": "point",
+      "title": "Ottawa, Canada",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/156825?v=3",
+          "login": "myusuf3",
+          "html_url": "https://github.com/myusuf3"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1045929?v=3",
+          "login": "pblondin",
+          "html_url": "https://github.com/pblondin"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "62",
+      "coordinates": [
+        44.078961669500316,
+        -68.90625
+      ],
+      "type": "point",
+      "title": "ZhuHai Guangdong China",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/5540812?v=3",
+          "login": "willqian",
+          "html_url": "https://github.com/willqian"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "63",
+      "coordinates": [
+        30.743695900486706,
+        35.15625
+      ],
+      "type": "point",
+      "title": "Israel",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4493579?v=3",
+          "login": "eyy",
+          "html_url": "https://github.com/eyy"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3327500?v=3",
+          "login": "yonibot",
+          "html_url": "https://github.com/yonibot"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "64",
+      "coordinates": [
+        33.129653047156495,
+        -116.71875
+      ],
+      "type": "point",
+      "title": "San Diego, CA",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/43896?v=3",
+          "login": "ericraio",
+          "html_url": "https://github.com/ericraio"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "65",
+      "coordinates": [
+        44.078961669500316,
+        -71.71875
+      ],
+      "type": "point",
+      "title": "Germany, Berlin",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1232?v=3",
+          "login": "mindreframer",
+          "html_url": "https://github.com/mindreframer"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "66",
+      "coordinates": [
+        53.32260709507301,
+        12.65625
+      ],
+      "type": "point",
+      "title": "Berlin, Germany",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/156419?v=3",
+          "login": "mpm",
+          "html_url": "https://github.com/mpm"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "67",
+      "coordinates": [
+        1.4056855966655575,
+        102.65625
+      ],
+      "type": "point",
+      "title": "Singapore",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/28681?v=3",
+          "login": "mickeyckm",
+          "html_url": "https://github.com/mickeyckm"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/118231?v=3",
+          "login": "rmdort",
+          "html_url": "https://github.com/rmdort"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/7726233?v=3",
+          "login": "xkawi",
+          "html_url": "https://github.com/xkawi"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "68",
+      "coordinates": [
+        47.98134070428246,
+        18.28125
+      ],
+      "type": "point",
+      "title": "Hungary",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/430618?v=3",
+          "login": "viktorbenei",
+          "html_url": "https://github.com/viktorbenei"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/462848?v=3",
+          "login": "oroce",
+          "html_url": "https://github.com/oroce"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/194902?v=3",
+          "login": "Pozo",
+          "html_url": "https://github.com/Pozo"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "69",
+      "coordinates": [
+        54.96950349336775,
+        37.96875
+      ],
+      "type": "point",
+      "title": "Moscow, Russia",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/688042?v=3",
+          "login": "karabatov",
+          "html_url": "https://github.com/karabatov"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "70",
+      "coordinates": [
+        53.32260709507301,
+        -1.40625
+      ],
+      "type": "point",
+      "title": "Manchester, UK",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1423413?v=3",
+          "login": "antigirl",
+          "html_url": "https://github.com/antigirl"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/551819?v=3",
+          "login": "gowram",
+          "html_url": "https://github.com/gowram"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4031216?v=3",
+          "login": "freemanon",
+          "html_url": "https://github.com/freemanon"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "71",
+      "coordinates": [
+        59.52677644285336,
+        23.90625
+      ],
+      "type": "point",
+      "title": "Helsinki, Finland",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4531?v=3",
+          "login": "vesan",
+          "html_url": "https://github.com/vesan"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "72",
+      "coordinates": [
+        28.29717767366126,
+        -99.84375
+      ],
+      "type": "point",
+      "title": "San Antonio, TX",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/319636?v=3",
+          "login": "garza",
+          "html_url": "https://github.com/garza"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "73",
+      "coordinates": [
+        9.792785018656431,
+        -66.09375
+      ],
+      "type": "point",
+      "title": "Caracas, Venezuela",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/39625?v=3",
+          "login": "volrath",
+          "html_url": "https://github.com/volrath"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "74",
+      "coordinates": [
+        54.96950349336775,
+        82.96875
+      ],
+      "type": "point",
+      "title": "Novosibirsk",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/857709?v=3",
+          "login": "aikoven",
+          "html_url": "https://github.com/aikoven"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "75",
+      "coordinates": [
+        33.129653047156495,
+        -97.03125
+      ],
+      "type": "point",
+      "title": "Dallas, Texas",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/7495489?v=3",
+          "login": "jorgeavaldez",
+          "html_url": "https://github.com/jorgeavaldez"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "76",
+      "coordinates": [
+        44.078961669500316,
+        4.21875
+      ],
+      "type": "point",
+      "title": "Shanghai, China and Paris, France",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2812?v=3",
+          "login": "maxime",
+          "html_url": "https://github.com/maxime"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "77",
+      "coordinates": [
+        46.06460885481884,
+        29.53125
+      ],
+      "type": "point",
+      "title": "Odessa",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/196564?v=3",
+          "login": "ButuzGOL",
+          "html_url": "https://github.com/ButuzGOL"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "78",
+      "coordinates": [
+        60.9231037706926,
+        9.84375
+      ],
+      "type": "point",
+      "title": "Norway",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/557371?v=3",
+          "login": "exoer",
+          "html_url": "https://github.com/exoer"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "79",
+      "coordinates": [
+        37.710240054623654,
+        139.21875
+      ],
+      "type": "point",
+      "title": "Japan",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/325819?v=3",
+          "login": "yucchiy",
+          "html_url": "https://github.com/yucchiy"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "80",
+      "coordinates": [
+        -37.710240054623654,
+        144.84375
+      ],
+      "type": "point",
+      "title": "Melbourne, Australia",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1183541?v=3",
+          "login": "fraserxu",
+          "html_url": "https://github.com/fraserxu"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "81",
+      "coordinates": [
+        9.792785018656431,
+        105.46875
+      ],
+      "type": "point",
+      "title": "Ho Chi Minh",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/7245986?v=3",
+          "login": "vunguyentuan",
+          "html_url": "https://github.com/vunguyentuan"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/41143?v=3",
+          "login": "andytruong",
+          "html_url": "https://github.com/andytruong"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "82",
+      "coordinates": [
+        42.02439292189487,
+        -71.71875
+      ],
+      "type": "point",
+      "title": "Massachusetts",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1337012?v=3",
+          "login": "klgilbert",
+          "html_url": "https://github.com/klgilbert"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1299370?v=3",
+          "login": "rdebeasi",
+          "html_url": "https://github.com/rdebeasi"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1286818?v=3",
+          "login": "crudbug",
+          "html_url": "https://github.com/crudbug"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "83",
+      "coordinates": [
+        51.60961767954443,
+        9.84375
+      ],
+      "type": "point",
+      "title": "Germany",
+      "subtitle": "Stargazers: 3",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2565891?v=3",
+          "login": "tsvetann",
+          "html_url": "https://github.com/tsvetann"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1215837?v=3",
+          "login": "hknd",
+          "html_url": "https://github.com/hknd"
+        },
+        "2": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/5676492?v=3",
+          "login": "jonas28",
+          "html_url": "https://github.com/jonas28"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "84",
+      "coordinates": [
+        44.078961669500316,
+        37.96875
+      ],
+      "type": "point",
+      "title": "Krasnodar, Russia",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1442465?v=3",
+          "login": "savroff",
+          "html_url": "https://github.com/savroff"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "85",
+      "coordinates": [
+        37.710240054623654,
+        127.96875
+      ],
+      "type": "point",
+      "title": "Seoul",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/12528221?v=3",
+          "login": "skkim7821",
+          "html_url": "https://github.com/skkim7821"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/8086589?v=3",
+          "login": "jaeky",
+          "html_url": "https://github.com/jaeky"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "86",
+      "coordinates": [
+        47.98134070428246,
+        7.03125
+      ],
+      "type": "point",
+      "title": "Strasbourg",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/923036?v=3",
+          "login": "xcarpentier",
+          "html_url": "https://github.com/xcarpentier"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "87",
+      "coordinates": [
+        53.32260709507301,
+        9.84375
+      ],
+      "type": "point",
+      "title": "Hamburg, Germany",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/407924?v=3",
+          "login": "mitch000001",
+          "html_url": "https://github.com/mitch000001"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "88",
+      "coordinates": [
+        59.52677644285336,
+        29.53125
+      ],
+      "type": "point",
+      "title": "Saint-Petersburg, Russia",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3672221?v=3",
+          "login": "suevalov",
+          "html_url": "https://github.com/suevalov"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "89",
+      "coordinates": [
+        54.96950349336775,
+        9.84375
+      ],
+      "type": "point",
+      "title": "Kiel, Germany",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/45985?v=3",
+          "login": "dbanck",
+          "html_url": "https://github.com/dbanck"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/149897?v=3",
+          "login": "mkrebber",
+          "html_url": "https://github.com/mkrebber"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "90",
+      "coordinates": [
+        7.011576991378204,
+        -74.53125
+      ],
+      "type": "point",
+      "title": "Medellin, Colombia",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1002461?v=3",
+          "login": "montogeek",
+          "html_url": "https://github.com/montogeek"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "91",
+      "coordinates": [
+        17.973667616731152,
+        -66.09375
+      ],
+      "type": "point",
+      "title": "Puerto Rico",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3780146?v=3",
+          "login": "Jpadilla1",
+          "html_url": "https://github.com/Jpadilla1"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "92",
+      "coordinates": [
+        30.743695900486706,
+        -82.96875
+      ],
+      "type": "point",
+      "title": "San Francisco and South Florida",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/190979?v=3",
+          "login": "bramswenson",
+          "html_url": "https://github.com/bramswenson"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "93",
+      "coordinates": [
+        35.45251649467912,
+        -97.03125
+      ],
+      "type": "point",
+      "title": "Tulsa, Ok",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/10525357?v=3",
+          "login": "nearbycoder",
+          "html_url": "https://github.com/nearbycoder"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "94",
+      "coordinates": [
+        12.550902885717568,
+        77.34375
+      ],
+      "type": "point",
+      "title": "Bangalore",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3390198?v=3",
+          "login": "jintoppy",
+          "html_url": "https://github.com/jintoppy"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "95",
+      "coordinates": [
+        -25.793130303485924,
+        26.71875
+      ],
+      "type": "point",
+      "title": "Johannesburg, South Africa",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/6399322?v=3",
+          "login": "Nubuck",
+          "html_url": "https://github.com/Nubuck"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "96",
+      "coordinates": [
+        39.90124452289863,
+        -105.46875
+      ],
+      "type": "point",
+      "title": "Boulder, CO",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1414692?v=3",
+          "login": "jbavari",
+          "html_url": "https://github.com/jbavari"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "97",
+      "coordinates": [
+        58.07013147046246,
+        54.84375
+      ],
+      "type": "point",
+      "title": "Perm, Russia",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/916761?v=3",
+          "login": "daemith",
+          "html_url": "https://github.com/daemith"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "98",
+      "coordinates": [
+        23.235090178017984,
+        71.71875
+      ],
+      "type": "point",
+      "title": "Ahmedabad",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/151939?v=3",
+          "login": "ravirdv",
+          "html_url": "https://github.com/ravirdv"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "99",
+      "coordinates": [
+        20.627094444251416,
+        80.15625
+      ],
+      "type": "point",
+      "title": "Nagpur, India",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4560482?v=3",
+          "login": "dhamaniasad",
+          "html_url": "https://github.com/dhamaniasad"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "100",
+      "coordinates": [
+        59.52677644285336,
+        9.84375
+      ],
+      "type": "point",
+      "title": "Oslo, Norway",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/63344?v=3",
+          "login": "gerhardsletten",
+          "html_url": "https://github.com/gerhardsletten"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "101",
+      "coordinates": [
+        -1.4056855966655575,
+        113.90625
+      ],
+      "type": "point",
+      "title": "Indonesia",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2572109?v=3",
+          "login": "miafmira",
+          "html_url": "https://github.com/miafmira"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "102",
+      "coordinates": [
+        39.90124452289863,
+        -4.21875
+      ],
+      "type": "point",
+      "title": "Madrid",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/264590?v=3",
+          "login": "dgilperez",
+          "html_url": "https://github.com/dgilperez"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "103",
+      "coordinates": [
+        25.793130303485924,
+        74.53125
+      ],
+      "type": "point",
+      "title": "Jaipur, India",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/3256108?v=3",
+          "login": "pyadav",
+          "html_url": "https://github.com/pyadav"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "104",
+      "coordinates": [
+        35.45251649467912,
+        -85.78125
+      ],
+      "type": "point",
+      "title": "Huntsville, AL",
+      "subtitle": "Stargazers: 2",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2905799?v=3",
+          "login": "bennyguitar",
+          "html_url": "https://github.com/bennyguitar"
+        },
+        "1": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1641390?v=3",
+          "login": "tribou",
+          "html_url": "https://github.com/tribou"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "105",
+      "coordinates": [
+        51.60961767954443,
+        18.28125
+      ],
+      "type": "point",
+      "title": "Poland",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/749393?v=3",
+          "login": "arathunku",
+          "html_url": "https://github.com/arathunku"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "106",
+      "coordinates": [
+        44.078961669500316,
+        -80.15625
+      ],
+      "type": "point",
+      "title": "Toronto, Canada",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/432849?v=3",
+          "login": "gdumitrescu",
+          "html_url": "https://github.com/gdumitrescu"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "107",
+      "coordinates": [
+        54.96950349336775,
+        23.90625
+      ],
+      "type": "point",
+      "title": "Vilnius, Lithuania",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/5416478?v=3",
+          "login": "dvisockas",
+          "html_url": "https://github.com/dvisockas"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "108",
+      "coordinates": [
+        49.82947720038445,
+        29.53125
+      ],
+      "type": "point",
+      "title": "Ukraine, Kyiv",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/4532683?v=3",
+          "login": "dmitruksergey",
+          "html_url": "https://github.com/dmitruksergey"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "109",
+      "coordinates": [
+        17.973667616731152,
+        71.71875
+      ],
+      "type": "point",
+      "title": "Mumbai, India",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/1650995?v=3",
+          "login": "BilalBudhani",
+          "html_url": "https://github.com/BilalBudhani"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "110",
+      "coordinates": [
+        20.627094444251416,
+        105.46875
+      ],
+      "type": "point",
+      "title": "Hanoi, Vietnam",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/187720?v=3",
+          "login": "longseespace",
+          "html_url": "https://github.com/longseespace"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "111",
+      "coordinates": [
+        15.279797888060497,
+        80.15625
+      ],
+      "type": "point",
+      "title": "Vijayawada,India",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/2179670?v=3",
+          "login": "chandu0101",
+          "html_url": "https://github.com/chandu0101"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "112",
+      "coordinates": [
+        25.793130303485924,
+        113.90625
+      ],
+      "type": "point",
+      "title": "China guiyang",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/7436176?v=3",
+          "login": "xiaokekeT",
+          "html_url": "https://github.com/xiaokekeT"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    },
+    {
+      "id": "113",
+      "coordinates": [
+        28.29717767366126,
+        46.40625
+      ],
+      "type": "point",
+      "title": "Kuwait",
+      "subtitle": "Stargazers: 1",
+      "users": {
+        "0": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/6410176?v=3",
+          "login": "iZaL",
+          "html_url": "https://github.com/iZaL"
+        }
+      },
+      "annotationImage": {
+        "height": 25,
+        "width": 25,
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png"
+      },
+      "rightCalloutAccessory": {
+        "url": "https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png",
+        "height": 25,
+        "width": 25
+      }
+    }
+  ]
+}

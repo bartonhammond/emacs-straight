@@ -1,0 +1,25 @@
+'use string';
+
+require('regenerator/runtime');
+import CONFIG from '../config';
+import store from 'react-native-simple-store';
+import _ from 'underscore';
+
+
+export default class AppAuthToken {
+
+  storeSessionToken(sessionToken) {
+    try {
+      return store.save(CONFIG.PARSE.SESSION_TOKEN_KEY,{
+        sessionToken: sessionToken
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+      
+  getSessionToken() {
+    return store.get(APP_ACCESS_TOKEN);
+  }
+}
+

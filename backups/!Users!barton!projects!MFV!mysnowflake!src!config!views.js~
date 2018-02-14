@@ -1,0 +1,7 @@
+var internals = {};
+
+internals.init = function (server) {
+  server.route(internals.routes);
+};
+
+module.exports = internals;

@@ -1,0 +1,6 @@
+//Logout
+$this->driver->get("https://www.secured-site7.com/uwce-staging/www/fond-du-lac/account");
+$this->masthead->verifyPageLoaded();
+$this->assertTrue($this->masthead->verifyPageUrl());
+$this->takeSnapShot();
+$this->masthead->clickLoginLink();

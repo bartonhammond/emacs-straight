@@ -1,0 +1,24 @@
+'use strict';
+
+this.AppVersionNumber='0.0.2';
+
+Template.home.onRendered(function() {
+  if (_.isUndefined(webix.ui.views['home'])) {
+    var component =  webix.markup.init();
+    webix.event(window, 'resize', function(){
+      if (component) component.resize();
+    });
+
+  }
+});
+Template.home.onDestroyed(function() {
+  if (webix.ui.views['home']) {
+    webix.ui.views['home'].destructor();
+  }
+});
+// see ./lib/onResetPasswordLink.js
+Template.home.helpers({
+  resetPasswordToken: function() {
+    return Session.get('resetPasswordToken');
+  }
+});

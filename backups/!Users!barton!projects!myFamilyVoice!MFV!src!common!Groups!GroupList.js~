@@ -1,0 +1,147 @@
+  'use strict';
+
+  var React = require('react-native');
+  var {
+    StyleSheet,
+    Image,
+    Text,
+    View,
+    ScrollView,
+    PixelRatio,
+    TouchableHighlight,
+  } = React;
+  var GLOBAL = require('../Globals');
+  var GroupAdd = require('./GroupAdd');
+  var Subscribable = require('Subscribable');
+  var ProgressHUD = require('react-native-progress-hud');
+  var FBSDKCore = require('react-native-fbsdkcore');
+  var {
+    FBSDKGraphRequest,
+  } = FBSDKCore;
+
+  var FBSDKShare = require('react-native-fbsdkshare');
+  var {
+    FBSDKShareDialog,
+    FBSDKShareLinkContent,
+  } = FBSDKShare;
+  var Subscribable = require('Subscribable');
+  var _ = require('underscore');
+
+
+  var ImageWidth = 150;
+
+  var GroupList = React.createClass({
+    mixins: [Subscribable.Mixin, ProgressHUD.Mixin],
+    getInitialState() {
+      return {
+        showGroupAdd: this.props.showGroupAdd,
+        groups: [],
+        app_access_token: ''
+      };
+    },
+    makeRequest(token) {
+      // Make a graph request
+      var url = "https://graph.facebook.com/v2.5/"
+        + GLOBAL.APPID
+        + '/groups?'
+        + token.app_access_token;
+        fetch(url ,{
+            method: "GET",
+            body: ''
+        })
+        .then((response) => response.json())
+        .then((responseData) => {
+          this._handleRequest(responseData);
+        })
+        .done();
+    },
+    componentDidMount: function() {
+      this.addListenerOn(this.props.eventEmitter, 'app_access_token', this.makeRequest);
+    },
+    render() {
+      if (this.state.groups.length === 0) {
+          return (
+            <View style={{
+              margin: 100
+            }}>
+              <ProgressHUD
+                isVisible={true}
+                isDismissible={true}
+                color="blue"
+              />
+              <GroupAdd eventEmitter={this.props.eventEmitter}/>
+            </View>
+          )
+      } else {
+        return (
+          <View>
+            <GroupAdd eventEmitter={this.props.eventEmitter}/>
+            <ScrollView style={{
+              marginTop: 65
+            }}>
+              {this.state.groups}
+            </ScrollView>
+          </View>
+        );
+      }
+    },
+
+    _pressRow(groupId) {
+      this.props.eventEmitter.emit('app_access_token',
+        {'app_access_token': token.app_access_token}
+      );
+
+    },
+
+    _renderGroup(group) {
+      return (
+        <TouchableHighlight onPress={() => this._pressRow(group.id)}>
+          <View>
+          <View style={styles.row}>
+              <Text style={styles.text}>
+                {group.name}
+              </Text>
+              <Text style={styles.text}>
+                {group.privacy}
+              </Text>
+            </View>
+            <View style={styles.separator} />
+          </View>
+        </TouchableHighlight>
+      );
+    },
+
+    /**
+     * Handles the response from the graph request
+     */
+    _handleRequest(result) {
+      if (_.isUndefined(result.error)) {
+        var groups = result.data;
+        var renderedGroups = [];
+        for (var i = 0, il = groups.length; i < il; i++) {
+          var group = groups[i];
+          renderedGroups.push(this._renderGroup(group));
+        }
+        this.setState({ groups: renderedGroups });
+      }
+    }
+  });
+
+  var styles = StyleSheet.create({
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      padding: 10,
+      backgroundColor: '#F6F6F6',
+    },
+    separator: {
+      height: 1,
+      backgroundColor: '#CCCCCC',
+    },
+    text: {
+      flex: 1,
+      marginLeft: 10
+    },
+  });
+
+  module.exports = GroupList;

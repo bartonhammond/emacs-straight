@@ -1,0 +1,8 @@
+'use strict';
+import {observable, computed, autorun} from 'mobx';
+
+
+const model = observable({
+    isFetching:  false
+});
+module.exports = model;

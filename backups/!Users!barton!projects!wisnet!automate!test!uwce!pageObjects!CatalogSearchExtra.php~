@@ -1,0 +1,198 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickBwhMusicCourseDescriptionFor1Link",
+        "attributeType": "link",
+       "attributeName": "bwhMusicCourseDescriptionFor1",
+        "attributeStrategy": "css",
+        "attributeValue": "a.upcomingprogram.jkboxshadow"
+     },
+
+    {     
+        "operationName": "clickBwhMusicCourseDescriptionFor2Link",
+        "attributeType": "link",
+       "attributeName": "bwhMusicCourseDescriptionFor2",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid div:nth-of-type(3) ul.row li.col-md-6 a.upcomingprogram.jkboxshadow table tbody tr th.body a"
+     },
+
+    {     
+        "operationName": "clickCourseCatalogLink",
+        "attributeType": "link",
+       "attributeName": "courseCatalog",
+        "attributeStrategy": "css",
+        "attributeValue": "#b a"
+     },
+
+    {     
+        "operationName": "clickHomeLink",
+        "attributeType": "link",
+       "attributeName": "home",
+        "attributeStrategy": "css",
+        "attributeValue": "#a a"
+     },
+
+    {     
+        "operationName": "clickSearchCatalog1Button",
+        "operationArgument" : "searchCatalogValue",
+        "attributeType": "text",
+       "attributeName": "searchCatalog1",
+        "attributeStrategy": "id",
+        "attributeValue": "catalogSearch_keyword"
+     },
+
+    {     
+        "operationName": "clickSearchCatalog2Button",
+        "attributeType": "button",
+       "attributeName": "searchCatalog2",
+        "attributeStrategy": "css",
+        "attributeValue": "button.btn.btn-default.btn-sm"
+     },
+
+
+
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class CatalogSearch extends \Automate\Page {
+
+
+
+
+     protected $pageLoadedText = "UW-Fond du Lac (Staging)";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/catalog/search";
+
+
+   private static $_selectors = [
+    "bwhMusicCourseDescriptionFor1" =>
+    [
+       "css" => "a.upcomingprogram.jkboxshadow"
+    ],
+
+    "bwhMusicCourseDescriptionFor2" =>
+    [
+       "css" => "#primary div.container-fluid div:nth-of-type(3) ul.row li.col-md-6 a.upcomingprogram.jkboxshadow table tbody tr th.body a"
+    ],
+
+    "courseCatalog" =>
+    [
+       "css" => "#b a"
+    ],
+
+    "home" =>
+    [
+       "css" => "#a a"
+    ],
+
+
+
+    "searchCatalog1" =>
+    [
+       "id" => "catalogSearch_keyword"
+    ],
+
+    "searchCatalog2" =>
+    [
+       "css" => "button.btn.btn-default.btn-sm"
+    ],
+    ];
+    /**
+     * Click on Bwh Music Course Description For Bwh Music Course Link.
+     *
+     */
+    function clickBwhMusicCourseDescriptionFor1Link() {
+        //link
+        $this->click(self::$_selectors['bwhMusicCourseDescriptionFor1']);
+    }
+
+    /**
+     * Click on Bwh Music Course Description For Bwh Music Course Link.
+     *
+     */
+    function clickBwhMusicCourseDescriptionFor2Link() {
+        //link
+        $this->click(self::$_selectors['bwhMusicCourseDescriptionFor2']);
+    }
+
+    /**
+     * Click on Course Catalog Link.
+     *
+     */
+    function clickCourseCatalogLink() {
+        //link
+        $this->click(self::$_selectors['courseCatalog']);
+    }
+
+    /**
+     * Click on Home Link.
+     *
+     */
+    function clickHomeLink() {
+        //link
+        $this->click(self::$_selectors['home']);
+    }
+
+    /**
+     * Set default value to Search Catalog Text field.
+     *
+     */
+    function clickSearchCatalog1Button($searchCatalogValue) {
+         //text
+        $this->type(self::$_selectors['searchCatalog1'],$searchCatalogValue);
+    }
+
+    /**
+     * Click on Search Catalog Button.
+     *
+     */
+    function clickSearchCatalog2Button() {
+        //button
+        $this->click(self::$_selectors['searchCatalog2']);
+    }
+
+
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickSearchCatalogButton();
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+         $text = $this->pageLoadedText;
+        $driver = $this->driver;
+        return $driver->wait(self::WAIT_TIME, self::ITERATE_TIME)->until(
+            function () use ($driver, $text)  {
+                try {
+                    $source = $driver->getPageSource();
+                    if (strpos($source,$text) !== false) {
+                        return true;
+                    }
+                    return false;
+                } catch (\Exception $e) {
+                    return false;
+                }
+        });
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return strpos($this->driver->getCurrentURL(), $this->pageUrl) !== false;
+    }
+}

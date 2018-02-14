@@ -1,0 +1,54 @@
+var fs = require('fs');
+var _ = require('underscore');
+var CONFIG = require('./config');
+
+class GeoToAnnotation {
+  // target structure: https://github.com/mapbox/react-native-mapbox-gl/blob/master/ios/API.md#annotations
+
+  //for images, see http://fa2png.io/
+  convert(geoColors) {
+    var annotations = _.map(geoColors.features, (feature, index) => {
+      let annotation = {};
+      annotation.id = '' + index; //as string
+      annotation.coordinates = [];
+      annotation.coordinates.push(feature.geometry.coordinates[1]);
+      annotation.coordinates.push(feature.geometry.coordinates[0]);  
+      annotation.type = feature.geometry.type.toLowerCase().trim();
+      annotation.title = feature.properties.location;
+      annotation.subtitle = 'Stargazers: ' + feature.properties.stars;
+      annotation.users = feature.properties.users;
+      annotation.annotationImage = {};
+      annotation.annotationImage.height = 25;
+      annotation.annotationImage.width = 25;
+      annotation.rightCalloutAccessory = {};
+      
+      if (feature.properties.stars === 1) {
+        annotation.rightCalloutAccessory.url = CONFIG.gears.single;
+      } else {
+        annotation.rightCalloutAccessory.url = CONFIG.gears.multiple;    
+      }
+      annotation.rightCalloutAccessory.height = 25;
+      annotation.rightCalloutAccessory.width = 25;
+
+      annotation.annotationImage.url = CONFIG.markers.lightest;
+      
+      switch (feature.properties['marker-color']) {
+      case "aa0055":
+        annotation.annotationImage.url = CONFIG.markers.darkest;
+        break;
+      case "#d4002a":
+        annotation.annotationImage.url = CONFIG.markers.dark;
+        break;
+      case "#ff0000":
+        annotation.annotationImage.url = CONFIG.markers.light;
+        break;
+      case "ff4043":
+        annotation.annotationImage.url = CONFIG.markers.lightest;
+        break;
+      }
+      return annotation;
+    });
+    return Promise.resolve(annotations);
+  }
+}
+module.exports = GeoToAnnotation;

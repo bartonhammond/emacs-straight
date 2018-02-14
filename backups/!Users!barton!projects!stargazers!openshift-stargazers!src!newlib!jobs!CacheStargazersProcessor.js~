@@ -1,0 +1,101 @@
+'use strict';
+require('regenerator/runtime');
+import GitHub from '../GitHub';
+import Bottleneck from 'bottleneck';
+import CreateGetRepositoryByPageJob from './CreateGetRepositoryByPageJob';
+
+class SearchRepositoriesProcessor{
+  constructor(queue, job, ctx, done) {
+    this.queue = queue;
+    this.job = job;
+    this.ctx = ctx;
+    this.done = done;
+    
+    this.gitHub = new GitHub();
+    this.searchRepositoriesLimiter = new Bottleneck(1, 2200);
+    this.results = [];
+    this.count = 0;
+    this.lastPage = 0;
+  }
+  /**
+   * If all pages have been processed, we're done
+   */
+  checkDone() {
+    this.count++;
+    console.log('SearchRepositoriesProcessor.checkDone', this.count);    
+    if (this.count >= this.lastPage) {
+      console.log('SearchRepositoriesProcessor.checkDone.done!');
+      this.done(null, this.results);
+    }
+  }
+  /**
+   * Save any results
+   */
+  saveResults(results) {
+    if (results
+        && results.json
+        && results.json.items) {
+      this.results.push(...results.json.items);
+    }
+    this.checkDone();
+  }
+  /**
+   * When the first page request is through, we know 
+   * how may other pages are available.
+   * 
+   * Create getRepositoryByPageJobs for each page
+   *
+   */
+  onFirstComplete(result) {
+    //save results
+    let self = this;
+    self.saveResults(result);
+
+    self.lastPage = Number(result.link.last.page);
+    //for each page create new job
+    for (let currentPage = 2;
+         currentPage <= self.lastPage;
+         currentPage++) {
+      
+      //limit the speed
+      self.searchRepositoriesLimiter.schedule(
+        CreateGetRepositoryByPageJob.bind(self,
+                                          self.queue,
+                                          currentPage,
+                                          self.job.data.stars,
+                                          self.job.data.language))
+        .then((job) => {
+          job.on('complete', (jobresult) => {
+            self.saveResults(jobresult);
+          });
+          job.on('failed', (err) => {
+            console.log('SearchRepositoriesProcessor.job.onfailed',err);
+            self.saveResults();
+          });
+        })
+        .catch((err) => {
+          self.done(err);
+        });
+    }//for loop
+  }
+  /**
+   * Process the first page
+   */
+  run() {
+    let self = this;
+    CreateGetRepositoryByPageJob(
+      self.queue,
+      1,
+      10,//lastPage
+      self.job.data.stars,
+      self.job.data.language
+    ).then((job) => {
+      job.on('complete',(result) => {
+        self.onFirstComplete(result);
+      });//job on complete
+    });//then((job)
+  }//run
+
+
+}
+module.exports = SearchRepositoriesProcessor;

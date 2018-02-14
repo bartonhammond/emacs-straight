@@ -1,0 +1,6 @@
+//Main page
+$home = "https://www.secured-site7.com/uwce-staging/www/";
+    
+$this->driver->get($home);
+$this->main->waitPageLoaded();
+$this->main->selectFondDuLac();

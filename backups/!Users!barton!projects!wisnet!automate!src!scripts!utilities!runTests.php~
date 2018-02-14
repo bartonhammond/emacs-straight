@@ -1,0 +1,228 @@
+<?php
+namespace Automation;
+
+//require_once __DIR__ . '/../vendor/autoload.php';
+
+require './scripts/getBrowsers.php';
+require './scripts/readTestDirectory.php';
+require './scripts/processSessions.php';
+require 'lib/globals.php';
+
+class RunTests {
+    function endsWith($haystack, $needle) {
+        $length = strlen($needle);
+        
+        return $length === 0 || 
+                       (substr($haystack, -$length) === $needle);
+    }
+    public function callBrowsers($argv, $argc) {
+
+
+        $getBrowsers = new \Automation\GetBrowsers();
+        $results = $getBrowsers->get();
+
+        $dirs = new \Automation\ReadTestDirectory();
+        $temps = $dirs->readDirectory();
+        
+        $tests = [];
+        //Filter is args are passed
+        if ($argc > 1) {
+            foreach($argv as $value) {
+                foreach ($temps as $temp) {
+                    if ($this->endsWith( $temp['directory'], $value)) {
+                        array_push($tests, $temp);
+                    }
+                }
+            }
+        } else {
+            $tests = $temps;
+        }
+
+        //A $test is company/test 
+        foreach ($tests as $test) {
+            //Start building the "test.php" script from all the pieces
+            $testPhp = "<?php \n"
+                     . " class Test extends BrowserStackTest { \n"
+                     . " public function thisFunction() { \n";
+            
+            foreach ($test['testScripts'] as $script) {
+                $contents = file_get_contents($test['directory']
+                                              . '/'
+                                              . $script);
+                $testPhp = $testPhp . $contents;
+            }
+            $testPhp = $testPhp . "}\n"
+                     . "}\n";
+            
+            $testPhpFilename = $test['directory'] . '/test.php'; 
+
+            if (file_exists($testPhpFilename)) {
+                unlink($testPhpFilename);
+            }
+            
+            file_put_contents($testPhpFilename, $testPhp, FILE_APPEND | LOCK_EX);            
+            date_default_timezone_set('America/Chicago');
+            $BUILD = date('Y-m-d-H-i');
+
+            //Keep all the results under '/output' so that
+            //.gitignore works
+            $directory = $test['directory'] . '/output/' . $BUILD;
+      
+            if (!file_exists($directory)) {
+                mkdir($directory, 0777, true);
+                mkdir($directory . '/maps', 0777, true);
+            }
+      
+            //Get the devices that the customer json defined
+            $devices = $getBrowsers->parse($results, $test['testDevices']);
+
+            //Key the keys from the map
+            $keys = $devices->keys();
+
+            //Each key is a device
+            foreach ($keys as $key) {
+                $device =  $devices->get($key);
+                $cmd = '';
+
+                ob_start();
+
+                //Run the MySQL command file if there is one
+                if (array_key_exists('sqlCommands', $test)
+                    &&
+                    !is_null($test['sqlCommands'])) {
+                    //Need to put this in automate.json
+                    file_get_contents("http://www.secured-site7.com/uwce-staging/www/staging-reset");
+                    /*
+                    $mysql = file_get_contents($test['directory']
+                                               . '/'
+                                               . $test['sqlCommands']);
+                    try {
+                        $output = shell_exec($mysql);
+                        echo $output;
+                    } catch (\Exception $e) {
+                        echo "Exception occurred\n";
+                        echo $e;
+                    }                    
+                    */
+                }
+
+                
+                $consoleLogFile = '';
+                if (is_null($device->device)) {
+                    //Desktop type
+                    $consoleLogFile = $device->os
+                                    . '-' . $device->os_version
+                                    . '-' . $device->browser
+                                    . '-' . $device->browser_version;                                   
+                    $cmd = "CONFIG_FILE=config/fit.conf.json " 
+                         . " OS='" . $device->os
+                         . "' OS_VERSION='" . $device->os_version
+                         . "' BROWSER='" . $device->browser
+                         . "' BROWSER_VERSION='" . $device->browser_version
+                         . "' PROJECT='" . $test['customerName']
+                         . "' NAME='" . $test['testName']
+                         . "' BUILD='" . $BUILD
+                         . "' DIRECTORY='" . $directory
+                         . "' Vendor/bin/phpunit " 
+                         . $test['directory']
+                         . '/test.php';
+                } else {    //Mobile type
+                    $consoleLogFile = $device->os
+                                    . '-' . $device->os_version
+                                    . '-' . $device->device;
+                    
+                    $cmd = "CONFIG_FILE=config/fit.conf.json " 
+                         . " OS='" . $device->os
+                         . "' OS_VERSION='" . $device->os_version
+                         . "' DEVICE='" . $device->device
+                         . "' REAL_MOBILE='TRUE"
+                         . "' PROJECT='" . $test['customerName']
+                         . "' NAME='" . $test['testName']
+                         . "' BUILD='" . $BUILD
+                         . "' DIRECTORY='" . $directory
+                         . "' vendor/bin/phpunit "
+                         . $test['directory']
+                         . '/test.php';
+                }
+                 
+                echo "\n\n" . $cmd . "\n";
+                try {
+                    $output = shell_exec($cmd);
+                    echo $output;
+                } catch (\Exception $e) {
+                    echo "Exception occurred\n";
+                    echo $e;
+                }
+
+                $consoleLogFile = str_replace('-', '_', $consoleLogFile);
+                $consoleLogFile = str_replace(' ', '_', $consoleLogFile);
+                $consoleLogFile = str_replace('.', '_', $consoleLogFile);
+                
+                $resultsString = ob_get_contents();
+                ob_end_flush();
+
+                // Write the contents to the specific log file for
+                // device for determineing if success/failure
+                file_put_contents($directory
+                                  . '/'
+                                  . $consoleLogFile
+                                  . '.log',
+                                  $resultsString . "\n", FILE_APPEND | LOCK_EX);
+
+                //Write out combined log file for showing in Modal
+                 $startDiv = '<div id="' 
+                          . $consoleLogFile
+                          . '" style="display:none">'
+                          . "<pre>";
+                $endDiv = "</pre></div>";
+                $resultsString = $startDiv . $resultsString . $endDiv;
+                file_put_contents($directory . '/includedLogs.html',
+                                  $resultsString,
+                                  FILE_APPEND | LOCK_EX);
+                
+            } //foreach $keys
+            //Save project level information
+            $span1 = "<span id='info-customerName'>"
+                   . $test['customerName']
+                   . "</span>";
+            $span2 = "<span id='info-testName'>"
+                   . $test['testName']
+                   . "</span>";
+            $span3 = "<span id='info-build'>"
+                   . $BUILD
+                   . "</span>";
+            
+            file_put_contents($directory . '/projectInfo.html',
+                              $span1 . $span2 . $span3,
+                              FILE_APPEND | LOCK_EX);
+            
+            // Get a file into an array.  
+            $sessions = file($directory . '/sessionIDs.txt');
+      
+            //Build the HTML from the sessions that were saved
+            $CONFIG = $GLOBALS['CONFIG'];
+            $username = $GLOBALS['BROWSERSTACK_USERNAME'] ;
+            $key = $GLOBALS['BROWSERSTACK_ACCESS_KEY'];
+
+            $processSessions = new \Automation\ProcessSessions($username,
+                                                               $key,
+                                                               $directory);
+
+            //For each device/sessionsID, create HTML
+            foreach ($sessions as $session) {
+                $processSessions->getLogs(trim($session));
+            }
+
+            //The container html 
+            copy('./template/results.html', $directory . '/results.html');
+            copy('./js/min/site.min.js', $directory . '/site.min.js');
+            copy('./js/min/maps/site.min.js.map', $directory . '/maps/site.min.js.map');
+      
+        } //foreach $tests
+    }//function callBrowsers
+  
+}//RunTests
+
+
+$command = new RunTests();
+$command->callBrowsers($argv, $argc);

@@ -1,0 +1,16 @@
+<template name="audioRecording">
+  <hr/>
+  <button  id="startRecordingBtn">Record</button>
+  <button  id="stopRecordingBtn">Stop</button>
+  <hr/>
+  {{#each audios}}
+  <p>Current audio:
+    <audio src="{{blobURL}}" type="audio/mp3"  controls></audio>
+  </p>
+  <button id="saveAudio">Save audio</button>
+  <p>Saved audio:
+    <audio src="{{url}}" type="audio/mp3" controls></audio>
+  </p>
+  {{/each}}
+</template>
+

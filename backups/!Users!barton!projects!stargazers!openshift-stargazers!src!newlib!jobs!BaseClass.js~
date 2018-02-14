@@ -1,0 +1,75 @@
+'use strict';
+require('regenerator/runtime');
+import GitHub from '../GitHub';
+
+let ProcessorClass = class {
+  constructor(queue, job, ctx, done) {
+    this.queue = queue;
+    this.job = job;
+    this.ctx = ctx;
+    this.done = done;
+
+    this.gitHub = new GitHub();
+    this.results = [];
+    this.count = 0;
+    this.lastPage = 1;    
+  }
+  /**
+   * If all pages have been processed, we're done
+   */
+  checkDone() {
+    this.count++;
+    console.log('CacheStargazersProcessor.checkDone', this.count);    
+    if (this.count >= this.lastPage) {
+      console.log('CacheStargazersProcessor.checkDone.done!');
+      this.done(null, this.results);
+    }
+  }
+  /**
+   * Save any results
+   */
+  saveResults(results) {
+    if (results
+        && results.json) {
+      if (results.json.items) {
+        this.results.push(...results.json.items);
+      } else {
+        this.results.push(...results.json);        
+      }
+    }
+    this.checkDone();
+  }  
+  /**
+   *  If the error is a rate-limiting one,
+   *  pause the queue until the time the rate 
+   *  is reset
+   *
+   *  see ../lib/Github for checking rate-limit
+   *
+   */
+  needToPause(ctx, err) {
+    if (err
+        && err.status
+        && err.status === 403) {
+      let now = Date.now() * 1000;
+      
+      let pause = err.ratelimitReset - now;
+
+      console.log('*********         pausing', pause);          
+      ctx.pause(1000, (error)=> {
+        console.log('******* callback on pause');
+        if (!error) {
+          setTimeout( () => {
+            console.log('*********    resumeing');                              
+            ctx.resume();
+          }, pause );
+        }
+      });
+    }
+  }
+  
+};
+
+module.exports = ProcessorClass;
+
+

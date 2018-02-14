@@ -1,0 +1,41 @@
+{
+  "application": {
+
+    "title": "My Family Voice!",
+    "meta_title": "My Family Voice",
+    "meta_description": "MyFamilyVoice - voice recordings",
+    "theme": "bootswatch-paper",
+
+    "public_zone": {
+      "pages": [
+        { 
+	  "name": "home_public", 
+	  "title": "", 
+	  "components": [
+	    {
+	      "name": "home_jumbotron",
+	      "title": "My Family Voice",
+	      "type": "jumbotron",
+	      "text": "<b>This application is for recording audio with pictures.</b><br />Do you have a elderly relative how doesn't want to type but likes to talk?  If so, then this might help you record their memories.",
+	      "button_title": "Register &raquo;",
+	      "button_route": "register"
+	    }
+          ]
+        },
+        { "name": "login", "template": "login" },
+	{ "name": "register", "template": "register" },
+	{ "name": "forgot_password", "template": "forgot_password" },
+	{ "name": "reset_password", "template": "reset_password", "route_params": ["resetPasswordToken"] }
+      ],
+      "menus": [
+      ]
+    },
+    
+    "private_zone": {
+      "pages": [
+      ],
+      "menus": [
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<template name="atNavButton">
+  <div>{{text}}</div>
+</template>
+
+<!--
+
+Semantic
+<template name="atNavButton">
+  <div class="item">
+    <div class="ui button" id="at-nav-button">{{text}}</div>
+  </div>
+</template>
+
+Unstyled
+<template name="atNavButton">
+  <a id="at-nav-button">{{text}}</a>
+</template>
+-->

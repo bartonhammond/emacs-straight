@@ -1,0 +1,82 @@
+/**
+ * # Mailer.js
+ *
+ * Create email and send content
+ * 
+ *
+ */
+'use strict';
+/**
+ * ## Imports
+ *
+ */
+var CONFIG = require('../config'),
+    // kind of like underscore, but specific to Hapi
+    Hoek = require('hoek'),
+    // the email library
+    nodemailer = require("nodemailer");
+
+/**
+ * ## transporter
+ * configure the email provider
+ */
+var transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: CONFIG.email.username,
+    pass: CONFIG.email.password
+  }
+});
+/**
+ * ## getUrl 
+ * Local or OpenShift
+ *
+ */
+function getUrl( ) {
+  var url = '';
+  if (process.env.OPENSHIFT_APP_DNS) {
+    url = 'https://' + process.env.OPENSHIFT_APP_DNS;
+  } else {
+    url =   'http://127.0.0.1:8080';
+  }
+  return url;
+}
+/**
+
+ *
+ */
+exports.sendJobCompleted = function(job) {
+  var from = CONFIG.email.accountName;
+  let msg = `Min: ${job.data.minStars} Max: ${job.data.maxStars}`;
+  var mailbody = "<p>BuildCache job finished: "
+        + msg;
+  mail(from,
+       'bartonhammond@gmail.com',
+       "BuildCache job finished",
+       mailbody);
+};
+
+/**
+ * ## mail
+ *
+ * The main function, sends the email 
+ *
+ * @param from who email is from
+ * @param email who email is sent to
+ * @param subject the subject of the email
+ * @param mailbody the body of the email 
+ */
+function mail(from, email, subject, mailbody){
+  var mailOptions = {
+    from: from, // sender address
+    to: email, // list of receivers
+    subject: subject, // Subject line
+    html: mailbody  // html body
+  };
+  //Send email
+  if (!CONFIG.email.test) {
+    transporter.sendMail(mailOptions, function(error) {
+      Hoek.assert(!error,error);
+    });
+  }
+}

@@ -1,0 +1,13 @@
+#
+Start w/ no Certs, Provisions or App Id
+Clone snowlake
+
+Open . -> select snowflake.xcodeproj
+
+
+Left pane ->  (far left icon select above) -> click 'fireball' ->
+center -> Target -> fireball -> top -> "General" -> center -> Identity
+-> Bundle Identifier -> 'org.bartonhammond.fireball'
+
+
+Xcode -> Run

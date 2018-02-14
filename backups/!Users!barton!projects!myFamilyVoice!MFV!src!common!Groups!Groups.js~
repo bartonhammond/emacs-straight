@@ -1,0 +1,81 @@
+'use strict';
+
+var React = require('react-native');
+var {
+    StyleSheet,
+    Text,
+    View,
+    Navigator,
+} = React;
+
+var GroupList = require('./GroupList');
+var Title = require('../component/Title');
+var NavigationBar = require('../component/NavigationBar');
+var NavBarButton = require('../component/NavBarButton');
+
+class Groups extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showGroupAdd: false,
+    };
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+          <Navigator
+              navigationBar=<NavigationBar />
+              renderScene={this._renderScene}
+              initialRoute={{
+                  statusBarStyle: 'light-content',
+                  component: GroupList,
+                  passProps: {
+                    showGroupAdd: this.state.showGroupAdd,
+                    eventEmitter: this.props.eventEmitter
+                  },
+                  customTitle: {
+                      component: Title,
+                      passProps: {
+                          showSearch: true,
+                          text: 'Families'
+                      }
+                  },
+                  barStyle: {
+                      backgroundColor: '#60B5F0'
+                  },
+                  titleStyle: {
+                      color: 'white',
+                      fontSize: 22,
+                  },
+                  leftButton: {
+                      component: NavBarButton,
+                      passProps: {
+                          icon: 'user-plus',
+                          color: 'white',
+                          eventEmitter: this.props.eventEmitter,
+                          eventName: 'showGroupAdd',
+                      }
+                  },
+                  rightButton: {
+                      component: NavBarButton,
+                      passProps: {
+                          icon: 'pencil',
+                          color: 'white',
+                      }
+                  }
+              }} />
+        </View>
+    )
+  }
+  _renderScene(route, navigator) {
+    var props = Object.assign({}, { navigator: navigator }, route.passProps);
+    return React.createElement(route.component, props);
+  }
+}
+var styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+});
+module.exports = Groups;

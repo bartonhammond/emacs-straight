@@ -1,0 +1,51 @@
+Meteor.startup(function() {
+  Session.set('text', 'signin');
+  webix.markup.init($('#_nav')[0]);
+});
+  
+/**
+ *  Home Template
+ */
+Template.home.onRendered(function() {
+  webix.markup.init($('#_home')[0]);
+});
+
+Template.home.onDestroyed(function() {
+  if (webix.ui.views['home']) {
+    webix.ui.views['home'].destructor();
+  }
+});
+/**
+ *  Hello template 
+ */
+Template.hello.onRendered(function() {
+  webix.markup.init($('#_hello')[0]);
+});
+
+Template.hello.onDestroyed(function() {
+  if (webix.ui.views['hello']) {
+    webix.ui.views['hello'].destructor();
+  }
+});
+/**
+ * navButton Template
+ */
+Template.navButton.helpers({
+  text: function(){
+    var text =  Session.get('text');
+    if ($$('nav-button')) {
+      $$('nav-button').define('label',text);
+      $$('nav-button').refresh();
+    }
+  },
+  dataClick: function() {
+    return `
+    if ('signin' === Session.get('text')) {
+      Session.set('text','signout');
+    } else {
+      Session.set('text','signin');
+    }`
+  }
+})
+
+

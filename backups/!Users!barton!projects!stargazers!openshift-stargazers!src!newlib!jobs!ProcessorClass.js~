@@ -1,0 +1,74 @@
+'use strict';
+require('regenerator/runtime');
+import GitHub from '../GitHub';
+
+class GetRepositoryByPageProcessor{
+  constructor(queue) {
+    this.queue = queue;
+    this.gitHub = new GitHub();
+    this.results = [];
+  }
+  /**
+   *  If the error is a rate-limiting one,
+   *  pause the queue until the time the rate 
+   *  is reset
+   *
+   *  see ../lib/Github for checking rate-limit
+   *
+   */
+  needToPause(ctx, err) {
+    if (err
+        && err.status
+        && err.status === 403) {
+      let now = Date.now() * 1000;
+      
+      let pause = err.ratelimitReset - now;
+
+      console.log('*********         pausing', pause);          
+      ctx.pause(1000, (error)=> {
+        console.log('******* callback on pause');
+        if (!error) {
+          setTimeout( () => {
+            console.log('*********    resumeing');                              
+            ctx.resume();
+          }, pause );
+        }
+      });
+    }
+  }
+  init() {
+    let self = this;
+
+    self.queue.process(
+      'getRepositoryByPageProcessor',
+      1,
+      function(job,
+               ctx,
+               done) {
+
+        //ratelimit the search requests at 30/min
+        self.gitHub.searchRepositories(
+          '', //term
+          '', //inFields
+          '', //forks
+          '' + job.data.stars + '..' + job.data.stars,
+          '' + job.data.language,
+          'stars', //sort
+          'desc', //order
+          job.data.page)
+        
+          .then((page) => {
+            console.log('GetRepositoryByPageProcessor.page',job.data.page);
+            done(null, page);
+            
+          }).catch((err) => {
+            done(err);
+            self.needToPause(ctx, err);
+          });
+      });
+  }
+  
+}
+module.exports = GetRepositoryByPageProcessor;
+
+

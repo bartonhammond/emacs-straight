@@ -1,0 +1,18 @@
+/**
+ *  Masterlayout is used to hold the nav on top
+ * and swap out the content where it says {{> yeild}}
+ */
+Router.configure({
+  layoutTemplate: 'masterLayout',
+  yieldTemplates: {
+  nav: {
+    to: 'nav'}
+  }
+});
+Router.route('/', {
+  name: 'home' //name of template below
+});
+
+Router.route('/hello', {
+  name: 'hello' //name of template below
+});

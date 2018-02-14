@@ -1,0 +1,40 @@
+<template name="postslist">
+  <div id="_postslist">
+    <div data-id="postslist"
+         data-view="datatable"
+         data-type="line"
+         data-autoheight=1>
+      <config name="onClick" fa-comment-o="{{onClick}}"></config>
+
+      <div data-view="column"
+           data-hidden=1
+           data-id="id"></div>
+
+      <div data-view="column"
+           data-fillspace=1
+           data-id="title">
+        {{t9n 'postslist.datatable.column.title'}}
+      </div>
+
+      <div data-view="column"
+           data-fillspace=1
+           data-id="url">
+        {{t9n 'postslist.datatable.column.url'}}
+      </div>
+      
+
+      <div data-view="column"
+           data-template="<span style='cursor:pointer; text-align:center' class='webix_icon fa-comment-o'></span>"
+           data-id="discuss">
+        {{t9n 'postslist.datatable.column.discuss'}}
+      </div>
+
+      <ul data-view="data">
+        {{#each posts}}
+        {{> postItem}}
+        {{/each}}
+      </ul>
+      
+    </div>
+  </div>
+</template>

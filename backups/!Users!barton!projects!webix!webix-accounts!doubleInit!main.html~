@@ -1,0 +1,65 @@
+<head>
+  <title>Meteor & Webix </title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+     {{> nav}}
+ </body>
+ 
+ <!-- Nav on top
+      Content where {{> yield}} 
+  -->
+    
+ <template name="masterLayout">
+  {{> yield region='nav'}}
+  <div id="content">
+    {{> yield}}
+  </div>
+</template>
+<!-- Webix toolbar w/ menu -->
+<template name="nav">
+    <div id="_nav"
+        data-id="nav"
+         data-css="nav"
+         data-view="toolbar">
+
+      <div data-view="label"
+           data-label="Test webix"
+           data-width=200>
+      </div>
+       <div data-view="menu">
+        <ul data-view="data">
+          <li data-id="menuHome"
+              data-href="/">Home
+          </li>
+          <li data-id="menuHello"
+              data-href="/hello">Hello
+          </li>
+        </ul>
+      </div>
+    </div>
+</template>
+
+<template name="home">
+<div id = "_home"
+    data-id="home"
+       data-name="home"
+       data-view="label"
+       data-height=80
+       data-css="container"
+       data-template="<h1>Home</h1>">
+  </div>
+</template> 
+
+<template name="hello">
+<div id ="_hello"
+      data-id="hello"
+       data-name="hello"
+       data-view="label"
+       data-height=80
+       data-css="container"
+       data-template="<h1>Hello</h1>">
+  </div>
+</template> 

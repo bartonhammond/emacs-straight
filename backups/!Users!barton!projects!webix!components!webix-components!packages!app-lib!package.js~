@@ -1,0 +1,39 @@
+Package.describe({
+  name: 'app:lib', // All modules should api.use() this.
+  summary: 'Application core library.',
+  version: '1.0.0',
+});
+
+Package.onUse(function(api) {
+
+  api.versionsFrom(['METEOR@1.0']);
+
+  var packages = [
+    'standard-app-packages',
+    'autopublish',
+    'insecure',
+    'coffeescript',
+    'peerlibrary:blaze-components',
+    'reactive-var',
+    'underscore',
+    'percolate:velocityjs',
+    'peerlibrary:assert'
+  ];
+
+  api.use(packages);
+
+
+  api.imply(packages);
+
+  api.addFiles([
+
+  ], ['client']);
+  
+  api.export();
+  
+  api.imply();
+
+  api.export([
+
+  ]);
+});

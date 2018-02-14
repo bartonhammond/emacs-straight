@@ -1,0 +1,156 @@
+'use strict';
+require('regenerator/runtime');
+
+
+import Bottleneck from 'bottleneck';
+import _ from 'underscore';
+
+import ProcessorClass from '../ProcessorClass';
+import CreateGetUsersForRepoJob from '../users/CreateGetUsersForRepoJob';
+import CreateGetLocationJob from '../location/CreateGetLocationJob';
+
+class GetMapDataProcessor extends ProcessorClass{
+  constructor(queue, job, ctx, done) {
+    super(queue, job, ctx, done);
+    this.getLocationLimiter = new Bottleneck(6, 1200);
+    this.getRedisLimiter = new Bottleneck(50, 100);    
+    this.latinize = require('latinize');
+  }
+  /**
+   * Using Mapzen location object, return just the lat/long
+   * or just an empty object
+   */
+  getCoordinates(location) {
+    if (location.geocoding
+        && location.geocoding.query
+        && location.features
+        && location.features[0]
+        && location.features[0].geometry
+        && location.features[0].geometry.coordinates) {
+
+      let long = location.features[0].geometry.coordinates[0];
+      let lat = location.features[0].geometry.coordinates[1];
+
+      let value = {};
+      value.long = long;
+      value.lat = lat;
+      return value;
+    } else {
+      return {};
+    }
+  }
+  /**
+   *   For all the stargazers of the repo, get their user information
+   */
+  run() {
+    let self = this;
+    
+    //First, get all the users
+    CreateGetUsersForRepoJob(
+      self.queue,
+      self.job.data.id,
+      self.job.data.access_token,      
+      self.job.data.owner,
+      self.job.data.repo
+    ).then((users) => {
+
+      //used to determine when processing is done
+      self.lastPage = users.length;
+      
+      //loop through all the stargazers        
+      for (let user of users) {
+        user = _.pick(user,
+                      ['login','avatar_url','name','location']);
+        
+        //first check if user is cached in redis
+        if (user.location) {
+          let location =
+                self.latinize(user.location).toLowerCase();
+          
+          var valid = /^[a-z\.\,\-_\s]+$/i.test(location);
+          
+          if (valid) {
+            let start = self.logger.now();
+            self.getRedisLimiter.schedule(
+              self.getRedisValue.bind(
+                self,
+                self.redisKeyLocation,
+                location))
+              .then((loc) => {
+                if (loc) {
+                  self.logger.info(
+                    {id: self.job.data.id,
+                     elapsed: self.logger.elapsed(start),
+                     owner: self.job.data.owner,
+                     repo: self.job.data.repo,
+                     location: location,
+                     access_token: self.job.data.access_token},
+                    'GetMapDataProcessor.getRedisValue');
+                  user.coords = loc;
+                  self.saveResults(user);
+                } else {
+                  self.getLocationFromMapZen(location, user);
+                }
+              })
+              .catch((err) => {
+                self.logger.error({id:self.job.data.id,
+                                   error: err,
+                                   location: location,
+                                   access_token:
+                                   self.job.data.access_token},
+                                  'GetMapDataProcessor.getRedisValue');                   
+                self.saveResults();//keep the count accruate;
+              });
+          } else { //valid
+            self.saveResults();//keep the count accurate
+          }
+        } else {
+          self.saveResults();//keep the count accurate
+        }
+      }//for
+    })
+      .catch(() => {
+        self.saveResults();//keep the count accurate
+      });
+  }//run
+
+  getLocationFromMapZen(location, user) {
+    let self = this;
+    let start = self.logger.now();
+    self.getLocationLimiter.schedule(
+      CreateGetLocationJob.bind(
+        self,
+        self.queue,
+        self.job.data.id,
+        location,
+        user))
+      .then((locCoords) => {
+        let coords = self.getCoordinates(locCoords);
+        user.coords = coords;
+
+        let key =  self.redisKeyLocation + location;
+        try {
+          self.redisClient.setnx(
+            key,
+            JSON.stringify(coords));
+
+          //Expire in 1/2 year
+          self.redisClient.expire(key, 60 * 60 * 24 * 180);
+          
+          self.saveResults(user);
+        } catch(err) {
+          self.logger.error( {id: self.job.data.id,
+                              elapsed: self.logger.elapsed(start),
+                              error: err,
+                              location: location},
+                             'GetMapDataProcessor.getLocationFromMapZen');          
+        }
+        //save reuslts
+      })
+      .catch(() => {
+        self.saveResults();
+      });              
+  }
+}
+
+module.exports = GetMapDataProcessor;;

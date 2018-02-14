@@ -1,0 +1,312 @@
+<?php
+namespace Automate;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+require_once './src/utilities/getBrowsers.php';
+require_once './src/utilities/readTestDirectory.php';
+require_once './src/utilities/processSession.php';
+require_once './src/utilities/screenShots.php';
+require_once './src/utilities/curlSupport.php';
+
+class RunTests {
+    protected $username;
+    protected $authkey;
+    protected $testDir;
+
+    function __construct($username, $authkey) {
+        $this->username = $username;
+        $this->authkey = $authkey;
+        
+        $this->testDir  = __DIR__ . '/../../test';                
+    }
+    function endsWith($haystack, $needle) {
+        $length = strlen($needle);
+        
+        return $length === 0 || 
+                       (substr($haystack, -$length) === $needle);
+    }
+    public function callBrowsers($argv, $argc) {
+
+        $getBrowsers = new \Automate\GetBrowsers($this->username, $this->authkey);
+        $browsers = $getBrowsers->get();
+
+        $dirs = new \Automate\ReadTestDirectory();
+        $projects = $dirs->readDirectory($this->testDir, "/project.json");
+
+        $testSuites = [];
+        //Filter is args are passed
+        if ($argc > 1) {
+            foreach($argv as $value) {
+                foreach ($projects as $project) {
+                    if ($this->endsWith( $project['directory'], $value)) {
+                        array_push($testSuites, $project);
+                    }
+                }
+            }
+        } else {
+            $testSuites = $projects;
+        }
+        
+        //A $testSuite constains the directory names to be processed
+        //in the "tests"
+        foreach ($testSuites as $testSuite) {
+
+            //A $test is the directory name
+            foreach($testSuite['tests'] as $test) {
+
+                $automate = json_decode(file_get_contents($testSuite['directory'] . '/' . $test.  "/automate.json"));
+                
+                $constructors = file_get_contents($testSuite['directory'] . '/' . $test.  "/constructors.php");
+                $requires = file_get_contents($testSuite['directory'] . '/' . $test.  "/requires.php");
+                $functions = file_get_contents($testSuite['directory'] . '/' . $test.  "/functions.php");
+                
+                
+                //Start building the "test.php" script from all the pieces
+                $testPhp = "<?php \n"
+                         . "require_once __DIR__ . '/../../../src/testCase/BaseTestCase.php';\n"
+                         . $requires
+                         . "use Facebook\\WebDriver\\Remote\\RemoteWebDriver;\n"
+                         . "use Facebook\WebDriver\\WebDriverBy;\n"
+                         . "use Facebook\WebDriver\\WebDriverSelect;\n"
+                         . "use Facebook\\WebDriver\\WebDriverExpectedConditions;\n"
+                         . "class Test extends \\Automate\\BaseTestCase { \n"
+                         . "\n"
+                         . $constructors
+                         . "\n"
+                         . $functions
+                         . "\npublic function thisFunction() { \n"
+                         . '$this->constructor($this->driver, $this->isMobile);'
+                         . "\n";
+
+            
+                foreach ($automate->testScripts as $script) {
+                    $contents = file_get_contents($testSuite['directory']
+                                                  . "/"
+                                                  . $test
+                                                  . "/"
+                                                  . $script);
+                    $testPhp = $testPhp . $contents;
+                }
+                $testPhp = $testPhp . "}\n"
+                         . "}\n";
+            
+                $testPhpFilename = $testSuite['directory'] . '/' . $test . '/test.php'; 
+
+                if (file_exists($testPhpFilename)) {
+                    unlink($testPhpFilename);
+                }
+            
+                file_put_contents($testPhpFilename, $testPhp, FILE_APPEND | LOCK_EX);
+
+                
+                date_default_timezone_set('America/Chicago');
+                $BUILD = date('Y-m-d-H-i');
+
+                //Keep all the results under '/output' so that
+                //.gitignore works
+                $this->directory = $testSuite['directory'] . '/' . $test .'/output/' . $BUILD;
+      
+                if (!file_exists($this->directory)) {
+                    mkdir($this->directory, 0777, true);
+                }
+
+                $devices = $getBrowsers->parse($browsers, $automate->testDevices);
+
+
+                //Key the keys from the map
+                $keys = $devices->keys();
+                $MAX_ATTEMPTS = 1; //retry is not working correctly -
+                                   //it looks like we are running more
+                                   //then 1 parrallel test
+                
+                //Each key is a device
+                foreach ($keys as $key) {
+                    $device =  $devices->get($key);
+                    $cmd = '';
+
+                    ob_start();
+
+                    //Clear db and run test case.  If the test fails,
+                    //run it again up until 3 attempts
+                    $attempts = 0;
+                    do {
+                        //Run the MySQL command file if there is one
+                        if (array_key_exists('sqlCommandHttp', $automate)
+                            &&
+                            !is_null($automate->sqlCommandHttp)) {
+                            file_get_contents($automate->sqlCommandHttp);
+                        }
+                
+                        if (array_key_exists('sqlCommand', $automate)
+                            &&
+                            !is_null($automate->sqlCommand)) {
+
+                            $mysql = file_get_contents($testSuite['directory']
+                                                       . '/'
+                                                       . $automate->sqlCommand);
+                            try {
+                                $output = shell_exec($mysql);
+                                echo $output;
+                            } catch (\Exception $e) {
+                                echo "Exception occured\n";
+                                echo $e;
+                            }                    
+                        }//if sqlCommands
+                
+                        if ($device->device === 'desktop') {
+                            $consoleLogFile = $device->platformName
+                                            . '-' . $device->browserName;
+
+                            $cmd = "PLATFORM_NAME='" . $device->platformName
+                                 . "' BROWSER_NAME='" . $device->browserName
+                                 . "' NAME='" . $testSuite['customerName'] . '-' . $automate->testName
+                                 . "' BUILD='" . $BUILD
+                                 . "' DIRECTORY='" . $this->directory
+                                 . "' USER_NAME='" . $this->username
+                                 . "' AUTHKEY='" . $this->authkey                             
+                                 . "' vendor/bin/phpunit " 
+                                 . $testPhpFilename;
+                        } else if ($device->device === 'mobile') {
+                            $consoleLogFile = $device->deviceName
+                                            . '-' . $device->browserName;
+
+                            $cmd = "DEVICE_NAME='" . $device->deviceName
+                                 . "' BROWSER_NAME='" . $device->browserName
+                                 . "' NAME='" . $testSuite['customerName'] . '-' . $automate->testName
+                                 . "' BUILD='" . $BUILD
+                                 . "' DIRECTORY='" . $this->directory
+                                 . "' USER_NAME='" . $this->username
+                                 . "' AUTHKEY='" . $this->authkey
+                                 . "' vendor/bin/phpunit " 
+                                 . $testPhpFilename;
+                        }
+                        echo "\n\n" . $cmd . "\n";
+
+                        try {
+                            sleep(2);
+                            $output = shell_exec($cmd);
+                            echo $output;
+                            //Any errors in script
+                            $hasError = true;
+                            if (strpos($output, 'OK (1 test,') !== false) {
+                                $hasError = false;
+                                $attempts = $MAX_ATTEMPTS;
+                            } else {
+                                $attempts = $attempts + 1;
+                            }
+
+                        } catch(\Exception $e) {
+                            $attempts++;
+                            sleep(60);
+                            echo "\nFailed testcase " . $attempts . "\n";
+                            echo $e;
+                        }//try
+                    } while ($attempts < $MAX_ATTEMPTS);
+
+                    //Give some time for CBT to process
+                    sleep(10);
+
+                    //Go back to CBT and get video url and pictures 
+                    $lines = explode("\n",$output);
+                    $sele = "seleniumTestId=";
+                    $seleniumTestId='';
+                    //Get the LAST id in case there were retrys
+                    foreach($lines as $line) {
+                        $pos = strpos($line, $sele);
+                        if ($pos !== false) {
+                            $seleniumTestId = substr($line, $pos + strlen($sele));
+                        }
+                    }
+
+                    
+                    //Save the video url and all the snapshots
+                    //Note: this will echo the exact browser version used
+                    $processSessions = new \Automate\ProcessSessions($this->username,
+                                                                     $this->authkey,
+                                                                     $this->directory);
+
+                    //Get the automation test info so it can
+                    //be written to the console and included
+                    //in the logs
+                    if (!empty($seleniumTestId)) {
+                        $processSessions->getLogs($seleniumTestId);
+                        $processSessions->printBrowser();
+                    }                    
+                
+                    $resultsString = ob_get_contents();
+                    ob_end_flush();
+
+                    $consoleLogFile = str_replace('-', '_', $consoleLogFile);
+                    $consoleLogFile = str_replace(' ', '_', $consoleLogFile);
+                    $consoleLogFile = str_replace('.', '_', $consoleLogFile);
+
+                    // Write the contents to the specific log file for
+                    // device for determineing if success/failure
+                    file_put_contents($this->directory
+                                      . '/'
+                                      . $consoleLogFile
+                                      . '.log',
+                                      $resultsString . "\n", FILE_APPEND | LOCK_EX);
+
+                    //Write out combined log file for showing in Modal
+                    $startDiv = '<div id="' 
+                              . $consoleLogFile
+                              . '" style="display:none">'
+                              . "<pre>";
+                    $endDiv = "</pre></div>";
+                    $resultsString = $startDiv . $resultsString . $endDiv;
+                    file_put_contents($this->directory . '/includedLogs.html',
+                                      $resultsString,
+                                      FILE_APPEND | LOCK_EX);
+
+
+                    if (!empty($seleniumTestId)) {
+                        $processSessions->printSnapShots($hasError, $consoleLogFile);
+                    }
+                    
+
+                }//foreach $keys as $key
+                //Save project level information
+                $span1 = "<span id='info-customerName'>"
+                       . $testSuite['customerName']
+                       . "</span>";
+                $span2 = "<span id='info-testName'>"
+                       . $automate->testName
+                       . "</span>";
+                $span3 = "<span id='info-build'>"
+                       . $BUILD
+                       . "</span>";
+            
+                file_put_contents($this->directory . '/projectInfo.html',
+                                  $span1 . $span2 . $span3,
+                                  FILE_APPEND | LOCK_EX);
+                
+                //The container html 
+                copy('./src/template/results.html', $this->directory . '/results.html');
+                copy('./src/css/main.css', $this->directory . '/main.css');
+                copy('./src/js/min/site.min.js', $this->directory . '/site.min.js'); 
+
+                
+            }//foreach $testSuite as $test
+
+        }//foreach $tests
+
+        return $this->directory;
+    }//function callBrowsers
+  
+}//RunTests
+
+$username = "bhammond@wisnet.com";
+$authkey = "u0459a8738c4a60d";
+
+//$command = new RunTests($username, $authkey);
+//$directory = $command->callBrowsers($argv, $argc);
+
+//Get the current list of screenshots
+$directory = "/Users/barton/projects/wisnet/automate/test/uwce/adminCreateSessions/output/2017-12-06-13-09";
+
+$screenShots = new ScreenShots($username,
+                               $authkey,
+                               $directory);
+$screenShots->takeAllScreenShots();

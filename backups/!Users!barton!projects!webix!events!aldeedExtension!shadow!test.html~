@@ -1,0 +1,5 @@
+<template name="foo2">
+  <div style="display:none">
+    <input id="email2" type="email">
+  </div>
+</template>

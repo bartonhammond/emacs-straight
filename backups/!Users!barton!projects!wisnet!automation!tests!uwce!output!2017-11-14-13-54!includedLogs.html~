@@ -1,0 +1,11 @@
+<div id='ios_10_0_iPhone_7_Plus'>
+
+CONFIG_FILE=config/fit.conf.json  OS='ios' OS_VERSION='10.0' DEVICE='iPhone 7 Plus' REAL_MOBILE='TRUE' PROJECT='University of Wisconsin' NAME='Continuing Education' BUILD='2017-11-14-13-54' DIRECTORY='./tests/uwce/output/2017-11-14-13-54' vendor/bin/phpunit ./tests/uwce/test.php
+PHPUnit 6.4.4 by Sebastian Bergmann and contributors.
+
+.                                                                   1 / 1 (100%)
+
+Time: 50.46 seconds, Memory: 4.00MB
+
+OK (1 test, 17 assertions)
+</div>

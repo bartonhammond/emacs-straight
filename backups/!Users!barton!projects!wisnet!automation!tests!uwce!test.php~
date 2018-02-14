@@ -1,0 +1,312 @@
+<?php 
+ class Test extends BrowserStackTest { 
+ public function thisFunction() { 
+//Main page
+$home = "https://www.secured-site7.com/uwce-staging/www/";
+    
+$this->driver->get($home);
+        
+//From main, goto FDL
+$this->tryCatchCache(WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::linkText("UW-Fond du Lac (Staging)")));
+$element = $this->driver->findElement(WebDriverBy::linkText("UW-Fond du Lac (Staging)"));
+$this->assertNotNull($element);
+$element->click();
+
+//Goto Login Page
+$this->tryCatchCache(WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::linkText("Login")));
+$element = $this->driver->findElement(WebDriverBy::linkText("Login"));
+$this->assertNotNull($element);
+$element->click();
+
+//Make sure username is available
+$this->tryCatchCache(WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::id("username")));
+
+//On right page?
+$url = $this->driver->getCurrentURL();
+$this->assertContains('login', $url);
+
+//Fill Login form 
+$element = $this->driver->findElement(WebDriverBy::id("username"));
+$this->assertNotNull($element);
+$element->sendKeys("bhammond@wisnet.com");
+
+$element = $this->driver->findElement(WebDriverBy::id("password"));
+$this->assertNotNull($element);            
+$element->sendKeys("12345678a");
+
+$element = $this->driver->findElement(WebDriverBy::cssSelector("section#loginform button[type='submit']"));
+$this->assertNotNull($element);        
+$element->click();
+
+//Check if on Admin page
+$this->tryCatchCache(WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::linkText("Administration")));
+$url = $this->driver->getCurrentURL();
+$this->assertContains('admin', $url);
+
+//Navigate to New Cateory
+$element = $this->driver->findElement(WebDriverBy::linkText("Edit Categories"));
+$this->assertNotNull($element);        
+$element->click();
+
+//On Category new page
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("h1.pagetitle"), 'Campus Categories'));
+$url = $this->driver->getCurrentURL();
+$this->assertContains('category', $url);
+
+
+//Move the button into the view
+$this->moveToElementOnMobile(WebDriverBy::linkText("Add New"));
+
+$element = $this->driver->findElement(WebDriverBy::linkText("Add New"));
+
+$this->assertNotNull($element);        
+$element->click();
+
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("h2.sectionheading"), 'New Category'));        
+$url = $this->driver->getCurrentURL();
+$this->assertContains('category/new', $url);
+
+//Fill in form for new category
+$this->driver->findElement(WebDriverBy::name("category_title"))->sendKeys("BWH Music Category Name");
+$element = $this->driver->findElement(WebDriverBy::xpath("//div[@id='primary']//button[.='Save']"));
+$this->assertNotNull($element);
+$element->click();
+
+//Confirm that message appears 
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::xpath("//div[@id='primary']/div/div[2]"),"Your changes have been saved"));
+
+
+//Start from Admin dashboard
+$element = $this->driver->findElement(WebDriverBy::linkText("Administration"));
+$this->assertNotNull($element);
+$element->click();
+
+//Move the button into the view
+$this->moveToElementOnMobile(WebDriverBy::linkText("+ Add Term"));
+
+$element = $this->driver->findElement(WebDriverBy::linkText("+ Add Term"));
+$this->assertNotNull($element);
+$element->click();
+
+//On the right page?
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("h2.sectionheading"), 'New Term'));        
+$url = $this->driver->getCurrentURL();
+$this->assertContains('term/new', $url);
+
+//Firefox has problem w/ sendKeys to input w/ date format
+$this->driver->findElement(WebDriverBy::id("term_title"))->click();
+$this->driver->findElement(WebDriverBy::id("term_title"))->sendKeys("BWH Term");
+$this->driver->executeScript("document.getElementById('term_startDate').value='11/02/2017'");
+$this->driver->executeScript("document.getElementById('term_endDate').value='11/30/2017'");
+
+/* Fails on Firefox
+
+$this->driver->wait(1);
+$this->driver->findElement(WebDriverBy::id("term_startDate"))->click();
+$this->driver->findElement(WebDriverBy::id("term_startDate"))->sendKeys("11/02/2017");
+$this->driver->wait(1);
+$this->driver->findElement(WebDriverBy::id("term_endDate"))->click();
+$this->driver->findElement(WebDriverBy::id("term_endDate"))->sendKeys("11/30/2017");
+*/
+
+if (!$this->driver->findElement(WebDriverBy::xpath("//select[@id='term_active']//option[1]"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::xpath("//select[@id='term_active']//option[1]"))->click();
+}
+
+$element = $this->driver->findElement(WebDriverBy::cssSelector("div#primary button[type='submit']"));
+$this->assertNotNull($element);
+$element->click();
+
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::xpath("//div[@id='primary']/div/div[2]"),"Your changes have been saved"));
+$url = $this->driver->getCurrentURL();
+$this->assertContains('admin/term', $url);
+
+//Start from Admin dashboard
+$element = $this->driver->findElement(WebDriverBy::linkText("Administration"));
+$this->assertNotNull($element);
+$element->click();
+
+//Move the button into the view
+$this->moveToElementOnMobile(WebDriverBy::linkText("+ Add Course/Program"));
+
+$element = $this->driver->findElement(WebDriverBy::linkText("+ Add Course/Program"));
+$this->assertNotNull($element);
+$element->click();
+
+//On the right page?
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("h2.sectionheading"), 'Edit Course/Program'));        
+$url = $this->driver->getCurrentURL();
+$this->assertContains('admin/course/edit', $url);
+
+$this->driver->findElement(WebDriverBy::id("course_title"))->sendKeys("BWH Music Course");
+$this->driver->findElement(WebDriverBy::id("course_courseNumber"))->sendKeys("12345");
+
+//Description
+$this->driver->executeScript("window.frames[0].document.body.innerText = 'Description for BWH Music Course'");
+
+//Additional Information
+$this->driver->executeScript("window.frames[1].document.body.innerText = 'Additional Information for BWH Music Course'");
+
+//Category
+if (!$this->driver->findElement(WebDriverBy::xpath("//form[@id='editCourseForm']/div[2]/div[2]/div[2]/div/div[4]/div/div/select//option[2]"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::xpath("//form[@id='editCourseForm']/div[2]/div[2]/div[2]/div/div[4]/div/div/select//option[2]"))->click();
+}
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("form#editCourseForm div.alert.alert-success.alert-dismissible"),
+                                                                          'Category Added'));
+//Close info
+$this->driver->findElement(WebDriverBy::cssSelector("button.close"))->click();
+
+//Instructor notes
+$this->driver->findElement(WebDriverBy::name("course_instructorNotes"))->sendKeys("Instructors Notes BWH Music Course");
+
+//Questions
+$this->driver->findElement(WebDriverBy::id("question_question"))->sendKeys("One question");
+
+$this->driver->findElement(WebDriverBy::id("question_options"))->sendKeys("One choice\n");
+$this->driver->findElement(WebDriverBy::id("question_options"))->sendKeys("Two choice\n");
+$this->driver->findElement(WebDriverBy::id("question_options"))->sendKeys("Three choice\n");
+if (!$this->driver->findElement(WebDriverBy::id("question_required"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::id("question_required"))->click();
+}
+
+
+$element = $this->driver->findElement(WebDriverBy::cssSelector("form#editCourseForm div:nth-child(4) > div > input"));
+$element->click();
+
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("form#editCourseForm div.alert.alert-success.alert-dismissible"),
+                                                                          'Question Added'));
+$this->webDriver->findElement(WebDriverBy::cssSelector("button.close"))->click();
+
+
+$this->driver->findElement(WebDriverBy::name("course_ceu"))->sendKeys("5");
+$this->driver->findElement(WebDriverBy::id("course_fee"))->sendKeys("50");
+$this->driver->findElement(WebDriverBy::id("course_earlyRegistrationFee"))->sendKeys("25");
+$this->driver->findElement(WebDriverBy::id("course_lateRegistrationFee"))->sendKeys("75");
+
+//The following breaks business rull - the installments can not be
+//greater then the early regis
+$this->driver->findElement(WebDriverBy::id("course_initialPayment"))->sendKeys("25");
+$this->driver->findElement(WebDriverBy::id("course_secondInstallment"))->sendKeys("25");
+
+if (!$this->driver->findElement(WebDriverBy::xpath("//select[@id='course_criticalAnalysis']//option[3]"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::xpath("//select[@id='course_criticalAnalysis']//option[3]"))->click();
+}
+
+$this->driver->findElement(WebDriverBy::xpath("//form[@id='editCourseForm']//button[.='Save']"))->click();
+
+//Catch the error
+$this->tryCatchCache(WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::cssSelector("div#primary div.alert.alert-danger.alert-dismissible")));
+
+//Send correct ammounts
+$this->driver->findElement(WebDriverBy::id("course_initialPayment"))->click();
+$this->driver->findElement(WebDriverBy::id("course_initialPayment"))->clear();
+$this->driver->findElement(WebDriverBy::id("course_initialPayment"))->sendKeys("10");
+$this->driver->findElement(WebDriverBy::id("course_secondInstallment"))->click();
+$this->driver->findElement(WebDriverBy::id("course_secondInstallment"))->clear();
+$this->driver->findElement(WebDriverBy::id("course_secondInstallment"))->sendKeys("15");
+$this->driver->findElement(WebDriverBy::xpath("//form[@id='editCourseForm']//button[.='Save']"))->click();
+
+
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("div#primary div.alert.alert-success.alert-dismissible"),
+                                                                         'Your changes have been saved.'));
+
+$url = $this->driver->getCurrentURL();
+$this->assertContains('admin/course/', $url);
+
+//Start from Admin dashboard
+$element = $this->driver->findElement(WebDriverBy::linkText("Administration"));
+$this->assertNotNull($element);
+$element->click();
+
+//Make sure the result is the one we want
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(
+    WebDriverBy::cssSelector("header#masthead li:nth-child(5) > a"),
+    'Courses and Programs'));
+
+
+$this->moveToElementOnMobile(WebDriverBy::linkText("Courses and Programs"));
+
+$element = $this->driver->findElement(WebDriverBy::linkText("Courses and Programs"));
+$this->assertNotNull($element);
+$element->click();
+
+//Search for course
+$this->driver->findElement(WebDriverBy::name("courseSearch_keyword"))->sendKeys("BWH Music Course");
+$this->driver->findElement(WebDriverBy::xpath("//span[@class='input-group-btn']/button"))->click();
+
+//Make sure the result is the one we want
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(
+    WebDriverBy::cssSelector("div#primary td.category > a"),
+    'BWH Music Course'));
+
+//Click it to edit
+$element = $this->driver->findElement(WebDriverBy::cssSelector("div#primary td.category > a"));
+$this->assertNotNull($element);
+$element->click();
+
+$url = $this->driver->getCurrentURL();
+$this->assertContains('admin/course/', $url);
+
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(
+    WebDriverBy::cssSelector("div#primary a.btn.btn-primary.ajax-action"),
+    'Add New'));
+
+
+$this->moveToElementOnMobile(WebDriverBy::linkText("Add New"));
+$this->driver->findElement(WebDriverBy::linkText("Add New"))->click();
+
+
+//Make sure  Add New button is available
+$this->tryCatchCache(WebDriverExpectedCondition::elementToBeClickable(WebDriverBy::id("session_label")));
+
+$this->driver->findElement(WebDriverBy::id("session_label"))->sendKeys("BWH Session Title");
+
+//Term
+if (!$this->driver->findElement(WebDriverBy::xpath("//div[@id='primary']/div/section[2]/div/section/div/div[3]/div/div/div/div[2]/select//option[2]"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::xpath("//div[@id='primary']/div/section[2]/div/section/div/div[3]/div/div/div/div[2]/select//option[2]"))->click();
+}
+$this->driver->findElement(WebDriverBy::id("session_startDate"))->sendKeys("11/03/2017");
+$this->driver->findElement(WebDriverBy::id("session_endDate"))->sendKeys("11/15/2017");
+$this->driver->findElement(WebDriverBy::id("session_startTime"))->sendKeys("06:00 AM");
+
+if (!$this->driver->findElement(WebDriverBy::name("session_monday"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::name("session_monday"))->click();
+}
+if (!$this->driver->findElement(WebDriverBy::name("session_tuesday"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::name("session_tuesday"))->click();
+}
+if (!$this->driver->findElement(WebDriverBy::name("session_wednesday"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::name("session_wednesday"))->click();
+}
+if (!$this->driver->findElement(WebDriverBy::name("session_thursday"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::name("session_thursday"))->click();
+}
+if (!$this->driver->findElement(WebDriverBy::name("session_friday"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::name("session_friday"))->click();
+}
+
+$this->driver->findElement(WebDriverBy::linkText("Registration & Payments"))->click();
+$this->driver->findElement(WebDriverBy::id("session_registrationStartDate"))->sendKeys("10/15/2017");
+$this->driver->findElement(WebDriverBy::id("session_registrationEndDate"))->sendKeys("11/01/2017");
+$this->driver->findElement(WebDriverBy::id("session_earlyRegistrationDate"))->sendKeys("10/20/2017");
+$this->driver->findElement(WebDriverBy::id("session_lateRegistrationDate"))->sendKeys("11/15/2017");
+$this->driver->findElement(WebDriverBy::id("session_minStudents"))->sendKeys("1");
+$this->driver->findElement(WebDriverBy::id("session_maxStudents"))->sendKeys("3");
+$this->driver->findElement(WebDriverBy::id("session_attendees"))->sendKeys("1");
+
+$this->driver->findElement(WebDriverBy::linkText("Instructors"))->click();
+if (!$this->driver->findElement(WebDriverBy::xpath("//div[@id='instructors']/div/div[2]/div/div[1]/div/select//option[2]"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::xpath("//div[@id='instructors']/div/div[2]/div/div[1]/div/select//option[2]"))->click();
+}
+$this->driver->findElement(WebDriverBy::xpath("//div[@id='instructors']/div/div[2]/div/div[2]"))->click();
+$this->driver->findElement(WebDriverBy::id("instructor_pay"))->sendKeys("25");
+
+$this->driver->findElement(WebDriverBy::linkText("Additional Info"))->click();
+$this->driver->findElement(WebDriverBy::linkText("Save"))->click();
+
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("div#primary section.sessions.list > div > div"),
+                                                                          'Your changes have been saved.'));
+
+$url = $this->driver->getCurrentURL();
+$this->assertContains('admin/course/edit/', $url);}
+}

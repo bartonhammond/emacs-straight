@@ -1,0 +1,5 @@
+##notes
+
+copy _automate.example.json to automate.json
+provide the "testName"
+provide which browser list on CBT to use for screenshots

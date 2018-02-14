@@ -1,0 +1,43 @@
+'use strict';
+let logger = require('../../Bunyan').logger();
+
+import BatchGetUser from './BatchGetUser';
+
+let CreateBatchGetUserJob = function(queue, id, access_token, login)
+{
+
+  new BatchGetUser(queue).init(access_token);
+  
+  logger.info(
+    {id: id,
+     login:login,
+     access_token: access_token},
+    'CreateBatchGetUserJob');                
+  
+  return new Promise((resolve, reject) => {
+    
+    queue.create('batchGetUser'
+                 + '_'
+                 + access_token, {
+                   title: 'batchGetUser: ' + login,
+                   id: id,
+                   access_token: access_token,
+                   login: login
+                 }).save((err) => {
+                   if (err) {
+                     logger.error(
+                       {id: id,
+                        error: err,
+                        login:login,
+                        access_token: access_token},
+                       'CreateBatchGetUserJob');                
+                     
+                     return reject(err);
+                   }
+                   return resolve();
+                 });
+
+  });
+};//createJob
+
+module.exports = CreateBatchGetUserJob;

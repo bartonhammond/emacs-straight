@@ -1,0 +1,20 @@
+var WebixNavButton = BlazeComponent.extendComponent({
+  template: function () {
+    return 'atNavButton';
+  },
+  
+  text: function() {
+    debugger;
+  },
+  
+  events: function () {
+    return [{
+      'click *': this.onClick
+    }];
+  },
+
+  
+  onClick: function (event) {
+    console.log('WebixNavButton.onclick');
+  }
+}).register('WebixNavbutton');

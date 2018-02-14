@@ -1,0 +1,1122 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+use Facebook\WebDriver\WebDriverSelect;
+use Facebook\WebDriver\WebDriverBy;
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickAbout1Link",
+        "attributeType": "link",
+       "attributeName": "about1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-22 a"
+     },
+
+    {     
+        "operationName": "clickAbout2Link",
+        "attributeType": "link",
+       "attributeName": "about2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(10) a"
+     },
+
+    {     
+        "operationName": "clickAshleyPuetzDesignerLink",
+        "attributeType": "link",
+       "attributeName": "ashleyPuetzDesigner",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/ashley/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickBartonHammondQualityAssuranceLink",
+        "attributeType": "link",
+       "attributeName": "bartonHammondQualityAssurance",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/barton-hammond/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickBlog1Link",
+        "attributeType": "link",
+       "attributeName": "blog1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-7858 a"
+     },
+
+    {     
+        "operationName": "clickBlog2Link",
+        "attributeType": "link",
+       "attributeName": "blog2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(8) a"
+     },
+
+    {     
+        "operationName": "clickBlog3Link",
+        "attributeType": "link",
+       "attributeName": "blog3",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/blog/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickBrianKolstadSeniorApplicationProgrammerLink",
+        "attributeType": "link",
+       "attributeName": "brianKolstadSeniorApplicationProgrammer",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/brian/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickCareersLink",
+        "attributeType": "link",
+       "attributeName": "careers",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/careers/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickClientLogins1Link",
+        "attributeType": "link",
+       "attributeName": "clientLogins1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-35 a"
+     },
+
+    {     
+        "operationName": "clickClientLogins2Link",
+        "attributeType": "link",
+       "attributeName": "clientLogins2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(14) a"
+     },
+
+    {     
+        "operationName": "clickContact1Link",
+        "attributeType": "link",
+       "attributeName": "contact1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-24 a"
+     },
+
+    {     
+        "operationName": "clickContact2Link",
+        "attributeType": "link",
+       "attributeName": "contact2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(12) a"
+     },
+
+    {     
+        "operationName": "clickContactUsLink",
+        "attributeType": "link",
+       "attributeName": "contactUs",
+        "attributeStrategy": "css",
+        "attributeValue": "a.btns"
+     },
+
+    {     
+        "operationName": "clickCorvQualmannProgrammerLink",
+        "attributeType": "link",
+       "attributeName": "corvQualmannProgrammer",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/corv/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickDaveKolstadAccountsReceivableLink",
+        "attributeType": "link",
+       "attributeName": "daveKolstadAccountsReceivable",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/dave/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickJennyKnuthArtDirectorLink",
+        "attributeType": "link",
+       "attributeName": "jennyKnuthArtDirector",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/jenny/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickJoeTruesdaleMarketingAccountManagerLink",
+        "attributeType": "link",
+       "attributeName": "joeTruesdaleMarketingAccountManager",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/joe-truesdale/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickJulieWildSeniorDesignerLink",
+        "attributeType": "link",
+       "attributeName": "julieWildSeniorDesigner",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/julie/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickLabs1Link",
+        "attributeType": "link",
+       "attributeName": "labs1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-7359 a"
+     },
+
+    {     
+        "operationName": "clickLabs2Link",
+        "attributeType": "link",
+       "attributeName": "labs2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(6) a"
+     },
+
+    {     
+        "operationName": "clickLogoLink",
+        "attributeType": "link",
+       "attributeName": "logo",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com&#x27;]"
+     },
+
+    {     
+        "operationName": "clickMarkMeierSeniorApplicationProgrammerLink",
+        "attributeType": "link",
+       "attributeName": "markMeierSeniorApplicationProgrammer",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/mark-2/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickMarkeyDs1Link",
+        "attributeType": "link",
+       "attributeName": "markeyDs1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-7283 a"
+     },
+
+    {     
+        "operationName": "clickMarkeyDs2Link",
+        "attributeType": "link",
+       "attributeName": "markeyDs2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(14) ul.sub-menu.dropdown.right-neg li:nth-of-type(3) a"
+     },
+
+    {     
+        "operationName": "clickMichaelDahlkeDeveloperLink",
+        "attributeType": "link",
+       "attributeName": "michaelDahlkeDeveloper",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/michael-dahlke/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickNickBerensFrontendDeveloperLink",
+        "attributeType": "link",
+       "attributeName": "nickBerensFrontendDeveloper",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/nick/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickOurWork1Link",
+        "attributeType": "link",
+       "attributeName": "ourWork1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-26 a"
+     },
+
+    {     
+        "operationName": "clickOurWork2Link",
+        "attributeType": "link",
+       "attributeName": "ourWork2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(2) a"
+     },
+
+    {     
+        "operationName": "clickPhone9203229522Link",
+        "attributeType": "link",
+       "attributeName": "phone9203229522",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;tel:1-920-322-9522&#x27;]"
+     },
+
+    {     
+        "operationName": "clickPrivacyPolicyLink",
+        "attributeType": "link",
+       "attributeName": "privacyPolicy",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/privacy-policy/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickResellerLink",
+        "attributeType": "link",
+       "attributeName": "reseller",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/reseller/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickRickKolstadOwnerLink",
+        "attributeType": "link",
+       "attributeName": "rickKolstadOwner",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/rick/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickScottKirkpatrickCreativeDirectorLink",
+        "attributeType": "link",
+       "attributeName": "scottKirkpatrickCreativeDirector",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/scott-k/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickServices1Link",
+        "attributeType": "link",
+       "attributeName": "services1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-34 a"
+     },
+
+    {     
+        "operationName": "clickServices2Link",
+        "attributeType": "link",
+       "attributeName": "services2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(4) a"
+     },
+
+    {     
+        "operationName": "clickSteveMaassSeniorApplicationProgrammerLink",
+        "attributeType": "link",
+       "attributeName": "steveMaassSeniorApplicationProgrammer",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/steve/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickSubmitButton",
+        "attributeType": "button",
+       "attributeName": "submit",
+        "attributeStrategy": "css",
+        "attributeValue": "input.button.prefix"
+     },
+
+    {     
+        "operationName": "clickSupportLink",
+        "attributeType": "link",
+       "attributeName": "support",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/support/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickTracyFreundAccountManagerLink",
+        "attributeType": "link",
+       "attributeName": "tracyFreundAccountManager",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;https://www.wisnet.com/staff/tracy/&#x27;]"
+     },
+
+    {     
+        "operationName": "clickWebmailLogin1Link",
+        "attributeType": "link",
+       "attributeName": "webmailLogin1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-1207 a"
+     },
+
+    {     
+        "operationName": "clickWebmailLogin2Link",
+        "attributeType": "link",
+       "attributeName": "webmailLogin2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(14) ul.sub-menu.dropdown.right-neg li:nth-of-type(1) a"
+     },
+
+    {     
+        "operationName": "clickWisnetoneClientLogin1Link",
+        "attributeType": "link",
+       "attributeName": "wisnetoneClientLogin1",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-item-1208 a"
+     },
+
+    {     
+        "operationName": "clickWisnetoneClientLogin2Link",
+        "attributeType": "link",
+       "attributeName": "wisnetoneClientLogin2",
+        "attributeStrategy": "css",
+        "attributeValue": "#menu-primary-1 li:nth-of-type(14) ul.sub-menu.dropdown.right-neg li:nth-of-type(2) a"
+     },
+
+
+
+    {     
+        "operationName": "setNoMatterHowBigWeGet1TextField",
+        "operationArgument" : "noMatterHowBigWeGet1Value",
+        "attributeType": "text",
+       "attributeName": "noMatterHowBigWeGet1",
+        "attributeStrategy": "name",
+        "attributeValue": "EMAIL"
+     },
+
+    {     
+        "operationName": "setNoMatterHowBigWeGet2TextField",
+        "operationArgument" : "noMatterHowBigWeGet2Value",
+        "attributeType": "text",
+       "attributeName": "noMatterHowBigWeGet2",
+        "attributeStrategy": "name",
+        "attributeValue": "_mc4wp_honeypot"
+     },
+
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class About extends \Automate\Page {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     protected $pageLoadedText = "We’re small enough to give you personalized attention, yet large enough to bring you the most talented people in the business";
+
+     protected $pageUrl = "/about/";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   protected static $_selectors = [
+    "about1" =>
+    [
+       "css" => "#menu-item-22 a"
+    ],
+
+    "about2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(10) a"
+    ],
+
+    "ashleyPuetzDesigner" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/ashley/']"
+    ],
+
+    "bartonHammondQualityAssurance" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/barton-hammond/']"
+    ],
+
+    "blog1" =>
+    [
+       "css" => "#menu-item-7858 a"
+    ],
+
+    "blog2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(8) a"
+    ],
+
+    "blog3" =>
+    [
+       "css" => "a[href='/blog/']"
+    ],
+
+    "brianKolstadSeniorApplicationProgrammer" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/brian/']"
+    ],
+
+    "careers" =>
+    [
+       "css" => "a[href='/careers/']"
+    ],
+
+    "clientLogins1" =>
+    [
+       "css" => "#menu-item-35 a"
+    ],
+
+    "clientLogins2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(14) a"
+    ],
+
+    "contact1" =>
+    [
+       "css" => "#menu-item-24 a"
+    ],
+
+    "contact2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(12) a"
+    ],
+
+    "contactUs" =>
+    [
+       "css" => "a.btns"
+    ],
+
+    "corvQualmannProgrammer" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/corv/']"
+    ],
+
+    "daveKolstadAccountsReceivable" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/dave/']"
+    ],
+
+    "jennyKnuthArtDirector" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/jenny/']"
+    ],
+
+    "joeTruesdaleMarketingAccountManager" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/joe-truesdale/']"
+    ],
+
+    "julieWildSeniorDesigner" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/julie/']"
+    ],
+
+    "labs1" =>
+    [
+       "css" => "#menu-item-7359 a"
+    ],
+
+    "labs2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(6) a"
+    ],
+
+    "logo" =>
+    [
+       "css" => "a[href='https://www.wisnet.com']"
+    ],
+
+    "markMeierSeniorApplicationProgrammer" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/mark-2/']"
+    ],
+
+    "markeyDs1" =>
+    [
+       "css" => "#menu-item-7283 a"
+    ],
+
+    "markeyDs2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(14) ul.sub-menu.dropdown.right-neg li:nth-of-type(3) a"
+    ],
+
+    "michaelDahlkeDeveloper" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/michael-dahlke/']"
+    ],
+
+    "nickBerensFrontendDeveloper" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/nick/']"
+    ],
+
+    "noMatterHowBigWeGet1" =>
+    [
+       "name" => "EMAIL"
+    ],
+
+    "noMatterHowBigWeGet2" =>
+    [
+       "name" => "_mc4wp_honeypot"
+    ],
+
+    "ourWork1" =>
+    [
+       "css" => "#menu-item-26 a"
+    ],
+
+    "ourWork2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(2) a"
+    ],
+
+
+
+    "phone9203229522" =>
+    [
+       "css" => "a[href='tel:1-920-322-9522']"
+    ],
+
+    "privacyPolicy" =>
+    [
+       "css" => "a[href='/privacy-policy/']"
+    ],
+
+    "reseller" =>
+    [
+       "css" => "a[href='/reseller/']"
+    ],
+
+    "rickKolstadOwner" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/rick/']"
+    ],
+
+    "scottKirkpatrickCreativeDirector" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/scott-k/']"
+    ],
+
+    "services1" =>
+    [
+       "css" => "#menu-item-34 a"
+    ],
+
+    "services2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(4) a"
+    ],
+
+    "steveMaassSeniorApplicationProgrammer" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/steve/']"
+    ],
+
+    "submit" =>
+    [
+       "css" => "input.button.prefix"
+    ],
+
+    "support" =>
+    [
+       "css" => "a[href='/support/']"
+    ],
+
+    "tracyFreundAccountManager" =>
+    [
+       "css" => "a[href='https://www.wisnet.com/staff/tracy/']"
+    ],
+
+    "webmailLogin1" =>
+    [
+       "css" => "#menu-item-1207 a"
+    ],
+
+    "webmailLogin2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(14) ul.sub-menu.dropdown.right-neg li:nth-of-type(1) a"
+    ],
+
+    "wisnetoneClientLogin1" =>
+    [
+       "css" => "#menu-item-1208 a"
+    ],
+
+    "wisnetoneClientLogin2" =>
+    [
+       "css" => "#menu-primary-1 li:nth-of-type(14) ul.sub-menu.dropdown.right-neg li:nth-of-type(2) a"
+    ],
+    ];
+    /**
+     * Click on About Link.
+     *
+     */
+    function clickAbout1Link() {
+        //link
+        $this->click(self::$_selectors['about1']);
+    }
+
+    /**
+     * Click on About Link.
+     *
+     */
+    function clickAbout2Link() {
+        //link
+        $this->click(self::$_selectors['about2']);
+    }
+
+    /**
+     * Click on Ashley Puetz Designer Link.
+     *
+     */
+    function clickAshleyPuetzDesignerLink() {
+        //link
+        $this->click(self::$_selectors['ashleyPuetzDesigner']);
+    }
+
+    /**
+     * Click on Barton Hammond Quality Assurance Developer Link.
+     *
+     */
+    function clickBartonHammondQualityAssuranceLink() {
+        //link
+        $this->click(self::$_selectors['bartonHammondQualityAssurance']);
+    }
+
+    /**
+     * Click on Blog Link.
+     *
+     */
+    function clickBlog1Link() {
+        //link
+        $this->click(self::$_selectors['blog1']);
+    }
+
+    /**
+     * Click on Blog Link.
+     *
+     */
+    function clickBlog2Link() {
+        //link
+        $this->click(self::$_selectors['blog2']);
+    }
+
+    /**
+     * Click on Blog Link.
+     *
+     */
+    function clickBlog3Link() {
+        //link
+        $this->click(self::$_selectors['blog3']);
+    }
+
+    /**
+     * Click on Brian Kolstad Senior Application Programmer Link.
+     *
+     */
+    function clickBrianKolstadSeniorApplicationProgrammerLink() {
+        //link
+        $this->click(self::$_selectors['brianKolstadSeniorApplicationProgrammer']);
+    }
+
+    /**
+     * Click on Careers Link.
+     *
+     */
+    function clickCareersLink() {
+        //link
+        $this->click(self::$_selectors['careers']);
+    }
+
+    /**
+     * Click on Client Logins Link.
+     *
+     */
+    function clickClientLogins1Link() {
+        //link
+        $this->click(self::$_selectors['clientLogins1']);
+    }
+
+    /**
+     * Click on Client Logins Link.
+     *
+     */
+    function clickClientLogins2Link() {
+        //link
+        $this->click(self::$_selectors['clientLogins2']);
+    }
+
+    /**
+     * Click on Contact Link.
+     *
+     */
+    function clickContact1Link() {
+        //link
+        $this->click(self::$_selectors['contact1']);
+    }
+
+    /**
+     * Click on Contact Link.
+     *
+     */
+    function clickContact2Link() {
+        //link
+        $this->click(self::$_selectors['contact2']);
+    }
+
+    /**
+     * Click on Contact Us Link.
+     *
+     */
+    function clickContactUsLink() {
+        //link
+        $this->click(self::$_selectors['contactUs']);
+    }
+
+    /**
+     * Click on Corv Qualmann Programmer Link.
+     *
+     */
+    function clickCorvQualmannProgrammerLink() {
+        //link
+        $this->click(self::$_selectors['corvQualmannProgrammer']);
+    }
+
+    /**
+     * Click on Dave Kolstad Accounts Receivable Link.
+     *
+     */
+    function clickDaveKolstadAccountsReceivableLink() {
+        //link
+        $this->click(self::$_selectors['daveKolstadAccountsReceivable']);
+    }
+
+    /**
+     * Click on Jenny Knuth Art Director Link.
+     *
+     */
+    function clickJennyKnuthArtDirectorLink() {
+        //link
+        $this->click(self::$_selectors['jennyKnuthArtDirector']);
+    }
+
+    /**
+     * Click on Joe Truesdale Marketing Account Manager Link.
+     *
+     */
+    function clickJoeTruesdaleMarketingAccountManagerLink() {
+        //link
+        $this->click(self::$_selectors['joeTruesdaleMarketingAccountManager']);
+    }
+
+    /**
+     * Click on Julie Wild Senior Designer Link.
+     *
+     */
+    function clickJulieWildSeniorDesignerLink() {
+        //link
+        $this->click(self::$_selectors['julieWildSeniorDesigner']);
+    }
+
+    /**
+     * Click on Labs Link.
+     *
+     */
+    function clickLabs1Link() {
+        //link
+        $this->click(self::$_selectors['labs1']);
+    }
+
+    /**
+     * Click on Labs Link.
+     *
+     */
+    function clickLabs2Link() {
+        //link
+        $this->click(self::$_selectors['labs2']);
+    }
+
+    /**
+     * Click on Logo Link.
+     *
+     */
+    function clickLogoLink() {
+        //link
+        $this->click(self::$_selectors['logo']);
+    }
+
+    /**
+     * Click on Mark Meier Senior Application Programmer Link.
+     *
+     */
+    function clickMarkMeierSeniorApplicationProgrammerLink() {
+        //link
+        $this->click(self::$_selectors['markMeierSeniorApplicationProgrammer']);
+    }
+
+    /**
+     * Click on Markey Ds Link.
+     *
+     */
+    function clickMarkeyDs1Link() {
+        //link
+        $this->click(self::$_selectors['markeyDs1']);
+    }
+
+    /**
+     * Click on Markey Ds Link.
+     *
+     */
+    function clickMarkeyDs2Link() {
+        //link
+        $this->click(self::$_selectors['markeyDs2']);
+    }
+
+    /**
+     * Click on Michael Dahlke Developer Link.
+     *
+     */
+    function clickMichaelDahlkeDeveloperLink() {
+        //link
+        $this->click(self::$_selectors['michaelDahlkeDeveloper']);
+    }
+
+    /**
+     * Click on Nick Berens Frontend Developer Link.
+     *
+     */
+    function clickNickBerensFrontendDeveloperLink() {
+        //link
+        $this->click(self::$_selectors['nickBerensFrontendDeveloper']);
+    }
+
+    /**
+     * Click on Our Work Link.
+     *
+     */
+    function clickOurWork1Link() {
+        //link
+        $this->click(self::$_selectors['ourWork1']);
+    }
+
+    /**
+     * Click on Our Work Link.
+     *
+     */
+    function clickOurWork2Link() {
+        //link
+        $this->click(self::$_selectors['ourWork2']);
+    }
+
+    /**
+     * Click on Phone 920 3229522 Link.
+     *
+     */
+    function clickPhone9203229522Link() {
+        //link
+        $this->click(self::$_selectors['phone9203229522']);
+    }
+
+    /**
+     * Click on Privacy Policy Link.
+     *
+     */
+    function clickPrivacyPolicyLink() {
+        //link
+        $this->click(self::$_selectors['privacyPolicy']);
+    }
+
+    /**
+     * Click on Reseller Link.
+     *
+     */
+    function clickResellerLink() {
+        //link
+        $this->click(self::$_selectors['reseller']);
+    }
+
+    /**
+     * Click on Rick Kolstad Owner Link.
+     *
+     */
+    function clickRickKolstadOwnerLink() {
+        //link
+        $this->click(self::$_selectors['rickKolstadOwner']);
+    }
+
+    /**
+     * Click on Scott Kirkpatrick Creative Director Link.
+     *
+     */
+    function clickScottKirkpatrickCreativeDirectorLink() {
+        //link
+        $this->click(self::$_selectors['scottKirkpatrickCreativeDirector']);
+    }
+
+    /**
+     * Click on Services Link.
+     *
+     */
+    function clickServices1Link() {
+        //link
+        $this->click(self::$_selectors['services1']);
+    }
+
+    /**
+     * Click on Services Link.
+     *
+     */
+    function clickServices2Link() {
+        //link
+        $this->click(self::$_selectors['services2']);
+    }
+
+    /**
+     * Click on Steve Maass Senior Application Programmer Link.
+     *
+     */
+    function clickSteveMaassSeniorApplicationProgrammerLink() {
+        //link
+        $this->click(self::$_selectors['steveMaassSeniorApplicationProgrammer']);
+    }
+
+    /**
+     * Click on Submit Button.
+     *
+     */
+    function clickSubmitButton() {
+        //button
+        $this->click(self::$_selectors['submit']);
+    }
+
+    /**
+     * Click on Support Link.
+     *
+     */
+    function clickSupportLink() {
+        //link
+        $this->click(self::$_selectors['support']);
+    }
+
+    /**
+     * Click on Tracy Freund Account Manager Link.
+     *
+     */
+    function clickTracyFreundAccountManagerLink() {
+        //link
+        $this->click(self::$_selectors['tracyFreundAccountManager']);
+    }
+
+    /**
+     * Click on Webmail Login Link.
+     *
+     */
+    function clickWebmailLogin1Link() {
+        //link
+        $this->click(self::$_selectors['webmailLogin1']);
+    }
+
+    /**
+     * Click on Webmail Login Link.
+     *
+     */
+    function clickWebmailLogin2Link() {
+        //link
+        $this->click(self::$_selectors['webmailLogin2']);
+    }
+
+    /**
+     * Click on Wisnetone Client Login Link.
+     *
+     */
+    function clickWisnetoneClientLogin1Link() {
+        //link
+        $this->click(self::$_selectors['wisnetoneClientLogin1']);
+    }
+
+    /**
+     * Click on Wisnetone Client Login Link.
+     *
+     */
+    function clickWisnetoneClientLogin2Link() {
+        //link
+        $this->click(self::$_selectors['wisnetoneClientLogin2']);
+    }
+
+
+
+    /**
+     * Set default value to No Matter How Big We Get Well Always Be Small Text field.
+     *
+     */
+    function setNoMatterHowBigWeGet1TextField($noMatterHowBigWeGet1Value) {
+         //text
+        $this->type(self::$_selectors['noMatterHowBigWeGet1'],$noMatterHowBigWeGet1Value);
+    }
+
+    /**
+     * Set default value to No Matter How Big We Get Well Always Be Small Text field.
+     *
+     */
+    function setNoMatterHowBigWeGet2TextField($noMatterHowBigWeGet2Value) {
+         //text
+        $this->type(self::$_selectors['noMatterHowBigWeGet2'],$noMatterHowBigWeGet2Value);
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickSubmitButton();
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+         $text = $this->pageLoadedText;
+        $driver = $this->driver;
+        return $driver->wait(self::WAIT_TIME, self::ITERATE_TIME)->until(
+            function () use ($driver, $text)  {
+                try {
+                    $source = $driver->getPageSource();
+                    if (strpos($source,$text) !== false) {
+                        return true;
+                    }
+                    return false;
+                } catch (\Exception $e) {
+                    return false;
+                }
+        });
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return $this->verifyPageUrlToLastSlash($this->driver->getCurrentURL(),
+                                               $this->pageUrl);                     
+    }
+}

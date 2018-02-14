@@ -1,0 +1,3 @@
+//add all the requires here
+require_once __DIR__ . '/../pageObjects/MainPage.class.php';
+

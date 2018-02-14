@@ -1,0 +1,18 @@
+* Queue.js
+  * buildCache.processRepositoriesJob
+    * buildCache.searchGitHubRepositories
+      * github.searchRepositories
+        * gitHub.getAllStarGazers(repo.owner.login,repo.name)
+            * gitHub._getAllStarGazers(owner, repo);
+              * github.getRepository(owner, repo);
+              * gitHubLimiter.schedule(this.getStargazersByPage)
+                * github.getStargazers(owner, repo, page)
+              * return Promise.all
+        * return stargazers
+
+
+
+
+
+
+

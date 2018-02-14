@@ -1,0 +1,19 @@
+<template name="signin">
+  <div data-id="{{webixId}}"
+       data-view="layout"
+       data-type="clean"
+       data-stack="cols">
+    <div  data-type="clean"
+         data-width=100
+         data-minWidth=25>
+    </div>
+    <div data-view="layout"
+         data-type="clean"
+         data-position="flex">{{>form}}
+    </div>
+    <div data-type="clean"
+         data-width=100
+         data-minWidth=25>
+    </div> 
+  </div>
+</template>

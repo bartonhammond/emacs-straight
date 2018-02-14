@@ -1,0 +1,14 @@
+'use strict';
+
+Template.signinLink.helpers({
+  
+  linkText: function() {
+    return T9n.get(WebixDefaults.getLink_link());
+  },
+  preText: function() {
+    return T9n.get(WebixDefaults.getLink_pre());
+  },
+  hrefLink: function() {
+    return WebixDefaults.getHrefLink();
+  }
+});

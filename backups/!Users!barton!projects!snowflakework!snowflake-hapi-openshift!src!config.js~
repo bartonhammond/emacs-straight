@@ -1,0 +1,34 @@
+module.exports = {
+  mongodb: {
+    ip: '127.0.0.1',
+    port: '27017',
+    app: 'nodejs'
+  },
+  redis: {
+    host: '127.0.0.1',
+    port: 6379
+  },
+  crypto: {
+    privateKey: '37LvDSm4XvjYOh9Yaa.p3id#IEYDNeaken',
+    tokenExpires: 1 * 15 * 1000 * 60 //15 minutes
+  },
+  email: {
+    test: false,
+    username: "snowflake.acclivyx.com@gmail.com",
+    password: "WoK03$OlRR",
+    accountName: "Admin Snowflake"
+  },
+  validation: {
+    username: /^[a-zA-Z0-9]{6,12}$/,
+    password: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,12}$/
+  },
+  github: {
+    user_agent: 'snowflake application',
+    client_id: '06bb3ce00732d2c19dc0',
+    client_secret: '13319c1a86fefe2b875a88eac88d13dc2d81cfd5'
+  },
+  hapi: {
+    port: 5000,
+    ip: '192.168.0.13'
+  }
+};

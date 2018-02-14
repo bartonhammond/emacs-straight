@@ -1,0 +1,29 @@
+module.exports = {
+  gitHub: {
+    token: '7301b72298a663b2275610a3e2ae271e8d85f823'
+  },
+  arcGisConfig: {
+    clientId: 'WrVfIOmdQrJDAf5U',
+    secret: '280bbe1906684808a5210048bffd5e4e'
+  },
+  mapbox: {
+    accessToken:
+    'pk.eyJ1IjoiYmFydG9uaGFtbW9uZCIsImEiOiJjaWk4MnVnMXIwMDYzdGdtM2xhMTY3dWI5In0.fvxWjEFU1gx_tKGxlOMzEQ'
+  },
+  markers: {
+    darkest:
+    "https://cloud.githubusercontent.com/assets/1282364/11913496/1ab2bf92-a62b-11e5-956d-484a8c4b595c.png",
+    dark:
+    'https://cloud.githubusercontent.com/assets/1282364/11913497/1c20aee8-a62b-11e5-91cf-1d0ab430fd32.png',
+    light:
+    'https://cloud.githubusercontent.com/assets/1282364/11913498/1dcdd3e2-a62b-11e5-9b91-e674046dda30.png',
+    lightest:
+    'https://cloud.githubusercontent.com/assets/1282364/11913499/1f99cca8-a62b-11e5-9755-c205a86c487a.png'
+    
+  },
+  gears: {
+    single: 'https://cloud.githubusercontent.com/assets/1282364/11914196/d93ea36e-a63e-11e5-967f-5be3a4bd9c66.png',
+    multiple: 'https://cloud.githubusercontent.com/assets/1282364/11914197/d9570224-a63e-11e5-87f0-f8e42687aff7.png'
+  }
+}
+

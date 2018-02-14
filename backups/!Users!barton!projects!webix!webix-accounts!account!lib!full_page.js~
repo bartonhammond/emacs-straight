@@ -1,0 +1,36 @@
+'use strict';
+Template.input.helpers({
+   templateName: function() {
+        if (this.template)
+            return this.template;
+        if (this.type === "checkbox")
+            return "checkboxInput";
+        if (this.type === "select")
+            return "selectInput";
+        if (this.type === "radio")
+            return "radioInput";
+        if (this.type === "hidden")
+            return "hiddenInput";
+        return "textInput";
+   }
+});
+
+Template.textInput.helpers({
+  placeholder: function() {
+    return T9n.get(this.placeholder['default']);
+  },
+  displayName: function() {
+    return T9n.get(this.displayName['default']);
+  },
+  
+});
+
+Template.checkboxInput.helpers({
+  placeholder: function() {
+    return T9n.get(this.placeholder['default']);
+  },
+  displayName: function() {
+    return T9n.get(this.displayName['default']);
+  },
+  
+});

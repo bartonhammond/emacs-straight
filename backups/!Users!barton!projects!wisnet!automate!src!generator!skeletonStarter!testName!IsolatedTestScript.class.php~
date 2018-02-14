@@ -1,0 +1,302 @@
+<?php 
+require_once __DIR__ . '/../pageObjects/Account.class.php';
+require_once __DIR__ . '/../pageObjects/AccountExtend.class.php';
+require_once __DIR__ . '/../pageObjects/Billing.class.php';
+require_once __DIR__ . '/../pageObjects/BillingExtend.class.php';
+require_once __DIR__ . '/../pageObjects/CardInfo.class.php';
+require_once __DIR__ . '/../pageObjects/CardInfoExtend.class.php';
+require_once __DIR__ . '/../pageObjects/Catalog.class.php';
+require_once __DIR__ . '/../pageObjects/CatalogCourse.class.php';
+require_once __DIR__ . '/../pageObjects/CatalogCourseExtend.class.php';
+require_once __DIR__ . '/../pageObjects/CatalogSearch.class.php';
+require_once __DIR__ . '/../pageObjects/CatalogSearchExtend.class.php';
+require_once __DIR__ . '/../pageObjects/CreateAccount.class.php';
+require_once __DIR__ . '/../pageObjects/CreateAccountExtend.class.php';
+require_once __DIR__ . '/../pageObjects/Login.class.php';
+require_once __DIR__ . '/../pageObjects/Masthead.class.php';
+require_once __DIR__ . '/../pageObjects/MastheadExtend.class.php';
+require_once __DIR__ . '/../pageObjects/Registration.class.php';
+require_once __DIR__ . '/../pageObjects/RegistrationExtend.class.php';
+
+require_once 'vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
+
+
+//For Admin scripts
+require_once __DIR__ . '/../adminCreateSessions/AdminCreateSessionsTest.class.php';
+
+class StudentRegistrationTest {
+
+    protected $homeUrl = "https://www.secured-site7.com/uwce-staging/www/fond-du-lac/catalog";
+    protected $registrationUrl = "https://www.secured-site7.com/uwce-staging/www/fond-du-lac/registration";    
+    
+    protected $account;
+    protected $billing;
+    protected $cardInfo;
+    protected $catalog;
+    protected $catalogCourse;
+    protected $catalogSearch;
+    protected $createAccount;
+    protected $login;
+    protected $masthead;
+    protected $registration;
+
+    protected $password = '12345678a';
+    protected $name='';
+    
+    protected $theTester;
+    protected $driver;    
+    protected $isMobile;
+    protected $isLocal;
+
+    function __construct($theTester, $driver, $isMobile, $isLocal) {
+        $this->theTester = $theTester;
+        $this->driver = $driver;
+        $this->isMobile = $isMobile;
+        $this->isLocal = $isLocal;
+        
+        $this->account = new AccountExtend($driver, $isMobile, $isLocal);
+        $this->cardInfo = new CardInfoExtend($driver, $isMobile, $isLocal);        
+        $this->billing = new BillingExtend($driver, $isMobile, $isLocal);
+        $this->catalog = new Catalog($driver, $isMobile, $isLocal);
+        $this->catalogCourse = new CatalogCourseExtend($driver, $isMobile, $isLocal);
+        $this->catalogSearch = new CatalogSearchExtend($driver, $isMobile, $isLocal);    
+        $this->createAccount = new CreateAccountExtend($driver, $isMobile, $isLocal);    
+        $this->login = new Login($driver, $isMobile, $isLocal);
+        $this->masthead = new MastheadExtend($driver, $isMobile, $isLocal);
+        $this->registration = new RegistrationExtend($driver, $isMobile, $isLocal);
+    }
+    public function setupNewAccount() {
+        $date = new DateTime();
+        $timeStamp =  $date->getTimestamp();
+        $firstName = "BWH". $timeStamp;
+        $lastName = "HAM" . $timeStamp;
+        $this->email =$firstName . "@" . $lastName . ".com";
+
+        $this->theTester->setScreenShotVariableInAutomate('firstName', $firstName);
+        $this->theTester->setScreenShotVariableInAutomate('lastName', $lastName);
+        $this->theTester->setScreenShotVariableInAutomate('email', $this->email);
+        $this->theTester->setScreenShotVariableInAutomate('password', $this->password);
+
+        $this->createAccount->setFirstNameTextField($firstName);
+        $this->createAccount->setLastNameTextField($lastName);
+
+        $this->createAccount->setPhoneNumberTextField("8885551212");
+        $this->createAccount->setEmailAddressTextField($this->email);
+        $this->createAccount->setRetypeEmailAddressTextField($this->email);
+
+        $this->createAccount->setPassword2PasswordField($this->password);
+        $this->createAccount->setRetypePasswordPasswordField($this->password);
+        //need special copy
+        //Make sure this is senior citizen, > 50
+        $this->createAccount->setDateOfBirthTextField("10/08/1954");
+        $this->createAccount->clickCreateAccount2Button();
+
+        //account
+        assertTrue($this->account->verifyPageLoaded());
+        assertTrue($this->account->verifyPageUrl());
+        $this->theTester->takeSnapShot();
+        
+    }
+    public function logStudentIn() {
+        $this->masthead->verifyPageLoaded();
+        assertTrue($this->masthead->verifyPageUrl());
+        $this->theTester->takeSnapShot();
+        $this->masthead->clickLoginLink();
+
+        $this->login->verifyPageLoaded();
+        assertTrue($this->login->verifyPageUrl());
+        $this->login->setUsername1TextField($this->email);
+        $this->login->setPassword1PasswordField($this->password);
+        $this->login->clickLogInButton();        
+    }
+
+    public function gotoCreateAccountPage() {
+        $this->masthead->verifyPageLoaded();
+        assertTrue($this->masthead->verifyPageUrl());
+        $this->theTester->takeSnapShot();
+        $this->masthead->clickLoginLink();
+
+        //loginToRegister
+        assertTrue($this->login->verifyPageLoaded());
+        assertTrue($this->login->verifyPageUrl());
+        $this->theTester->takeSnapShot();
+        
+        $this->login->clickCreateAccount1Button();
+
+        //Should still be showing the Login url
+        assertTrue($this->login->verifyPageLoaded());
+        assertTrue($this->login->verifyPageUrl());
+
+        //This will force the page to submit and change to "Create-Account"
+        //url
+        //So the create-account script will verify the url
+        sleep(2); //running local needs time
+        $this->login->clickCreateAccount2Button();
+        sleep(2); //running local needs time
+
+        //Create account
+        assertTrue($this->createAccount->verifyPageLoaded());
+        assertTrue($this->createAccount->verifyPageUrl());
+
+        //Should be message to clear
+        $this->createAccount->clickXButton();
+        $this->theTester->takeSnapShot();
+    }
+    public function findCourseToRegisterOrEdit(){
+        $this->account->clickCourseCatalogLink();
+
+        //catalog
+        assertTrue($this->catalog->verifyPageLoaded());
+        assertTrue($this->catalog->verifyPageUrl());
+        $this->theTester->takeSnapShot();
+
+        $this->catalog->clickSearchCatalog1Button('BWH');
+        $this->catalog->clickSearchCatalog2Button();
+
+        //CatalogSearch
+        assertTrue($this->catalogSearch->verifyPageLoaded());
+        assertTrue($this->catalogSearch->verifyPageUrl());
+        $this->theTester->takeSnapShot();
+
+        $this->catalogSearch->clickMusicCourseDescription('BWH');
+
+        //catalog Course
+        assertTrue($this->catalogCourse->verifyPageLoaded());
+        assertTrue($this->catalogCourse->verifyPageUrl());
+        $this->theTester->takeSnapShot();
+
+        $this->saveIdFromCurrentUrl('catalog_id', 'automate');
+    }
+    /* 
+     * save the id from the currentURL
+     */
+    public function saveIdFromCurrentUrl($key, $where) {
+        $url = $this->driver->getCurrentURL();
+        $pos = strrpos($url, '/');
+        $value = substr($url, $pos+1);
+
+        //Save the course number for Screen shot testing
+        if (is_numeric($value)) {
+            if ($where === 'automate') {
+                $this->theTester->setScreenShotVariableInAutomate($key, $value);
+            }
+            if ($where === 'project') {
+                $this->theTester->setScreenShotVariableInProject($key, $value);                
+            }
+        }
+    }
+    
+    public function registerSelfAndSetQuestionAndWorkshopAndValidateDiscount($seniorDiscountValue) {
+
+        $this->catalogCourse->setIAmRegisteringMyselfCheckboxField();
+
+        //make sure the hidden elements have time to display..
+        sleep(1);
+
+        $this->catalogCourse->checkQuestion('One choice');
+        $this->catalogCourse->setWorkshops2DropDownListField('BWH Workshop Title');
+        $this->catalogCourse->clickContinueToCartButton();
+
+        assertTrue($this->registration->verifyPageLoaded());
+        assertTrue($this->registration->verifyPageUrl());
+        $this->theTester->takeSnapShot();
+
+        assertEquals($seniorDiscountValue,$this->registration->getDiscountValue());
+        
+        $this->registration->setBalance("Pay Balance: $seniorDiscountValue");
+
+        $this->registration->submit();
+
+        assertTrue($this->billing->verifyPageLoaded());
+        assertTrue($this->billing->verifyPageUrl());
+        $this->theTester->takeSnapShot();
+        $this->billing->setAddressTextField("987 Main St");
+        $this->billing->setZipTextField("54935");
+        $this->billing->setCityTextField("Fond du Lac");
+        $this->billing->setStateDropDownListField('WI');
+
+        $this->saveIdFromCurrentUrl('billing_id', 'automate');
+        
+        $this->billing->clickContinueButton();
+
+        assertTrue($this->cardInfo->verifyPageLoaded());
+        assertTrue($this->cardInfo->verifyPageUrl());
+        $this->theTester->takeSnapShot();
+        $this->cardInfo->setCreditCardTextField("4007000000027");
+        $this->cardInfo->setExpMonthDropDownListField('01');
+        $this->cardInfo->setExpYearDropDownListField('2018');
+        $this->cardInfo->setCcvTextField('782');        
+
+        $this->cardInfo->clickSubmitPaymentButton();
+
+        assertTrue($this->account->verifyPageLoaded());
+        assertTrue($this->account->verifyPageUrl());        
+        $this->theTester->takeSnapShot();
+
+    }
+    public function logStudentOut() {
+        //Logout
+        $this->driver->get("https://www.secured-site7.com/uwce-staging/www/fond-du-lac/account");
+        $this->masthead->verifyPageLoaded();
+        assertTrue($this->masthead->verifyPageUrl());
+
+        $this->masthead->clickLogoutLink();
+    }
+    public function createStudentAndRegister($seniorDiscountValue) {
+        //masthead
+        $this->driver->get($this->homeUrl);
+        
+        $this->gotoCreateAccountPage();
+        
+        //Display the Register Form
+        $this->setupNewAccount();
+        
+        $this->findCourseToRegisterOrEdit();
+
+        //Existing registrations should not get the new senior
+        //discount as the course was not set up w/ it
+        $this->registerSelfAndSetQuestionAndWorkshopAndValidateDiscount($seniorDiscountValue);
+            
+        //log the student out
+        $this->logStudentOut();
+        
+    }
+    public function setupAdminSeniorDiscount($state) {
+        $clickToEditCourse = true;        
+        //Set the SeniorDiscount option for course
+        $this->adminTest = new AdminCreateSessionsTest($this->theTester,
+                                                       $this->driver,
+                                                       $this->isMobile,
+                                                       $this->isLocal);
+        $this->adminTest->login();
+        $this->adminTest->navigateToCourseAndProgramPage();
+        $this->adminTest->setSeniorDiscount($state, $clickToEditCourse);
+        $this->adminTest->logout();
+    }
+    
+    public function main() {
+        //With no SeniorDiscount active on Course, no discount is
+        //applied.  
+        $seniorDiscount = false;
+        $this->setupAdminSeniorDiscount($seniorDiscount);
+        
+        //Course is $100 & the workshop is $10 
+        $seniorDiscountValue = '$110.00';
+        $this->createStudentAndRegister($seniorDiscountValue);
+
+        //Clear student
+        file_get_contents("http://www.secured-site7.com/uwce-staging/www/staging-student-reset");
+
+        //Set the seniorDiscount on Course
+        $seniorDiscount = true;
+        $this->setupAdminSeniorDiscount($seniorDiscount);
+        
+        //Senior discount of $10 is available 
+        $seniorDiscountValue = '$100.00';
+        $this->createStudentAndRegister($seniorDiscountValue);
+
+        //Reset to original state - no seniorDiscount on course
+        $seniorDiscount = false;
+        $this->setupAdminSeniorDiscount($seniorDiscount);
+    }
+}

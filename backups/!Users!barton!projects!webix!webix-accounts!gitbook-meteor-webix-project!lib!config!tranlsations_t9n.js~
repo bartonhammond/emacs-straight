@@ -1,0 +1,10 @@
+T9n.map('en', {
+    error: {
+        signInRequired: 'Bitte anmelden',
+        accounts: {
+            "Must be logged in": 'Bitte anmelden'
+        }
+    },
+  home: 'Home',
+  postsList: 'Posts'
+});

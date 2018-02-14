@@ -1,0 +1,16 @@
+'use strict';
+
+Template.notifications.helpers({
+  notifications: function() {
+    //Only show unique notifications - one per post
+    var notifs =  Notifications.find({userId: Meteor.userId(), read: false}).fetch();
+    var unique = _.uniq(notifs,null,function(item, key, prop) {
+      return item.postId;
+    });
+    return unique;
+  },
+  notificationPostPath: function() {
+    return Router.routes.postPage.path({_id: this.postId});
+  }
+  
+});

@@ -1,0 +1,1 @@
+  /^[a-z\,\-_\s]+$/i.test('london, england')

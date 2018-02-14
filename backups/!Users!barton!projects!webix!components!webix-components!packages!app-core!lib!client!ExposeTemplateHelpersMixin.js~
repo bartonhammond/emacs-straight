@@ -1,0 +1,10 @@
+class ExposeTemplateHelpersMixin extends BlazeComponent
+  mixinParent: (mixinParent) ->
+        debugger
+    template = mixinParent.template()
+    if _.isString template
+      template = Template[template]
+    for name of template.__helpers
+      name = name.substr(1)
+      mixinParent[name] = Blaze._getTemplateHelper(template, name, Template.instance)
+    super

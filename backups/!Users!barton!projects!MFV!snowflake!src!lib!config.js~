@@ -1,0 +1,12 @@
+module.exports = {
+  PARSE: {
+    APP_ID: 'lh1EL9XYYQHSjBqS8GTR6W65QvLpSUzHErBZE7N1',
+    REST_API_KEY: '49cmZDEiNaveHk0foEjbhxplltgPIaOwkSBmFECL',
+    SESSION_TOKEN_KEY: 'SESSION_TOKEN_KEY'
+  },
+  backend: {
+    parse: false,
+    hapiRemote: true,
+    hapiLocal: false
+  }
+}

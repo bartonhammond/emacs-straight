@@ -1,0 +1,103 @@
+<?php 
+require_once __DIR__ . '/../../../src/testCase/BaseTestCase.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/MainPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/Campus.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/CourseCatalog.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/LoginPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/AdminPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/TermPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/CategoryPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/CoursePage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/SessionPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/CourseAndProgramPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/CourseProgramDisplayPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/WorkshopPage.class.php';
+require_once __DIR__ . '/../adminCreateSessions/pageObjects/TimeSlotsPage.class.php';
+
+
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\WebDriverSelect;
+use Facebook\WebDriver\WebDriverExpectedConditions;
+class Test extends \Automate\BaseTestCase { 
+
+    protected $main;
+    protected $campus;
+    protected $courseCatalogPage;
+    protected $loginPage;
+    protected $adminPage;
+    protected $categoryPage;
+    protected $coursePage;
+    protected $session;
+    protected $termPage;
+    protected $cpPage;
+    protected $cpDisplayPage;
+    protected $workshopPage;
+    protected $timeSlotsPage;
+    
+    function __construct() {
+        parent::__construct();        
+        $this->isFunctionTest = true;
+        $this->isLocal = true;
+    }
+
+    public function constructor(RemoteWebDriver $driver, $isMobile, $isLocal) {
+        file_get_contents("http://www.secured-site7.com/uwce-staging/www/staging-reset");
+        $this->main = new MainPage($driver, $isMobile, $isLocal);
+        $this->campus = new Campus($driver, $isMobile, $isLocal);        
+        $this->courseCatalogPage = new CourseCatalogPage($driver, $isMobile, $isLocal);
+        $this->loginPage = new LoginPage($driver, $isMobile, $isLocal);
+        $this->adminPage = new AdminPage($driver, $isMobile, $isLocal);
+        $this->categoryPage = new CategoryPage($driver, $isMobile, $isLocal);
+        $this->coursePage = new CoursePage($driver, $isMobile, $isLocal);
+        $this->session = new SessionPage($driver, $isMobile, $isLocal);
+        $this->termPage = new TermPage($driver, $isMobile, $isLocal);
+        $this->cpPage = new CourseAndProgramPage($driver, $isMobile, $isLocal);
+        $this->cpDisplayPage = new CourseProgramDisplayPage($driver, $isMobile, $isLocal);
+        $this->workshopPage = new WorkshopPage($driver, $isMobile, $isLocal);
+        $this->timeSlotsPage = new TimeSlotsPage($driver, $isMobile, $isLocal);
+    }
+
+    public function thisFunction() {
+        $this->constructor($this->driver, $this->isMobile, $this->isLocal);
+        //adminLogin.php
+        $home = "https://www.secured-site7.com/uwce-staging/www/";
+    
+        $this->driver->get($home);
+        $this->main->waitPageLoaded();
+        $this->assertEquals("Continuing Education", $this->main->getH2HeadingText());
+        $this->takeSnapShot();
+        $this->main->selectFondDuLac();
+
+        $this->courseCatalogPage->waitPageLoaded();
+        $this->assertEquals("Course Catalog", $this->courseCatalogPage->getH1HeadingText());
+        $this->takeSnapShot();
+
+        $this->courseCatalogPage->login();
+
+        $this->loginPage->waitInputsClickable();
+        $this->assertEquals("Login", $this->loginPage->getH1HeadingText());
+        $this->takeSnapShot();
+
+        $this->loginPage->typeUsername('bhammond@wisnet.com');
+        $this->loginPage->typePassword('12345678a');
+        $this->takeSnapShot();
+        $this->loginPage->submit();
+
+        $this->adminPage->waitPageLoaded();
+        $this->assertEquals("System Administration", $this->adminPage->getH1HeadingText());
+        $this->takeSnapShot();
+
+        $this->adminPage->clickEditFDLCampus();
+
+        $this->campus->verifyPageLoaded();
+        $this->campus->verifyPageUrl();
+
+        $this->campus->setSeniorDiscountTextField("10");
+        $this->campus->setApplyDiscountToRegistrantsOverNumberField("55");
+        $this->campus->clickSaveButton();
+        
+        $this->assertContains("Your changes have been saved", $this->campus->getActionMessage());
+        \Psy\Shell::debug(get_defined_vars(),$this);
+    }
+}

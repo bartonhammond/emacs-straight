@@ -1,0 +1,72 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class WorkshopPage extends \Automate\Page {
+    private static $_selectors = [
+        "heading" =>
+        [
+            "css" => "h3.modal-title"
+        ],
+        "title" =>
+        [
+            "id" => "workshop_title"
+        ],
+        "fee_label" =>
+        [
+            "id" => "workshop_feeTitle"
+        ],
+        "fee" =>
+        [
+            "id" => "workshop_fee"
+        ],
+        "instructor" =>
+        [
+            "xpath" => "//div[@id='ajaxModal']/div[2]/div/div/div[2]/div[4]/div[1]/div/select//option[2]"
+        ],
+        "max_students" =>
+        [
+            "id" => "workshop_maxStudents"
+        ],
+        "location" =>
+        [
+            "id" => "workshop_location"
+        ],
+        "submit" =>
+        [
+            "linkText" => "Add"
+        ]
+        
+    ];
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors(self::$_selectors);
+    }
+
+    function getHeading() {
+        return $this->find(self::$_selectors['heading'])->getText();
+    }
+    function typeWorkshopTitle($value) {
+        $this->type(self::$_selectors['title'], $value);
+    }
+    function typeFeeLabel($value) {
+        $this->type(self::$_selectors['fee_label'], $value);
+    }
+    function typeFee($value) {
+        $this->type(self::$_selectors['fee'], $value);
+    }
+    function clickInstructor() {
+        if (!$this->find(self::$_selectors['instructor'])->isSelected()) {
+            $this->click(self::$_selectors['instructor']);
+        }
+    }
+    function typeMaxStudents($value) {
+        $this->type(self::$_selectors['max_students'], $value);
+    }
+    function typeLocation($value) {
+        $this->type(self::$_selectors['location'], $value);
+    }
+    function submit() {
+        $this->click(self::$_selectors['submit']);
+    }
+        
+}

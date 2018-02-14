@@ -1,0 +1,18 @@
+{
+    "testName": "Continuing Education",
+    "results": "\/Users\/barton\/projects\/wisnet\/automate\/src\/utilities\/..\/..\/test\/uwce\/adminCreateSessions\/output\/2018-01-25-17-39",
+    "screenshots": {
+        "browser_list_name_save": "wisnet-browsers",
+        "browser_list_name": "barton-test",
+        "login": "UWCE-admin",
+        "variables": {
+            "username": "bhammond@wisnet.com",
+            "password": "12345678a",
+            "firstName": "BWH1516829755",
+            "lastName": "HAM1516829755",
+            "email": "BWH1516829755@HAM1516829755.com",
+            "catalog_id": "528",
+            "billing_id": "564"
+        }
+    }
+}

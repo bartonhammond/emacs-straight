@@ -1,0 +1,55 @@
+Template.postFormBtn.helpers({
+  dataClick: function() {
+    return `
+    if ('postPage' === Router.current().route.getName()) {
+      console.log('postPage');
+    } else if ('postSubmit' === Router.current().route.getName()) {
+      console.log('adding new post');
+    } else if ('postEdit' === Router.current().route.getName()) {
+      console.log('editing post');
+    }
+    if (webix.ui.views['postform'].validate()) {
+      ///check if fields are valid eg. URL
+      var post = {
+        url: webix.ui.views['url'].data.value,
+        title: webix.ui.views['title'].data.value
+      };
+      
+      if ('postSubmit' === Router.current().route.getName()) {
+        // if state === 'postSubmit' it's new
+        Router.current().route.getName()
+        // if state === 'postEdit' it's update
+        // dont' show button on 'postPage'
+
+        Meteor.call('postInsert', post, function(error, result) { // display the error to the user and abort
+          if (error) {
+            return webix.message({type:'error', text:error.reason})
+          }
+          
+          // show this result but route anyway
+          if (result.postExists) {
+            var key = 'postForm.error.postExists';
+            return webix.message({type:"error", text: T9n.get(key)});
+          }
+        });
+        //Latency will process callback above...let's not wait
+        Router.go('postslist');
+      } else if ('postEdit' === Router.current().route.getName()) {
+        Posts.update(Router.current().data()._id,
+                     {$set: post},
+                     function(error) {
+                       if (error) {
+                         // display the error to the user
+                         alert(error.reason);
+                       } else {
+                         Router.go('postPage', {_id: Router.current().data()._id});
+                       }
+                     });
+      }
+    } else { //not valid
+      var key = 'postForm.error.invalid';
+      webix.message({type:"error", text: T9n.get(key)});
+    }
+    `
+  }
+})

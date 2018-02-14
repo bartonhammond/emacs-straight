@@ -1,0 +1,19 @@
+{
+    "customerName": "University of Wisconsin",
+    "functionTests": [
+        "adminRegisterChangeOnQuestionUpdate"
+    ],
+    "tests": [
+        "adminCreateSessions"
+    ],
+    "tests1": [
+        "studentRegistration"
+    ],
+    "tests2": [
+        "adminCreateSessions",
+        "studentRegistration"
+    ],
+    "variables": {
+        "course_id": "1132"
+    }
+}

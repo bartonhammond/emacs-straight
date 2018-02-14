@@ -1,0 +1,18 @@
+<?php
+// create new directory with 744 permissions if it does not exist yet
+    // owner will be the user/group the PHP script is run under
+    if ( !file_exists($this->output_directory) ) {
+      $oldmask = umask(0);  // helpful when used in linux server  
+      mkdir ($this->output_directory, 0744);
+    }
+
+    //Write out the sessionID 
+    ob_start();
+    print $this->sessionID;
+    $resultsString = ob_get_clean();
+
+    $file = 'sessionIDs.txt';
+    
+    // Write the contents to the file
+    file_put_contents($this->output_directory . '/' . $file, $resultsString . "\n", FILE_APPEND | LOCK_EX);
+  }

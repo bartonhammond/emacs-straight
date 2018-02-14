@@ -1,0 +1,20 @@
+<?php
+
+file_get_contents("http://www.secured-site7.com/uwce-staging/www/staging-reset");
+$this->main = new MainPage($driver, $isMobile, $isLocal);
+$this->campus = new Campus($driver, $isMobile, $isLocal);                
+$this->courseCatalogPage = new CourseCatalogPage($driver, $isMobile, $isLocal);
+$this->loginPage = new LoginPage($driver, $isMobile, $isLocal);
+$this->adminPage = new AdminPage($driver, $isMobile, $isLocal);
+$this->categoryPage = new CategoryPage($driver, $isMobile, $isLocal);
+$this->coursePage = new CoursePage($driver, $isMobile, $isLocal);
+$this->session = new SessionPage($driver, $isMobile, $isLocal);
+$this->termPage = new TermPage($driver, $isMobile, $isLocal);
+$this->cpPage = new CourseAndProgramPage($driver, $isMobile, $isLocal);
+$this->cpDisplayPage = new CourseProgramDisplayPage($driver, $isMobile, $isLocal);
+$this->workshopPage = new WorkshopPage($driver, $isMobile, $isLocal);
+$this->timeSlotsPage = new TimeSlotsPage($driver, $isMobile, $isLocal);
+include "adminLogin.php";
+include "campusSettings.php";
+include "adminMakeWorkshop.php";
+?>

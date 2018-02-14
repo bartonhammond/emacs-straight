@@ -1,0 +1,53 @@
+* see http://git-scm.com/book/en/v1/Git-Tools-Subtree-Merging
+
+
+# from ./parent
+1) git remote add sub-project git@github.com:bartonhammond/sub-project.git
+2) git fetch sub-project
+3) git checkout -b sub-project-branch sub-project/master
+4) git branch --list
+
+```
+~/projects/MFV/gitSubTree/parent (sub-project-branch)$ git branch --list
+  master
+* sub-project-branch
+```
+5) Bring sub-project branch into parent directory call 'sub-project'
+git checkout master
+git read-tree --prefix=/sub-project -u sub-project-branch
+----> problems - stuck
+```
+~/projects/MFV/gitSubTree/parent (master)$ git read-tree --prefix=/sub-project -u sub-project-branch
+error: Invalid path '/sub-project/README.md'
+error: Invalid path '/sub-project/subProject1.js'
+error: Invalid path '/sub-project/subProject2.js'
+```
+
+=========
+
+Try this approach
+* see: https://medium.com/@v/git-subtrees-a-tutorial-6ff568381844#.txgkc81um
+1) git remote add sub-project-branch git@github.com:bartonhammond/sub-project.git
+2) git subtree add --prefix=sub-project/ sub-project-branch master
+```
+~/projects/MFV/gitSubTree/parent (master)$ git subtree add --prefix=sub-project/ sub-project-branch master
+git fetch sub-project-branch master
+warning: no common commits
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 5 (delta 0), reused 5 (delta 0), pack-reused 0
+Unpacking objects: 100% (5/5), done.
+From github.com:bartonhammond/sub-project
+ * branch            master     -> FETCH_HEAD
+ * [new branch]      master     -> sub-project-branch/master
+Added dir 'sub-project'
+```
+3) ls parent and sub-projecct
+```
+~/projects/MFV/gitSubTree/parent (master)$ ls
+README.md	file1.js	file2.js	sub-project
+~/projects/MFV/gitSubTree/parent (master)$ ls sub-project/
+README.md	subProject1.js	subProject2.js
+```
+
+

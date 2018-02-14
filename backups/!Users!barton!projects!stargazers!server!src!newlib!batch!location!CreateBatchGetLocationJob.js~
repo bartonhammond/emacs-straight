@@ -1,0 +1,20 @@
+'use strict';
+/**
+ * Return promise that resolves to a location job
+ */
+let CreateBatchGetLocationJob = function(queue, id,  location)
+{
+  return new Promise((resolve, reject) => {
+    queue.create('batchGetLocation', {
+      title: 'batchGetLocation location: ' + location,
+      location: location
+    }).save((err) => {
+      if (err) {
+        return reject(err);
+      }
+      return resolve();
+    });
+  });
+};//createJob
+
+module.exports = CreateBatchGetLocationJob;

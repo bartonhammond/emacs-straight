@@ -1,0 +1,26 @@
+'use strict';
+
+import assert from 'assert';
+
+jest.mock('../../../node_modules/react-native-simpledialog-android');
+
+jest.dontMock('../../../src/components/ErrorAlert');
+var ErrorAlert = require('../../../src/components/ErrorAlert');
+
+
+describe('ErrorAlert', () => {
+  it('should be fine', () => {
+    const SimpleAlert = require('react-native-simpledialog-android');
+    const errorAlertProps = {
+      error: {
+        error: 'Error occurred'
+      }
+    };
+      
+    new ErrorAlert(SimpleAlert).checkError(errorAlertProps);
+    assert.deepEqual(SimpleAlert.alert.mock.calls[0][0],'Error');
+    assert.deepEqual(SimpleAlert.alert.mock.calls[0][1],errorAlertProps.error.error);
+  });
+
+
+});//describe ErrorAlert

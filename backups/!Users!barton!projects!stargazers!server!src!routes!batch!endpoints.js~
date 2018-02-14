@@ -1,0 +1,168 @@
+/**
+ * 
+ */
+'use strict';
+/**
+ * ## Imports
+ *
+ */
+//Handle the endpoints
+var KueHandlers = require('./handlers'),
+    //Joi is Hapi's validation library
+    Joi = require('joi'),
+    internals = {};
+
+
+/**
+ */
+internals.endpoints = [
+  {
+    method: 'GET',
+    path: '/kue/respository/{access_token}/{minstars}/{maxstars}',
+    handler: {
+      async: KueHandlers.searchRepositories
+    },
+    config: {
+      auth: 'simple',            
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'create job in queue for building cache',
+      notes: 'Cache is built up w/ user and location',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),          
+          minstars: Joi.number().integer().optional().default(1),
+          maxstars: Joi.number().integer().optional().default(1)     
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/kue/getusers/{access_token}/{owner}/{repo}/',
+    handler: {
+      async: KueHandlers.getUsersForRepo
+    },
+    config: {
+      auth: 'simple',                  
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Get users (stargazers with user info) of a owners repo',
+      notes: 'For this owners repo, retrieve all the user info of the stargazers',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),
+          owner: Joi.string().optional().default('bartonhammond'),
+          repo: Joi.string().optional().default('snowflake')
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/kue/getuser/{access_token}/{login}/',
+    handler: {
+      async: KueHandlers.getUser
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Get user information for login',
+      notes: 'For this login, retrieve the user information',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),                    
+          login: Joi.string().optional().default('bartonhammond')
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/kue/getlocation/{location}/',
+    handler: {
+      async: KueHandlers.getLocation
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Get coordinates for location',
+      notes: 'For this location, retrieve the lat/long coordinates',
+      validate: {
+	params: {
+          location: Joi.string().optional().default('Austin, TX')
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/kue/getmapdata/{access_token}/{owner}/{repo}/',
+    handler: {
+      async: KueHandlers.getMapData
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Get data for display on MapBoxGL',
+      notes: 'Retrieve all the user info with map coordinates of the stargazers',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),
+          owner: Joi.string().optional().default('bartonhammond'),
+          repo: Joi.string().optional().default('snowflake')
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/kue/getmapbox/{access_token}/{owner}/{repo}/',
+    handler: {
+      async: KueHandlers.getMapBox
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Get the geocolored data for display on MapBoxGL',
+      notes: 'After retrieve all the user info with map coordinates of'
+        + ' the stargazers, use geocolor and tiles to group users',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),          
+          owner: Joi.string().optional().default('bartonhammond'),
+          repo: Joi.string().optional().default('snowflake')
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/kue/cachesearchrepository/{access_token}/{minstars}/{maxstars}',
+    handler: {
+      async: KueHandlers.cacheSearchRepositories
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Cache the results of searching repos and saving'
+        + ' user, location and mapbox info',
+      notes: 'Cache is built up',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),                    
+          minstars: Joi.number().integer().optional().default(1),
+          maxstars: Joi.number().integer().optional().default(1)     
+	}
+      }
+    }
+  }
+];
+
+
+module.exports = internals;

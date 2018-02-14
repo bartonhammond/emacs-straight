@@ -1,0 +1,36 @@
+npm install --save  apsl-react-native-button 
+    immutable 
+    key-mirror 
+    react@15.3.0
+    react-mixin 
+    react-native@0.32.0
+    react-native-i18n 
+    react-native-navbar 
+    react-native-router-flux 
+    react-native-simple-store 
+    react-native-simpledialog-android 
+    react-native-vector-icons 
+    react-redux 
+    react-timer-mixin 
+    redux 
+    redux-thunk 
+    regenerator 
+    tcomb-form-native 
+    undefined 
+    underscore 
+    validate.js 
+
+  
+npm install --save-dev
+   babel-core 
+    babel-eslint 
+    babel-jest 
+    babel-preset-react-native 
+    docker 
+    istanbul 
+    jest 
+    jest-react-native 
+    react-addons-test-utils 
+    redux-mock-store 
+    rnpm-plugin-upgrade 
+    standard 

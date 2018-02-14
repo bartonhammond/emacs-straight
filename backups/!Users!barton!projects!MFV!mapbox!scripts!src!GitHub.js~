@@ -1,0 +1,79 @@
+'use strict';
+
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+var parseLinkHeader = require('parse-link-header');
+
+let _ = require('underscore');
+
+class GitHub {
+  constructor(token){
+    this.token =  token;
+    this.GITHUB_API_BASE = 'https://api.github.com';
+  }
+  getRepos(username, token){
+    username = username.toLowerCase().trim();
+    var url = `https://api.github.com/users/${username}/repos`;
+    var reqOpts = {
+      method: 'GET',
+      url: url
+    };
+    
+    return fetch(url, reqOpts)
+      .then((res) => {
+        debugger;
+        var rtn = {};
+        rtn.status = res.status;
+        rtn.link =  parseLinkHeader(res.headers.get('link'));
+        rtn.json = res.json();
+        return rtn;
+      });
+  },
+  async getProfile(name) {
+    return await this._fetch({
+      method: 'GET',
+      url: '/users/' + name
+    });
+  }
+  /**
+   * ### _fetch
+   */  
+  async _fetch(opts) {
+    opts = _.extend({
+      method: 'GET',
+      url: null,
+      body: null,
+      callback: null
+    }, opts);
+
+
+    var reqOpts = {
+      method: opts.method,
+      headers: {
+        'Authorization': 'token ' + token,
+        'User-Agent' : 'bartonhammond',
+        'Accept': 'application/vnd.github.v3+json'
+      }
+
+    };
+
+    if (opts.method === 'POST' || opts.method === 'PUT') {
+      reqOpts.headers['Content-Type'] = 'application/json;charset=UTF-8';
+    }
+
+    if (opts.body) {
+      reqOpts.body = JSON.stringify(opts.body);
+    }
+
+    return fetch(url, reqOpts)
+      .then((res) => {
+        debugger;
+        var rtn = {};
+        rtn.status = res.status;
+        rtn.link =  parseLinkHeader(res.headers.get('link'));
+        rtn.json = res.json();
+        return rtn;
+      });
+  }
+};
+module.exports =  GitHub;

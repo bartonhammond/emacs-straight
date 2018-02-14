@@ -1,0 +1,40 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+
+    {     
+        "operationName": "clickXButton",
+        "attributeType": "button",
+       "attributeName": "x",
+        "attributeStrategy": "css",
+        "attributeValue": "button.close"
+     },
+
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class LoginExtra extends Login {
+
+   private static $_selectors = [
+
+    "x" =>
+    [
+       "css" => "button.close"
+    ],
+    ];
+
+    /**
+     * Click on X Button.
+     *
+     */
+    function clickXButton() {
+        //button
+        $this->click(self::$_selectors['x']);
+    }
+
+}

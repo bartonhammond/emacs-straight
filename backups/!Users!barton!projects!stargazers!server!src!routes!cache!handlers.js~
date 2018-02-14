@@ -1,0 +1,357 @@
+'use strict';
+require('regenerator/runtime');
+
+let GitHub = require('../lib/GitHub'),
+    Bottleneck = require("bottleneck"),
+    MapZen = require('../lib/MapZen'),
+    _ = require('underscore');
+
+class BuildCache {
+  constructor() {
+    this.gitHub = new GitHub();
+    this.redisKeyLocation = 'location:';
+    this.redisKeyUser = 'user:';
+    this.redisClient = require('../database/redis'),
+    this.latinize = require('latinize');
+    this.moment = require('moment');    
+    this.momentFormat = 'YYYY-MM-DD';
+    this.now = this.moment().format(this.momentFormat);
+    this.mapZen = new MapZen();    
+    this.mapzenMaxConcurrent = 6;
+    this.mapzenMinTime = 1000;//ms
+    this.mapzenLimiter = new Bottleneck(this.mapzenMaxConcurrent,
+                                        this.mapzenMinTime);
+    this.gitHubUserMaxConcurrent = 10;
+    this.gitHubUserMinTime = 750;//ms
+    this.gitHubLimiter = new Bottleneck(this.gitHubUserMaxConcurrent,
+                                        this.gitHubUserMinTime);    
+  }
+  padZero(num) {
+    return ("0" + num).slice(-2);
+  }
+  async updateCount(count) {
+    let self = this;
+    return new Promise(function(resolve,reject) {
+      self.redisClient.get(self.now, (err,value) => {
+        if (err) {
+          return reject(err);
+        }
+        if (value) {
+          value = Number(value) + count;
+        } else {
+          value = count;
+        }
+        self.redisClient.set(self.now,value);
+        return resolve(value);
+
+      });//redisClient
+    });//promise
+    
+  }
+
+  async getUser(user) {
+    let self = this;
+    console.log('getUser.user.login',user.login);
+
+    let redisUser = await self.getRedisValue(self.redisKeyUser,
+                                             user.login);
+    
+    return new Promise(function(resolve,reject) {
+      //is it cached
+      if (redisUser) {
+        console.log('getUser.user.login cached',user.login);        
+        resolve(redisUser);
+      }
+
+      self.gitHub.getUser(user.login)
+        .then((results) => {
+          debugger;
+          let values = _.pick(results,
+                              ['login','avatar_url','name','html_url','location']);
+
+          self.redisClient.setnx(
+            self.redisKeyUser + user.login,
+            JSON.stringify(values));
+          
+          //console.log('getUser.values',values);
+          return resolve(values);
+        }).catch((err) => {
+          return reject(err);
+        });
+    }).catch((err) => {
+      throw err;
+    });
+  }
+  /**
+   *
+   */
+  async getUserLocations(users) {
+    let promises = [];
+
+    for (let user of  users) {
+      promises.push(this.gitHubLimiter.schedule(this.getUser.bind(this,user)));
+    }
+    return  Promise.all(promises)
+      .catch((err) => {
+        console.log('getUserLocations.error',err);
+        return promises;
+      }).then((arrayOfValuesOrErrors) => {
+        return arrayOfValuesOrErrors;
+      });
+  }
+  
+  async callSearch(location) {
+    let self = this;
+    return new Promise(function(resolve,reject) {
+      self.mapZen.search(location)
+        .then((results) => {
+          return resolve(results);
+        }).catch((err) => {
+          return reject(err);
+        });
+    }).catch((err) => {
+      throw err;
+    });
+  }
+  async getGPS(locations) {
+    let promises = [];
+    for (let loc of  locations) {
+      promises.push(this.mapzenLimiter.schedule(this.callSearch.bind(this,loc)));
+    }
+    return  Promise.all(promises)
+      .catch((err) => {
+        console.log('getGPS.error',err);
+        return promises;
+      }).then((arrayOfValuesOrErrors) => {
+        return arrayOfValuesOrErrors;
+      });
+  }
+  
+  async getRedisValue(prefix, key) {
+    let self = this;
+    return new Promise(function(resolve,reject) {
+      self.redisClient.get(prefix + key, (err,value) => {
+        if (err) {
+          return reject(err);
+        }
+        return resolve(JSON.parse(value));
+
+      });//redisClient
+    });//promise
+  }
+  
+  async searchGitHubUsers(term) {
+    console.log('searchGitHubUsers.term',term);
+    let users = [];
+    let more = true;
+    let page = 1;
+    
+    while(more) {
+      let results = await this.gitHub.searchUsers(
+        term,
+        0, //repos
+        'desc', //sort
+        'followers', //order
+        page);
+
+      //save users
+      if (results && results.json && results.json.items) {
+        for (let item of results.json.items) {
+          users.push(item);
+        }//for
+      }//items
+      
+      //get more pages?
+      more = false;
+      if (results && results.link && results.link.last) {
+        if (page < results.link.last.page) {
+          more = true;
+          page++;          
+        }
+      }
+    }
+    return users;
+  }
+  /**
+   * Search for repositories w/ stargazers within min/max stars
+   *
+   */
+  async searchGitHubRepositories(minStars, maxStars, language) {
+    console.log('searchGitHubRepositories.minStars',minStars);
+    console.log('searchGitHubRepositories.maxStars',maxStars);    
+    let repos = [];
+    let more = true;
+    let page = 1;
+    
+    while(more) {
+      let results = await this.gitHub.searchRepositories(
+        '', //term
+        '', //inFields
+        '', //forks
+        '' + minStars + '..' + maxStars,
+        '' + language,
+        'stars', //sort
+        'desc', //order
+        page);
+
+      //save users
+      if (results && results.json && results.json.items) {
+        for (let repo of results.json.items) {
+
+           let stargazersFromRepo
+              = await this.gitHub.getAllStarGazers(
+                repo.owner.login,
+                repo.name
+              );
+          
+          let locations
+                = await this.getValidLocationsForUsers(stargazersFromRepo);
+
+          await this.getLatLongsForLocations(locations);
+           
+        }//for
+      }//items
+      
+      //get more pages?
+      more = false;
+      if (results && results.link && results.link.last) {
+        if (page < results.link.last.page) {
+          more = true;
+          page++;          
+        }
+      }
+      console.log('searchGitHubRepositories.page',page);
+    }//while
+    return repos;
+  }
+
+  /**
+   * @param users - array of user objects
+   * @returns array of valid locations
+   */
+  async getValidLocationsForUsers(users) {
+    //console.log('getValidLoctionsForUsers.users',users);
+    let userLocations = await this.getUserLocations(users);
+    //console.log('getValidLocationsForUsers.userLocations',userLocations);
+    let locations = [];
+    for (let user of userLocations) {
+      if (user.location) {
+        let location =
+              this.latinize(user.location).toLowerCase();
+        console.log('location',location);
+        var valid = /^[a-z\.\,\-_\s]+$/i.test(location);
+        if (valid) {
+          console.log('checking location', location);              
+          let value = await this.getRedisValue(this.redisKeyLocation,
+                                               location);
+          if (!value) {
+            locations.push(location);
+          } else {
+            console.log('found location', location);                              
+          }
+        } //valid
+      }//user.location
+    }//for
+    return locations;
+  }
+  async getLatLongsForLocations(locations) {   
+    if (locations && locations.length > 0) {
+      let updatedCount = await this.updateCount(locations.length);
+      console.log('mapzen requests for ' + this.now, updatedCount);
+
+      //let latLongs = await
+      let latLongs = await this.getGPS(locations);        
+      
+      for (let obj of latLongs) {
+        if (obj.geocoding && obj.geocoding.query
+            && obj.features
+            && obj.features[0]
+            && obj.features[0].geometry
+            && obj.features[0].geometry.coordinates) {
+
+          //Place into Redis
+          let key = obj.geocoding.query.text;
+          let long = obj.features[0].geometry.coordinates[0];
+          let lat = obj.features[0].geometry.coordinates[1];
+
+          let value = {};
+          value.long = long;
+          value.lat = lat;
+          this.redisClient.setnx(
+            this.redisKeyLocation + key,
+            JSON.stringify(value));
+          
+          console.log('key: ' + key + ' lat: ' + lat + ' long: ' + long);
+        }
+      } //latLongs
+    } //locations > 0
+  }
+  async processRepositories(minStars = 1,
+                            maxStars = 2,
+                            language = 'javascript',
+                            times = 1) {
+    let count = 0;
+    while (count < times) {
+
+      await this.searchGitHubRepositories(
+        minStars,
+        maxStars,
+        language);
+      
+      count++;
+      minStars++;
+      maxStars++;
+    }
+
+    process.exit();
+  }  
+  /**
+   * Search for users that joined in the month/year with language 
+   * 
+   */
+  async processUsers(year = 2008, month=1, language='javascript') {
+    let count = 0;
+    while (count < 2) {
+
+      let start = 'created:'
+            + year
+            + '-'
+            + this.padZero(month) +
+            '-01..';
+
+      month++;
+      if (month === 13) {
+        year++;
+        month = 1;
+      }
+      
+      let end = ''
+            + year
+            + '-'
+            + this.padZero(month) +
+            '-01';
+
+      let users
+            = await this.searchGitHubUsers(start+end+' language:'+ language);
+
+      let locations
+            = await this.getValidLocationsForUsers(users);
+
+      await this.getLatLongsForLocations(locations);  
+      
+      count++;
+      console.log('last date:',start+end);          
+    } //while
+
+    process.exit();
+  }
+}
+//(new BuildCache()).processUsers(2009, 8, 'javascript');
+(new BuildCache()).processRepositories(
+  2, //min stars
+  3, //max stars
+  'javascript', //language
+  1); //times - how many loops increment min/max
+
+
+

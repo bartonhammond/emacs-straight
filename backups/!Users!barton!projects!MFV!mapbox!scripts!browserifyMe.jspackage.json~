@@ -1,0 +1,6 @@
+var fs = require("fs");
+var browserify = require("browserify");
+browserify("./src/main.js")
+  .transform("babelify", {presets: ["es2015"]})
+  .bundle()
+  .pipe(fs.createWriteStream("parse/cloud/main.js"));

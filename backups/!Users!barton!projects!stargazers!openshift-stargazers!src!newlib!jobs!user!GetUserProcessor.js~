@@ -1,0 +1,79 @@
+'use strict';
+require('regenerator/runtime');
+
+import Bottleneck from 'bottleneck';
+import CreateGetRepositoryByPageJob from '../repository/CreateGetRepositoryByPageJob';
+import ProcessorClass from '../ProcessorClass';
+
+class SearchRepositoriesProcessor extends ProcessorClass{
+  constructor(queue, job, ctx, done) {
+    super(queue, job, ctx, done);
+    this.searchRepositoriesLimiter = new Bottleneck(1, 2200);
+  }
+  /**
+   * When the first page request is through, we know 
+   * how may other pages are available.
+   * 
+   * Create getRepositoryByPageJobs for each page
+   *
+   */
+  onFirstComplete(result) {
+    //save results
+    let self = this;
+
+    if (result
+        && result.link
+        && result.link.last
+        && result.link.last.page) {
+      self.lastPage = Number(result.link.last.page);
+    }
+    
+    self.saveResults(result);
+
+    //for each page create new job
+    for (let currentPage = 2;
+         currentPage <= self.lastPage;
+         currentPage++) {
+      
+      //limit the speed
+      self.searchRepositoriesLimiter.schedule(
+        CreateGetRepositoryByPageJob.bind(self,
+                                          self.queue,
+                                          currentPage,
+                                          self.job.data.stars,
+                                          self.job.data.language))
+        .then((job) => {
+          job.on('complete', (jobresult) => {
+            self.saveResults(jobresult);
+          });
+          job.on('failed', (err) => {
+            console.log('SearchRepositoriesProcessor.job.onfailed',err);
+            self.saveResults();
+          });
+        })
+        .catch((err) => {
+          self.done(err);
+        });
+    }//for loop
+  }
+  /**
+   * Process the first page
+   */
+  run() {
+    let self = this;
+    CreateGetRepositoryByPageJob(
+      self.queue,
+      1,
+      10,//lastPage
+      self.job.data.stars,
+      self.job.data.language
+    ).then((job) => {
+      job.on('complete',(result) => {
+        self.onFirstComplete(result);
+      });//job on complete
+    });//then((job)
+  }//run
+
+
+}
+module.exports = SearchRepositoriesProcessor;

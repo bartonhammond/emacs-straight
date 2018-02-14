@@ -1,0 +1,73 @@
+'use strict';
+require('regenerator/runtime');
+
+
+import Redis from '../../Redis';
+import  pako from 'pako';
+
+class UserPago extends BaseClass{
+  constructor() {
+    super();
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process(
+      'userpago',
+      1,
+      function(job,
+               ctx,
+               done) {
+        
+          let key = job.data.owner
+              + ':'
+              + job.data.repo
+              + ':'
+              + job.data.access_token;
+
+        Redis.getRedisValue(Redis.redisKeyStargazers,
+                            key)        
+          .then((currentValues) => {
+
+            if (!currentValues) {
+              return  [];
+            } else {
+              return JSON.parse(pako.inflate(currentValues, { to:
+                                                                 'string'
+                                                               }));
+            }
+          })
+        
+          .then((values) => {
+            values.push(job.data.user);
+            return pako.deflate(JSON.stringify(values), {to: 'string' });
+          })
+        
+          .then((valuesWithUser) => {
+            return Redis.setValue(key,
+                                  valuesWithUser);
+          })
+        
+          .then(() => {
+            done();
+          })
+        
+          .catch((err) => {
+            done(err);
+          });
+      });
+  }
+}
+module.exports = UserPago;
+
+
+
+
+
+
+
+
+
+
+
+

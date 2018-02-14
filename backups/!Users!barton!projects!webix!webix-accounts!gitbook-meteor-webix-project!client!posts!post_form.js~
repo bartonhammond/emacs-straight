@@ -1,0 +1,38 @@
+'use strict';
+
+Template.postPage.onRendered(function() {
+  if (_.isUndefined(webix.ui.views['postpage'])) {
+    var component =  webix.markup.init();
+    webix.event(window, 'resize', function(){
+      if (component) component.resize();
+    });
+
+  }
+});
+
+Template.postPage.onDestroyed(function() {
+  if (webix.ui.views['postpage']) {
+    webix.ui.views['postpage'].destructor();
+  }
+});
+
+Template.postPage.helpers({
+  title: function() {
+    return this.title;
+  },
+  url: function() {
+    return this.url;
+  },
+  pathForEditPage: function() {
+    return Router.routes['postEdit'].path({_id: this._id})
+  },
+  author: function() {
+    return this.author;
+  },
+  _id: function() {
+    return this._id;
+  },
+  ownPost: function() {
+    return this.userId === Meteor.userId();
+  }
+});

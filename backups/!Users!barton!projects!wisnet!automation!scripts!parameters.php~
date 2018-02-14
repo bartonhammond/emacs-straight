@@ -1,0 +1,10 @@
+<?php
+require __DIR__ . '/../vendor/autoload.php';
+
+$hello_cmd = new Commando\Command();
+
+$hello_cmd->option()
+    ->require()
+    ->describedAs('A person\'s name');
+
+echo $hello_cmd[0];

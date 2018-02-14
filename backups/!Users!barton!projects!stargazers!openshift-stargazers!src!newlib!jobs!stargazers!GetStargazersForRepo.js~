@@ -1,0 +1,30 @@
+'use strict';
+require('regenerator/runtime');
+
+import CacheStargazersProcessor from './CacheStargazersProcessor';
+
+class CacheStargazers{
+  constructor(queue) {
+    this.queue = queue;
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process(
+      'cacheStargazers',
+      1,
+      function(job,
+               ctx,
+               done) {
+
+        new CacheStargazersProcessor(
+          self.queue,
+          job,
+          ctx,
+          done).run();
+      });
+  }
+}
+module.exports = CacheStargazers;
+
+

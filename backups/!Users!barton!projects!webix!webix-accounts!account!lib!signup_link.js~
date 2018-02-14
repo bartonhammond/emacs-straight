@@ -1,0 +1,21 @@
+'use strict';
+
+Template.signupLink.helpers({
+  
+  linkText: function() {
+    return T9n.get(WebixDefaults.getLink_link());
+  },
+  preText: function() {
+    return T9n.get(WebixDefaults.getLink_pre());
+  },
+  hrefLink: function() {
+    return WebixDefaults.getHrefLink();
+  },
+  linkId: function() {
+    return WebixDefaults.getLinkId();
+  }
+
+});
+
+
+

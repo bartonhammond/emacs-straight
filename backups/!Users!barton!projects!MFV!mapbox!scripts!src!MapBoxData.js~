@@ -1,0 +1,211 @@
+'use strict';
+
+
+var CONFIG = require('./config');
+var ArcGisConfig = CONFIG.arcGisConfig;
+
+require('regenerator/runtime');
+
+var _ = require('underscore');
+
+var ArcGIS = require('./ArcGIS');
+var GitHub = require('./GitHub');
+
+
+class MapBoxData {
+  constructor() {
+    this.gitHub = new GitHub(CONFIG.gitHub.token);
+    this.latinize = require('latinize');
+    this.arcGIS = new ArcGIS(ArcGisConfig.clientId,ArcGisConfig.secret);
+    this.parseLinkHeader = require('parse-link-header');    
+  }
+  async getUser(login) {
+    return await this.gitHub.getUser(login)
+      .then((res) => {
+        return res.json();
+      });
+  }
+
+  async getAllStarGazers(owner, repo) {
+    let res = await this.gitHub.getStargazers(owner, repo, 1);
+
+    if (res.status === 200 || res.status === 201) {
+      let link = this.parseLinkHeader(res.headers.get('link'));
+      debugger;
+      if (_.isUndefined(link) || _.isNull(link)) {
+        return Promise.resolve(res);
+      }
+      if(link.last.page > 1) {
+        var promises = [];
+        for (let page = 0; page < link.last.page; page++) {
+          promises.push(this.gitHub.getStargazers(owner, repo, page + 1));
+        }
+        return Promise.all(promises);
+      }//last.page
+    }
+    return Promise.reject('Bad return from gitHub.getStargazers: ' + res.status);
+  }
+
+
+  async getAllReposForUser(username) {
+    let more = true;
+    let page = 1;
+    let repos = [];
+    while (more) {
+      await this.gitHub.getRepos(username, page)
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            let link = this.parseLinkHeader(res.headers.get('link'));
+            if (link.next && link.next.page) {
+              page+= 1;
+            } else {
+              more = false;
+            }
+            return res.json();
+          } else {
+            throw 'Something went wrong';
+          }
+        })
+        .then((json) => {
+          repos.push(...json);
+        });
+    }//more
+    return Promise.resolve(repos);    
+  }
+
+  async getAllStarGazersBio(stargazers) {
+    var promises = [];
+    var that = this;
+    for (let stargazer of stargazers) {
+      promises.push(that.getUser(stargazer.login));
+    }
+    return Promise.all(promises);
+  }
+
+  async getAllGPS(starGazerBios) {
+    var promises = [];
+    for (let user of starGazerBios) {
+      if (user.location) {
+        let location = this.latinize(user.location);
+        var valid = /^[a-z\,\-_\s]+$/i.test(location);
+        if (valid) {
+          promises.push(this.arcGIS.find(location));
+        }
+      }//if location
+    } //
+    return Promise.all(promises);
+  }
+
+  /**
+   * 
+   */
+  async getLatLongs(owner, repo) {
+    let that = this;
+    let stargazers = await that.getAllStarGazers(owner, repo);
+    let stargazerBios = await that.getAllStarGazersBio(stargazers);
+    return await that.getAllGPS(stargazerBios);
+  }
+}
+
+module.exports = MapBoxData;
+/**
+ try {
+ mapBoxData.getLatLongs('bartonhammond','snowflake')
+ .then((geos) => {
+ debugger;
+ let latlongs = [];
+ try {
+ for (var i = 0; i < geos.length; i++) {
+ var geo = geos[i];
+ if (geo
+ &&
+ geo.geometry
+ &&
+ geo.geometry.locations
+ &&
+ geo.geometry.locations[0]
+ &&
+ geo.geometry.locations[0].feature
+ && 
+ geo.geometry.locations[0].feature.geometry) {
+ 
+ var aUser = _.pick(geo.user,'avatar_url','login','html_url');
+
+ latlongs.push({
+ user: aUser,
+ location: geo.location,
+ long:
+ geo.geometry.locations[0].feature.geometry.x,
+ lat:
+ geo.geometry.locations[0].feature.geometry.y});
+ }//if
+ };//for
+ } catch(buf) {
+ console.log('damn!',buf);
+ }
+ fs.writeFileSync('./latlongs.geojson', JSON.stringify(latlongs));
+ });
+ } catch(err) {
+ console.log('err getting latLongs',err);
+ }
+
+ //Get all locations for all star gazers
+
+
+ try {
+ arcGIS.find('Chaoyang District, Beijing')
+ .then(function(result) {
+ debugger;
+ console.log(result.locations[0].feature.geometry.x
+ + ' ' +
+ result.locations[0].feature.geometry.y);                
+
+ },function(err) {
+ debugger;
+ console.log(err);
+ });
+ } catch(error) {
+ console.log('catch.error',error);
+ }
+
+
+
+ arcGIS.getToken()
+ .then(function(result) {
+ debugger;
+ console.log(result);
+ },function(err) {
+ debugger;
+ console.log(err);
+ });
+ 
+ let mapBoxData = new MapBoxData();
+
+ mapBoxData.getUser('bartonhammond')
+ .then(function(result) {
+ debugger;
+ console.log(result);
+ }, function(err) {
+ debugger;
+ console.log(err); // Error: "It broke"
+ });
+
+ */
+
+
+/*
+ mapBoxData.getAllReposForUser('bartonhammond')
+ .then(function(result) {
+ debugger;  
+ _.each(result, (repo, index) => {
+ console.log(index + ': ' + repo.name + ' ' + repo.description );
+ });
+ }, function(err) {
+ debugger;
+ console.log(err); // Error: "It broke"
+ });
+
+
+
+
+ */

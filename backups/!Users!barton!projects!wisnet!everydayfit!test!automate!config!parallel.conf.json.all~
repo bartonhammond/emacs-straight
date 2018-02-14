@@ -1,0 +1,75 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "bartonhammond1",
+  "key": "UXXHAju9asdQAp1R2LcN",
+
+
+  "capabilities": {
+    "build": "phpunit-browserstack",
+    "name": "parallel_test",
+    "browserstack.debug": true
+  },
+
+  "environments": [
+    /*
+    {
+      "os": "OS X",
+      "os_version": "El Capitan",
+      "browser": "chrome",
+      "browser_version": "61.0"
+    },
+    {
+      "os": "OS X",
+      "os_version": "El Capitan",
+      "browser": "firefox",
+      "browser_version": "45.0"
+    },
+    {
+      "os": "OS X",
+      "os_version": "El Capitan",
+      "browser": "safari",
+      "browser_version": "9.1"
+    },
+    {
+      "os": "OS X",
+      "os_version": "El Capitan",
+      "browser": "Opera",
+      "browser_version": "12.15"
+    },
+*/
+    {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "IE",
+      "browser_version": "11.0",
+      "resolution": "1024x768"
+    },
+    {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "Chrome",
+      "browser_version": "61.0",
+      "resolution": "1024x768"
+    },
+    {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "Edge",
+      "browser_version": "15.0",
+      "resolution": "1024x768"
+    },
+    {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "Firefox",
+      "browser_version": "55.0",
+      "resolution": "1024x768"
+    },{
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "Chrome",
+      "browser_version": "61.0",
+      "resolution": "1024x768"
+    }
+  ]
+}

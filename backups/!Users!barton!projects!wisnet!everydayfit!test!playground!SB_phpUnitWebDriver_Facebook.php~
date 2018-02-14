@@ -1,0 +1,36 @@
+<?php
+
+namespace MyProjectTests;
+
+use \PHPUnit_Framework_TestCase;
+
+class SB_phpUnitWebDriver_Facebook extends PHPUnit_Framework_TestCase {
+
+   /**
+    * @var RemoteWebDriver
+    */
+    protected $webDriver;
+    public function setUp() {
+        parent::setUp();
+        $capabilities    = array(WebDriverCapabilityType::BROWSER_NAME => 'firefox');
+        $this->webDriver = RemoteWebDriver::create('http://127.0.0.1:4444/wd/hub', $capabilities);
+        $this->webDriver->manage()->timeouts()->implicitlyWait(30);
+    }
+    public function testSB_phpUnitWebDriver_Facebook() {
+        $this->webDriver->get("https://everydayfit.ninja/");
+        $this->webDriver->findElement(WebDriverBy::linkText("Log In"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("email"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("email"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("email"))->sendKeys("bartonhammond@gmail.com");
+        $this->webDriver->findElement(WebDriverBy::id("password"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("password"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("password"))->sendKeys("123456");
+        $this->webDriver->findElement(WebDriverBy::cssSelector("input.btns.btn2"))->click();
+        $this->webDriver->findElement(WebDriverBy::xpath("//div[@class='appScreen']/div[2]/div[3]/i"))->click();
+        $this->webDriver->findElement(WebDriverBy::linkText("Logout"))->click();
+    }
+    public function tearDown() {
+        $this->webDriver->close();
+        parent::tearDown();
+    }
+}

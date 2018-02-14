@@ -1,0 +1,27 @@
+function fbLogin() {
+  debugger;
+  hello.login('facebook',{display: popup, force: true},loginHandler)
+}
+// Initate the library
+hello.init({
+  google : '656984324806-sr0q9vq78tlna4hvhlmcgp2bs2ut8uj8.apps.googleusercontent.com',
+  facebook : '1720365938187275',
+  windows : '00000000400D8578'
+}, {
+  //
+  // Define the OAuth2 return URL
+  // This can be anything you like, providing its the callback which you have registered with the providers for OAuth2
+  // It could even be localhost, e.g. http://localhost/somepath as phonegap is not run from a domain so SameOrigin breaks, instead we take advantage of being able to read the popups URL in PhoneGap
+  redirect_uri : 'redirect.html'
+});
+
+function loginHandler(r){
+  log(r);
+  hello(r.network).api('me').on('complete', log);
+}
+
+function log(r){
+  var s = document.createTextNode(JSON.stringify(r, null, "\t"));
+  var pre = document.getElementsByTagName('pre')[0];
+  pre.insertBefore(s, pre.firstChild);
+}

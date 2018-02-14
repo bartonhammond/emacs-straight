@@ -1,0 +1,24 @@
+{
+    "testName": "Continuing Education",
+    "testScripts": [
+        "adminLogin.php",
+        "adminNewCategory.php",
+        "adminNewTerm.php",
+        "adminNewCourse.php",
+        "adminNewSession.php",
+        "adminNewWorkshop.php",
+        "adminTimeSlots.php"
+    ],
+    "sqlCommandHttp": "http:\/\/www.secured-site7.com\/uwce-staging\/www\/staging-reset",
+    "results": "\/Users\/barton\/projects\/wisnet\/automate\/src\/utilities\/..\/..\/test\/uwce\/adminCreateSessions\/output\/2017-12-13-14-24",
+    "screenshots": {
+        "browser_list_name": "wisnet-browsers",
+        "browser_list_name_save": "barton-test",
+        "login": "UWCE-admin",
+        "variables": {
+            "username": "bhammond@wisnet.com",
+            "password": "12345678a",
+            "course_id": "742"
+        }
+    }
+}

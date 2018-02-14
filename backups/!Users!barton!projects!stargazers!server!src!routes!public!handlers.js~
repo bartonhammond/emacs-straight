@@ -1,0 +1,249 @@
+'use strict';
+require('regenerator/runtime');
+
+let uuid = require('uuid');
+
+import CreateRunner
+from '../../newlib/online/runner/CreateRunner';
+
+import CreateStargazers
+from '../../newlib/online/stargazers/CreateStargazers';
+
+import CreateSplitter
+from '../../newlib/online/splitter/CreateSplitter';
+
+let internals ={};
+import  pako from 'pako';
+
+internals.runner = async function(req, reply) {
+
+  let createRunner =
+        CreateRunner.creator(req.params.access_token);
+
+  createRunner.createJob(
+    uuid.v4(),
+    req.params.owner,
+    req.params.repo,
+    0//force new page
+  );
+  reply('submitted');
+};
+
+internals.mapbox = async function(req, reply) {
+  let ProcessorClass = require('../../newlib/ProcessorClass');
+  let processorClass = new ProcessorClass();
+  
+  processorClass.getRedisValue(
+    processorClass.redisKeyMapBox,
+      req.params.owner
+      + ':'
+      + req.params.repo)
+    .then((currentValues) =>  {
+      if (!currentValues) {
+        reply('no results - please run Runner');
+      } else {
+        console.log('mapbox.length',currentValues.length);
+        reply(JSON.parse(pako.inflate(currentValues, { to: 'string' })));
+      }
+    });
+
+};
+
+internals.stargazers = async function(req, reply) {
+
+  let createStargazers =
+        CreateStargazers.creator(req.params.access_token);
+  
+  createStargazers.createJob(
+    uuid.v4(),
+    req.params.owner,
+    req.params.repo,
+    1//first page
+  );
+  
+  reply('submitted');
+};
+
+internals.user  = async function(req, reply) {
+
+  let createSplitter =
+        CreateSplitter.creator(req.params.access_token);
+  
+  createSplitter.createJob(
+    'User',
+    uuid.v4(),
+    req.params.owner,
+    req.params.repo,
+    req.params.user
+  );
+  
+  reply('submitted');
+};
+
+internals.starred  = async function(req, reply) {
+
+  let Runner = require('../../newlib/online/runner/Runner');
+  let runner = new Runner();
+
+  console.log('handlre.topFollwing 2');  
+  let job = {};
+  job.data = {};
+  job.data.owner = req.params.owner;
+  job.data.repo = req.params.repo;
+
+
+  runner.getTopStarredRepos(job)
+    .then((data) => {
+      if (!data) {
+        
+        let createSplitter =
+              CreateSplitter.creator(req.params.access_token);
+        
+        createSplitter.createJob(
+          'Starred',
+          uuid.v4(),
+          req.params.owner,
+          req.params.repo,
+          req.params.user,
+          '',//starred_at
+          1 //page
+        );
+        
+        reply('submitted');
+      } else {
+        console.log('starred.length',data.length);        
+        let limit = data.length;
+        if (limit > 100) {
+          limit = 100;
+        }
+        
+        let top100 = [];
+        for (let i = 0; i < limit; i++) {
+          top100.push(data[i]);
+        }
+        reply(top100);        
+      }
+    });
+  
+};
+/**
+ *  First, see if the owner/repo has already been processed
+ *  Otherwise, just do the user
+ */
+internals.following  = async function(req, reply) {
+  let Runner = require('../../newlib/online/runner/Runner');
+  let runner = new Runner();
+
+  console.log('handlre.topFollwing 2');  
+  let job = {};
+  job.data = {};
+  job.data.owner = req.params.owner;
+  job.data.repo = req.params.repo;
+
+  runner.getTopFollowing(job)
+    .then((data) => {
+      if (!data) {
+        
+        let createSplitter =
+              CreateSplitter.creator(req.params.access_token);
+        
+        createSplitter.createJob(
+          'Following',
+          uuid.v4(),
+          req.params.owner,
+          req.params.repo,
+          req.params.user,
+          '',//starred_at
+          1 //page
+        );
+        
+        reply('submitted');        
+      } else {
+        console.log('following.length',data.length);                
+        let limit = data.length;
+        if (limit > 100) {
+          limit = 100;
+        }
+        
+        let top100 = [];
+        for (let i = 0; i < limit; i++) {
+          top100.push(data[i]);
+        }
+        reply(top100);
+      }
+    });
+
+
+};
+
+/**
+ *  First, see if the owner/repo has already been processed
+ *  Otherwise, just do the user
+ */
+internals.followers  = async function(req, reply) {
+  let ProcessorClass = require('../../newlib/ProcessorClass');
+  let processorClass = new ProcessorClass();
+
+  processorClass.getRedisValue(
+    processorClass.redisKeyMapBox,
+      req.params.owner
+      + ':'
+      + req.params.repo)
+
+    .then((currentValues) =>  {
+      if (!currentValues) {
+        reply('no results - please run Runner');
+      } else {
+        let mapboxdata =  JSON.parse(
+          pako.inflate(currentValues, {
+            to: 'string'
+          }));
+        
+        if (mapboxdata
+            && mapboxdata.annotations) {
+          let followers = [];
+          mapboxdata.annotations.forEach((annotate) => {
+            if (annotate
+                && annotate.users) {
+
+              Object.keys(annotate.users).forEach((user) => {
+                followers.push({
+                  login: annotate.users[user].login,
+                  followers: annotate.users[user].followers
+                });
+              });//for each
+            };//if useres
+          });//foreach annotation
+          followers.sort((a, b) => {
+            return b.followers - a.followers;
+          });
+          let limit = followers.length;
+          if (limit > 100) {
+            limit = 100;
+          }
+          let top100 = [];
+          for (let i = 0; i< limit; i++) {
+            top100.push(followers[i]);
+          }
+          reply(top100);
+        } else {
+          reply('no followers to display');
+        };
+      }
+    });
+
+
+};
+
+
+module.exports = internals;
+
+
+
+
+
+
+
+
+
+

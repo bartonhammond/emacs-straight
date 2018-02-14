@@ -1,0 +1,45 @@
+* search github repositories
+  * stars:"> 5000"  => 699
+```
+https://github.com/search?utf8=%E2%9C%93&q=stars%3A%22%3E+5000%22+&type=Repositories&ref=searchresults
+```
+stars:"4000..5000"  => 297
+
+stars:"3000..4000" => 553
+
+stars:"2500..3000" => 478
+
+stars:"2000..2500" => 660
+
+stars:"1750..2000" => 474
+
+stars:"1500..1750" => 697
+
+stars:"1250..1500" => 913
+
+stars:"1100..1250" => 752
+
+stars:"1000..1100" => 601
+
+stars:"950..1000" => 352
+
+stars:"900..950" => 389
+
+stars:"850..900" => 428
+
+stars:"800..850" => 504
+
+stars:"750..800" => 577
+
+stars:"700..750" => 605
+
+stars:"675..700" => 351
+
+stars:"650..675" => 390
+
+stars:"625..650" => 419
+
+stars:"600..625" => 472
+
+stars:"599" => 13  
+

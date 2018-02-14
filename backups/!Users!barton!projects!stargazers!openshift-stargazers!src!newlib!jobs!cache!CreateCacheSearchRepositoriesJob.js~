@@ -1,0 +1,24 @@
+'use strict';
+/**
+ * Return promise that resolves to a GetStargazersForRepoJob
+ */
+let CreateSearchRepositoriesJob = function(queue, access_token, minstars, maxstars)
+{
+  return new Promise((resolve, reject) => {
+    let job = queue.create('searchRepositories', {
+      title: 'searchRepositories: '
+        + minstars + '->'
+        + maxstars,
+      access_token: access_token,
+      minstars: minstars,
+      maxstars: maxstars
+    }).save((err) => {
+      if (err) {
+        reject(err);
+      }
+    });
+    resolve(job);
+  });
+};//createJob
+
+module.exports = CreateSearchRepositoriesJob;

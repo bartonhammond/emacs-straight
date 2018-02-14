@@ -1,0 +1,6 @@
+class Test {
+  echo(value) {
+    return value + 'barton';
+  }
+}
+module.exports = Test;

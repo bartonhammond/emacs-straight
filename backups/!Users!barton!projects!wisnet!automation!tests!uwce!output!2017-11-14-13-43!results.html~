@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wisnet - Everyday Fit - Screen Shots</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script>
+    $(function(){
+      $("#includedContent").load("./screenshots.html");
+    });
+    n =  new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+    document.getElementById("date").innerHTML
+       = "Browserstack Screentshot: " +  m + "/" + d + "/" + y;
+    </script>
+  </head>
+
+  <body cz-shortcut-listen="true">  
+
+    <div class="modal fade" id="logModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">ios_10_0_iPhone_7</h4>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li>Failed result item</li>
+                    <li>Failed result item</li>
+                    <li>Failed result item</li>
+                    <li>Failed result item</li>
+                    <li>Failed result item</li>
+                    <li>Failed result item</li>
+                    <li>Failed result item</li>
+                    <li>Failed result item</li>
+                    <li>Failed result item</li>
+                    <li>Failed result item</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Create Issue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="appHeader">
+    <div class="appHeader__inner">
+        <h1>Wisnet - Everyday Fit</h1>
+    </div>
+</div>
+
+
+<div class="appMain">
+    <h3 id="date">Browserstack Screenshots</h3>
+    <p>Captured screen shots from running Automated scripts </p>
+
+    <form class="appSortBar">
+        <label for="">Filter Results: </label>
+        <select name="" id="">
+            <option value="">Device OS</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+        </select>
+        <select name="" id="">
+            <option value="">Device OS &amp; Version</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+        </select>
+        <select name="" id="">
+            <option value="">Screen Title</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+            <option value="">Option</option>
+        </select>
+    </form>
+
+      <table>
+          <div id="includedContent"></div>
+      </table>
+    </div>
+    <script src="site.min.js"></script>
+  </body>
+</html>

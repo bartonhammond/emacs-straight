@@ -1,0 +1,27 @@
+Template.nav.rendered = function() {
+   this.ui =
+    webix.ui({
+
+      rows:[
+        { 
+	  view:"toolbar",
+	  cols:[
+            {view:"label", width: 200, template: "<div>AccountsTemplates</div>"},
+            {view:"menu",
+	     data:[
+	       { id:"menuHome",value:"Home", href: "/"},
+	       { id:"menuPrivate",value:"Private", href: "/private"}
+	     ]
+            },
+	    { view:"button", value:"Signin", width:100, align: "right" }
+	  ]
+        } 
+      ]
+  }, this.find("nav"));
+};
+
+Template.nav.destroyed = function() {
+  if (this.ui) {
+    this.ui.destructor();
+  }
+};

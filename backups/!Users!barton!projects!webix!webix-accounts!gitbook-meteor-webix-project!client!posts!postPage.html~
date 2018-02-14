@@ -1,0 +1,39 @@
+<template name="post">
+  <div id="_{{id}}">
+    <div data-id="{{id}}"
+         data-name="{{id}}"
+         data-view="layout"
+         data-type="clean"
+         data-stack="cols">
+      
+      <div data-type="clean"
+           data-gravity=1
+           data-minWidth=25>
+      </div>
+      
+      <div data-view="layout"
+           data-type="clean"
+           data-gravity=4
+           data-position="flex">{{>postForm}}
+      </div>
+      
+      <div data-type="clean"
+           data-gravity=1
+           data-minWidth=25>
+      </div> 
+    </div>
+  </div>
+</template>
+
+<template name="postSubmit">
+  {{>post state="postSubmit"}}
+</template>
+
+<template name="postEdit">
+  {{>post state="postEdit"}}
+</template>
+
+<template name="postPage">
+  {{>post state="postPage"}}
+</template>
+

@@ -1,0 +1,20 @@
+Template.page_not_found.rendered = function() {
+  var controller = Iron.controller();
+
+  var page = '
+     <h1>
+        Houston, we have a problem!!!
+    </h1>
+    <br>
+     <h3>
+        The page you are looking for was not found.
+      <br>
+        If you got here from an old permalink, it might be that something changed in the mean while...
+    </h3>';
+
+  controller.showOrDelay(
+    {
+      view:"label", id: 'page_not_found', height: 100%, align: 'center', template: page
+    });
+
+};

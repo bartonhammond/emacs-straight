@@ -1,0 +1,66 @@
+# Step 1
+
+## Do these things
+
+* ```src/components/Home.js```
+    * Add two buttons
+        * Increment
+        * Decrement
+    * Display: ```this.props.counter```
+
+* add ```src/actions/counterActions.js```
+    * add constants INCREMENT & DECREMENT
+    * add functions for each
+
+* add ```src/reducers/counterReducer.js``` 
+    * import the ```counterActions```
+    * create ```counter``` reducer
+
+
+* update ```package.son``` 
+    * npm install --save-dev
+        * babel-jest
+        * jest-cli
+    * add jest support
+
+```
+  "jest": {
+    "scriptPreprocessor": "./node_modules/babel-jest",
+    "setupEnvScriptFile": "./node_modules/react-native/jestSupport/env.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ],
+    "unmockedModulePathPatterns": [
+     ],
+    "verbose": true,
+    "testPathDirs": [
+      "src/"
+    ]
+  }
+```
+
+*  add npm scripts
+    * test - run the tests with jest
+    * start - start react-native from command line
+```
+  "scripts": {
+    "test": "rm -rf ./node_modules/jest-cli/.haste_cache && jest ",
+    "start": "react-native start",
+  },
+
+```
+* add ```src/__tests__/simple-test.js```
+    * expect true to be true
+
+* run the test to verify Jest is installed 
+
+```npm test```

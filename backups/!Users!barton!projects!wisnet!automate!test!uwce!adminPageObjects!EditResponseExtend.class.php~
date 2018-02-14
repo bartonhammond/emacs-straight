@@ -1,0 +1,261 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+use Facebook\WebDriver\WebDriverSelect;
+use Facebook\WebDriver\WebDriverBy;
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickBwh1516905836Ham1516905836Link",
+        "attributeType": "link",
+       "attributeName": "bwh1516905836Ham1516905836",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/admin/user/account/478&#x27;]"
+     },
+
+    {     
+        "operationName": "clickBwhMusicCourseLink",
+        "attributeType": "link",
+       "attributeName": "bwhMusicCourse",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/catalog/bwh-music-course&#x27;]"
+     },
+
+    {     
+        "operationName": "clickBwhSessionTitleFeb25thLink",
+        "attributeType": "link",
+       "attributeName": "bwhSessionTitleFeb25th",
+        "attributeStrategy": "css",
+        "attributeValue": "#registrantsform div.group div:nth-of-type(3) a"
+     },
+
+    {     
+        "operationName": "clickCancelLink",
+        "attributeType": "link",
+       "attributeName": "cancel",
+        "attributeStrategy": "css",
+        "attributeValue": "a.cancel-registration.btn.btn-default"
+     },
+
+    {     
+        "operationName": "clickSaveButton",
+        "attributeType": "button",
+       "attributeName": "save",
+        "attributeStrategy": "css",
+        "attributeValue": "#registrantsform form.table-responsive div.buttongroup button.btn.btn-primary"
+     },
+
+
+
+    {     
+        "operationName": "setQuestionsDropDownListField",
+        "operationArgument" : "questionsValue",
+        "attributeType": "select",
+       "attributeName": "questions",
+        "attributeStrategy": "name",
+        "attributeValue": "reg_478_q480_answer"
+     },
+
+    {     
+        "operationName": "setWorkshopsDropDownListField",
+        "operationArgument" : "workshopsValue",
+        "attributeType": "select",
+       "attributeName": "workshops",
+        "attributeStrategy": "name",
+        "attributeValue": "reg_478_wts202_workshopId"
+     },
+
+
+    {     
+        "operationName": "unsetQuestionsDropDownListField",
+        "operationArgument" : "questionsValue",
+        "attributeType": "select",
+       "attributeName": "questions",
+        "attributeStrategy": "name",
+        "attributeValue": "reg_478_q480_answer"
+     },
+
+    {     
+        "operationName": "unsetWorkshopsDropDownListField",
+        "operationArgument" : "workshopsValue",
+        "attributeType": "select",
+       "attributeName": "workshops",
+        "attributeStrategy": "name",
+        "attributeValue": "reg_478_wts202_workshopId"
+     },
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class EditResponse extends \Automate\Page {
+
+
+
+
+     protected $pageLoadedText = "UW-Fond du Lac (Staging)";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/registration/edit-reponses/401/s";
+
+
+
+   protected static $_selectors = [
+    "bwh1516905836Ham1516905836" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/admin/user/account/478']"
+    ],
+
+    "bwhMusicCourse" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/catalog/bwh-music-course']"
+    ],
+
+    "bwhSessionTitleFeb25th" =>
+    [
+       "css" => "#registrantsform div.group div:nth-of-type(3) a"
+    ],
+
+    "cancel" =>
+    [
+       "css" => "a.cancel-registration.btn.btn-default"
+    ],
+
+
+
+    "questions" =>
+    [
+       "name" => "reg_478_q480_answer"
+    ],
+
+    "save" =>
+    [
+       "css" => "#registrantsform form.table-responsive div.buttongroup button.btn.btn-primary"
+    ],
+
+    "workshops" =>
+    [
+       "name" => "reg_478_wts202_workshopId"
+    ],
+    ];
+    /**
+     * Click on Bwh1516905836 Ham1516905836 Link.
+     *
+     */
+    function clickBwh1516905836Ham1516905836Link() {
+        //link
+        $this->click(self::$_selectors['bwh1516905836Ham1516905836']);
+    }
+
+    /**
+     * Click on Bwh Music Course Link.
+     *
+     */
+    function clickBwhMusicCourseLink() {
+        //link
+        $this->click(self::$_selectors['bwhMusicCourse']);
+    }
+
+    /**
+     * Click on Bwh Session Title Feb 25th Apr 25th Mon Tu Wed 600 Am 600 Pm Link.
+     *
+     */
+    function clickBwhSessionTitleFeb25thLink() {
+        //link
+        $this->click(self::$_selectors['bwhSessionTitleFeb25th']);
+    }
+
+    /**
+     * Click on Cancel Link.
+     *
+     */
+    function clickCancelLink() {
+        //link
+        $this->click(self::$_selectors['cancel']);
+    }
+
+    /**
+     * Click on Save Button.
+     *
+     */
+    function clickSaveButton() {
+        //button
+        $this->click(self::$_selectors['save']);
+    }
+
+
+
+    /**
+     * Set default value to Questions Drop Down List field.
+     *
+     */
+    function setQuestionsDropDownListField($questionsValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["questions"]));
+        $webDriverSelect->selectByVisibleText($questionsValue);        
+    }
+
+    /**
+     * Set default value to Workshops Drop Down List field.
+     *
+     */
+    function setWorkshopsDropDownListField($workshopsValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["workshops"]));
+        $webDriverSelect->selectByVisibleText($workshopsValue);        
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickSaveButton();
+    }
+
+    /**
+     * Unset default value from Questions Drop Down List field.
+     *
+     */
+    function unsetQuestionsDropDownListField($questionsValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["questions"]));
+        $webDriverSelect->selectByVisibleText($questionsValue);        
+    }
+
+    /**
+     * Unset default value from Workshops Drop Down List field.
+     *
+     */
+    function unsetWorkshopsDropDownListField($workshopsValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["workshops"]));
+        $webDriverSelect->selectByVisibleText($workshopsValue);        
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+         $text = $this->pageLoadedText;
+        $driver = $this->driver;
+        return $driver->wait(self::WAIT_TIME, self::ITERATE_TIME)->until(
+            function () use ($driver, $text)  {
+                try {
+                    $source = $driver->getPageSource();
+                    if (strpos($source,$text) !== false) {
+                        return true;
+                    }
+                    return false;
+                } catch (\Exception $e) {
+                    return false;
+                }
+        });
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return strpos($this->driver->getCurrentURL(),
+                      $this->pageUrl) !== false;
+    }
+}

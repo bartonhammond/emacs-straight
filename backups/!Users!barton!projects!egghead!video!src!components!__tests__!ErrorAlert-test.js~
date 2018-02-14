@@ -1,0 +1,19 @@
+'use strict';
+
+jest.dontMock('../ErrorAlert');
+const ErrorAlert = require('../ErrorAlert');
+
+            
+describe('ErrorAlert', () => {
+  it('calls alert function with two parameters', () => {
+    const errorObject = {
+      error: 'message'
+    };   
+    
+    new ErrorAlert().checkError(errorObject);
+    expect(true).toEqual(false);
+    
+  });
+
+
+});

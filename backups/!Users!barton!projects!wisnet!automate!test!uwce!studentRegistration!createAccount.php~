@@ -1,0 +1,12 @@
+$this->assertTrue($this->createAccount->verifyPageLoaded());
+$this->assertTrue($this->createAccount->verifyPageUrl());
+$this->createAccount->setFirstNameTextField("Barton");
+$this->createAccount->setLastNameTextField("LastName");
+$this->createAccount->setPhoneNumberTextField("8885551212");
+$this->createAccount->setEmailAddressTextField("FirstName@LastName.com");
+$this->createAccount->setRetypeEmailAddressTextField("FirstName@LastName.com");
+$this->createAccount->setPassword1PasswordField("12345678a");
+$this->createAccount->setPassword2PasswordField("12345678a");
+//need special copy
+$this->createAccount->setDateOfBirthTextField("10/10/2017);
+$this->createAccount->clickLogInButton();

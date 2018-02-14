@@ -1,0 +1,3 @@
+56a387302d5271a0390000e9@stargazers-bartonhammond.rhcloud.com
+
+ scp -r 56a387302d5271a0390000e9:~/app-root/logs/ .; tar czvf /tmp/log_files.tar.gz logs/

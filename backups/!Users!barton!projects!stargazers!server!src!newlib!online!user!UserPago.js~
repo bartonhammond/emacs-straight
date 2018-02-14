@@ -1,0 +1,40 @@
+'use strict';
+require('regenerator/runtime');
+
+import BaseClass from '../../BaseClass';
+
+class GetUser extends BaseClass{
+  constructor() {
+    super();
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process(
+      'getUser',
+      13,//3 batch, 10 online
+      function(job,
+               ctx,
+               done) {
+
+        
+        self.gitHub.access_token = job.data.access_token;
+        self.gitHub.id = job.data.id;
+        
+        self.gitHub.getUser(
+          job.data.login)
+        
+          .then((user) => {
+            done(null, user);
+            
+          }).catch((err) => {
+            done(err);
+            self.needToPause(ctx, err);
+          });
+
+      });
+  }
+}
+module.exports = GetUser;
+
+

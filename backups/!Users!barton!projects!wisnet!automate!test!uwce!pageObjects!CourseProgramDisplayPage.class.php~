@@ -1,0 +1,27 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class CourseProgramDisplayPage extends \Automate\Page {
+    private static $_selectors = [
+        "h2_heading" =>
+        [
+            "css" => "div#primary h2"
+        ]
+    ];
+    
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors['h2_heading']
+        ]);
+    }
+
+    function getH2HeadingText() {
+        return $this->find(self::$_selectors['h2_heading'])->getText();
+    }
+            
+    
+}
+
+
+
+
+

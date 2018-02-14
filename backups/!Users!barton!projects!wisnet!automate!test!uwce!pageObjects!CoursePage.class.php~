@@ -1,0 +1,78 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class CoursePage extends \Automate\Page {
+    private static $_selectors = [
+        "course_title" =>
+        [
+            "id" => "course_title"
+        ],
+        "course_number" =>
+        [
+            "id" => "course_number"
+        ],
+        "course_description" =>
+        [
+            "script" => ""
+        ],
+        "additional_info" =>
+        [
+            "script" => ""
+        ],
+        "category" =>
+        [
+            "xpath" => "//form[@id='editCourseForm']/div[2]/div[2]/div[2]/div/div[4]/div/div/select//option[2]"
+        ],
+        "h2_heading" =>
+        [
+            "css" => "div#primary h2"
+        ]
+    ];
+
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors['course_title'],
+                                          self::$_selectors['course_number'],
+                                          self::$_selectors['course_title'],
+                                          self::$_selectors['category']
+        ]);
+    }
+    
+    function typeTitle($title) {
+        $this->type(self::$_selector['course_title'], $title);
+    }
+    
+    function typeCourseNumber($title) {
+        $this->type(self::$_selector['course_title'], $title);
+    }
+
+    function typeCourseDescription($title) {
+        $selector = self::$_selector['course_description'];
+        $selector["script"] = "window.frames[0].document.body.innerText = '"
+                            . $title
+                            . "'";
+    }
+    function typeAdditionalInformation($info) {
+        $selector = self::$_selector['additional_info'];
+        $selector["script"] = "window.frames[1].document.body.innerText = '"
+                            . $info
+                            . "'";
+    }
+
+    function setCategory() {
+        $option = $this->find(self::$_selector('category'));
+        if (!$option->isSelected()) {
+            $options->click();
+        }
+    }
+    
+    function getH2HeadingText() {
+        return $this->find(self::$_selectors['h2_heading'])->getText();
+    }
+
+}
+
+
+
+
+

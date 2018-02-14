@@ -1,0 +1,9 @@
+<template name="masterLayout">
+  {{> yield region='nav'}}
+  {{> atNavButton}}
+  <div id="content">
+    {{> yield}}
+
+  </div>
+  {{> yield region='footer'}}
+</template>

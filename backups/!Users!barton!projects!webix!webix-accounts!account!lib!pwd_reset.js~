@@ -1,0 +1,21 @@
+'use strict';
+
+Template.signin.onCreated(function() {
+  WebixDefaults.setState('signIn');
+});
+
+Template.signin.onRendered(function() {
+  if (_.isUndefined(webix.ui.views['signin'])) {
+    var component =  webix.markup.init();
+     webix.event(window, 'resize', function(){
+       component.resize();
+     });
+  }
+});
+
+Template.signin.onDestroyed(function() {
+  if (webix.ui.views['signin']) {
+    webix.ui.views['signin'].destructor();
+  }
+});
+

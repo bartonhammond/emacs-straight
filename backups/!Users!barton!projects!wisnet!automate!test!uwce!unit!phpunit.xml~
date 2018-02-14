@@ -1,0 +1,8 @@
+<phpunit bootstrap="src/autoload.php">
+  <testsuites>
+    <testsuite name="uwce">
+      <directory>test/uwce/unit</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
+

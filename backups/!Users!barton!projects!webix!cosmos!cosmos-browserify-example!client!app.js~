@@ -1,0 +1,25 @@
+Template.app.events({
+  "keyup input": function(e, t) {
+    e.preventDefault();
+    console.log('keyup input');
+  },
+   "focusout input": function(event, t){
+     console.log('focusout inpu');
+   }
+})
+
+Template.app.helpers({
+  useAppUppercase: function(text) {
+    return appUppercase(text);
+  },
+  example1UppercaseExists: function() {
+    return typeof example1Uppercase !== "undefined" && example1Uppercase !== null ? example1Uppercase : 'undefined';
+  },
+  example2UppercaseExists: function() {
+    return typeof example2Uppercase !== "undefined" && example2Uppercase !== null ? example2Uppercase : 'undefined';
+  }
+});
+Template.app.onRendered(function () {
+     console.log('app.onRendere');
+});
+

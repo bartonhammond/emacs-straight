@@ -1,0 +1,25 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class CatalogSearchExtra extends CatalogSearch {
+
+   private static $_selectors = [
+    "musicCourseDescription" =>
+    [
+       "xpath" => "//a/h3[contains(text(), 'replace')]"
+    ]
+   ];
+
+    /**
+     * Click on CourseDescription with $text
+     *
+     */
+    function clickMusicCourseDescription($text) {
+        //link
+        $xpath = "//a/h3[contains(text(), '"
+                . $text
+                . "')]";
+        $this->click(["xpath" => $xpath]);
+    }
+
+}

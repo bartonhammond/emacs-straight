@@ -1,0 +1,14 @@
+{
+  "name": "wisnet/automation",
+  "description": "Automation of device/browsers",
+  "authors": [
+    {
+      "name": "Barton Hammond",
+      "email": "bhammond@wisnet.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "bcosca/fatfree": "^3.6"
+  }
+}

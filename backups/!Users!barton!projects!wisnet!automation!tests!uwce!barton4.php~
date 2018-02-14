@@ -1,0 +1,108 @@
+<?php
+
+namespace MyProjectTests;
+
+use \PHPUnit_Framework_TestCase;
+
+class barton4 extends PHPUnit_Framework_TestCase {
+
+   /**
+    * @var RemoteWebDriver
+    */
+    protected $webDriver;
+    public function setUp() {
+        parent::setUp();
+        $capabilities    = array(WebDriverCapabilityType::BROWSER_NAME => 'firefox');
+        $this->webDriver = RemoteWebDriver::create('http://127.0.0.1:4444/wd/hub', $capabilities);
+        $this->webDriver->manage()->timeouts()->implicitlyWait(30);
+    }
+    public function testbarton4() {
+        $this->webDriver->get("https://www.secured-site7.com/uwce-staging/www/fond-du-lac/login");
+        $this->webDriver->findElement(WebDriverBy::id("username"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("username"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("username"))->sendKeys("bhammond@wisnet.com");
+        $this->webDriver->findElement(WebDriverBy::id("password"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("password"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("password"))->sendKeys("12345678a");
+        $this->webDriver->findElement(WebDriverBy::xpath("//section[@id='loginform']//button[.='Log in']"))->click();
+        $this->webDriver->findElement(WebDriverBy::linkText("Administration"))->click();
+        $this->webDriver->findElement(WebDriverBy::linkText("Courses and Programs"))->click();
+        $this->webDriver->findElement(WebDriverBy::linkText("BWH Music Course"))->click();
+        $this->webDriver->findElement(WebDriverBy::linkText("Edit"))->click();
+        $this->webDriver->findElement(WebDriverBy::linkText("Add New"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_label"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_label"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("session_label"))->sendKeys("BWH Session Title");
+        if (!$this->webDriver->findElement(WebDriverBy::xpath("//div[@id='primary']/div/section[2]/div/section/div/div[3]/div/div/div/div[2]/select//option[2]"))->isSelected()) {
+            $this->webDriver->findElement(WebDriverBy::xpath("//div[@id='primary']/div/section[2]/div/section/div/div[3]/div/div/div/div[2]/select//option[2]"))->click();
+        }
+        $this->webDriver->findElement(WebDriverBy::id("session_startDate"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_startDate"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("session_startDate"))->sendKeys("11/01/2017");
+        $this->webDriver->findElement(WebDriverBy::id("session_endDate"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_endDate"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("session_endDate"))->sendKeys("11/30/2017");
+        $this->webDriver->findElement(WebDriverBy::id("session_contactHours"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_contactHours"))->sendKeys("\\9");
+        $this->webDriver->findElement(WebDriverBy::id("session_startTime"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_startTime"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("session_startTime"))->sendKeys("06:00 AM");
+        if (!$this->webDriver->findElement(WebDriverBy::name("session_monday"))->isSelected()) {
+            $this->webDriver->findElement(WebDriverBy::name("session_monday"))->click();
+        }
+        $this->webDriver->findElement(WebDriverBy::xpath("//div[@id='date_time']//label[normalize-space(.)='Tue']"))->click();
+        if (!$this->webDriver->findElement(WebDriverBy::name("session_tuesday"))->isSelected()) {
+            $this->webDriver->findElement(WebDriverBy::name("session_tuesday"))->click();
+        }
+        if (!$this->webDriver->findElement(WebDriverBy::name("session_wednesday"))->isSelected()) {
+            $this->webDriver->findElement(WebDriverBy::name("session_wednesday"))->click();
+        }
+        if (!$this->webDriver->findElement(WebDriverBy::name("session_thursday"))->isSelected()) {
+            $this->webDriver->findElement(WebDriverBy::name("session_thursday"))->click();
+        }
+        $this->webDriver->findElement(WebDriverBy::xpath("//div[@id='date_time']//label[normalize-space(.)='Fri']"))->click();
+        if (!$this->webDriver->findElement(WebDriverBy::name("session_friday"))->isSelected()) {
+            $this->webDriver->findElement(WebDriverBy::name("session_friday"))->click();
+        }
+        $this->webDriver->findElement(WebDriverBy::linkText("Location"))->click();
+        $this->webDriver->findElement(WebDriverBy::xpath("//div[@id='primary']//a[.='Registration & Payments ']"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_registrationStartDate"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_registrationStartDate"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("session_registrationStartDate"))->sendKeys("10/15/2017");
+        $this->webDriver->findElement(WebDriverBy::id("session_registrationEndDate"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_registrationEndDate"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("session_registrationEndDate"))->sendKeys("11/01/2017");
+        $this->webDriver->findElement(WebDriverBy::id("session_earlyRegistrationDate"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_registrationStartDate"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_earlyRegistrationDate"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_earlyRegistrationDate"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("session_earlyRegistrationDate"))->sendKeys("10/20/2017");
+        $this->webDriver->findElement(WebDriverBy::id("session_lateRegistrationDate"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_lateRegistrationDate"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("session_lateRegistrationDate"))->sendKeys("11/15/2017");
+        $this->webDriver->findElement(WebDriverBy::id("session_minStudents"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_minStudents"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("session_minStudents"))->sendKeys("1");
+        $this->webDriver->findElement(WebDriverBy::id("session_maxStudents"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_maxStudents"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("session_maxStudents"))->sendKeys("3");
+        $this->webDriver->findElement(WebDriverBy::id("session_attendees"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("session_attendees"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("session_attendees"))->sendKeys("1");
+        $this->webDriver->findElement(WebDriverBy::linkText("Instructors"))->click();
+        if (!$this->webDriver->findElement(WebDriverBy::xpath("//div[@id='instructors']/div/div[2]/div/div[1]/div/select//option[2]"))->isSelected()) {
+            $this->webDriver->findElement(WebDriverBy::xpath("//div[@id='instructors']/div/div[2]/div/div[1]/div/select//option[2]"))->click();
+        }
+        $this->webDriver->findElement(WebDriverBy::xpath("//div[@id='instructors']/div/div[2]/div/div[2]"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("instructor_pay"))->click();
+        $this->webDriver->findElement(WebDriverBy::id("instructor_pay"))->clear();
+        $this->webDriver->findElement(WebDriverBy::id("instructor_pay"))->sendKeys("25");
+        $this->webDriver->findElement(WebDriverBy::linkText("Additional Info"))->click();
+        $this->webDriver->findElement(WebDriverBy::linkText("Save"))->click();
+        $this->webDriver->findElement(WebDriverBy::xpath("//div[@id='primary']/div/section[2]/div/div"))->click();
+    }
+    public function tearDown() {
+        $this->webDriver->close();
+        parent::tearDown();
+    }
+}

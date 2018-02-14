@@ -1,0 +1,26 @@
+###Snowangel
+
+####One repository - many steps
+
+* Each step has a ```README.md``` of what to do
+* The next step shows how it was achieved
+
+# Content
+
+- [The Initial App](#0-the-initial-app)
+- [The Next Step](#1-the-next-step)
+
+
+## 0 The Initial app
+    
+* This step was started by creating a React-Native app
+  * see:
+  [https://facebook.github.io/react-native/docs/getting-started.html#content](https://facebook.github.io/react-native/docs/getting-started.html#content)
+
+```
+react-native init snowangel
+```
+
+## 1 The Next Step
+
+

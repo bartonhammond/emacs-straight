@@ -1,0 +1,207 @@
+'use strict';
+/**
+ * Methods that work with GitHub
+ */
+var CONFIG = require('./config');
+require('isomorphic-fetch');
+require('regenerator/runtime');
+let Util = require('./Util');
+let _ = require('underscore');
+
+class GitHub {
+  constructor(){
+    this.token = CONFIG.gitHub.token;
+    this.util = new Util();
+    this.GITHUB_API_BASE = 'https://api.github.com';
+    this.parseLinkHeader = require('parse-link-header');        
+  }
+  /**
+   * Get a single page of stargazers
+   * @return Response
+   */
+  async getStargazers(owner, repo, page) {
+    owner = owner.toLowerCase().trim();
+    var url = `/repos/${owner}/${repo}/stargazers`;
+    
+    return await this._fetch( {
+      method: 'GET',
+      page: page,
+      url: url
+    });
+  }
+  /**
+   * Get a single page of StarGazers
+   * @return JSON
+   */
+  async getAllStarGazersPage(owner, repo, page) {
+    return await this.getStargazers(owner, repo, page)    
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          return res.json();
+        } else {
+          throw 'getAllStarGazersPage something went wrong';
+        }
+      });
+  }
+  /**
+   * Generate Promises for each StarGazer page
+   * return array of JSON
+   */
+  async _getAllStarGazers(owner, repo) {
+    let res = await this.getStargazers(owner, repo, 1);
+
+    if (res.status === 200 || res.status === 201) {
+      let link = this.parseLinkHeader(res.headers.get('link'));
+
+      if (_.isUndefined(link) || _.isNull(link)) {
+        return Promise.resolve(res.json());
+      }
+      if(link.last.page > 1) {
+        var promises = [];
+        for (let page = 0; page < link.last.page; page++) {
+          promises.push(this.getAllStarGazersPage(owner, repo, page + 1));
+        }
+        return Promise.all(promises);
+      }//last.page
+    }
+    return Promise.reject('Bad return from gitHub.getStargazers: ' + res.status);
+  }
+  /**
+   * Public api - 
+   * @returns JSON of all Stargazers
+   */
+  async getAllStarGazers(owner, repo){
+    let results = await this._getAllStarGazers(owner, repo);
+
+    let stargazers = [];
+    if (_.isArray(results) && _.isArray(results[0])){
+      for (let result of results) {
+        stargazers.push(...result);
+      }
+    } else {
+      stargazers = results;
+    }
+    return stargazers;
+  }
+  /**
+   * @return array of JSON (user)
+   */
+  async _getAllStarGazersBio(stargazers) {
+    let promises = [];
+    for (let stargazer of stargazers) {
+      promises.push(this._getUser(stargazer.login));
+    }
+    return Promise.all(promises);
+  }
+  /**
+   * Run chuncks of user bios to avoid DOSA 
+   *
+   * @returns array of JSON (user)
+   */
+  async getAllStarGazersBio(stargazers) {
+    let chuncks = this.util.chunckArray(stargazers, 100);
+    let results = [];
+    for (let chunk of chuncks) {
+      let result = await this._getAllStarGazersBio(chunk);
+      for (let res of result) {
+        results.push(res);
+      }
+    }
+    return results;
+  }
+  
+  /**
+   * @return array of JSON
+   */
+  async getAllReposForUser(username) {
+    let more = true;
+    let page = 1;
+    let repos = [];
+    while (more) {
+      await this.getRepos(username, page)
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            let link = this.parseLinkHeader(res.headers.get('link'));
+            if (link.next && link.next.page) {
+              page+= 1;
+            } else {
+              more = false;
+            }
+            return res.json();
+          } else {
+            throw 'Something went wrong';
+          }
+        })
+        .then((json) => {
+          repos.push(...json);
+        });
+    }//more
+    return Promise.resolve(repos);    
+  }
+
+  /**
+   * Return user as json
+   */
+  async _getUser(login) {
+    return await this.getUser(login)
+      .then((res) => {
+        return res.json();
+      });
+  }
+  /**
+   * Return response
+   */
+  async getUser(login) {
+    login = login.toLowerCase().trim();
+    var url = `/users/${login}`;    
+    return await this._fetch( {
+      method: 'GET',
+      url: url
+    });    
+  }
+
+  async getRepos(username, page){
+    username = username.toLowerCase().trim();
+    var url = `/users/${username}/repos`;
+    
+    return await this._fetch( {
+      method: 'GET',
+      page: page,
+      url: url
+    });
+  }
+  /**
+   * ### _fetch
+   */  
+  async _fetch(opts) {
+    opts = _.extend({
+      method: 'GET',
+      url: null
+    }, opts);
+
+
+    var reqOpts = {
+      method: opts.method,
+      headers: {
+        'Authorization': 'token ' + this.token,
+        'User-Agent' : 'bartonhammond',
+        'Accept': 'application/vnd.github.v3+json'
+      }
+
+    };
+
+    let url = opts.url + (opts.page ? '?page=' + opts.page : '');
+    
+    return await fetch(this.GITHUB_API_BASE + url, reqOpts);
+  }
+};
+module.exports =  GitHub;
+
+
+
+
+
+
+
+
+

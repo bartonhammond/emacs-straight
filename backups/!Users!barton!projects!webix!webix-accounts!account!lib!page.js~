@@ -1,0 +1,32 @@
+'use strict';
+
+/**
+Signin base template
+*/
+Template.signin.onCreated(function() {
+  console.log('signin.onCreated');
+  WebixDefaults.setState('signIn');
+});
+
+Template.signin.onRendered(function() {
+  console.log('singin.onRendered');
+  if (_.isUndefined(webix.ui.views['signin'])) {
+    console.log('singin.onRendered.markup');
+    var component =  webix.markup.init();
+    webix.event(window, 'resize', function(){
+      component.resize();
+    });
+  }
+});
+
+Template.signin.onDestroyed(function() {
+  console.log('signin.onDestroyed');
+  if (webix.ui.views['signin']) {
+    console.log('signin.onDestroyed.destructor');
+    webix.ui.views['signin'].destructor();
+  } else {
+    console.log('signin.onDestroyed.NOdestructor');
+  }
+});
+
+

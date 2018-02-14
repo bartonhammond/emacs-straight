@@ -1,0 +1,21 @@
+Template.input.helpers({
+  value: function () {
+    // Read value from the collection.
+    var doc = Values.findOne(this.id);
+    if (doc) return doc.value;
+  }
+});
+
+Template.input.events({
+  // Save value to the collection when it changes.
+  'change input': function (event, template) {
+    Values.upsert(this.id, {$set: {
+      value: event.target.value
+    }});
+  },
+
+  // Auto-select text when user clicks in the input.
+  'click input': function (event, template) {
+    $(event.target).select();
+  }
+});

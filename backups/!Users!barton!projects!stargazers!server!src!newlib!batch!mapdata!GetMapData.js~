@@ -1,0 +1,32 @@
+'use strict';
+require('regenerator/runtime');
+
+import BaseClass from '../BaseClass';
+import GetMapDataProcessor from './GetMapDataProcessor';
+
+class GetMapData extends BaseClass{
+  constructor(queue) {
+    super(queue);
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process(
+      'getMapData',
+      13, //3 batch, 10 online
+      function(job,
+               ctx,
+               done) {
+        
+        new GetMapDataProcessor(
+          self.queue,
+          job,
+          ctx,
+          done).run();
+
+      });
+  }
+}
+module.exports = GetMapData;
+
+

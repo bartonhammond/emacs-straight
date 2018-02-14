@@ -1,0 +1,37 @@
+'use strict';
+require('regenerator/runtime');
+
+import BaseClass from '../BaseClass';
+
+class GetUser extends BaseClass{
+  constructor(queue) {
+    super(queue);
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process(
+      'getUser',
+      1,
+      function(job,
+               ctx,
+               done) {
+
+        self.gitHub.getUser(
+          job.data.login)
+        
+          .then((user) => {
+            console.log('GetUser.login',job.data.login);
+            done(null, user);
+            
+          }).catch((err) => {
+            done(err);
+            self.needToPause(ctx, err);
+          });
+
+      });
+  }
+}
+module.exports = GetUser;
+
+

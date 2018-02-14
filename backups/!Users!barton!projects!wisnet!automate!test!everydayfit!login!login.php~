@@ -1,0 +1,7 @@
+//Main page
+$home = "https://www.secured-site7.com/uwce-staging/www/login";
+    
+$this->driver->get($home);
+$this->main->waitPageLoaded();
+
+

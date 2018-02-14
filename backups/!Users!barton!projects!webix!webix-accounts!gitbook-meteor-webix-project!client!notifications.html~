@@ -1,0 +1,10 @@
+<template name="submenu">
+  <div data-view="submenu" data-id="submenu1">
+    <ul data-view="data">
+      {{#each notifications}}
+      <li data-href="{{notificationPostPath}}"
+          data-id="{{_id}}">{{commenterName}} </li>
+      {{/each}}
+    </ul>
+  </div>
+</template>

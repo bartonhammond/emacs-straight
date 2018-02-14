@@ -1,0 +1,30 @@
+Webix Blaze Components
+===================================================
+Attempt to utilize the (https://github.com/peerlibrary/meteor-blaze-components)[https://github.com/peerlibrary/meteor-blaze-components]
+        
+Steps to run:
+
+1) install meteor: curl https://install.meteor.com/ | sh
+
+2) install node/npm
+
+3) git clone https://github.com/bartonhammond/webix-iron-router.git
+
+4) cd webix-iron-router
+
+5) meteor
+
+
+Note: this application was written following the Package based structure
+
+A blank meteor application with some boilerplate that was born out of [this 
+hackpad](https://meteor.hackpad.com/Building-Large-Apps-Tips-d8PQ848nLyE) that 
+incorporates current best practices for creating a modular, all-packages app
+and promotes a specific workflow that makes working with a large code-base much 
+more manageable.
+
+The packages/app-lib/package.js has all the required packages loaded such as webix and iron-router.
+
+The application is defined w/in the packages/app-core/ directory - see the package.js to see which files are loaded in what order and to which environment (client or server or both).
+
+ 

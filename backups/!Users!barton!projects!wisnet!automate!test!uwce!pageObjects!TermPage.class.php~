@@ -1,0 +1,34 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class AdminPage extends \Automate\Page {
+    private static $_selectors = [
+        "administration" =>
+        [
+            "linkText" => "Administration"
+        ],
+        "h1_message" =>
+        [
+            "css" => "div#primary h1"
+        ],
+        "add_term" =>
+        [
+            "linkText" => "+ Add Term"
+        ]
+            
+    ];
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors["administration"]]);
+    }
+    function clickAdminMenu() {
+        $this->click(self::$_selectors['administration']);
+    }
+    function clickAddTerm()  {
+        $this->waitPageClickableBySelectors([self::$_selectors["add_term"]]);
+        $this->click(self::$_selectors['add_term']);
+    }
+    function getH1HeadingText() {
+        return $this->find(self::$_selectors['h1_message'])->getText();
+    }
+}

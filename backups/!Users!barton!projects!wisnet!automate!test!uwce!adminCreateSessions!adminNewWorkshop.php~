@@ -1,0 +1,78 @@
+//Start from Admin dashboard
+$adminPage->clickAdminMenu();
+
+$adminPage->clickCourseAndProgram();
+
+
+$cpPage = new CourseAndProgramPage($this->driver);
+$cpPage->waitPageLoaded();
+$this->takeSnapShot();
+
+$cpPage->typeCourseSearch("BWH Music Course");
+$cpPage->submit();
+
+$this->takeSnapShot();
+$this->assertEquals("BWH Music Course", $cpPage->getFirstSearchResultText());
+
+$cpPage->selectFirstSearchResult();
+$this->takeSnapShot();
+
+$cpDisplayPage = new CourseProgramDisplayPage($this->driver);
+$cpDisplayPage->waitPageLoaded();
+
+$this->assertContains("BWH Music Course", $cpDisplayPage->getH2HeadingText());
+
+$cpDisplayPage->clickAddNewSession();
+
+$session = new SessionPage($this->driver);
+$session->waitPageLoaded();
+
+$this->takeSnapShot();
+$this->assertEquals("Edit Session", $session->getH3HeadingText());
+
+$session->typeSessionTitle("BWH Session Title");
+$session->selectFirstTerm();
+$session->typeSessionStartDate("11/02/2017");
+$session->typeSessionEndDate("11/29/2017");
+$session->typeSessionStartTime("06:00 AM");
+
+$this->takeSnapShot();
+
+$session->clickMonday(TRUE);
+$session->clickTuesday(TRUE);
+$session->clickWednesday(TRUE);
+$session->clickThursday(TRUE);
+$session->clickFriday(TRUE);
+$this->takeSnapShot();
+
+//Registration tab
+$session->clickRegistrationAndPaymentsTab();
+$session->typeSessionRegistrationStartDate("10/15/2017");
+$session->typeSessionRegistrationEndDate("11/01/2017");
+$session->typeSessionEarlyRegistrationDate("10/20/2017");
+$session->typeSessionLateRegistrationDate("10/20/2017");
+
+$session->typeSessionFee("30");
+$session->typeEarlyRegistrationFee("25");
+$session->typeLateRegistrationFee("35");
+
+$session->typeDepositPayment("10");
+$session->typeSecondInstallment("15");
+
+$session->typeMinStudents("1");
+$session->typeMaxStudents("3");
+$session->typeAttendees("1");
+
+$session->clickInstructorsTab();
+$session->selectFirstInstructor();
+$session->typeInstructorPay("25");
+$session->addInstructor();
+
+$this->takeSnapShot();
+
+$session->submit();
+
+$this->takeSnapShot();
+
+$this->assertContains("Your changes have been saved.", $session->getActionMessageText());
+                      

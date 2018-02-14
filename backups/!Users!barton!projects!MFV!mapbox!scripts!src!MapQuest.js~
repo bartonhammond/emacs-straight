@@ -1,0 +1,105 @@
+'use strict';
+
+require('isomorphic-fetch');
+require('regenerator/runtime');
+
+let _ = require('underscore');
+
+class ArcGIS {
+  constructor(clientId, clientSecret){
+    this.clientId = clientId;
+    this.clientSecret = clientSecret;
+    this.accessToken = null;
+    this.ARCGIS_API_BASE = ' https://www.arcgis.com';
+    this.GEOCODE = 'http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer';
+  }
+
+  
+
+  async getToken() {
+    if (this.token) {
+      return Promise.resolve({access_token: this.token});
+    }
+    var url =
+          `/sharing/oauth2/token?client_id=${this.clientId}&grant_type=client_credentials&client_secret=${this.clientSecret}&f=pjson`;
+    return await fetch(this.ARCGIS_API_BASE + url)
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          return res.json();
+        } else {
+          throw 'ArcGIS error';
+        }
+      })
+      .then((json) => {
+        this.token = json.access_token;
+        return Promise.resolve(json);
+      });
+  }
+  /**
+   * @param user
+   * @location - latinaized
+   * returns object user with user.geo
+   */
+  async find(user, location) {
+    return await this.getToken()
+      .then((json) => {
+        var url = `/find?text=${location}&forStorage=false&token=${json.access_token}&f=pjson`;
+        return fetch(this.GEOCODE + url)
+          .then((res) => {
+            if (res.status === 200 || res.status === 201) {
+              return res.json();
+            } else {
+              throw 'GEOCODE error';
+            }
+          })
+          .then((json) => {
+            user.geo = json;
+            return user;
+          });
+      });
+  } 
+  
+
+  /**
+   * ### _fetch
+   */  
+  async _fetch(opts) {
+    opts = _.extend({
+      method: 'GET',
+      url: null,
+      body: null
+    }, opts);
+
+
+    var reqOpts = {
+      method: opts.method,
+      headers: {
+        'Authorization': 'token ' + this.token,
+        'User-Agent' : 'bartonhammond',
+        'Accept': 'application/vnd.github.v3+json'
+      }
+
+    };
+
+    if (opts.method === 'POST' || opts.method === 'PUT') {
+      reqOpts.headers['Content-Type'] = 'application/json;charset=UTF-8';
+    }
+
+    if (opts.body) {
+      reqOpts.body = JSON.stringify(opts.body);
+    }
+    let url = opts.url + (opts.page ? '?page=' + opts.page : '');
+    
+    return await fetch(this.GITHUB_API_BASE + url, reqOpts);
+  }
+};
+module.exports =  ArcGIS;
+
+
+
+
+
+
+
+
+

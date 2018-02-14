@@ -1,0 +1,22 @@
+'use strict';
+/**
+ * Return promise that resolves to a GetStargazersForRepoJob
+ */
+let CreateGetStargazersForRepo = function(queue, owner, repo)
+{
+  return new Promise((resolve, reject) => {
+    let job = queue.create('getStargazersForRepo', {
+      title: 'getStargazersForRepo: '
+        + repo,
+      owner: owner,
+      repo: repo
+    }).save((err) => {
+      if (err) {
+        reject(err);
+      }
+    });
+    resolve(job);
+  });
+};//createJob
+
+module.exports = CreateGetStargazersForRepo;

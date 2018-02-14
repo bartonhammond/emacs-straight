@@ -1,0 +1,16 @@
+'use strict';
+
+import {observable} from 'mobservable';
+
+const counterStore = observable({
+  counter: 0,
+  increment: function () {
+    this.counter++;
+  },
+  decrement: function() {
+    this.counter--;
+  }
+
+});
+module.exports = counterStore;
+

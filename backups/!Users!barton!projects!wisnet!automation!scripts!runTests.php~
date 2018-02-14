@@ -1,0 +1,40 @@
+<?php
+namespace Automation;
+
+require __DIR__ . '/../vendor/autoload.php';
+require './scripts/getBrowsers.php';
+
+class RunTests {
+
+    public function callBrowsers() {
+        $getBrowsers = new \Automation\GetBrowsers();
+        $results = $getBrowsers->get();
+        
+        $devices = $getBrowsers->parse($results, 'desktops');
+
+        $keys = $devices->keys();
+    
+        foreach ($keys as $key) {
+            $device =  $devices->get($key);
+
+
+            $cmd = "CONFIG_FILE=config/fit.conf.json " 
+                 . " OS='" . $device->os
+                 . "' OS_VERSION='" . $device->os_version
+                 . "' BROWSER='" . $device->browser
+                 . "' BROWSER_VERSION='" . $device->browser_version
+                 . "' vendor/bin/phpunit tests/everydayfit_test.php";
+            $output = shell_exec($cmd);
+            var_dump($output);
+        }
+
+        
+        
+
+    }
+
+
+}
+
+$command = new RunTests();
+$command->callBrowsers();

@@ -1,0 +1,41 @@
+var turf = require('turf');
+var tilebelt = require('tilebelt');
+
+// put your own data here
+var stargazers = [<list of lat lons>]
+// this sets the size of your grid cells; each grid cell is a map tile at the given zoom
+var zoom = 12 
+// tiles is a hash we can quickly add new tiles too and increment counts
+var tiles = {}
+
+stargazers.features.forEach(function(star){
+  // star.lon and star.lat are placeholders. use the appropriate attributes for your data
+  // our hash key for a tile is simply the tiles x, y, and z joined by a '/'; ie: "123/321/12"
+  var tile = tilebelt.pointToTile(star.lon, star.lat, zoom).join('/')
+  // if we have not seen the tile before, create a new key and set its value to 1
+  if(!tiles[tile]) tiles[tile] = 1
+  // if we have seen the tile before, increment the count by 1
+  else tiles[tile]++ 
+})
+
+// our tiles hash contains counts for each tile, so now we can convert it to geojson http://geojson.org/
+var fc = turf.featurecollection([])
+
+// Object.keys returns an array of all the keys contained in the hash, and we can immediately loop over these using forEach
+Object.keys(tiles).forEach(function(tile){
+  // split the tile key into an array and map the items to numbers
+  var poly = tilebelt.tileToGeoJSON(tile.split('/').map(Number))
+  // grab the count for the associated tile and set it on the geojson property object
+  poly.properties.stars = tiles[tile]
+  //add the new polygon to our featurecollection
+  fc.features.push(poly)
+})
+
+// print the result in stringified form
+console.log(JSON.stringify(fc))
+
+// try creating a choloropleth in geocolor or QGIS 
+// - http://geocolor.io/  
+// - http://qgis.org/en/site/
+// - https://en.wikipedia.org/wiki/Choropleth_map
+// choloropleth maps can be automated and created dynamically using the geocolor library https://github.com/morganherlocker/geocolor

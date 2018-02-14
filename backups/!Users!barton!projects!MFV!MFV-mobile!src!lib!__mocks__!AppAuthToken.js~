@@ -1,0 +1,14 @@
+'use strict';
+
+var AppAuthToken = {};
+
+AppAuthToken.getSessionToken = () => {
+  return {
+    sessionToken: {
+      sessionToken: 'token'
+    }
+  };
+};
+AppAuthToken.deleteSessionToken= () => {};
+
+module.exports = AppAuthToken;

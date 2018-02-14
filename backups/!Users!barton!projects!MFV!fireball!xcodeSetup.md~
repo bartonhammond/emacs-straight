@@ -1,0 +1,27 @@
+#
+Start w/ no Certs, Provisions or App Id
+Clone snowlake
+
+Open . -> select snowflake.xcodeproj
+
+Left pane (far left icon select above) -> click 'snowflake', center Project -> snowflake, right pane
+-> Indentity and Type -> change name -> enter
+
+Popup -> rename all
+
+Left pane ->  (far left icon select above) -> click 'fireball' ->
+center -> Target -> fireball -> top -> "General" -> center -> Identity
+-> Bundle Identifier -> 'org.bartonhammond.fireball'
+
+Xcode -> Top row -> run icon has 'showflake', select it, -> "Manage
+Scheme" -> select 'snowflake' and click the name to change it to ->
+fireball
+
+Xcode -> left pane under Fireball, select folder snowflake, far right
+pane -> Identity and Type -> change to 'fireball'
+
+Connect device to Mac
+
+Select device in Xcode top row
+
+Xcode -> Run

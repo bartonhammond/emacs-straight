@@ -1,0 +1,30 @@
+var Hapi = require('hapi');
+var JwtAuth = require('../auth/jwt-strategy');
+var Plugins = require('./plugins');
+var Router = require('./router');
+
+var internals = {};
+
+internals.server = new Hapi.Server();
+
+// configure server connection
+internals.server.connection({
+  host: 'localhost',
+  port: 3000
+});
+
+// register plugins
+internals.server.register(Plugins.get(), function (err) {
+
+  if (err) {
+    console.error(err);
+  }
+});
+
+// configure jwt strategy
+JwtAuth.setStrategy(internals.server);
+
+// set routes
+Router.init(internals.server);
+
+module.exports = internals.server;

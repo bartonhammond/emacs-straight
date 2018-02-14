@@ -1,0 +1,87 @@
+/**
+ * # Main.js
+ *  This is the main app screen
+ *  
+ */
+'use strict';
+/*
+ * ## Imports
+ *  
+ */
+
+/**
+ * The actions we need
+ */
+
+/**
+ * Immutable
+ */ 
+import {Map} from 'immutable';
+
+import model from '../store/model';
+/**
+ * Router
+ */
+import {Actions} from 'react-native-router-flux';
+
+/**
+ * The Header will display a Image and support Hot Loading
+ */
+import Header from '../components/Header';
+
+/**
+ * The components needed from React
+ */
+import React,
+{ 	
+  Component,
+  StyleSheet,
+  View
+}
+from 'react-native';
+
+/**
+ * The platform neutral button
+ */
+const  Button = require('apsl-react-native-button');
+
+var styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    flex: 1    
+  },
+  summary: {
+    fontFamily: 'BodoniSvtyTwoITCTT-Book',
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  button: {
+    backgroundColor: '#FF3366',
+    borderColor:  '#FF3366',
+    marginLeft: 10,
+    marginRight: 10    
+  }
+});
+
+/**
+ * ## App class
+ */
+class Main extends Component {
+  
+  render() {
+    debugger;
+    return(
+      <View style={styles.container}>
+        <View>
+          <Header isFetching={model.isFetching} />        
+        </View>
+      </View>
+    );
+  }
+};
+
+/**
+ *
+ */
+export default Main;
+

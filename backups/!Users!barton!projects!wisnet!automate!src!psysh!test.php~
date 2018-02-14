@@ -1,0 +1,20 @@
+// author : Ahmed Mubbashir Khan
+require_once 'vendor/autoload.php'; //composer generated autoload file
+use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\WebDriverBy;
+
+$host = 'http://0.0.0.0:4444/wd/hub';
+$driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome(), 50000,50000);
+/* 
+Or  if you wan't to modify $capabilities
+use Facebook\WebDriver\Remote\WebDriverCapabilityType;
+$capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'firefox');
+$driver = RemoteWebDriver::create($host, $capabilities);
+*/
+//e.g. Mouse over on an element
+$home = "https://www.secured-site7.com/uwce-staging/www/";
+    
+$driver->get($home);
+$element = $driver->findElement(WebDriverBy::id('catalogSearch_keyword'));
+echo $element->getAttribute('value');

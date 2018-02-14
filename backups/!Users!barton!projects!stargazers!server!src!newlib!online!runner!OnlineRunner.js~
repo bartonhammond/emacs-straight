@@ -1,0 +1,239 @@
+'use strict';
+require('regenerator/runtime');
+
+
+import ProcessorClass from '../../ProcessorClass';
+import Kue from 'kue';
+
+import uuid from 'uuid';
+
+class BatchRunner extends ProcessorClass{
+  constructor() {
+    super();
+    this.redisAppPartionKey = 'app:';
+    this.redisRunnerKey = 'runner';
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process(
+      'batchRunner',
+      1,
+      function(job,
+               ctx,
+               done) {
+
+        let Runner = {
+          one: {
+            account_token: '{access_token}',
+            start: 50,
+            step: 1,
+            spread: false,
+            finish: 100
+          },
+          two: {
+            account_token: 'd88d9c7f2879f4319f93be032a92a1326db12031',
+            start: 100,
+            step: 1,
+            spread: false,
+            finish: 500
+          },
+          three: {
+            account_token: '2ac7346f329b61384949c5aff2764002438622d1',
+            start: 500,
+            step: 5,
+            spread: true,
+            stop: 10000
+          },
+          four: {
+            account_token: '402c8d79597e66049bae78f327019d2c7d4c4002',
+            start: 10000,
+            step: 500,
+            spread: true,
+            stop: 100000
+          }
+        };
+        
+        let currentState = {
+          one: 0,
+          two: 0,
+          three: 0,
+          four: 0
+        };
+
+        let status = {};            
+        self.getInactiveJobs()
+          .then((jobs) => {
+
+            jobs.forEach( function( job ) {
+              if (job.data.access_token) {
+                if (!(job.data.access_token in status)) {
+                  status[job.data.access_token] = true;
+                }
+              }
+            });//forEach
+            return;
+          })
+          .then(() => {
+            return self.getRedisValue(
+              self.redisAppPartionKey,
+              self.redisRunnerKey);
+          })
+          .then((state) => {
+            if (state) {
+              currentState = state;
+            }
+            //If non-waiting
+            //create the mapbox job for the quadrant range just finished
+            //create a repository span for the quadrant by bumping next
+
+            //If waiting
+            //resubmit yourself w/ the quadrant, accesstoken, step
+            //set done
+            self.logger.info('BatchRunner.starting');
+            
+            for (let quad in Runner) {
+              if (!(Runner[quad].account_token in status)) {
+                  self.logger.info(
+                    'BatchRunner.running',              
+                    {acccess_token: Runner[quad].account_token,
+                     currentState: currentState[quad]});
+
+                
+                //starting
+                if (currentState[quad] < Runner[quad].start
+                    ||
+                    currentState[quad] > Runner[quad].finish) {
+                  currentState[quad] = Runner[quad].start;
+                  //finished?
+                } else {
+                  /**
+
+                   this causes collisions where the same
+                   instance of a processor is being 
+                   asked to perform using different page/name
+                   in stargazers
+
+                   need to build the mapbox as totally separate
+                   objects- maybe make new access_token
+
+                  //first, process the group that
+                  //just finished
+                  let stars = self.getMinAndMaxStars(
+                    Runner,
+                    currentState,
+                    quad);
+
+                  //Create all the MapBox jobs
+                  self.createRepoToMapboxJob(
+                    Runner[quad].account_token,
+                    stars.minstars,
+                    stars.maxstars);
+                   */
+                  
+                  //bump state by step                  
+                  currentState[quad]
+                    = currentState[quad] + Runner[quad].step;
+                }
+                
+                //Start another run of getting
+                //repositories w/ min/max stars
+                let stars = self.getMinAndMaxStars(
+                  Runner,
+                  currentState,
+                  quad);
+
+                self.createBatchRepositoryByPageJob(
+                  Runner[quad].account_token,
+                  stars.minstars,
+                  stars.maxstars);
+
+
+              }//in status
+            }//for quad
+
+            //Save the current state
+            self.redisClient.set(
+              self.redisAppPartionKey 
+                + self.redisRunnerKey,
+              JSON.stringify(currentState));
+
+
+            let CreateBatchRunnerJob = require('./CreateBatchRunnerJob');
+            let createBatchRunnerJob = new CreateBatchRunnerJob();
+            
+            createBatchRunnerJob.createJob(
+              uuid.v4()
+            );
+            
+            self.logger.info('BatchRunner.ending');
+            done();
+          })
+          .catch((err) => {
+            self.logger.error(
+              'BatchRunner',                
+              {error: err});
+            done(err);
+          });
+
+      });
+  } //init
+  getMinAndMaxStars(Runner, currentState, quad ) {
+    let minstars = currentState[quad];
+    
+    let maxstars = Runner[quad].spread
+          ? (minstars +  Runner[quad].step)
+          : minstars;
+
+    return {minstars: minstars,
+            maxstars: maxstars};
+  }
+  
+  createBatchRepositoryByPageJob(account_token, minstars, maxstars) {
+    let CreateBatchRepositoryByPage =
+          require('../repository/CreateBatchRepositoryByPage');
+    
+    let createBatchRepositoryByPage =
+          CreateBatchRepositoryByPage.creator(account_token);
+    
+    
+    createBatchRepositoryByPage.createJob(
+      uuid.v4(),
+      1,
+      minstars,
+      maxstars);
+  }
+  createRepoToMapboxJob(account_token, minstars, maxstars) {
+    //kick off something like repository page
+    //  for each entry kick off mapbox
+    let CreateRepoToMapboxJob
+          =  require('../repotomapbox/CreateRepoToMapboxJob');
+    
+    let createRepoToMapboxJob = CreateRepoToMapboxJob.creator(account_token);
+    
+    
+    createRepoToMapboxJob.createJob(
+      uuid.v4(),
+      1,
+      minstars,
+      maxstars);
+  }
+  
+  getInactiveJobs() {
+    return new Promise((resolve,reject) => {
+      try {
+        Kue.Job.rangeByState( 'inactive', 0, 10, 'asc', function( err, jobs ) {
+          if(err) {
+            reject(err);
+          }
+          resolve(jobs);
+        });
+      } catch(err) {
+        reject(err);
+      }
+    });
+  }
+}
+module.exports = BatchRunner;
+
+

@@ -1,0 +1,18 @@
+(function(){return function(module, exports, require, __dirname, __filename, global, jest, ____JEST_COVERAGE_DATA____) {
+var React = require('react-native');
+var {
+  Text
+} = React;
+
+var Button = React.createClass({
+  render: function() {
+    return (
+        <Text></Text>
+    );
+  }
+});
+
+module.exports = Button;
+
+}}());
+//# sourceURL=/Users/barton/projects/MFV/snowflake/node_modules/apsl-react-native-button/Button.js

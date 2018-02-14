@@ -1,0 +1,80 @@
+<?php
+namespace Automate;
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once './src/utilities/curlSupport.php';
+require_once './src/utilities/readTestDirectory.php';
+/*
+ * This class manages the JSON which contains all the URLs 
+ * that the script has taken SnapShots of.  
+ * For each URL, this will take ScreenShots for all the browsers
+ * defined by "wisnet-browsers" in the Automated Screenshots
+ * 
+ */
+class Screenshots{
+
+	protected $baseUrl = "https://crossbrowsertesting.com/api/v3/screenshots";
+    protected $fileName = "screenShotsUrl.json";
+
+	protected $currentTest = NULL;
+    protected $screenshotID;
+    protected $curlSupport;
+    
+    protected $mapOfUrls;
+    
+    protected $directory;
+    protected $testDir;
+    
+	function __construct($username, $authkey) {
+		$this->user = $username;
+		$this->authkey = $authkey;
+        $this->curlSupport = new CurlSupport($username, $authkey);
+        $this->mapOfUrls = new \Ds\Map();
+        $this->testDir  = __DIR__ . '/../../test';                
+	}
+    function getScreenShotURLs ($directory) {
+        $this->directory = $directory;
+
+        $filename = $this->directory . '/' . $this->fileName;
+
+        //See if there is an existing file and read it
+        if (is_file($filename)){
+            $data = file_get_contents($filename);
+
+            $this->jsonData = json_decode($data, true);
+        } else {
+            $this->jsonData = [];
+        }
+        
+        foreach ($this->jsonData as $data) {
+            $this->mapOfUrls->put($data["url"], $data);
+        }
+        return $this->mapOfUrls;
+    }
+    
+    function getEmptyValue($url) {
+        return array (
+            "url" => $url,
+            "base_test_id" => "",
+            "base_version_id" => "",
+            "target_version_id" => "" );
+        
+    }
+    function saveUrls($mapOfUrls) { 
+        $values = $mapOfUrls->values();
+        file_put_contents($this->directory . '/' . $this->fileName,
+                          json_encode($values,
+                                      JSON_PRETTY_PRINT),
+                          LOCK_EX);        
+    }
+    
+    //Save URLs for screenshot
+    function saveUrlIfNeeded($url) {
+        if (!$this->mapOfUrls->hasKey($url)) {
+            $this->mapOfUrls->put($url, $this->getEmptyValue($url));
+            //Save the URLs 
+            $this->saveUrls($this->mapOfUrls);
+            return $this->mapOfUrls;
+        }
+    }
+
+} //class

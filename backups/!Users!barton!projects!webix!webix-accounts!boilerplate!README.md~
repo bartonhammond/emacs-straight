@@ -1,0 +1,40 @@
+Webix boilerplate for Meteor User Account for Webix
+================
+
+####  Meteor Webix UserAccounts 
+
+Features:
+- [x] Full integration with Templates  
+- [x] Webix HTML Markup
+- [x] Accounts Password
+- [x] Accounts Google
+- [x] Translations for Meteor Account's
+- [x] Email sent for Password Reset
+- [x] Iron Router
+- [x] Signin, Signup, ResetPassword, Changed Password Form
+Validatation
+
+Live Functional Demo:
+[http://webix-account-boilerplate.meteor.com/](http://webix-account-boilerplate.meteor.com/)
+
+Client Boilerplate Code:
+[https://github.com/bartonhammond/webix-account-boilerplate](https://github.com/bartonhammond/webix-account-boilerplate)
+
+Meteor Webix User Account
+Package:[https://github.com/bartonhammond/webix-account]
+(https://github.com/bartonhammond/webix-account)
+
+[Client boilerplate](https://github.com/bartonhammond/webix-account-boilerplate)
+
+<img src="http://giant.gfycat.com/EnlightenedYawningBlackcrappie.gif" width="348">
+# Project setup: #
+
+Clone [bhammond:webix](https://github.com/bartonhammond/webix-account)
+package as it is referenced.  You will have to setup for local development
+(e.g. create a ./packages and from the packages/ directory do `ln -s /path/to/bhammond-webix/ webix`)
+
+Then `meteor`
+
+Demo: [webix-account-boilerplate](http://webix-account-boilerplate.meteor.com)
+
+

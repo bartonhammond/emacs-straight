@@ -1,0 +1,73 @@
+'use strict';
+
+let logger = require('../../Bunyan').logger();
+import UserPako from './UserPako';
+/**
+ * 
+ */
+class CreateRepoPakoJob {
+  constructor() {
+    this.userpako = new UserPako.init();
+}
+createJob(
+        queue,
+        id,
+        owner,
+        repo,
+        user) {
+        return new Promise((resolve, reject) => {
+          try {
+            let job = queue.create('repopago', {
+              title: 'repopago: '
+                + owner
+                + ':'
+                + repo
+                + ':'
+                + user,
+              id: id,
+              owner: owner,
+              repo: repo,
+              user: user
+            })
+
+            .save((err) => {
+              if (err) {
+                reject(err);
+              }
+            });
+            
+            job.on('complete', (results) => {
+              resolve(results);
+            });
+            
+            job.on('failed', (err) => {
+              throw(err);
+            });
+            
+          } catch(err) {
+            reject(err);
+            logger.error( 'CreateRepoPagoJob',
+                          { id: id,
+                            error: err});
+          }
+        });
+        
+      };//createJob
+}
+let _createRepoPako;
+function _getCreator() {
+  if (_createRepoPako) {
+    return _createRepoPako;
+  }
+
+  _createRepoPako = new CreateRepoPakoJob();
+  return _createRepoPako;
+}
+
+
+module.exports = {
+  creator: function() {
+    return _getCreator();
+  }
+};
+

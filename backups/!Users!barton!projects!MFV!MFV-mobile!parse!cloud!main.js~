@@ -1,0 +1,35 @@
+var settings = require('cloud/settings.js');
+var _ = require('cloud/underscore.js');
+var Pubnub = require('cloud/pubnub.js');
+
+Parse.Cloud.beforeSave(Parse.User, function(request,response) {
+
+  console.log("beforeSave.object: " + JSON.stringify(request.object));
+  var email = request.object.get('email');
+  
+  console.log('beforeSave.email: ' + email);
+  
+  //when new this id is undefined
+  var id = request.object.id;
+
+  console.log('beforeSave user: ' + id);
+
+  response.success();
+});
+
+Parse.Cloud.afterSave(Parse.User, function(request) {
+  console.log('afterSave: ' + request.object.get('email'));
+
+});
+Parse.Cloud.define("httpRequestExample", function (request, response) {
+  Parse.Cloud.httpRequest({
+    url    : "https://www.google.com",
+    success: function (result) {
+      response.success({message: "Request to google.com done !"});
+    },
+    error  : function (error) {
+      console.log(error);
+    }
+  });
+});
+

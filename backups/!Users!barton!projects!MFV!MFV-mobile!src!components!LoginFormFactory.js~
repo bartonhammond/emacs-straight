@@ -1,0 +1,178 @@
+'use strict';
+
+import React,
+{
+  PropTypes,
+  StyleSheet,
+  View
+
+} from 'react-native';
+
+
+import t from 'tcomb-form-native';
+let Form = t.form.Form;
+
+var styles = StyleSheet.create({
+});
+
+var LoginFormFactory = React.createClass({
+  propTypes: {
+    self: PropTypes.object,
+    isDisabled:PropTypes.bool,
+    onPress: PropTypes.func,
+    buttonText: PropTypes.string
+  },
+
+  render() {
+    let options = {
+      auto: 'placeholders',
+      fields: {
+
+      }
+    };
+
+    let username = {
+      label: 'Username',
+      maxLength: 12,
+      editable: !this.props.auth.form.isFetching,
+      hasError: this.props.auth.form.fields.usernameHasError,
+      error: 'Must have 6-12 characters and/or numbers'
+    };
+    
+    let email = {
+      label: 'Email',
+      keyboardType: 'email-address',
+      editable: !this.props.auth.form.isFetching,
+      hasError: this.props.auth.form.fields.emailHasError,
+      error: 'Please enter valid email'
+    };
+
+    let secureTextEntry = !this.props.auth.form.fields.showPassword;
+
+    let password = {
+      label: 'Password',
+      maxLength: 12,
+      secureTextEntry: secureTextEntry,
+      editable: !this.props.auth.form.isFetching,
+      hasError: this.props.auth.form.fields.passwordHasError,
+      error: 'Must have 6-12 characters with at least 1 number and 1 special character'
+    };
+
+    let passwordAgain= {
+      label: 'Please enter password again',
+      secureTextEntry: secureTextEntry,
+      maxLength: 12,
+      editable: !this.props.auth.form.isFetching,
+      hasError: this.props.auth.form.fields.passwordAgainHasError,
+      error: 'Passwords must match'
+    };
+    
+    let LoginForm;
+    let loginButtonText;
+    let itemCheckBox =
+    <ItemCheckbox
+        text="Show Password"
+        disabled={this.props.auth.form.isFetching}
+        onCheck={() => {
+            this.props.actions.onAuthFormFieldChange('showPassword',true)}
+        }
+        onUncheck={() => {
+            this.props.actions.onAuthFormFieldChange('showPassword',false)}
+        }
+    />;
+    
+    let passwordDisplay = <Text/>;
+
+    let forgotPassword =
+    <TouchableHighlight
+        onPress={() => this.props.actions.forgotPasswordState()} >
+      <Text>Forgot Password?</Text>
+    </TouchableHighlight>;
+
+    let alreadyHaveAccount = <TouchableHighlight
+                                 onPress={() => this.props.actions.loginState()}>
+      <Text>Already have an account?</Text>
+    </TouchableHighlight>;
+    
+    let register =
+    <TouchableHighlight onPress={() => this.props.actions.registerState()}>
+      <Text>Register</Text>
+    </TouchableHighlight>;
+
+    let leftMessage;
+    let rightMessage;
+    let onButtonPress;
+    switch(this.props.auth.form.state) {
+
+      case(LOGIN_STATE_LOGOUT):      
+        loginButtonText = 'Log out';
+        onButtonPress = () => {
+          this.props.actions.logout(this.props.eventEmitter);
+        };
+        break;
+        
+      case(LOGIN_STATE_REGISTER):
+        LoginForm = t.struct({
+          username: t.String,
+          email: t.String,
+          password: t.String,
+          passwordAgain: t.String
+        });
+        loginButtonText = 'Register';
+        options.fields['username'] = username;
+        options.fields['email'] = email;
+        options.fields['password'] = password;
+        options.fields['passwordAgain'] = passwordAgain;
+        passwordDisplay = itemCheckBox;
+        leftMessage = forgotPassword;
+        rightMessage = alreadyHaveAccount;
+        onButtonPress = () => {
+          this.props.actions.signup(this.props.auth.form.fields.username,
+                                    this.props.auth.form.fields.email,
+                                    this.props.auth.form.fields.password);
+        };
+        break;
+        
+      case(LOGIN_STATE_LOGIN):
+        LoginForm = t.struct({
+          username: t.String,
+          password: t.String
+        });
+        loginButtonText = 'Log in';
+        options.fields['username'] = username;
+        options.fields['password'] = password;
+        passwordDisplay = itemCheckBox;
+        leftMessage = register;
+        rightMessage = forgotPassword;
+        onButtonPress = () => {
+          this.props.actions.login(this.props.auth.form.fields.username, this.props.auth.form.fields.password);
+        };
+        break;
+        
+      case(LOGIN_STATE_FORGOT_PASSWORD):
+        LoginForm = t.struct({
+          email: t.String
+        });
+        options.fields['email'] = email;
+        loginButtonText = 'Reset password';
+        leftMessage = register;
+        rightMessage = alreadyHaveAccount;
+        onButtonPress = () => {
+          this.props.actions.resetPassword(this.props.auth.form.fields.email);
+        };
+        break;
+    } //switch
+
+    return (
+      <Form
+          ref="form"
+          type={LoginForm}
+          options={options}
+          value={this.state.value}
+          onChange={this.onChange.bind(self)}
+      />
+    )
+  }
+});
+
+module.exports = LoginFormFactory;

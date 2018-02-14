@@ -1,0 +1,17 @@
+'use strict';
+require('regenerator/runtime');
+const BuildCache = require('../../lib/BuildCache');
+
+let internals ={};
+internals.processRespositories = async function(req, reply) {
+  let res = await (new BuildCache()).processRepositories(
+    req.params.minStars,
+    req.params.maxStars,
+    req.params.language,
+    req.params.times,
+    req.params.startingPage,
+    req.params.endingPage    
+  );
+  reply(res);
+};
+module.exports = internals;

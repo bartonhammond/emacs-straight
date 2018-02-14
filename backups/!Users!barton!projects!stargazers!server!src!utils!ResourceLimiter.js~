@@ -1,0 +1,6 @@
+'use stict';
+
+class ResourceLimiter {
+  constructor() {
+  }
+}

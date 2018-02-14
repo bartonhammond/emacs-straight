@@ -1,0 +1,16 @@
+'use strict';
+
+Template.navButton.helpers({
+  text: function(){
+    var key = Meteor.userId() ? WebixDefaults.texts.navSignOut : WebixDefaults.texts.navSignIn;
+    return T9n.get(key);
+  },
+  dataClick: function() {
+    return `if (!Meteor.userId()){
+      Router.go('/signin')
+    } else {
+      Router.go('/logout')
+    }`
+  }
+})
+

@@ -1,0 +1,18 @@
+var geocolor = require('geocolor');
+
+var fs = require('fs');
+
+try {
+  var cities = JSON.parse(fs.readFileSync('./cities.json'));
+} catch (err) {
+  console.log('err',err);
+}
+
+var z = 'Population',
+    numberOfBreaks = 5,
+    colors = ['green', 'yellow', 'red'];
+
+// jenks
+var geoJenks = geocolor.jenks(cities, z, numberOfBreaks, colors);
+
+fs.writeFileSync('./jenksCities.geojson', JSON.stringify(geoJenks));

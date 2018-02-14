@@ -1,0 +1,6 @@
+.tern-project
+node_modules
+.tern-port
+.DS_Store
+config.js
+build

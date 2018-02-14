@@ -1,0 +1,93 @@
+'use scrict';
+import Form from './form';
+import {Record} from 'immutable';
+import fieldValidation from './fieldValidation';
+import formValidation from './formValidation';
+
+import {
+  SESSION_TOKEN_REQUEST,
+  SESSION_TOKEN_SUCCESS,
+  SESSION_TOKEN_FAILURE,
+
+  LOGIN_STATE_LOGOUT,
+  LOGIN_STATE_REGISTER,
+  LOGIN_STATE_LOGIN,
+  LOGIN_STATE_FORGOT_PASSWORD,
+
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
+
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  
+  ON_AUTH_FORM_FIELD_CHANGE,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
+
+} from '../constants';
+
+const InitialState = Record({
+  form: new Form
+});
+const initialState = new InitialState;
+
+export default function authReducer(state = initialState, action) {
+  if (!(state instanceof InitialState)) return initialState.mergeDeep(state);
+  switch (action.type) {
+
+  case SESSION_TOKEN_REQUEST:
+  case SIGNUP_REQUEST:
+  case LOGOUT_REQUEST:
+  case LOGIN_REQUEST:
+    return state.setIn(['form', 'isFetching'], true)
+      .setIn(['form','error'],false);
+
+  case SESSION_TOKEN_SUCCESS:
+    return state.setIn(['form', 'isFetching'], false);
+
+    
+  case SESSION_TOKEN_FAILURE:
+    let nextState = state.setIn(['form', 'isFetching'], false);
+    return nextState;
+
+  case LOGIN_STATE_LOGOUT:
+  case LOGIN_STATE_LOGIN:
+  case LOGIN_STATE_REGISTER:
+  case LOGIN_STATE_FORGOT_PASSWORD:
+    return formValidation(
+      state.setIn(['form', 'state'], action.type)
+        .setIn(['form','error'],null)
+    );
+    
+  case ON_AUTH_FORM_FIELD_CHANGE: {
+    const {field, value} = action.payload;
+
+    let nextState =  state.setIn(['form', 'fields', field], value)
+          .setIn(['form','error'],null);
+
+    return formValidation(
+      fieldValidation( nextState, action)
+      , action);
+  }
+
+  case SIGNUP_SUCCESS:
+  case LOGIN_SUCCESS:
+    return state.setIn(['form', 'isFetching'], false);
+    
+  case LOGOUT_SUCCESS:
+     return state.setIn(['form', 'isFetching'], false);
+
+    
+  case SIGNUP_FAILURE:
+  case LOGOUT_FAILURE:
+  case LOGIN_FAILURE:
+    return state.setIn(['form', 'isFetching'], false)
+      .setIn(['form', 'error'], action.payload);
+  }    
+
+  return state;
+}
+

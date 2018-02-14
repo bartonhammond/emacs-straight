@@ -1,0 +1,52 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+
+    {     
+        "operationName": "clickXButton",
+        "attributeType": "button",
+       "attributeName": "x",
+        "attributeStrategy": "css",
+        "attributeValue": "button.close"
+     },
+
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class CreateAccountExtra extends CreateAccount {
+
+   private static $_selectors = [
+
+    "x" =>
+    [
+       "css" => "button.close"
+    ],
+    ];
+
+    /**
+     * Click on X Button.
+     *
+     */
+    function clickXButton() {
+        //button
+        $this->click(self::$_selectors['x']);
+    }
+    /**
+     * Override - Set default value to Date Of Birth Text field.
+     *
+     */
+    function setDateOfBirthTextField($dateOfBirthValue) {
+        $selector = [];
+        $selector['script'] = "document.getElementById('new_birthDate').value='"
+                            . $dateOfBirthValue
+                            . "'";
+        $this->find($selector);                
+    }
+
+
+}

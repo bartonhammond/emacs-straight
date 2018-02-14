@@ -1,0 +1,305 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickApplyButton",
+        "attributeType": "button",
+       "attributeName": "apply",
+        "attributeStrategy": "css",
+        "attributeValue": "button.btn.btn-primary.apply-discount"
+     },
+
+    {     
+        "operationName": "clickCheckoutButton",
+        "attributeType": "button",
+       "attributeName": "checkout",
+        "attributeStrategy": "css",
+        "attributeValue": "#cart form.general-validation table.checkout-table tbody tr.bottomline.hidden-print td:nth-of-type(4) button.btn.btn-primary"
+     },
+
+    {     
+        "operationName": "clickCourseCatalogLink",
+        "attributeType": "link",
+       "attributeName": "courseCatalog",
+        "attributeStrategy": "css",
+        "attributeValue": "#cart p:nth-of-type(1) a"
+     },
+
+    {     
+        "operationName": "clickEditProfileLink",
+        "attributeType": "link",
+       "attributeName": "editProfile",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid div:nth-of-type(2) div.row div:nth-of-type(2) aside.profile.summary div:nth-of-type(7) a"
+     },
+
+    {     
+        "operationName": "clickHomeLink",
+        "attributeType": "link",
+       "attributeName": "home",
+        "attributeStrategy": "css",
+        "attributeValue": "#a a"
+     },
+
+    {     
+        "operationName": "clickPersonalizeYourAccountWithAPictureLink",
+        "attributeType": "link",
+       "attributeName": "personalizeYourAccountWithAPicture",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid strong a"
+     },
+
+
+
+    {     
+        "operationName": "setDonateToOurContinuingEducationProgram1NumberField",
+        "operationArgument" : "donateToOurContinuingEducationProgram1Value",
+        "attributeType": "text",
+       "attributeName": "donateToOurContinuingEducationProgram1",
+        "attributeStrategy": "id",
+        "attributeValue": "discount_code"
+     },
+
+    {     
+        "operationName": "setDonateToOurContinuingEducationProgram2NumberField",
+        "operationArgument" : "donateToOurContinuingEducationProgram2Value",
+        "attributeType": "text",
+       "attributeName": "donateToOurContinuingEducationProgram2",
+        "attributeStrategy": "name",
+        "attributeValue": "amount_donation"
+     },
+
+    {     
+        "operationName": "setDonateToOurContinuingEducationProgram3NumberField",
+        "operationArgument" : "donateToOurContinuingEducationProgram3Value",
+        "attributeType": "text",
+       "attributeName": "donateToOurContinuingEducationProgram3",
+        "attributeStrategy": "name",
+        "attributeValue": "amount_gc"
+     },
+
+    {     
+        "operationName": "setYesPleaseSendMeClassSpecialsCheckboxField",
+        "attributeType": "checkbox",
+       "attributeName": "yesPleaseSendMeClassSpecials",
+        "attributeStrategy": "id",
+        "attributeValue": "account-mailing-list-sign-up"
+     },
+
+
+    {     
+        "operationName": "unsetYesPleaseSendMeClassSpecialsCheckboxField",
+        "attributeType": "checkbox",
+       "attributeName": "yesPleaseSendMeClassSpecials",
+        "attributeStrategy": "id",
+        "attributeValue": "account-mailing-list-sign-up"
+     },
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class Account extends \Automate\Page {
+
+
+
+
+
+
+
+
+     protected $pageLoadedText = "Yes, please send me class specials and UW Continuing Education news by email";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/account";
+
+
+   private static $_selectors = [
+    "apply" =>
+    [
+       "css" => "button.btn.btn-primary.apply-discount"
+    ],
+
+    "checkout" =>
+    [
+       "css" => "#cart form.general-validation table.checkout-table tbody tr.bottomline.hidden-print td:nth-of-type(4) button.btn.btn-primary"
+    ],
+
+    "courseCatalog" =>
+    [
+       "css" => "#cart p:nth-of-type(1) a"
+    ],
+
+    "donateToOurContinuingEducationProgram1" =>
+    [
+       "id" => "discount_code"
+    ],
+
+    "donateToOurContinuingEducationProgram2" =>
+    [
+       "name" => "amount_donation"
+    ],
+
+    "donateToOurContinuingEducationProgram3" =>
+    [
+       "name" => "amount_gc"
+    ],
+
+    "editProfile" =>
+    [
+       "css" => "#primary div.container-fluid div:nth-of-type(2) div.row div:nth-of-type(2) aside.profile.summary div:nth-of-type(7) a"
+    ],
+
+    "home" =>
+    [
+       "css" => "#a a"
+    ],
+
+
+
+    "personalizeYourAccountWithAPicture" =>
+    [
+       "css" => "#primary div.container-fluid strong a"
+    ],
+
+    "yesPleaseSendMeClassSpecials" =>
+    [
+       "id" => "account-mailing-list-sign-up"
+    ],
+    ];
+    /**
+     * Click on Apply Button.
+     *
+     */
+    function clickApplyButton() {
+        //button
+        $this->click(self::$_selectors['apply']);
+    }
+
+    /**
+     * Click on Checkout Button.
+     *
+     */
+    function clickCheckoutButton() {
+        //button
+        $this->click(self::$_selectors['checkout']);
+    }
+
+    /**
+     * Click on Course Catalog Link.
+     *
+     */
+    function clickCourseCatalogLink() {
+        //link
+        $this->click(self::$_selectors['courseCatalog']);
+    }
+
+    /**
+     * Click on Edit Profile Link.
+     *
+     */
+    function clickEditProfileLink() {
+        //link
+        $this->click(self::$_selectors['editProfile']);
+    }
+
+    /**
+     * Click on Home Link.
+     *
+     */
+    function clickHomeLink() {
+        //link
+        $this->click(self::$_selectors['home']);
+    }
+
+    /**
+     * Click on Personalize Your Account With A Picture Link.
+     *
+     */
+    function clickPersonalizeYourAccountWithAPictureLink() {
+        //link
+        $this->click(self::$_selectors['personalizeYourAccountWithAPicture']);
+    }
+
+
+
+    /**
+     * Set default value to Donate To Our Continuing Education Program Fund Number field.
+     *
+     */
+    function setDonateToOurContinuingEducationProgram1NumberField($donateToOurContinuingEducationProgram1Value) {
+         //text
+        $this->type(self::$_selectors['donateToOurContinuingEducationProgram1'],$donateToOurContinuingEducationProgram1Value);
+    }
+
+    /**
+     * Set default value to Donate To Our Continuing Education Program Fund Number field.
+     *
+     */
+    function setDonateToOurContinuingEducationProgram2NumberField($donateToOurContinuingEducationProgram2Value) {
+         //text
+        $this->type(self::$_selectors['donateToOurContinuingEducationProgram2'],$donateToOurContinuingEducationProgram2Value);
+    }
+
+    /**
+     * Set default value to Donate To Our Continuing Education Program Fundpurchase A Gift Certificatetotal0 Number field.
+     *
+     */
+    function setDonateToOurContinuingEducationProgram3NumberField($donateToOurContinuingEducationProgram3Value) {
+         //text
+        $this->type(self::$_selectors['donateToOurContinuingEducationProgram3'],$donateToOurContinuingEducationProgram3Value);
+    }
+
+    /**
+     * Set Yes Please Send Me Class Specials And Uw Continuing Education News By Email Checkbox field.
+     *
+     */
+    function setYesPleaseSendMeClassSpecialsCheckboxField() {
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickApplyButton();
+    }
+
+    /**
+     * Unset Yes Please Send Me Class Specials And Uw Continuing Education News By Email Checkbox field.
+     *
+     */
+    function unsetYesPleaseSendMeClassSpecialsCheckboxField() {
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+         $text = $this->pageLoadedText;
+        $driver = $this->driver;
+        return $driver->wait(self::WAIT_TIME, self::ITERATE_TIME)->until(
+            function () use ($driver, $text)  {
+                try {
+                    $source = $driver->getPageSource();
+                    if (strpos($source,$text) !== false) {
+                        return true;
+                    }
+                    return false;
+                } catch (\Exception $e) {
+                    return false;
+                }
+        });
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return strpos($this->driver->getCurrentURL(), $this->pageUrl) !== false;
+    }
+}

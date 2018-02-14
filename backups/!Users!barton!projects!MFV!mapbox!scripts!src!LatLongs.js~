@@ -1,0 +1,37 @@
+'use strict';
+
+let _ = require('underscore');
+let MapBoxData = require('./MapBoxData');
+let mapBoxData = new MapBoxData();
+
+class LatLongs {
+  async get(owner, repo) {
+    try {
+      return await mapBoxData.getLatLongs(owner,repo)
+        .then((geos) => {
+          let latlongs = [];
+          for (var i = 0; i < geos.length; i++) {
+            var geo = geos[i];
+            if (geo && geo.geometry  && geo.geometry.locations
+                && geo.geometry.locations[0] && geo.geometry.locations[0].feature
+                && geo.geometry.locations[0].feature.geometry) {
+              
+              var aUser = _.pick(geo.user,'avatar_url','login','html_url');
+
+              latlongs.push({
+                user: aUser,
+                location: geo.location,
+                long:
+                geo.geometry.locations[0].feature.geometry.x,
+                lat:
+                geo.geometry.locations[0].feature.geometry.y});
+            }//if
+          };//for
+          return latlongs;
+        });
+    } catch(err) {
+      console.log('err getting latLongs',err);
+    }
+  }
+};
+module.exports = LatLongs;

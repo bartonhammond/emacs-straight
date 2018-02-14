@@ -1,0 +1,8 @@
+<template name="signupLink">
+   <div data-view="template"
+        data-template="{{preText}}<a href='{{hrefLink}}'> {{linkText}}</a>"
+        data-height=50
+        data-type="clean"
+        data-id="{{linkId}}">
+  </div>
+</template>

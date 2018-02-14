@@ -1,0 +1,19 @@
+<?php
+
+if ($_SERVER['SERVER_NAME'] === 'my.markeyds.dev' || $_SERVER['SERVER_NAME'] === 'display.markeyds.dev') {
+    define('DEV_ADMIN_URL', 'https://my.markeyds.dev');
+    define('DEV_DISPLAY_URL', 'https://display.markeyds.dev');
+    define('DEV_SECURE_DISPLAY_URL', 'https://display.markeyds.dev');
+}
+else {
+    define('DEV_ADMIN_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/websites/dev/markeyds.dev/admin');
+    define('DEV_DISPLAY_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/websites/dev/markeyds.dev/display');
+    define('DEV_SECURE_DISPLAY_URL', 'https://' . $_SERVER['SERVER_NAME'] . '/websites/dev/markeyds.dev/display');
+}
+
+
+//die();
+
+$INDEV = 2;
+
+//print_r(DEV_DISPLAY_URL);

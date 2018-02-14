@@ -1,0 +1,4 @@
+var StarGazers = require('./lib/StarGazers.js');
+
+var stargazers = new StarGazers();
+stargazers.process('bartonhammond','OraclePubSub');

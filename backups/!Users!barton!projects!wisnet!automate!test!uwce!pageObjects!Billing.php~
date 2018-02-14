@@ -1,0 +1,382 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickBillingLink3",
+        "attributeType": "link",
+       "attributeName": "billing3",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(3)"
+     },
+
+    {     
+        "operationName": "clickBwhMusicCourse12345BwhLink",
+        "attributeType": "link",
+       "attributeName": "bwhMusicCourse12345Bwh",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/catalog/-bwh-music-course/419&#x27;]"
+     },
+
+    {     
+        "operationName": "clickConfirmLink2",
+        "attributeType": "link",
+       "attributeName": "confirm2",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(2)"
+     },
+
+    {     
+        "operationName": "clickContinueButton",
+        "attributeType": "button",
+       "attributeName": "continue",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid section.course-cart div.col-md-6.clearfix form.general-validation div:nth-of-type(4) button.btn.btn-primary"
+     },
+
+    {     
+        "operationName": "clickPaymentLink4",
+        "attributeType": "link",
+       "attributeName": "payment4",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(4)"
+     },
+
+    {     
+        "operationName": "clickSelectRegistrantsLink1",
+        "attributeType": "link",
+       "attributeName": "selectRegistrants1",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(1)"
+     },
+
+    {     
+        "operationName": "clickStep3Of4Link",
+        "attributeType": "link",
+       "attributeName": "step3Of4",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid div.stepwizard span:nth-of-type(1) a"
+     },
+
+
+
+    {     
+        "operationName": "setAddress2TextField",
+        "operationArgument" : "address2Value",
+        "attributeType": "text",
+       "attributeName": "address2",
+        "attributeStrategy": "id",
+        "attributeValue": "user_billingAddress2"
+     },
+
+    {     
+        "operationName": "setAddressTextField",
+        "operationArgument" : "addressValue",
+        "attributeType": "text",
+       "attributeName": "address",
+        "attributeStrategy": "id",
+        "attributeValue": "user_billingAddress"
+     },
+
+    {     
+        "operationName": "setCityTextField",
+        "operationArgument" : "cityValue",
+        "attributeType": "text",
+       "attributeName": "city",
+        "attributeStrategy": "id",
+        "attributeValue": "user_billingCity"
+     },
+
+    {     
+        "operationName": "setNameTextField",
+        "operationArgument" : "nameValue",
+        "attributeType": "text",
+       "attributeName": "name",
+        "attributeStrategy": "id",
+        "attributeValue": "user_billingName"
+     },
+
+    {     
+        "operationName": "setStateDropDownListField",
+        "operationArgument" : "stateValue",
+        "attributeType": "select",
+       "attributeName": "state",
+        "attributeStrategy": "id",
+        "attributeValue": "user_billingState"
+     },
+
+    {     
+        "operationName": "setZipTextField",
+        "operationArgument" : "zipValue",
+        "attributeType": "text",
+       "attributeName": "zip",
+        "attributeStrategy": "id",
+        "attributeValue": "user_billingPostalCode"
+     },
+
+
+    {     
+        "operationName": "unsetStateDropDownListField",
+        "operationArgument" : "stateValue",
+        "attributeType": "select",
+       "attributeName": "state",
+        "attributeStrategy": "id",
+        "attributeValue": "user_billingState"
+     },
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class Billing extends \Automate\Page {
+
+
+
+
+
+
+
+
+     protected $pageLoadedText = "UW-Fond du Lac (Staging)";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/billing/423";
+
+
+
+
+
+   private static $_selectors = [
+    "address" =>
+    [
+       "id" => "user_billingAddress"
+    ],
+
+    "address2" =>
+    [
+       "id" => "user_billingAddress2"
+    ],
+
+    "billing3" =>
+    [
+       "css" => "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(3)"
+    ],
+
+    "bwhMusicCourse12345Bwh" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/catalog/-bwh-music-course/419']"
+    ],
+
+    "city" =>
+    [
+       "id" => "user_billingCity"
+    ],
+
+    "confirm2" =>
+    [
+       "css" => "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(2)"
+    ],
+
+    "continue" =>
+    [
+       "css" => "#primary div.container-fluid section.course-cart div.col-md-6.clearfix form.general-validation div:nth-of-type(4) button.btn.btn-primary"
+    ],
+
+    "name" =>
+    [
+       "id" => "user_billingName"
+    ],
+
+
+
+    "payment4" =>
+    [
+       "css" => "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(4)"
+    ],
+
+    "selectRegistrants1" =>
+    [
+       "css" => "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(1)"
+    ],
+
+    "state" =>
+    [
+       "id" => "user_billingState"
+    ],
+
+    "step3Of4" =>
+    [
+       "css" => "#primary div.container-fluid div.stepwizard span:nth-of-type(1) a"
+    ],
+
+    "zip" =>
+    [
+       "id" => "user_billingPostalCode"
+    ],
+    ];
+    /**
+     * Click on 3billing Link.
+     *
+     */
+    function clickBillingLink3() {
+        //link
+        $this->click(self::$_selectors['billing3']);
+    }
+
+    /**
+     * Click on Bwh Music Course 12345 Bwh Session Title 222018 Link.
+     *
+     */
+    function clickBwhMusicCourse12345BwhLink() {
+        //link
+        $this->click(self::$_selectors['bwhMusicCourse12345Bwh']);
+    }
+
+    /**
+     * Click on 2confirm Link.
+     *
+     */
+    function clickConfirmLink2() {
+        //link
+        $this->click(self::$_selectors['confirm2']);
+    }
+
+    /**
+     * Click on Continue Button.
+     *
+     */
+    function clickContinueButton() {
+        //button
+        $this->click(self::$_selectors['continue']);
+    }
+
+    /**
+     * Click on 4payment Link.
+     *
+     */
+    function clickPaymentLink4() {
+        //link
+        $this->click(self::$_selectors['payment4']);
+    }
+
+    /**
+     * Click on 1select Registrants Link.
+     *
+     */
+    function clickSelectRegistrantsLink1() {
+        //link
+        $this->click(self::$_selectors['selectRegistrants1']);
+    }
+
+    /**
+     * Click on Step 3 Of 4 Link.
+     *
+     */
+    function clickStep3Of4Link() {
+        //link
+        $this->click(self::$_selectors['step3Of4']);
+    }
+
+
+
+    /**
+     * Set default value to Address 2 Text field.
+     *
+     */
+    function setAddress2TextField($address2Value) {
+         //text
+        $this->type(self::$_selectors['address2'],$address2Value);
+    }
+
+    /**
+     * Set default value to Address Text field.
+     *
+     */
+    function setAddressTextField($addressValue) {
+         //text
+        $this->type(self::$_selectors['address'],$addressValue);
+    }
+
+    /**
+     * Set default value to City Text field.
+     *
+     */
+    function setCityTextField($cityValue) {
+         //text
+        $this->type(self::$_selectors['city'],$cityValue);
+    }
+
+    /**
+     * Set default value to Name Text field.
+     *
+     */
+    function setNameTextField($nameValue) {
+         //text
+        $this->type(self::$_selectors['name'],$nameValue);
+    }
+
+    /**
+     * Set default value to State Drop Down List field.
+     *
+     */
+    function setStateDropDownListField($stateValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["state"]));
+        $webDriverSelect->selectByVisibleText($stateValue);        
+    }
+
+    /**
+     * Set default value to Zip Text field.
+     *
+     */
+    function setZipTextField($zipValue) {
+         //text
+        $this->type(self::$_selectors['zip'],$zipValue);
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickContinueButton();
+    }
+
+    /**
+     * Unset default value from State Drop Down List field.
+     *
+     */
+    function unsetStateDropDownListField($stateValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["state"]));
+        $webDriverSelect->selectByVisibleText($stateValue);        
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+         $text = $this->pageLoadedText;
+        $driver = $this->driver;
+        return $driver->wait(self::WAIT_TIME, self::ITERATE_TIME)->until(
+            function () use ($driver, $text)  {
+                try {
+                    $source = $driver->getPageSource();
+                    if (strpos($source,$text) !== false) {
+                        return true;
+                    }
+                    return false;
+                } catch (\Exception $e) {
+                    return false;
+                }
+        });
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return strpos($this->driver->getCurrentURL(), $this->pageUrl) !== false;
+    }
+}

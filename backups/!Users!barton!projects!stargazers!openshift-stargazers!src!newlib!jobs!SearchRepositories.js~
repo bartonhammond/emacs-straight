@@ -1,0 +1,24 @@
+'use strict';
+require('regenerator/runtime');
+
+class SearchRepositories{
+  constructor(queue) {
+    this.queue = queue;
+  }
+  
+  init() {
+    this.queue.process('repositoryJob', 1, function(job, ctx, done) {
+      console.log('repository.job.stars',job.stars);
+      console.log('repository.job.language',job.language);
+
+      //ratelimit the search requests at 30/min
+
+      //catch exception and pause until time restored
+
+      done(null,{results: 'foo'});
+    });
+  }
+}
+module.exports = SearchRepositories;
+                      
+

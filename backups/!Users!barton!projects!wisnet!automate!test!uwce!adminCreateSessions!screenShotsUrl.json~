@@ -1,0 +1,28 @@
+[
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/",
+        "base_test_id": 2754600,
+        "base_version_id": 2915620,
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/catalog",
+        "base_test_id": 2754615,
+        "base_version_id": 2915638,
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course\/edit\/{course_id}",
+        "script": "screenshots\/admin-course-edit.json",
+        "base_test_id": 2754629,
+        "base_version_id": 2915652,
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course\/xxx?tab=location",
+        "script": "screenshots\/admin-course-edit-tab-location.json",
+        "base_test_id": 2754630,
+        "base_version_id": 2915653,
+        "target_version_id": ""
+    }
+]

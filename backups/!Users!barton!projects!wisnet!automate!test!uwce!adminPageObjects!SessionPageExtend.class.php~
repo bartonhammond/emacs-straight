@@ -1,0 +1,323 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+use Facebook\WebDriver\WebDriverSelect;
+
+class SessionPage extends \Automate\Page {
+    private static $_selectors = [
+        "h3_heading" =>
+        [
+            "css" => "div#primary section > div > h3"
+        ],
+        "session_title" =>
+        [
+            "id" => "session_label"
+        ],
+        "term_select" =>
+        [
+            "css" => "div#primary div.col-sm-9 > select"
+        ],
+        "session_start_date" =>
+        [
+            "script" => ""
+        ],
+        "session_end_date" =>
+        [
+            "script" => ""
+        ],
+        "session_start_time" =>
+        [
+            "script" => ""
+        ],
+        "session_end_time" =>
+        [
+            "script" => ""
+        ],
+        "session_contactHours" =>
+        [
+            "id" => "session_contactHours"
+        ],
+        "session_monday" =>
+        [
+            "css"=> "div#date_time label:nth-child(2)"
+        ],
+        "session_tuesday" =>
+        [
+            "css"=> "div#date_time label:nth-child(3)"
+        ],
+        "session_wednesday" =>
+        [
+            "css"=> "div#date_time label:nth-child(4)"
+        ],
+        "session_thursday" =>
+        [
+            "css"=> "div#date_time label:nth-child(5)"
+        ],
+        "session_friday" =>
+        [
+            "css"=> "div#date_time label:nth-child(5)"
+        ],
+        "registration_payments_tab" =>
+        [
+            "css" => "div#primary li.tab.tab-3.tab-registration__amp__payments > a"
+        ],
+        "session_registrationStartDate" =>
+        [
+            "script" => ""
+        ],
+        "session_registrationEndDate" =>
+        [
+            "script" => ""
+        ],
+        "session_fee" =>
+        [
+            "id" => "session_fee"
+        ],
+        "session_earlyRegistrationDate" =>
+        [
+            "script" => ""
+        ],
+        "session_lateRegistrationDate" =>
+        [
+            "script" => ""
+        ],
+        "session_earlyRegistrationFee" =>
+        [
+            "id" => "session_earlyRegistrationFee"
+        ],
+        "session_lateRegistrationFee" =>
+        [
+            "id" => "session_lateRegistrationFee"
+        ],
+        "session_initialPayment" =>
+        [
+            "id" => "session_initialPayment"
+        ],
+        "session_secondInstallment" =>
+        [
+            "id" => "session_secondInstallment"
+        ],
+        "session_minStudents" =>
+        [
+            "id" => "session_minStudents"
+        ],
+        "session_maxStudents" =>
+        [
+            "id" => "session_maxStudents"
+        ],
+        "session_attendees" =>
+        [
+            "id" => "session_attendees"
+        ],
+        "instructors_tab" =>
+        [
+            "css" => "div#primary li.tab.tab-4.tab-instructors > a"
+        ],
+        "first_instructor" =>
+        [
+            "css" => "div#instructors select"
+        ],
+        "instructor_pay" =>
+        [
+            "id" => "instructor_pay"
+        ],
+        "instructor_add" =>
+        [
+            "css" => "div#instructors a"
+        ],
+        "instructor_added" =>
+        [
+            "css" => "div#instructors span"
+        ],
+        "submit" =>
+        [
+            "css" => "div#primary div.col-sm-10 > a.submit.btn.btn-primary"
+        ],
+        "action_message" =>
+        [
+            "css" => "div#primary section.sessions.list > div > div"
+        ],
+        "workshops_tab" =>
+        [
+            "css" => "div#primary li.tab.tab-5.tab-workshops > a"
+        ],
+        "add_new_workshop" =>
+        [
+            "css" => "div#workshops a"
+        ],
+        "workshop_title" =>
+        [
+            "css" => "div#workshops div:nth-child(1) > div.col-sm-10 > label"
+        ],
+        "time_slots_tab" =>
+        [
+            "css" => "div#primary li.tab.tab-6.tab-time_slots > a"
+        ]
+    ];
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors["h3_heading"],
+                                          self::$_selectors["session_title"]
+        ]);
+    }
+    function getH3HeadingText() {
+        return $this->find(self::$_selectors['h3_heading'])->getText();
+    }
+    function typeSessionTitle($title) {
+        $this->type(self::$_selectors["session_title"], $title);
+    }
+    function selectTerm($term) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["term_select"]));
+        $webDriverSelect->selectByVisibleText($term);
+    }
+    function typeSessionStartDate($text) {
+        $selector = self::$_selectors['session_start_date'];
+        $selector['script'] = "document.getElementById('session_startDate').value='"
+                            . $text
+                            . "'";
+        $this->find($selector);
+    }
+    function typeSessionEndDate($text) {
+        $selector = self::$_selectors['session_end_date'];
+        $selector['script'] = "document.getElementById('session_endDate').value='"
+                            . $text
+                            . "'";
+        $this->find($selector);
+    }
+    function typeSessionStartTime($text) {
+        $selector = self::$_selectors['session_start_time'];
+        $selector['script'] = "document.getElementById('session_startTime').value='"
+                            . $text
+                            . "'";
+        $this->find($selector);
+    }
+    function typeSessionEndTime($text) {
+        $selector = self::$_selectors['session_end_time'];
+        $selector['script'] = "document.getElementById('session_endTime').value='"
+                            . $text
+                            . "'";
+        $this->find($selector);
+    }
+    function typeContactHours($amount) {
+        $this->type(self::$_selectors['session_contactHours'], $amount);
+    }
+    function clickMonday($value) {
+        if ($this->find(self::$_selectors['session_monday'])->isSelected() !== $value) {
+            $this->click(self::$_selectors['session_monday']);
+        }
+    }
+    function clickTuesday($value) {
+        if ($this->find(self::$_selectors['session_tuesday'])->isSelected() !== $value) {
+            $this->click(self::$_selectors['session_tuesday']);
+        }
+    }
+    function clickWednesday($value) {
+        if ($this->find(self::$_selectors['session_wednesday'])->isSelected() !== $value) {
+            $this->click(self::$_selectors['session_wednesday']);
+        }
+    }
+    function clickThursday($value) {
+        if ($this->find(self::$_selectors['session_thursday'])->isSelected() !== $value) {
+            $this->click(self::$_selectors['session_thursday']);
+        }
+    }
+    function clickFriday($value) {
+        if ($this->find(self::$_selectors['session_friday'])->isSelected() !== $value) {
+            $this->click(self::$_selectors['session_friday']);
+        }
+    }
+    
+    function clickRegistrationAndPaymentsTab() {
+        $this->click(self::$_selectors['registration_payments_tab']);
+    }
+    
+    function typeSessionRegistrationStartDate($date) {
+        $selector = self::$_selectors['session_registrationStartDate'];
+        $selector['script'] = "document.getElementById('session_registrationStartDate').value='"
+                            . $date
+                            . "'";
+        $this->find($selector);
+    }
+      function typeSessionRegistrationEndDate($date) {
+        $selector = self::$_selectors['session_registrationEndDate'];
+        $selector['script'] = "document.getElementById('session_registrationEndDate').value='"
+                            . $date
+                            . "'";
+        $this->find($selector);
+    }
+    function typeSessionFee($amount) {
+        $this->type(self::$_selectors['session_fee'], $amount);
+    }
+    function typeSessionEarlyRegistrationDate($date) {
+        $selector = self::$_selectors['session_earlyRegistrationDate'];
+        $selector['script'] = "document.getElementById('session_earlyRegistrationDate').value='"
+                            . $date
+                            . "'";
+        $this->find($selector);        
+    }
+    function typeSessionLateRegistrationDate($date) {
+        $selector = self::$_selectors['session_lateRegistrationDate'];
+        $selector['script'] = "document.getElementById('session_lateRegistrationDate').value='"
+                            . $date
+                            . "'";
+        $this->find($selector);        
+    }
+    function typeEarlyRegistrationFee($amount) {
+        $this->type(self::$_selectors['session_earlyRegistrationFee'], $amount);
+    }
+    function typeLateRegistrationFee($amount) {
+        $this->type(self::$_selectors['session_lateRegistrationFee'], $amount);
+    }
+    function typeDepositPayment($amount) {
+        $this->type(self::$_selectors['session_initialPayment'], $amount);
+    }
+    function typeSecondInstallment($amount) {
+        $this->type(self::$_selectors['session_secondInstallment'], $amount);
+    }    
+    function typeMinStudents($limit) {
+        $this->type(self::$_selectors['session_minStudents'], $limit);
+    }
+    function typeMaxStudents($limit) {
+        $this->type(self::$_selectors['session_maxStudents'], $limit);
+    }
+    function typeAttendees($limit) {
+        $this->type(self::$_selectors['session_attendees'], $limit);
+    }    
+    function clickInstructorsTab() {
+        $this->click(self::$_selectors['instructors_tab']);
+    }
+    function selectFirstInstructor() {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["first_instructor"]));
+        $webDriverSelect->selectByIndex(1);        
+
+    }
+    function typeInstructorPay($amount) {
+        $this->type(self::$_selectors['instructor_pay'], $amount);
+    }
+    function addInstructor() {
+        $this->click(self::$_selectors['instructor_add']);
+        $this->waitPageLoadedBySelectors([self::$_selectors["instructor_added"]]);
+    }
+    function submit() {
+        //hide the keyboard
+        if ($this->isMobile) {
+            $this->click(self::$_selectors['h3_heading']);
+        }
+        $this->click(self::$_selectors['submit']);
+        $this->waitPageLoadedBySelectors([self::$_selectors["action_message"]]);        
+    }    
+    function getActionMessageText() {
+        return $this->find(self::$_selectors['action_message'])->getText();
+    }
+    function clickWorkshopsTab() {
+        $this->click(self::$_selectors['workshops_tab']);
+    }
+    function clickAddNewWorkshop() {
+        $this->click(self::$_selectors["add_new_workshop"]);
+    }
+    function getWorkshopTitle() {
+        return $this->find(self::$_selectors['workshop_title'])->getText();
+    }
+    function clickTimeSlotsTab() {
+        $this->click(self::$_selectors['time_slots_tab']);
+    }        
+}

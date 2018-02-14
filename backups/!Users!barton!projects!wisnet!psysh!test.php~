@@ -1,0 +1,17 @@
+// author : Ahmed Mubbashir Khan
+require_once 'vendor/autoload.php'; //composer generated autoload file
+use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\WebDriverBy;
+
+$host = 'http://66.168.77.122:4444/wd/hub';
+$driver = RemoteWebDriver::create($host, DesiredCapabilities::firefox());
+/* 
+Or  if you wan't to modify $capabilities
+use Facebook\WebDriver\Remote\WebDriverCapabilityType;
+$capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'firefox');
+$driver = RemoteWebDriver::create($host, $capabilities);
+*/
+//e.g. Mouse over on an element
+$element = $driver->findElement(WebDriverBy::id('some_id'));
+$driver->getMouse()->mouseMove( $element->getCoordinates() );

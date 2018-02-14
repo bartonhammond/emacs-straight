@@ -1,0 +1,184 @@
+/**
+ * # github.js
+ *
+ *  Endpoints for all the github api calls
+ *  
+ * 
+ */
+'use strict';
+/**
+ * ## Imports
+ *
+ */
+//Handle the endpoints
+var GitHubHandlers = require('./handlers'),
+    //Joi is Hapi's validation library
+    Joi = require('joi');
+
+var internals = {};
+
+/**
+ * ## github/repos/{username}
+ *
+ * Get all the repos for this user
+ *
+ * NOTE: the handler is 'async' 
+ */
+internals.endpoints = [
+  {
+    method: 'GET',
+    path: '/repositories/{username}/{page}',
+    handler: {
+      async: GitHubHandlers.getRepos
+    },
+    config: {
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'get all the repos for a specific user',
+      notes: 'The username is a github username',
+      validate: {
+	params: {
+          //username
+	  username: Joi.string().required(),
+          //page 
+          page: Joi.number().integer().optional().default(1)
+	}
+      }
+    }
+  },
+    {
+    method: 'GET',
+    path: '/repository/{username}/{reposname}',
+    handler: {
+      async: GitHubHandlers.getReposByName
+    },
+    config: {
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'get the specific reponame provided',
+      notes: 'The username is a github username',
+      validate: {
+	params: {
+          //username
+	  username: Joi.string().required(),
+          //page 
+          reposname: Joi.string().required()
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/search/repositories/{term}/{in}/{forks}/{stars}/{language}/{page}',
+    handler: {
+      async: GitHubHandlers.searchRepositories
+    },
+    config: {
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Search repositories using search term',
+      notes: 'Returns repositories given the search terms',
+      validate: {
+	params: {
+          //username
+          term: Joi.string().optional().default(''),
+            in: Joi.string().optional().default(''),
+          forks: Joi.string().optional().default(''),
+          stars: Joi.string().optional().default(''),
+          language: Joi.string().valid(['javascript', 'java',
+                                        'python', 'go', 'ruby',
+                                        'clojure', 'c', 'php',
+                                        'css', 'html','c++']).optional().default('javascript'),
+          sort: Joi.string().valid(['stars','forks','updated']).optional().default('stars'),
+          order: Joi.string().valid(['asc','desc']).optional().default('desc'),
+          page: Joi.number().integer().optional().default(1)
+	}
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/search/users/{term}/{repos}/{sort}/{order}/{page}',
+    handler: {
+      async: GitHubHandlers.searchUsers
+    },
+    config: {
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Search users',
+      notes: 'Returns users matching criteria',
+      validate: {
+	params: {
+          term: Joi.string().required(),
+          repos: Joi.number().integer().optional().default(0),
+          sort: Joi.string().valid(['followers','repositories','joined']).optional().default('followers'),
+          order: Joi.string().valid(['asc','desc']).optional().default('desc'),
+          page: Joi.number().integer().optional().default(1)
+	}
+      }
+    }
+  },
+    {
+    method: 'GET',
+      path: '/stargazers/{owner}/{repo}/{page}',
+    handler: {
+      async: GitHubHandlers.stargazersByPage
+    },
+    config: {
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Get a page of stargazers for a users repo',
+      notes: 'Returns the stargazers for a specific page',
+      validate: {
+	params: {
+          owner: Joi.string().required(),
+          repo: Joi.string().required(),
+          page: Joi.number().integer().optional().default(1)
+	}
+      }
+    }
+    },
+      {
+    method: 'GET',
+      path: '/stargazers/{owner}/{repo}',
+    handler: {
+      async: GitHubHandlers.allStargazers
+    },
+    config: {
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Get all the stargazers for a users repo',
+      notes: 'Returns the stargazers for the repo',
+      validate: {
+	params: {
+          owner: Joi.string().required(),
+          repo: Joi.string().required()
+	}
+      }
+    }
+   },
+
+   {
+    method: 'GET',
+      path: '/stargazersbio/{owner}/{repo}',
+    handler: {
+      async: GitHubHandlers.stargazersBio
+    },
+    config: {
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Get stargazers for a users repo',
+      notes: 'Returns all the stargazers with their associated bios.'
+        + ' Cached for 24 hours',
+      validate: {
+	params: {
+          owner: Joi.string().required(),
+          repo: Joi.string().required()
+	}
+      }
+    }
+  }
+];
+
+
+module.exports = internals;

@@ -1,0 +1,10 @@
+<head>
+  <title>Meteor &amp; Webix</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor &amp; Webix!</h1>
+
+  <div id="webix-playground"></div>
+</body>
+

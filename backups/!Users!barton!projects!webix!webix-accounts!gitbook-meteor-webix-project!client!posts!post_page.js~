@@ -1,0 +1,11 @@
+Template.postItem.helpers({
+  title: function() {
+    return this.title;
+  },
+  url: function() {
+    return this.url;
+  },
+  postPage: function() {
+    return Router.routes['postPage'].path({_id: this._id})
+  }
+})

@@ -1,0 +1,63 @@
+'use strict';
+let logger = require('../../Bunyan').logger();
+
+import Runner from './Runner';
+
+class CreateRunnerJob{
+  constructor() {
+    this.queue = require('../../Queue').queue();
+    this.runner = new Runner().init();
+  }
+  
+  createJob(id,
+            access_token,
+            owner,
+            repo,
+           page) {
+
+    let self = this;
+
+    return new Promise((resolve,reject) => {
+      self.queue.create(
+        'runner',
+        {title: 'runner',
+         id: id,
+         access_token: access_token,
+         owner: owner,
+         repo: repo,
+         page: page
+        })
+        .delay(1000 * 15)// 1 minute
+        .save((err) => {
+          if (err) {
+            logger.error(
+              'createRunnerJob',                
+              {id: id,
+               error: err,
+               access_token: self.access_token});
+            
+            return reject(err);
+          }
+          return resolve();
+        });
+    });
+    
+  };//createJob
+}
+
+let creators = {};
+function _getCreator(access_token) {
+  if (access_token in creators) {
+    return creators[access_token];
+  }
+
+  creators[access_token] = new CreateRunnerJob(access_token);
+  return creators[access_token];
+}
+
+module.exports = {
+  creator: function(access_token) {
+    return _getCreator(access_token);
+  }
+};
+

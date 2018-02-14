@@ -1,0 +1,77 @@
+'use strict';
+
+require('regenerator/runtime');
+var CONFIG = require('./config');
+var fs = require('fs');
+
+let Tiles = require('./Tiles');
+let tiles = new Tiles();
+
+let GeoColor = require('./GeoColor');
+let geoColor = new GeoColor();
+
+let GeoToAnnotations = require('./GeoToAnnotations');
+let geoToAnnotations = new GeoToAnnotations();
+
+let MapQuest = require('./MapQuest');
+
+var GitHub = require('./GitHub');
+
+class TheBigOne {
+  constructor(debug = false) {
+    this.debug = debug;
+    this.mapQuest = new MapQuest(CONFIG.mapquest.key);
+    this.gitHub = new GitHub(CONFIG.gitHub.token);    
+  }
+  debug(fileName, obj) {
+    let name = `./${fileName}.json`;
+    fs.writeFileSync(name,
+                     JSON.stringify(obj, null, 2));
+  }
+  async process(owner, repo) {
+    try {
+
+      let stargazers = await this.gitHub.getAllStarGazers(owner, repo);
+      if (this.debug) {
+        this.debug('getAllStarGazers',stargazers);
+      }
+      
+      let bios = await this.gitHub.getAllStarGazersBio(stargazers);
+      if (this.debug) {
+        this.debug('getAllStarGazers',stargazers);
+      }
+
+      let allGPS =  await this.mapQuest.getAllGPS(bios);
+      if (this.debug) {
+        this.debug('getAllStarGazers',stargazers);
+      }
+
+      let tilesResults = await tiles.process(allGPS);
+      if (this.debug) {
+        this.debug('getAllStarGazers',stargazers);
+      }
+
+
+      let annotationsResults = null;
+      
+      if (tilesResults.features.length > 25) {
+        let geoColorResults = geoColor.jenks(tilesResults);
+        if (this.debug) {
+          fs.writeFileSync('./geoColorResults.json',
+                           JSON.stringify(geoColorResults, null,
+                                          2));
+        } 
+        annotationsResults =  geoToAnnotations.convert(geoColorResults);
+      } else {
+        annotationsResults = geoToAnnotations.convert(tilesResults);
+      }
+
+      fs.writeFileSync('./annotations.json', JSON.stringify(annotationsResults, null, 2));        
+      
+    } catch (error) {
+      console.log('bigOne error',error);
+    }
+  }
+}
+
+(new TheBigOne(false)).process('bartonhammond','OraclePubSub');

@@ -1,0 +1,15 @@
+Template.preview.rendered = function() ({
+  var preview = $('#mypreview'); 
+  var file    = Session.get('myEZModal').[0];
+  var reader  = new FileReader();
+
+  reader.onloadend = function () {
+    preview.src = reader.result;
+  }
+
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    preview.src = "";
+  }
+})

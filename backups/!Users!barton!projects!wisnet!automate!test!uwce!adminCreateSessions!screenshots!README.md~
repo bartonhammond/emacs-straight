@@ -1,0 +1,4 @@
+Note: this directory contains URLs that have to be navigated to capture the screenshots because they are "tabs" w/in the Admin.  These "tabs" are not available via a URL.
+
+The `urlsForTabs.json` is used to augment the `screenShotsUrl.json` file.  Just copy it there if you ever have to rerun the screenshots.
+

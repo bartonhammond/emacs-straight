@@ -1,0 +1,88 @@
+'use strict';
+require('regenerator/runtime');
+
+
+import BaseClass from './BaseClass';
+
+let ProcessorClass = class extends BaseClass {
+  constructor(queue, job, ctx, done) {
+    super(queue);
+    this.job = job;
+    this.ctx = ctx;
+    this.done = done;
+    
+    this.redisClient = require('../../database/redis').redisClient();
+    this.redisKeyUser = 'user:';
+    this.redisKeyLocation = 'location:';    
+    this.redisKeyMapBox = 'mapbox:';
+    
+    this.results = [];
+    this.count = 0;
+    this.lastPage = 1;    
+  }
+  /**
+   * If all pages have been processed, we're done
+   *
+   * 
+   */
+  checkDone() {
+    this.count++;
+    //update Kue display
+    this.job.progress(this.count,this.lastPage);
+    if (this.count >= this.lastPage) {
+      this.done(null, this.results);
+    }
+  }
+  /**
+   * Save any results
+   */
+  saveResults(results) {
+    if (results) {
+      if (results.json
+          && results.json.items) {
+        this.results.push(...results.json.items);
+      } else if (results.json) {
+        this.results.push(...results.json);        
+      } else {
+        this.results.push(results);
+      }
+    }
+    this.checkDone();
+  }  
+  
+  getRedisValue(prefix, key) {
+    let self = this;
+    
+    return new Promise(function(resolve,reject) {
+      try {
+        let start = self.logger.now();
+        
+        self.redisClient.get(prefix + key, (err,value) => {
+          if (err) {
+            return reject(err);
+          }
+          
+          self.logger.info(
+            {id: self.job.data.id,
+             elapsed: self.logger.elapsed(start),
+             prefix: prefix,
+             key: key,
+             access_token: self.job.data.access_token},
+            'ProcessorClass.usercached');
+          
+          return resolve(JSON.parse(value));
+
+        });//redisClient
+      } catch (err) {
+        self.logger.error('ProcessorClass',
+                          {id: self.id,
+                           error: err,
+                           access_token: self.access_token});
+
+        return reject(err);
+      }
+    });//promise
+  }
+
+};
+module.exports = ProcessorClass;

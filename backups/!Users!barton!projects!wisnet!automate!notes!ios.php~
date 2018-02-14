@@ -1,0 +1,11 @@
+test.php:236
+$this->session->clickMonday(TRUE);  //Line that blew
+
+SessionPage.class.php:204
+
+    function clickMonday($value) {
+        if ($this->find(self::$_selectors['session_monday'])->isSelected() !== $value) { //line 204
+            $this->click(self::$_selectors['session_monday']);
+        }
+    }
+

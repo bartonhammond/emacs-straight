@@ -1,0 +1,38 @@
+{
+  "name": "snowangel",
+  "version": "0.0.1",
+  "private": true,
+  "jest": {
+    "scriptPreprocessor": "./node_modules/babel-jest",
+    "setupEnvScriptFile": "./node_modules/react-native/jestSupport/env.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ],
+    "unmockedModulePathPatterns": [],
+    "verbose": true,
+    "testPathDirs": [
+      "src/"
+    ]
+  },
+  "scripts": {
+    "test": "rm -rf ./node_modules/jest-cli/.haste_cache && jest ",
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "key-mirror": "^1.0.1",
+    "react-native": "^0.17.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^6.0.1",
+    "jest-cli": "^0.8.2"
+  }
+}

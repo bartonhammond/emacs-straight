@@ -1,0 +1,17 @@
+Template.postItem.helpers({
+  title: function() {
+    return this.title;
+  },
+  url: function() {
+    return this.url;
+  },
+  pathForEditPage: function() {
+    return Router.routes['postEdit'].path({_id: this._id})
+  },
+  author: function() {
+    return this.email[0].address;
+  },
+  _id: function() {
+    return this._id;
+  }
+})

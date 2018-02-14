@@ -1,0 +1,87 @@
+'use strict';
+require('regenerator/runtime');
+import GitHub from '../GitHub';
+import Bottleneck from 'bottleneck';
+
+class SearchRepositories{
+  constructor(queue) {
+    this.queue = queue;
+    this.gitHub = new GitHub();
+    this.searchRepositoriesLimiter = new Bottleneck(1, 2200);
+    this.results = [];
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process('searchRepositories', 1, function(job, ctx,
+                                                         done) {
+
+      self.createGetRepositoryByPageJob(
+        1,
+        10,//lastPage
+        job.data.stars,
+        job.data.language
+      ).then((job) => {
+        job.on('complete',(result) => {
+          //save results
+          self.results.push(...result.json.items);
+
+          //for each page create new job
+          for (let currentPage = 2;
+               currentPage <= Number(result.link.last.page);
+               currentPage++) {
+            
+            //limit the speed
+            self.searchRepositoriesLimiter.schedule(
+              self.createGetRepositoryByPageJob.bind(self,
+                                                     currentPage,
+                                                     Number(result.link.last.page),
+                                                     job.data.stars,
+                                                     job.data.language))
+              .then((job) => {
+                job.on('complete', (jobresult) => {
+                  self.results.push(...jobresult.json.items);
+                  console.log('searchRepositories.job.complete',job.data);
+                  //Are we done?
+                  if (job.data.page === job.data.lastPage) {
+                    done(null,self.results);
+                  }
+                });
+                job.on('failed', (err) => {
+                  
+                });
+              })
+              .catch((err) => {
+                debugger;
+                done(err);
+              });
+          }//for loop
+
+        });//job on complete
+      });//then((job)
+    });//process searchRepositories
+  }//init
+  
+  createGetRepositoryByPageJob(currentPage, lastPage, stars, language)
+  {
+    let self = this;
+    return new Promise((resolve, reject) => {
+      let job = self.queue.create('getRepositoryByPage', {
+        title: 'getRepositoryByPage: '  + currentPage,
+        stars: stars,
+        language: language,
+        page: currentPage,
+        lastPage: lastPage
+      }).save((err) => {
+        if (err) {
+          reject(err);
+        }
+      });
+      resolve(job);
+    });
+  }//createJob
+  
+}
+module.exports = SearchRepositories;
+
+

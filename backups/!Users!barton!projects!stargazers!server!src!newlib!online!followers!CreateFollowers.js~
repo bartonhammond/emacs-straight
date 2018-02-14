@@ -1,0 +1,58 @@
+'use strict';
+let logger = require('../../Bunyan').logger();
+
+import Starred from './Starred';
+
+class CreateStarred {
+  constructor(access_token) {
+    console.log('CreateStarred', access_token);    
+    this.access_token = access_token;
+    this.queue = require('../../Queue').queue();
+    this.user = new Starred().init(access_token);
+  }
+  
+  createJob(id,
+            login,
+            page,
+            repos = []) {
+
+    let self = this;
+    console.log('createStarred');
+    self.queue.create(
+      'starred'
+        + '-'
+        + self.access_token, {
+          title: 'user: ' + login,
+          id: id,
+          access_token: self.access_token,
+          login: login,
+          page: page,
+          repos: repos
+        }).save((err) => {
+          if (err) {
+            logger.error(
+              'CreateUser',                
+              {id: id,
+               error: err,
+               login:login,
+               page: page,
+               access_token: self.access_token});
+          }
+        });
+  };//createJob
+}
+
+let creators = {};
+function _getCreator(access_token) {
+  if (access_token in creators) {
+    return creators[access_token];
+  }
+  creators[access_token] = new CreateStarred(access_token);
+  return creators[access_token];
+}
+
+module.exports = {
+  creator: function(access_token) {
+    return _getCreator(access_token);
+  }
+};

@@ -1,0 +1,20 @@
+'use strict';
+(function(globals){
+  "use strict";
+  if (!globals.Helpers) {
+    globals.Helpers = {};
+  }
+}(this));
+
+/**
+ * See client/posts_list.html onClick
+ */
+Helpers['validateEmail'] = function() {
+  var email = $$('email').data.value;
+  var emailError = !Is.email(email);
+  if (emailError) {
+    var key = WebixDefaults.texts.errors.invalidEmail;
+    webix.message({type:"error", text: T9n.get(key)});
+  }
+  return emailError;
+};

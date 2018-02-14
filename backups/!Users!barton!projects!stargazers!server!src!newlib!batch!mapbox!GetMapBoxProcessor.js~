@@ -1,0 +1,107 @@
+'use strict';
+require('regenerator/runtime');
+
+import ProcessorClass from '../ProcessorClass';
+import CreateGetMapDataJob from '../mapdata/CreateGetMapDataJob';
+
+import Tiles from '../../Tiles';
+import GeoColor from '../../GeoColor';
+import GeoToAnnotations from '../../GeoToAnnotations';
+
+
+class GetMapBoxProcessor extends ProcessorClass{
+  constructor(queue, job, ctx, done) {
+    super(queue, job, ctx, done); 
+    this.geoColor = new GeoColor();
+    this.geoToAnnotations = new GeoToAnnotations();  
+    this.tiles = new Tiles();
+  }
+  /**
+   *   For all the stargazers of the repo, get their user information
+   */
+  run() {
+    let self = this;
+
+    //first check if MapBox is cached in redis
+    self.getRedisValue(
+      self.redisKeyMapBox,
+      self.job.data.owner
+        + '-'
+        + self.job.data.repo)
+    
+      .then((mapbox) => {
+        
+        //If there is a user, no need to call GitHub              
+        if (mapbox) {
+          self.saveResults(mapbox);
+        } else {
+          self.getMapData();
+        }
+      })
+      .catch((err) => {
+        self.logger.error(
+          {id: self.job.data.id,
+           owner: self.job.data.owner,
+           repo: self.job.data.repo,           
+           error: err,
+           access_token: self.job.data.access_token},
+           'GetMapBoxProcessor.getRedisValue');          
+        self.saveReults();
+      });
+  }
+  /**
+   * When the cache is not found, get the MapData
+   */
+  getMapData() {
+    let self = this;
+    //First, get all the stargazers for the repo
+    CreateGetMapDataJob(
+      self.queue,
+      self.job.data.id,
+      self.job.data.access_token,
+      self.job.data.owner,
+      self.job.data.repo
+    )
+      .then((mapdata) => {
+        self.tiles.process(mapdata)
+          .then((fc) => {
+
+            if (fc.features.length > 25) {
+              let geoColorResults = self.geoColor.jenks(fc);
+              return self.geoToAnnotations.convert(geoColorResults);                  
+            } else {
+              return self.geoToAnnotations.convert(fc);
+            }            
+          })
+          .then((results) => {
+            //store results
+            let key =  self.redisKeyMapBox
+                  + self.job.data.owner + '-'
+                  + self.job.data.repo;
+            self.redisClient.setnx(
+              key,
+              JSON.stringify(results));
+
+            //Expire in 1  month
+            self.redisClient.expire(key, 60 * 60 * 24 * 30);
+
+            self.done(null,results);
+          })
+          .catch((err) => {
+            self.logger.error(
+              {id: self.job.data.id,
+               owner: self.job.data.owner,
+               error: err,
+               repo: self.job.data.repo,
+               access_token: self.job.data.access_token},
+               'GetMapBoxProcessor.tiles.process');            
+            self.done(err);
+          });//self.tiles.process
+      })
+      .catch((err) => {
+        self.done(err);
+      });
+  }//run
+}
+
+module.exports = GetMapBoxProcessor;

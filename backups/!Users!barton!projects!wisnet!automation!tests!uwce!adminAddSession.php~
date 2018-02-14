@@ -1,0 +1,72 @@
+
+//Start from Admin dashboard
+$element = $this->driver->findElement(WebDriverBy::linkText("Administration"));
+$this->assertNotNull($element);
+$element->click();
+
+//Move the button into the view
+$this->moveToElementOnMobile(WebDriverBy::linkText("+ Add Course/Program"));
+
+$element = $this->driver->findElement(WebDriverBy::linkText("+ Add Course/Program"));
+$this->assertNotNull($element);
+$element->click();
+
+//On the right page?
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("h2.sectionheading"), 'Edit Course/Program'));        
+$url = $this->driver->getCurrentURL();
+$this->assertContains('admin/course/edit', $url);
+
+$this->driver->findElement(WebDriverBy::id("course_title"))->sendKeys("BWH Music Course");
+$this->driver->findElement(WebDriverBy::id("course_courseNumber"))->sendKeys("12345");
+$this->driver->findElement(WebDriverBy::name("course_instructorNotes"))->sendKeys("Instructors Notes BWH Music Course");
+$this->driver->findElement(WebDriverBy::id("question_question"))->sendKeys("One question");
+
+
+$this->driver->findElement(WebDriverBy::id("question_question"))->sendKeys("One question");
+
+$this->driver->findElement(WebDriverBy::id("question_options"))->sendKeys("One choice");
+$this->driver->findElement(WebDriverBy::id("question_options"))->sendKeys("Two choice");
+$this->driver->findElement(WebDriverBy::id("question_options"))->sendKeys("Three choice");
+if (!$this->driver->findElement(WebDriverBy::id("question_required"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::id("question_required"))->click();
+}
+$element = $this->driver->findElement(WebDriverBy::cssSelector("form#editCourseForm div:nth-child(4) > div > input"));
+$element->click();
+
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("form#editCourseForm div.alert.alert-success.alert-dismissible"),
+                                                                          'Question Added'));        
+
+$this->driver->findElement(WebDriverBy::name("course_ceu"))->sendKeys("5");
+$this->driver->findElement(WebDriverBy::id("course_fee"))->sendKeys("50");
+$this->driver->findElement(WebDriverBy::id("course_earlyRegistrationFee"))->sendKeys("25");
+$this->driver->findElement(WebDriverBy::id("course_lateRegistrationFee"))->sendKeys("75");
+
+//The following breaks business rull - the installments can not be
+//greater then the early registration
+$this->driver->findElement(WebDriverBy::id("course_initialPayment"))->sendKeys("25");
+$this->driver->findElement(WebDriverBy::id("course_secondInstallment"))->sendKeys("25");
+
+if (!$this->driver->findElement(WebDriverBy::xpath("//select[@id='course_criticalAnalysis']//option[3]"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::xpath("//select[@id='course_criticalAnalysis']//option[3]"))->click();
+}
+
+$this->driver->findElement(WebDriverBy::xpath("//form[@id='editCourseForm']//button[.='Save']"))->click();
+
+//Catch the error
+$this->tryCatchCache(WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::cssSelector("div#primary div.alert.alert-danger.alert-dismissible")));
+
+//Send correct ammounts
+$this->driver->findElement(WebDriverBy::id("course_initialPayment"))->click();
+$this->driver->findElement(WebDriverBy::id("course_initialPayment"))->clear();
+$this->driver->findElement(WebDriverBy::id("course_initialPayment"))->sendKeys("10");
+$this->driver->findElement(WebDriverBy::id("course_secondInstallment"))->click();
+$this->driver->findElement(WebDriverBy::id("course_secondInstallment"))->clear();
+$this->driver->findElement(WebDriverBy::id("course_secondInstallment"))->sendKeys("15");
+$this->driver->findElement(WebDriverBy::xpath("//form[@id='editCourseForm']//button[.='Save']"))->click();
+
+
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("div#primary div.alert.alert-success.alert-dismissible"),
+                                                                         'Your changes have been saved.'));
+
+$url = $this->driver->getCurrentURL();
+$this->assertContains('admin/course/', $url);

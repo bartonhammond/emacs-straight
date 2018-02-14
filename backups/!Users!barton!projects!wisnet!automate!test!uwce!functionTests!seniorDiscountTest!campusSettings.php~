@@ -1,0 +1,13 @@
+<?php
+//Set the discount for the school campus
+$this->adminPage->clickEditFDLCampus();
+
+$this->campus->verifyPageLoaded();
+$this->campus->verifyPageUrl();
+
+$this->campus->setSeniorDiscountTextField("10");
+$this->campus->setApplyDiscountToRegistrantsOverNumberField("55");
+$this->campus->clickSaveButton();
+        
+$this->assertContains("Your changes have been saved", $this->campus->getActionMessage());
+?>

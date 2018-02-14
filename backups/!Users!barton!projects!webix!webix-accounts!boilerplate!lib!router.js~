@@ -1,0 +1,60 @@
+'use strict';
+Router.configure({
+    layoutTemplate: 'masterLayout',
+    loadingTemplate: 'loading',
+    notFoundTemplate: 'pageNotFound',
+    yieldTemplates: {
+        nav: {to: 'nav'},
+        footer: {to: 'footer'},
+    },
+    onStop: function() {
+      // see lib/lib/baseController.js
+    if (this.route && this.route.getName()) {
+      var routeId = this.route.getName();
+      
+      //If we're moving away from a webix view, hide it.
+      //The path comes from the BaseController
+      for (var key in webix.ui.views) {
+        var view = webix.ui.views[key];
+        if (!_.isUndefined(view.config.path) &&
+            view.config.path === routeId) {
+          $$(view.config.id).hide();
+        }
+      }//for
+    } else {
+      var routeId;
+      if (!_.isUndefined(Router.options.notFoundTemplate)) {
+        routeId = Router.options.notFoundTemplate;
+      }
+      if (!_.isUndefined(this.options.layout.view.__dynamicTemplate__._regions.main._template)
+          && this.options.layout.view.__dynamicTemplate__._regions.main._template === routeId) {
+        if (webix.ui.views[routeId]) {
+          $$(routeId).hide();
+        }
+      }
+    }
+  }
+
+});
+
+Router.map(function() {
+    this.route('home', {
+        path: '/',
+    });
+
+    this.route('private');
+});
+
+
+Router.plugin('ensureSignedIn', {
+  only: ['private']
+});
+
+//Routes
+AccountsTemplates.configureRoute('changePwd');
+AccountsTemplates.configureRoute('enrollAccount');
+AccountsTemplates.configureRoute('forgotPwd');
+AccountsTemplates.configureRoute('resetPwd');
+AccountsTemplates.configureRoute('signIn');
+AccountsTemplates.configureRoute('signUp');
+AccountsTemplates.configureRoute('verifyEmail');

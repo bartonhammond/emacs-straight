@@ -1,0 +1,67 @@
+<?php
+
+
+/**
+ * Inherited Methods
+ * @method void wantToTest($text)
+ * @method void wantTo($text)
+ * @method void execute($callable)
+ * @method void expectTo($prediction)
+ * @method void expect($prediction)
+ * @method void amGoingTo($argumentation)
+ * @method void am($role)
+ * @method void lookForwardTo($achieveValue)
+ * @method void comment($description)
+ * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = NULL)
+ *
+ * @SuppressWarnings(PHPMD)
+*/
+class AcceptanceTester extends \Codeception\Actor
+{
+    use _generated\AcceptanceTesterActions;
+
+   /**
+    * Define custom actions here
+    */
+
+    /**
+     * @When I go to the :arg1 page
+     */
+     public function iGoToThePage($arg1)
+     {
+         $this->amOnPage($arg1);
+         $this->seeCurrentUrlEquals('/uwce-staging/www/fond-du-lac/' . $arg1);
+     }
+
+    /**
+     * @Then I should see :arg1 link
+     */
+     public function iShouldSeeLink($arg1)
+     {
+         $this->seeLink($arg1);
+     }
+
+    /**
+     * @Given on Login I fill in :arg1 with :arg2
+     */
+     public function onLoginIFillInWith($arg1, $arg2)
+     {
+         $this->fillField(['id' => $arg1], $arg2);
+     }
+
+    /**
+     * @Given on Login I press :arg1
+     */
+     public function onLoginIPress($arg1)
+     {
+         $this->click("//button[@type='submit' and contains(text(), 'Log in')]");
+     }
+
+    /**
+     * @Then I should be on the :arg1 page
+     */
+     public function iShouldBeOnThePage($arg1)
+     {
+        throw new \Codeception\Exception\Incomplete("Step `I should be on the :arg1 page` is not defined");
+     }
+}

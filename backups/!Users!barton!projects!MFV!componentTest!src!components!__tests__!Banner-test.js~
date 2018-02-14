@@ -1,0 +1,43 @@
+
+jest.autoMockOff();
+
+jest.dontMock('../Banner');
+const React = require('react-native');
+const { Text, View, TouchableWithoutFeedback } = React;
+const Banner = require('../Banner');
+
+
+const shallowHelpers = require('react-shallow-renderer-helpers');
+const shallowRenderer = shallowHelpers.createRenderer();
+
+describe('Banner', () => {
+  describe('touchable', () => {
+    it('should render TouchableWithoutFeedback component', () => {
+
+      shallowRenderer.render(() => <Banner />);
+
+      let output = shallowRenderer.getRenderOutput();
+
+      expect(output.type.name).toBe("View");
+    });
+  });
+  describe('clicks', () => {
+    it('should increase clicks counter on every onClick call', () => {
+      shallowRenderer.render(() => <Banner />);
+
+      let instance = shallowRenderer.getMountedInstance();
+      let output;
+
+      output = shallowRenderer.getRenderOutput();
+      expect(output).toContainReactNodeInTreeLike(<Text>Clicks: {0}</Text>);
+      /*
+      instance.onClick();
+
+      output = shallowRenderer.getRenderOutput();
+      expect(output).toContainReactNodeInTreeLike(<Text>Clicks:
+       {1}</Text>);
+       */
+    });
+  });
+
+});

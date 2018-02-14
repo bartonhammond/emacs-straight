@@ -1,0 +1,14 @@
+<?php
+
+$needle = "/uwce-staging/www/fond-du-lac/catalog/bwh-music-course/444";
+$haystack = "https://www.secured-site7.com/uwce-staging/www/fond-du-lac/catalog/bwh-music-course/407";
+
+function returnUptoLastSlash($term) {
+$slashPos = strrpos($term, '/');
+return substr($term, 0, $slashPos);
+}
+
+$needle = returnUptoLastSlash($needle);
+$haystack = returnUptoLastSlash($haystack);
+
+echo strpos($haystack, $needle) !== false;

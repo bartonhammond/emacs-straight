@@ -1,0 +1,7 @@
+{
+  "glob": [
+    "lib/**/*.coffee",
+    "Groc_README.md"
+  ],
+  "github": flae
+}

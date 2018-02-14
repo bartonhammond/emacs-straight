@@ -1,0 +1,16 @@
+[
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course\/edit\/{course_id}",
+        "script": "screenshots\/admin-course-edit.json",
+        "base_test_id": 2737779,
+        "base_version_id": 2894949,
+        "target_version_id": ""
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course\/{course_id}",
+        "script": "screenshots\/admin-course-edit.json",
+        "base_test_id": 2737785,
+        "base_version_id": 2894955,
+        "target_version_id": ""
+    }
+]

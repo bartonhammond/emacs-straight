@@ -1,0 +1,32 @@
+<?php
+//pageObjects
+require_once __DIR__ . '/../pageObjects/Wisnet.class.php';
+
+//Assertions
+require_once 'vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
+
+
+class WisnetScript {
+
+    protected $homeUrl = "https://wisnet.com";
+
+    protected $theTester;
+    protected $driver;    
+    protected $isMobile;
+    protected $isLocal;
+
+    function __construct($theTester, $driver, $isMobile, $isLocal) {
+        $this->theTester = $theTester;
+        $this->driver = $driver;
+        $this->isMobile = $isMobile;
+        $this->isLocal = $isLocal;
+        
+        $this->home = new Home($driver, $isMobile, $isLocal);
+    }
+
+    public function main() {
+        $this->driver->get($homeUrl);
+        assertTrue($this->home->verifyPageLoaded());
+        assertTrue($this->home->verifyPageUrl());
+    }
+}

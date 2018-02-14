@@ -1,0 +1,76 @@
+<?php
+//registerStudentForCourse.php
+$this->assertTrue($this->account->verifyPageLoaded());
+$this->assertTrue($this->account->verifyPageUrl());
+$this->takeSnapShot();
+
+$this->account->clickCourseCatalogLink();
+
+//catalog
+$this->assertTrue($this->catalog->verifyPageLoaded());
+$this->assertTrue($this->catalog->verifyPageUrl());
+$this->takeSnapShot();
+
+$this->catalog->clickSearchCatalog1Button('BWH');
+$this->catalog->clickSearchCatalog2Button();
+
+//CatalogSearch
+$this->assertTrue($this->catalogSearch->verifyPageLoaded());
+$this->assertTrue($this->catalogSearch->verifyPageUrl());
+$this->takeSnapShot();
+
+$this->catalogSearch->clickMusicCourseDescription('BWH');
+
+//catalog Course
+$this->assertTrue($this->catalogCourse->verifyPageLoaded());
+$this->assertTrue($this->catalogCourse->verifyPageUrl());
+$this->takeSnapShot();
+
+$this->catalogCourse->setIAmRegisteringMyselfCheckboxField();
+
+//make sure the hidden elements have time to display..
+sleep(1);
+
+$this->catalogCourse->checkQuestion('One choice');
+$this->catalogCourse->setWorkshops2DropDownListField('BWH Workshop Title');
+$this->catalogCourse->clickContinueToCartButton();
+
+$this->assertTrue($this->registration->verifyPageLoaded());
+$this->assertTrue($this->registration->verifyPageUrl());
+$this->takeSnapShot();
+
+$this->registration->submit();
+
+
+$this->assertTrue($this->billing->verifyPageLoaded());
+$this->assertTrue($this->billing->verifyPageUrl());
+$this->takeSnapShot();
+$this->billing->setAddressTextField("987 Main St");
+$this->billing->setZipTextField("54935");
+$this->billing->setCityTextField("Fond du Lac");
+$this->billing->setStateDropDownListField('WI');
+$this->billing->clickContinueButton();
+
+
+$this->assertTrue($this->cardInfo->verifyPageLoaded());
+$this->assertTrue($this->cardInfo->verifyPageUrl());
+$this->takeSnapShot();
+$this->cardInfo->setCreditCardTextField("404");
+$this->cardInfo->setExpMonthDropDownListField('02');
+$this->cardInfo->setExpYearDropDownListField('2019');
+
+$this->cardInfo->clickSubmitPaymentButton();
+sleep(2);
+$this->takeSnapShot();
+sleep(1);
+
+//The gateway for payment page will be displaying - go back to any page
+$this->driver->get("https://www.secured-site7.com/uwce-staging/www/fond-du-lac/catalog");
+$this->masthead->verifyPageLoaded();
+$this->assertTrue($this->masthead->verifyPageUrl());
+
+$this->masthead->clickLogoutLink();
+$this->masthead->verifyPageLoaded();
+$this->assertTrue($this->masthead->verifyPageUrl());
+
+?>

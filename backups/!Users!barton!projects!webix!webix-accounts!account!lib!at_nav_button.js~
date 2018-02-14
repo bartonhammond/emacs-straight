@@ -1,0 +1,20 @@
+Template.atNavButton.helpers = ({
+  text: function(){
+    debugger;
+    var key = Meteor.userId() ? AccountTemplates.texts.navSignOut : AccountTemplates.texts.navSignIn;
+    return T9n.get(key, markIfMissing=false);
+  }
+})
+
+Template.atNavButton.events = ({
+  'click #at-nav-button': function(event){
+    event.preventDefault();
+    if (Meteor.userId()) {
+      console.log('atNavButton: logout missing');
+      //AccountsTemplates.logout();
+    } else{
+      console.log('atNavButton: click signin missing');
+      //AccountsTemplates.linkClick("signIn");
+    }
+  }
+});

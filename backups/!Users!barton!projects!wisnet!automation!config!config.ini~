@@ -1,0 +1,13 @@
+[globals]
+AUTOLOAD="../controllers/"
+DEBUG=0
+# authorize settings
+DB_HOST = 873f09c799b96bf604d08fe5d5c6f77dff25b7fd.rackspaceclouddb.com
+DB_USER = michels_resume
+DB_PASSWORD = 5sstes644sgsd
+DB_NAME = michels_resume
+
+DEFAULT_EMAIL = bkolstad@wisnet.com
+HTTPS_URL = https://resume.michels.us
+
+STAGING = false

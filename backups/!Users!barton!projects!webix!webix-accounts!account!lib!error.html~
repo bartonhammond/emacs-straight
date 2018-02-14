@@ -1,0 +1,45 @@
+<template name="form">
+  <div data-view="rows"
+       data-type="clean">
+  {{> title}}
+    <!--      
+      {{#if showOauthServices}}
+        {{> atOauth}}
+      {{/if}}
+      {{#if showServicesSeparator}}
+        {{> atSep}}
+      {{/if}}
+-->
+      {{#if showError}}
+        {{> error}}
+      {{/if}}
+    <!--
+      {{#if showResult}}
+        {{> atResult}}
+      {{/if}}
+      {{#if showMessage}}
+        {{> atMessage}}
+      {{/if}}
+      {{#if showPwdForm}}
+
+-->
+    {{> pwdForm}}
+ <!--     {{/if}}
+      {{#if showTermsLink}}
+        {{> atTermsLink}}
+      {{/if}}
+-->
+      {{#if showSignInLink}}
+        {{> signinLink}}
+       {{/if}}
+
+      {{#if showSignUpLink}}
+        {{> signupLink}}
+      {{/if}}
+<!--
+      {{#if showResendVerificationEmailLink}}
+        {{> atResendVerificationEmailLink}}
+      {{/if}}
+-->
+  </div>
+</template>

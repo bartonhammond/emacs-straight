@@ -1,0 +1,45 @@
+
+//Start from Admin dashboard
+$element = $this->driver->findElement(WebDriverBy::linkText("Administration"));
+$this->assertNotNull($element);
+$element->click();
+
+//Move the button into the view
+$this->moveToElementOnMobile(WebDriverBy::linkText("+ Add Term"));
+
+$element = $this->driver->findElement(WebDriverBy::linkText("+ Add Term"));
+$this->assertNotNull($element);
+$element->click();
+
+//On the right page?
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("h2.sectionheading"), 'New Term'));        
+$url = $this->driver->getCurrentURL();
+$this->assertContains('term/new', $url);
+
+//Firefox has problem w/ sendKeys to input w/ date format
+$this->driver->findElement(WebDriverBy::id("term_title"))->click();
+$this->driver->findElement(WebDriverBy::id("term_title"))->sendKeys("BWH Term");
+$this->driver->executeScript("document.getElementById('term_startDate').value='11/02/2017'");
+$this->driver->executeScript("document.getElementById('term_endDate').value='11/30/2017'");
+
+/* Fails on Firefox
+
+$this->driver->wait(1);
+$this->driver->findElement(WebDriverBy::id("term_startDate"))->click();
+$this->driver->findElement(WebDriverBy::id("term_startDate"))->sendKeys("11/02/2017");
+$this->driver->wait(1);
+$this->driver->findElement(WebDriverBy::id("term_endDate"))->click();
+$this->driver->findElement(WebDriverBy::id("term_endDate"))->sendKeys("11/30/2017");
+*/
+
+if (!$this->driver->findElement(WebDriverBy::xpath("//select[@id='term_active']//option[1]"))->isSelected()) {
+    $this->driver->findElement(WebDriverBy::xpath("//select[@id='term_active']//option[1]"))->click();
+}
+
+$element = $this->driver->findElement(WebDriverBy::cssSelector("div#primary button[type='submit']"));
+$this->assertNotNull($element);
+$element->click();
+
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::xpath("//div[@id='primary']/div/div[2]"),"Your changes have been saved"));
+$url = $this->driver->getCurrentURL();
+$this->assertContains('admin/term', $url);

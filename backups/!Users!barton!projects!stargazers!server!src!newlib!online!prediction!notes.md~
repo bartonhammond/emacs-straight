@@ -1,0 +1,14 @@
+For a owner/repo
+
+Get all the stargazers
+
+for each stargazer
+   get his projects that he's stared
+
+   count the repos[stargazer].count to find most common project
+
+
+
+
+
+

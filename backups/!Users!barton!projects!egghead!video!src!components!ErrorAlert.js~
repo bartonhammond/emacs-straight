@@ -1,0 +1,14 @@
+'use strict';
+
+import SimpleAlert from 'react-native-simpledialog-android';
+
+
+var ErrorAlert = class ErrorAlertClass{
+  checkError(obj) {
+    //special logic here
+
+    SimpleAlert.alert('Error',obj.error);
+  }
+};
+
+module.exports = ErrorAlert;

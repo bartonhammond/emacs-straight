@@ -1,0 +1,127 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickCourseCatalogLink",
+        "attributeType": "link",
+       "attributeName": "courseCatalog",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/catalog&#x27;]"
+     },
+
+    {     
+        "operationName": "clickLoginLink",
+        "attributeType": "link",
+       "attributeName": "login",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/login&#x27;]"
+     },
+
+    {     
+        "operationName": "clickMyAccountLink",
+        "attributeType": "link",
+       "attributeName": "myAccount",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/account&#x27;]"
+     },
+
+    {     
+        "operationName": "clickUniversityOfWisconsinFondDuLink",
+        "attributeType": "link",
+       "attributeName": "universityOfWisconsinFondDu",
+        "attributeStrategy": "css",
+        "attributeValue": "a[title=&#x27;University of Wisconsin - Fond du Lac (Staging)&#x27;]"
+     },
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class Masthead extends \Automate\Page {
+
+
+
+     protected $pageLoadedText = "UW-Fond du Lac (Staging)";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/catalog";
+
+   private static $_selectors = [
+    "courseCatalog" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/catalog']"
+    ],
+
+    "login" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/login']"
+    ],
+
+    "myAccount" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/account']"
+    ],
+
+
+
+    "universityOfWisconsinFondDu" =>
+    [
+       "css" => "a[title='University of Wisconsin - Fond du Lac (Staging)']"
+    ],
+    ];
+    /**
+     * Click on Course Catalog Link.
+     *
+     */
+    function clickCourseCatalogLink() {
+        //link
+        $this->click(self::$_selectors['courseCatalog']);
+    }
+
+    /**
+     * Click on Login Link.
+     *
+     */
+    function clickLoginLink() {
+        //link
+        $this->click(self::$_selectors['login']);
+    }
+
+    /**
+     * Click on My Account Link.
+     *
+     */
+    function clickMyAccountLink() {
+        //link
+        $this->click(self::$_selectors['myAccount']);
+    }
+
+    /**
+     * Click on University Of Wisconsin Fond Du Lac Staging Link.
+     *
+     */
+    function clickUniversityOfWisconsinFondDuLink() {
+        //link
+        $this->click(self::$_selectors['universityOfWisconsinFondDu']);
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+        //Update w/ appropriate selector
+        $this->waitPageLoadedBySelectors(self::$_selectors);    
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return $this->assertContains($this->driver->getCurrentURL()
+                                    ,$this->pageUrl);
+    }
+}

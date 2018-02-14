@@ -1,0 +1,20 @@
+<?php
+require __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class CourseCatalogPage extends \Automate\Page {
+    private static $_selectors = [
+        "login" =>
+        [
+            "linkText" => "Login"
+        ]
+    ];
+
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors(self::$_selectors);
+    }
+
+    function login() {
+        $this->click(self::$_selectors['login']);        
+    }
+}

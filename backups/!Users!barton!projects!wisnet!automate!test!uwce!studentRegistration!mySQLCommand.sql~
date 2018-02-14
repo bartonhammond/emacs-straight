@@ -1,0 +1,2 @@
+mysql -h 146.20.53.60 -u bhammond --password=$MYSQLPASSWORD << "EOF"
+delete FROM uwextension_staging.user where first_name like 'BWH%' and last_name like 'HAM%';

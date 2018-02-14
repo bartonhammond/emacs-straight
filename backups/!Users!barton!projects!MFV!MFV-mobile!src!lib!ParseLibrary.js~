@@ -1,0 +1,10 @@
+//
+import CONFIG from '../config';
+
+
+export default class RestfulLibrary {
+  constructor() {
+    this._config = CONFIG;
+  }
+
+}

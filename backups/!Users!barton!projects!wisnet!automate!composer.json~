@@ -1,0 +1,14 @@
+{
+    "require": {
+        "facebook/webdriver": "^1.5",
+        "phpunit/phpunit": "^6.4",
+        "rmccue/requests": "^1.7",
+        "php-ds/php-ds": "^1.2"
+    },
+  "scripts": {
+    "run_tests":"./vendor/bin/phpunit ./scripts/php_example.php  2>&1 | tee ./tests.log",
+    "test":"php ./src/utilities/runTests.php 2>&1 | tee ./test.log",    
+    "screenShots":"php ./scripts/screens.php  2>&1 | tee ./tests.log",
+    "livetest":"php ./scripts/livetest.php  2>&1 | tee ./tests.log"        
+  }
+}

@@ -1,0 +1,21 @@
+'use strict';
+/**
+ * Return promise that resolves to a user
+ */
+let CreateGetUsersForRepoJob = function(queue, owner, repo)
+{
+  return new Promise((resolve, reject) => {
+    let job = queue.create('getUsersForRepo', {
+      title: 'getUsersForRepo: ' + owner + ':' + repo,
+      owner: owner,
+      repo: repo
+    }).save((err) => {
+      if (err) {
+        reject(err);
+      }
+    });
+    resolve(job);
+  });
+};//createJob
+
+module.exports = CreateGetUsersForRepoJob;

@@ -1,0 +1,28 @@
+
+<template name="typeDefinition">
+
+  <div class="row">
+    <div class="list-pair col-sm-12">
+
+      <div class="sortable target" id="object">
+        {{#sortable items=attributes animation="100" handle=".sortable-handle" ghostClass="sortable-ghost" options=attributesOptions}}
+          {{> sortableItemTarget}}
+        {{/sortable}}
+      </div>
+
+    </div>
+  </div>
+
+</template>
+
+<template name="sortableItemTarget">
+  <div data-id="{{order}}" class="sortable-item removable well well-sm">
+    {{{icon}}}
+    <i class="sortable-handle mdi-action-view-headline pull-right"></i>
+    <span class="name">{{name}}</span>
+    <span class="badge">{{order}}</span>
+    <button type="button" class="close" data-dismiss="alert">
+      <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+    </button>
+  </div>
+</template>

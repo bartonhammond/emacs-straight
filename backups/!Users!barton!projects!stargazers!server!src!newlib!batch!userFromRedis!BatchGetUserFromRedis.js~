@@ -1,0 +1,58 @@
+'use strict';
+require('regenerator/runtime');
+
+import Bottleneck from 'bottleneck';
+import ProcessorClass from '../../ProcessorClass';
+
+import CreateBatchGetUserJob from '../user/CreateBatchGetUserJob';
+
+class BatchGetUserFromRedis extends ProcessorClass{
+  constructor() {
+    super();
+    this.getGitHubUserLimiter = new Bottleneck(1, 800);    
+  }
+  
+  init(access_token) {
+    let self = this;
+    self.queue.process(
+      'batchGetUserFromRedis'
+        + '_'
+        + access_token,
+      1, 
+      function(job,
+               ctx,
+               done) {
+
+        self.job = job;
+        let createBatchGetUserJob = CreateBatchGetUserJob.creator(job.data.access_token);
+        self.getRedisValue(
+          self.redisKeyUser,
+          job.data.login)
+          .then((user) => {
+            
+            if (user) {
+              self.logger.info(
+                {id: job.data.id,
+                 login: job.data.login,
+                 access_token: job.data.access_token},
+                'BatchGetUser.cached');
+              
+            } else { //get from github
+              self.getGitHubUserLimiter.schedule(
+                createBatchGetUserJob.createJob.bind(
+                  self,
+                  job.data.id,
+                  job.data.login));
+            }
+            done();
+          })
+          .catch((err) => {
+            done(err);
+          });
+      });
+  } //init
+
+}
+module.exports = BatchGetUserFromRedis;
+
+

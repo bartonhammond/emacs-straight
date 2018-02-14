@@ -1,0 +1,43 @@
+'use strict';
+
+let LatLongs = require('./LatLongs');
+let latLongs = new LatLongs();
+
+let Tiles = require('./Tiles');
+let tiles = new Tiles();
+
+let GeoColor = require('./GeoColor');
+let geoColor = new GeoColor();
+
+let GeoToAnnotations = require('./GeoToAnnotations');
+let geoToAnnotations = new GeoToAnnotations();
+
+
+var fs = require('fs');
+
+class LatLongsTest {
+  async test() {
+    try {
+      let latLongResults = await latLongs.get('bartonhammond','OraclePubSub');
+      fs.writeFileSync('./LatLongsTest.latLongResults.geojson',JSON.stringify(latLongResults,null,2));
+      
+      let tileResults = await tiles.process(latLongResults);
+      fs.writeFileSync('./LatLongsTest.tileResults.geojson',JSON.stringify(tileResults,null,2));
+      
+      let annotations = null;
+      
+      if (tileResults.length > 25) {
+        let geoColorResults = geoColor.jenks(tileResults);
+        fs.writeFileSync('./LatLongsTest.geoColorResults.geojson',JSON.stringify(geoColorResults,null,2));
+        annotations = geoToAnnotations.convert(geoColorResults);
+      } else {
+        annotations = geoToAnnotations.convert(tileResults);
+
+      }
+      fs.writeFileSync('./annotations2.geojson', JSON.stringify(annotations, null, 2));                      
+    } catch (err) {
+      console.log('getStarGazer.error',err);
+    }
+  }
+}
+(new LatLongsTest()).test();

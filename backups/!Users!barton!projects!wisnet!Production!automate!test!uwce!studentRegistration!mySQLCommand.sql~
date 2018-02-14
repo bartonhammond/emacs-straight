@@ -1,0 +1,3 @@
+delete FROM uwextension_staging.user
+where first_name like 'BWH%'
+and last_name like 'HAM%'

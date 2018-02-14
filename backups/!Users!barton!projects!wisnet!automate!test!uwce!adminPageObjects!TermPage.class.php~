@@ -1,0 +1,82 @@
+<?php
+require_once __DIR__ . "/../../../../src/pageObjects/Page.class.php";
+use Facebook\WebDriver\WebDriverSelect;
+
+class TermPage extends \Automate\Page {
+    private static $_selectors = [
+        "term_title" =>
+        [
+            "id" => "term_title"
+        ],
+        "h2_message" =>
+        [
+            "css" => "h2.sectionheading"
+        ],
+        "term_startDate" =>
+        [
+            "script" => "term_startDate"
+        ],
+        "term_endDate" =>
+        [
+            "script" => ""
+        ],
+        "term_active" =>
+        [
+            "css" => "select#term_active"
+        ],
+        "submit" =>
+        [
+            "css" => "div#primary button[type='submit']"
+        ],
+        "action_message" =>
+        [
+            "css" => "div#primary div.alert.alert-success.alert-dismissible"
+        ]
+    ];
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors["term_title"],
+                                          self::$_selectors["term_active"],
+                                          self::$_selectors["submit"]]);
+        
+    }
+    function getH2HeadingText() {
+        return $this->find(self::$_selectors['h2_message'])->getText();
+    }
+    function typeTitle($title) {
+        return $this->type(self::$_selectors['term_title'], $title);
+    }
+    function typeStartDate($dateAsString) {
+        $selector = self::$_selectors['term_startDate'];
+        $selector["script"] = "document.getElementById('term_startDate')"
+                            . ".value=('" 
+                            . $dateAsString
+                            . "')";
+        return $this->find($selector);
+    }
+    function typeEndDate($dateAsString) {
+        $selector = self::$_selectors['term_endDate'];
+        $selector["script"] = "document.getElementById('term_endDate')"
+                            . ".value=('" 
+                            . $dateAsString
+                            . "')";
+        return $this->find($selector);
+    }
+    function setActive() {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["term_active"]));
+        $webDriverSelect->selectByVisibleText("Active");
+    }
+    function setInActive() {
+        $option =  $this->find(self::$_selectors['term_active']);
+        if ($option->isSelected()) {
+            $option->click();
+        }
+    }
+    function submit() {
+        $this->click(self::$_selectors["submit"]);
+    }
+    function getActionMessage() {
+        $this->waitPageLoadedBySelectors([self::$_selectors['action_message']]);
+        return $this->find(self::$_selectors['action_message'])->getText();
+    }    
+}   

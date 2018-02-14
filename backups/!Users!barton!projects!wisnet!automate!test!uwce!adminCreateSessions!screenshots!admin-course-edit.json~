@@ -1,0 +1,72 @@
+{
+  "type": "script",
+  "seleniumVersion": "2",
+  "formatVersion": 2,
+  "steps": [
+    {
+      "type": "get",
+      "url": "https://www.secured-site7.com/uwce-staging/www/fond-du-lac/login"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "username"
+      },
+      "text": "${username}"
+    },
+    {
+      "type": "setElementText",
+      "locator": {
+        "type": "id",
+        "value": "password"
+      },
+      "text": "${password}"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "xpath",
+        "value": "//section[@id='loginform']//button[.='Log in']"
+      }
+    },
+    {
+      "type": "pause",
+      "waitTime": "2000"
+    },
+    {
+      "type": "get",
+      "url": "https://www.secured-site7.com/uwce-staging/www/fond-du-lac/admin/course/edit/{course_id}"
+    },
+    {
+      "type": "waitForEval",
+      "script": "document.querySelector('span.glyphicon.glyphicon-pencil').scrollIntoView(true); return 1;",
+      "value": "1"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "css selector",
+        "value": "span.glyphicon.glyphicon-pencil"
+      }
+    },
+    {
+      "type": "waitForEval",
+      "script": "document.querySelector('div#primary li.tab.tab-7.tab-additional_info > a').scrollIntoView(true); return 1;",
+      "value": "1"
+    },
+    {
+      "type": "clickElement",
+      "locator": {
+        "type": "css selector",
+        "value": "div#primary li.tab.tab-7.tab-additional_info > a"
+      }
+    },    
+  ],
+  "data": {
+    "configs": {},
+    "source": "none"
+  },
+  "inputs": [],
+  "timeoutSeconds": 60
+}

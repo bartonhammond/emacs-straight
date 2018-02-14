@@ -1,0 +1,4 @@
+$this->driver->get("https://www.secured-site7.com/uwce-staging/www/fond-du-lac/create-account");
+$this->login->verifyPageLoaded();
+$this->assertTrue($this->login->verifyPageUrl());
+$this->takeSnapShot();

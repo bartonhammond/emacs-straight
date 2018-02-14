@@ -1,0 +1,22 @@
+<template name="pwdForm">
+  <div data-view="form"
+       data-id="pwd-form">
+
+    {{#each fields}}
+      {{> input}}
+    {{/each}}
+    <!--
+        {{#if showReCaptcha}}
+        {{> atReCaptcha}}
+        {{/if}}
+        {{#if showForgotPasswordLink}}
+        {{> atPwdLink}}
+        {{/if}}
+
+        {{> atPwdFormBtn}}
+      -->
+
+  </div>
+  
+
+</template>

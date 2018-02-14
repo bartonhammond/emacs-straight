@@ -1,0 +1,34 @@
+'use strict';
+/**
+ * Return promise that resolves to a getRepositoryByPageJob
+ */
+let CreateGetStargazersForRepoByPageJob = function(queue,
+                                                   access_token,
+                                                   owner,
+                                                   repo,
+                                                   currentPage)
+{
+  return new Promise((resolve, reject) => {
+    let job = queue.create('getStargazersForRepoByPage', {
+      title: 'getStargazersForRepoByPage: '
+        + repo + ':'
+        + currentPage,
+      access_token: access_token,
+      owner: owner,
+      repo: repo,
+      page: currentPage
+    }).save((err) => {
+      if (err) {
+        reject(err);
+      }
+    });
+    job.on('complete', (results) => {
+      resolve(results);
+    });
+    job.on('failed', (err) => {
+      reject(err);
+    });                
+  });
+};//createJob
+
+module.exports = CreateGetStargazersForRepoByPageJob;

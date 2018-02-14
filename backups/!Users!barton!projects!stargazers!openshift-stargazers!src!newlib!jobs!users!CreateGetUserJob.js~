@@ -1,0 +1,19 @@
+/**
+ * Return promise that resolves to a user
+ */
+let CreateGetUserJob = function(queue, stargazer)
+{
+  return new Promise((resolve, reject) => {
+    let job = queue.create('getUserJob', {
+      title: 'getUser: ' + stargazer.login,
+      stargazer: stargazer
+    }).save((err) => {
+      if (err) {
+        reject(err);
+      }
+    });
+    resolve(job);
+  });
+};//createJob
+
+module.exports = CreateGetUserJob;

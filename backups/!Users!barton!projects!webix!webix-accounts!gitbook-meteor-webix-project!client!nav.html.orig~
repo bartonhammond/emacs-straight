@@ -1,0 +1,43 @@
+<template name="nav">
+
+  <div id="_nav">
+    <div data-id="nav"
+         data-css="nav"
+         data-view="toolbar">
+
+      <div data-view="label"
+           data-label="{{t9n 'app.displayName'}}"
+           data-width=200>
+      </div>
+
+      <div data-id="nav-menu"
+           data-view="menu">
+        
+        <ul data-view="data">
+
+          <li data-id="menuNotif"
+              data-name="menuNotif"
+              data-submenu="submenu1"
+              data-href="{{pathFor 'postslist'}}"
+              >{{t9n 'nav.menu.notifications'}}
+              {{>submenu}}
+            
+          </li>
+          <li data-id="menuSubmit"
+              data-href="{{pathFor 'postSubmit'}}">{{t9n 'nav.menu.postSubmit'}}
+          </li>
+        </ul>
+      </div>
+
+      {{>navButton}}
+    </div>
+  </div>
+</template>
+<template name="submenu">
+<div data-view="submenu" data-id="submenu1">
+    <ul data-view="data">
+       <li data-id="1.1" >Item 1.1</li>
+       <li data-id="1.2">Item 1.2</li>
+    </ul>
+</div>
+</template>

@@ -1,0 +1,8 @@
+Template.signin.onRendered = function() {
+  if (_.isUndefined(webix.ui.views['signin'])) {
+    console.log('signin.rendered.markup.init');
+    webix.markup.init();
+  } else {
+    console.log('signin.rendered');
+  }
+};

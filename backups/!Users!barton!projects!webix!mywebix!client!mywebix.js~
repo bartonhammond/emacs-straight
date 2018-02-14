@@ -1,0 +1,8 @@
+	webix.ui({
+			type:"line",
+			container:"testA",
+    		rows: [
+    			{ template:"Row 1"},
+    			{ template:"Row 2"}
+    		]
+	});

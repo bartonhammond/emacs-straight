@@ -1,0 +1,15 @@
+'use strict';
+
+jest.autoMockOff();
+
+describe('ErrorAlert', () => {
+  it('calls alert function with two parameters', () => {
+
+    expect(true).toEqual(false);
+
+  });
+
+
+});
+
+

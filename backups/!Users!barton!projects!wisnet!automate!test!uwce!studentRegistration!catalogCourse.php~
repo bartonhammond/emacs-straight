@@ -1,0 +1,6 @@
+//account
+$this->assertTrue($this->catalogSearch->verifyPageLoaded());
+$this->assertTrue($this->catalogSearch->verifyPageUrl());
+$this->takeSnapShot();
+
+$this->catalogSearch->clickBwhMusicCourseDescriptionFor1Link();

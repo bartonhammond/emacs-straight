@@ -1,0 +1,3 @@
+{
+  login: {"auth":{"form":{"state":"LOGIN_STATE_REGISTER","disabled":false,"error":null,"isValid":false,"isFetching":false,"fields":{"username":"jbar","usernameHasError":true,"email":"aer","emailHasError":true,"password":"aek3","passwordHasError":true,"passwordAgain":"akke","passwordAgainHasError":true,"showPassword":false}}},"device":{"isMobile":true},"profile":{"form":{"originalProfile":{"username":null,"email":null,"objectId":null,"emailVerified":null},"disabled":false,"error":null,"isValid":false,"isFetching":false,"fields":{"username":"","usernameHasError":false,"email":"","emailHasError":false,"emailVerified":false}}},"global":{"currentUser":null,"showState":false,"currentState":null,"store":null}}
+}

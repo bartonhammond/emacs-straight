@@ -1,0 +1,26 @@
+
+<template name="nav">
+  <div id="barton" data-css="nav" data-id="_nav" data-view="rows">
+    <div data-view="toolbar">
+      <div data-view="label"
+           data-label="Accounts Templates"
+           data-width=200>
+      </div>
+      <div data-view="menu">
+        <ul data-view="data">
+          <div data-view="menu">
+            <ul data-view="data">
+              <li data-id="menuHome" data-href="/">Home</li>
+              <li data-id="menuPrivate" data-href="/private">Private</li>
+            </ul>
+          </div>
+        </ul>
+      </div>
+      {{>navButton}}
+    </div>
+
+  </div>
+
+</template>
+
+

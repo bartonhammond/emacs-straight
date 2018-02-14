@@ -1,0 +1,22 @@
+ <div data-id="postFormLayout"
+       data-view="layout"
+       data-type="clean"
+       data-stack="cols">
+    
+    <div data-type="clean"
+         data-gravity=2
+         data-minWidth=25>
+    </div>
+
+    <div data-id="postFormBtn"
+         data-view="button"
+         data-gravity=1
+         data-label="{{buttonText}}"
+         data-click="{{dataClick}}">
+    </div>
+       
+    <div data-type="clean"
+         data-gravity=2
+         data-minWidth=25>
+    </div> 
+  </div>

@@ -1,0 +1,7 @@
+//account
+$this->assertTrue($this->account->verifyPageLoaded());
+$this->assertTrue($this->account->verifyPageUrl());
+$this->takeSnapShot();
+
+$this->account->clickCourseCatalogLink();
+

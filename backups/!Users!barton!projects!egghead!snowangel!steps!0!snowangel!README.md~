@@ -1,0 +1,12 @@
+# Step 0
+
+## Do these things
+
+* index android/ios is only different by text
+* lets combine them into one file
+  * create src/snowangel.js
+  * change index.android/ios.js to import snowangel.js
+  * create src/components
+  * refactor snowangel.js
+    * move css & jsx to src/components/Home.js
+  * run ios or android to confirm 

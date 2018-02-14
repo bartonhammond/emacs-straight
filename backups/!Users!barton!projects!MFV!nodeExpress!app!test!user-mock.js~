@@ -1,0 +1,10 @@
+var UserMock = function () {
+
+    this.uuid = require('node-uuid');
+    this.crypto = require('crypto');
+    this.User = require('../models/user.js');
+    this.seedUsersCount = 10;
+    this.users = [];
+    this.err = false;
+    this.numberAffected = 0;
+};

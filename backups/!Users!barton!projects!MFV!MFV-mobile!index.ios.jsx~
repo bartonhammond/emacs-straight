@@ -1,0 +1,34 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ */
+'use strict';
+
+import React, { Component, AppRegistry } from 'react-native';
+import { Provider } from 'react-redux/native';
+import App from './src/containers/App';
+import configureStore from './src/store/configureStore';
+var Parse = require('parse').Parse;
+import CONFIG from ('./config');
+
+Parse.initialize(CONFIG.PARSE.APP_ID, CONFIG.PARSE.JAVASCRIPT_KEY);
+
+const store = configureStore();
+
+class ReduxCounterUniversal extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+      {() => <App />}
+      </Provider>
+    );
+    
+  }
+}
+
+AppRegistry.registerComponent('ReduxCounterUniversal', () => ReduxCounterUniversal);
+
+
+
+
+

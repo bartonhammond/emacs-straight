@@ -1,0 +1,5 @@
+<?php
+
+$line=".seleniumTestId=9714377";
+$pos = strpos($line, 'seleniumTestId=');
+echo $pos;

@@ -1,0 +1,9 @@
+<template name="title">
+<div>
+<div data-css="title"
+data-view="template"
+data-template="<h3>{{title}}</h3> "
+       data-id="at-title">
+       </div>
+       </div>
+</template>

@@ -1,0 +1,254 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 Barton Hammond . All rights reserved.
+-->
+<html lang="">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Half My Life" />
+    <title>Half My Life</title>
+    <!-- Place favicon.ico in the `app/` directory -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+    
+    <!-- Chrome for Android theme color -->
+    <meta name="theme-color" content="#303F9F">
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Tile color for Win8 -->
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="PSK">
+
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/touch/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/touch/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/touch/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/touch/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/touch/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/touch/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/touch/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/touch/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="images/touch/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/touch/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/touch/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/touch/favicon-16x16.png">
+    <link rel="manifest" href="images/touch/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/touch/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild-->
+
+    <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <!-- endbuild -->
+
+    <!-- will be replaced with elements/elements.vulcanized.html -->
+    <link rel="import" href="elements/elements.html">
+    <!-- endreplace-->
+
+    <!-- relative routing
+    https://github.com/PolymerElements/polymer-starter-kit/issues/142
+
+    <base href="/halfmylife/">
+    -->
+    
+  </head>
+
+  <body unresolved class="fullbleed layout vertical">
+    <span id="browser-sync-binding"></span>
+    <template is="dom-bind" id="app">
+
+      <paper-drawer-panel id="paperDrawerPanel">
+        <!-- Drawer Scroll Header Panel -->
+        <paper-scroll-header-panel drawer fixed>
+
+          <!-- Drawer Toolbar -->
+          <paper-toolbar id="drawerToolbar">
+            <span class="paper-font-title">Menu</span>
+          </paper-toolbar>
+
+          <!-- Drawer Content -->
+          <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+            <a data-route="home" href="/">
+              <iron-icon icon="home"></iron-icon>
+              <span>Home</span>
+            </a>
+
+            <a data-route="calculate" href="/calculate">
+              <iron-icon icon="schedule"></iron-icon>
+              <span>Calculate</span>
+            </a>
+
+            <a data-route="license" href="/license">
+              <iron-icon icon="info"></iron-icon>
+              <span>License</span>
+            </a>
+
+            <a data-route="contact" href="/contact">
+              <iron-icon icon="mail"></iron-icon>
+              <span>Contact</span>
+            </a>
+          </paper-menu>
+        </paper-scroll-header-panel>
+
+        <!-- Main Area -->
+        <paper-scroll-header-panel main condenses keep-condensed-header>
+
+          <!-- Main Toolbar -->
+          <paper-toolbar id="mainToolbar" class="tall">
+            <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+            <span class="flex"></span>
+
+            <!-- Application name -->
+            <div class="middle middle-container center horizontal layout">
+              <div class="app-name">Half My Life</div>
+            </div>
+
+            <!-- Application sub title -->
+            <div class="bottom bottom-container center horizontal layout">
+              <div class="bottom-title paper-font-subhead">Looking
+                for reasons to celebrate!</div>
+            </div>
+
+          </paper-toolbar>
+
+          <!-- Main Content -->
+          <div class="content">
+            <iron-pages attr-for-selected="data-route" selected="{{route}}">
+              <paper-material elevation="1">
+                <section data-route="home">
+                  
+                  <img style="margin-right:10px" src="images/boots.jpg" align="left">
+                  <h3>Have you been with me Half My Life?</h3>
+                  <p>
+                    For those with a long term relationship,
+                    HalfMyLife pin points the exact day when Half My
+                    Life occurs.  What a day to celebrate!
+                  </p>
+                  <h3>When is the next milestone of my life?</h3>
+                  <p>
+                    For those early in their relationship, HalfMyLife
+                    provides intermediate milestones dates such as one
+                    tenth, or a third of my life, dates to look
+                    forward to celebrating.
+                  </p>
+              </paper-material>
+              
+              <paper-material elevation="1">
+                <img style="margin-left:10px" src="images/onthebeach.jpg" align="right">
+                <h3>Great - what do I do?</h3>
+
+                <p>
+                  Just click the link below! Provide a couple of
+                  dates and you're good to go.  You'll also have the
+                  opportunity to add the milestone dates to the
+                  calendar of your choice!  Oh, and did I say it's
+                  all <strong>FREE!</strong>
+                  <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+                    <a data-route="calculate" href="/calculate">
+                      <paper-button tabindex="0" raised
+                                    class="colorful custom">
+                        <iron-icon icon="schedule">
+                        </iron-icon>
+                        Calculate
+                      </paper-button>
+                    </a>
+                  </paper-menu>
+                </p>
+              </paper-material>
+              </section>
+
+              <section data-route="calculate">
+                <paper-material elevation="1">
+                  <calculate-halflife></calculate-halflife>
+                </paper-material>
+              </section>
+
+
+              <section data-route="license">
+                <paper-material elevation="1">
+                  <h2 class="paper-font-display2">License</h2>
+                  <paper-material elevation="1" class="paper-font-body2">
+                    <p>This software (see source here: <a href="https://github.com/bartonhammond/halfmylife">https://github.com/bartonhammond/halfmylife</a>) is BSD style license unless otherwise specified.</p>
+                    <p>Copyright (c) 2015 Barton Hammond. All rights reserved.</p>
+                    <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+                    <ul>
+                      <li>Redistributions of source code must retain the above copyright
+                        notice, this list of conditions and the following disclaimer.</li>
+                      <li>Redistributions in binary form must reproduce the above
+                        copyright notice, this list of conditions and the following disclaimer
+                        in the documentation and/or other materials provided with the
+                        distribution.</li>
+                      <li>The name of Barton Hammond may not be used to endorse or promote products derived from
+                        this software without specific prior written permission.</li>
+                    </ul>
+                    <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+                  </paper-material>
+                </paper-material>
+              </section>
+
+              <section data-route="user-info">
+                <paper-material elevation="1">
+                  <h2 class="paper-font-display2">
+                    User:<span>{{params.name}}</span>
+                  </h2>
+                  <div>This is <span>{{params.name}}</span>'s section</div>
+                </paper-material>
+              </section>
+
+              <section data-route="contact">
+                <paper-material elevation="1">
+                  <h2 class="paper-font-display2">Contact</h2>
+                  <p>Any questions, email me, Barton Hammond, with barton at acclivyx dot com</p>
+                </paper-material>
+              </section>
+
+            </iron-pages>
+          </div>
+        </paper-scroll-header-panel>
+      </paper-drawer-panel>
+
+      <!-- Uncomment next block to enable Service Worker support (1/2) -->
+      <!--
+      <paper-toast id="caching-complete"
+                   duration="6000"
+                   text="Caching complete! This app will work offline.">
+      </paper-toast>
+
+      <platinum-sw-register auto-register
+                            clients-claim
+                            skip-waiting
+                            on-service-worker-installed="displayInstalledToast">
+        <platinum-sw-cache default-cache-strategy="networkFirst"
+                           precache-file="precache.json">
+        </platinum-sw-cache>
+      </platinum-sw-register>
+      -->
+
+    </template>
+    <script src="../bower_components/moment/moment.js"></script>
+    <!-- version 0.8 -->
+    <!-- build:js scripts/app.js -->
+    <script src="scripts/app.js"></script>
+    <!-- endbuild-->
+  </body>
+
+</html>

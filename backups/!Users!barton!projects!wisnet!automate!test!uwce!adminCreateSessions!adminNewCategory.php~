@@ -1,0 +1,33 @@
+
+//Navigate to New Cateory
+$element = $this->driver->findElement(WebDriverBy::linkText("Edit Categories"));
+$this->assertNotNull($element);        
+$element->click();
+
+//On Category new page
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("h1.pagetitle"), 'Campus Categories'));
+$url = $this->driver->getCurrentURL();
+$this->assertContains('category', $url);
+
+
+//Move the button into the view
+$this->moveToElementOnMobile(WebDriverBy::linkText("Add New"));
+
+$element = $this->driver->findElement(WebDriverBy::linkText("Add New"));
+
+$this->assertNotNull($element);        
+$element->click();
+
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::cssSelector("h2.sectionheading"), 'New Category'));        
+$url = $this->driver->getCurrentURL();
+$this->assertContains('category/new', $url);
+
+//Fill in form for new category
+$this->driver->findElement(WebDriverBy::name("category_title"))->sendKeys("BWH Music Category Name");
+$element = $this->driver->findElement(WebDriverBy::xpath("//div[@id='primary']//button[.='Save']"));
+$this->assertNotNull($element);
+$element->click();
+
+//Confirm that message appears 
+$this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::xpath("//div[@id='primary']/div/div[2]"),"Your changes have been saved"));
+

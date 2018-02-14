@@ -1,0 +1,47 @@
+'use strict';
+require('regenerator/runtime');
+
+import BaseClass from '../BaseClass';
+
+class GetRepositoryByPageProcessor extends BaseClass{
+  constructor(queue) {
+    super(queue);
+  }
+  init() {
+    let self = this;
+
+    self.queue.process(
+      'getRepositoryByPage',
+      13, //3 batch
+      function(job,
+               ctx,
+               done) {
+
+        self.gitHub.access_token = job.data.access_token;
+        self.gitHub.id = job.data.id;
+        
+        //ratelimit the search requests at 30/min
+        self.gitHub.searchRepositories(
+          '', //term
+          '', //inFields
+          '', //forks
+          '' + job.data.minstars + '..' + job.data.maxstars,//stars
+          '',//language
+          'stars', //sort
+          'desc', //order
+          job.data.page)
+        
+          .then((page) => {
+            done(null, page);
+            
+          }).catch((err) => {
+            done(err);
+            self.needToPause(ctx, err);
+          });
+      });
+  }
+  
+}
+module.exports = GetRepositoryByPageProcessor;
+
+

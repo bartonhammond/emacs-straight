@@ -1,0 +1,47 @@
+<?php
+require_once __DIR__ . "/../../../../src/pageObjects/Page.class.php";
+//url: https://www.secured-site7.com/uwce-staging/www/fond-du-lac/admin/course
+class CourseAndProgramPage extends \Automate\Page {
+    private static $_selectors = [
+        "course_search" =>
+        [
+            "css" => "div#primary div > input[name='courseSearch_keyword']"
+        ],
+        "submit" =>
+        [
+            "css" => "div#primary button[type='submit'] > span"
+        ],
+        "first_search_result" =>
+        [
+            "css" => "div#primary td.category > a"
+        ]
+        
+    ];
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors['course_search']
+        ]);
+    }
+    function typeCourseSearch($text) {
+        $this->type(self::$_selectors['course_search'],$text);
+    }
+    
+    function getFirstSearchResultText() {
+        $this->waitPageLoadedBySelectors([self::$_selectors['first_search_result']]);
+        return $this->find(self::$_selectors['first_search_result'])->getText();
+    }
+    function selectFirstSearchResult() {
+        $this->waitPageLoadedBySelectors([self::$_selectors['first_search_result']]);
+        return $this->click(self::$_selectors['first_search_result']);
+    }
+            
+    function submit() {
+        $this->click(self::$_selectors['submit']);
+    }
+    
+}
+
+
+
+
+

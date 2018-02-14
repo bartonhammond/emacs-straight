@@ -1,0 +1,37 @@
+Package.describe({
+  name: 'app:lib', // All modules should api.use() this.
+  summary: 'Application core library.',
+  version: '1.0.0',
+  git: 'https://github.com/bartonhammond/app-lib'
+});
+
+Package.onUse(function(api) {
+
+  api.versionsFrom(['METEOR@1.0']);
+
+  var packages = [
+    'standard-app-packages',
+    'autopublish',
+    'insecure',
+    'webix:webix',
+  ];
+
+  api.use(packages);
+
+
+  api.imply(packages);
+
+  api.addFiles([
+    'lib/webix-packageversion.html',
+    'lib/webix-packageversion.css',
+    'lib/webix-packageversion.js'
+  ], ['client']);
+  
+  api.export('webix', 'client');
+  
+  api.imply();
+
+  api.export([
+
+  ]);
+});

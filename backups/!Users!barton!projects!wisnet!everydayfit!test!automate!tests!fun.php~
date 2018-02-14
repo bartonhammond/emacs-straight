@@ -1,0 +1,21 @@
+#!/usr/bin/php
+  <?php
+
+$results = array();
+
+$results['foobar'] = array();
+
+$results['foobar'] = array_merge( $results['foobar'], array("do"=>"me",
+                                                            "re" => "fa"));
+
+$results['foobar'] = array_merge($results['foobar'], array( "me"=>"me",
+                                                            "fa" => "fa"));
+
+
+foreach ($results as $key => $value) {
+  print $key . "\n";
+  foreach($value as $akey => $avalue) {
+    print $akey . ' ' . $avalue . "\n";
+  }
+}   
+?>

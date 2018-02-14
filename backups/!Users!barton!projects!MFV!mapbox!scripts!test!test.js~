@@ -1,0 +1,6 @@
+import ClassTest from './ClassTest';
+
+export default (request, response) => {
+  var classTest = new ClassTest();
+  return response.success(classTest.translate(request.params.foo));
+}

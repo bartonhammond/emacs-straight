@@ -1,0 +1,27 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "Personal Access token: d56ff50833e60a6a0a79f5ae34c26aa599025cf0",
+  "main": "mapBox-heatmap.js",
+  "scripts": {
+    "debug": "node-debug --preload false --nodejs --harmony lib/genMapBoxData.js --runInBand",
+    "mapboxData": "node lib/genMapBoxData.js",
+    "build": "babel src/ --watch --source-maps -d lib",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "es6-promise": "^3.0.2",
+    "isomorphic-fetch": "^2.2.0",
+    "latinize": "^0.2.0",
+    "octonode": "^0.7.4",
+    "parse-link-header": "^0.4.1",
+    "regenerator": "^0.8.42",
+    "tilebelt": "^1.0.1",
+    "turf": "^2.0.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.3.17"
+  }
+}

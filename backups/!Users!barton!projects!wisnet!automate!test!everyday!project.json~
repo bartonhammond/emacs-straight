@@ -1,0 +1,9 @@
+{
+    "customerName": "wisnet",
+    "tests": [
+        "test"
+    ],
+    "variables": {
+        "course_id": "723"
+    }
+}

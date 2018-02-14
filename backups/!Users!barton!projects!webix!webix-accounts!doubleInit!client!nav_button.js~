@@ -1,0 +1,38 @@
+'use strict';
+
+Template.navButton.helpers({
+  text: function(){
+    var key = Meteor.userId() ?
+        WebixDefaults.texts.navSignOut : WebixDefaults.texts.navSignIn;
+    console.log('navbutton.text');
+    console.log('$$', $$('nav-button'));
+    console.log('views',webix.ui.views['nav-button']);
+    return T9n.get(key);
+  },
+  dataClick: function() {
+    return `
+    if (!Meteor.userId()){
+      Router.go('/signin');
+    } else {
+      Meteor.logout(function() {
+        Router.go('/');
+      });
+    }`
+  }
+})
+
+Template.navButton.onCreated(function() {
+  console.log('navButton.onCreated');
+});
+
+Template.navButton.onRendered(function() {
+  console.log('navButton.onRendered');
+    console.log('$$', $$('nav-button'));
+    console.log('views',webix.ui.views['nav-button']);
+  
+});
+Template.navButton.onDestroyed(function() {
+  console.log('navButton.onDestroyed');
+  console.log('$$', $$('nav-button'));
+  console.log('views',webix.ui.views['nav-button']);
+});

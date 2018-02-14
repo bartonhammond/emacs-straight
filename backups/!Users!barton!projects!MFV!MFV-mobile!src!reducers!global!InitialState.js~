@@ -1,0 +1,9 @@
+const InitialState = Record({
+  sessionToken: null,
+  eventEmitter: null,
+  currentUser: null,
+  showState: false,
+  currentState: null,
+  store: null
+});
+const initialState = new InitialState;

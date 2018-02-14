@@ -1,0 +1,5 @@
+//register.php
+$this->assertTrue($this->main->verifyPageLoaded());
+$this->assertTrue($this->main->verifyPageUrl());
+$this->takeSnapShot();
+$this->main->clickLogInButton();

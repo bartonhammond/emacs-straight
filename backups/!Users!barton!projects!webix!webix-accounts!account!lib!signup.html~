@@ -1,0 +1,23 @@
+<template name="signin">
+  <div data-id="signin"
+       data-view="layout"
+       data-type="clean"
+       data-stack="cols">
+    
+    <div data-type="clean"
+         data-gravity=1
+         data-minWidth=25>
+    </div>
+    
+    <div data-view="layout"
+         data-type="clean"
+         data-gravity=4
+         data-position="flex">{{>form}}
+    </div>
+    
+    <div data-type="clean"
+         data-gravity=1
+         data-minWidth=25>
+    </div> 
+  </div>
+</template>

@@ -1,0 +1,47 @@
+Package.describe({
+  name: 'bhammond:webix-accounts',
+  version: '0.0.1',
+  // Brief, one-line summary of the package.
+  summary: 'A webix user account system',
+  // URL to the Git repository containing the source code for this package.
+  git: '',
+  // By default, Meteor will default to using README.md for documentation.
+  // To avoid submitting documentation, set this field to null.
+  documentation: 'README.md'
+});
+
+Package.onUse(function(api) {
+  api.versionsFrom('METEOR@1.2');
+
+  api.use([
+    'accounts-password',
+    'check',
+    'underscore',
+    'reactive-var',
+    'ejson',
+    'softwarerero:accounts-t9n@1.1.4',
+  ], ['client', 'server']);
+
+  // Requires all routing packages loads before this asking for weak dependencies.
+  api.use('useraccounts:flow-routing@1.12.1', ['client', 'server'], {weak: true});
+  api.use('useraccounts:iron-routing@1.12.1', ['client', 'server'], {weak: true});
+
+  api.use([
+    'templating'
+  ], 'client');
+
+  //Support for webix
+  api.addFiles([
+    'vendor/webix/webix_debug.js',
+    'vendor/webix/meteor_data.js',
+  ], ['client']);
+  
+  api.export('webix', 'client');
+});
+
+Package.onTest(function(api) {
+  api.use('ecmascript');
+  api.use('tinytest');
+  api.use('bhammond:webix-accounts');
+  api.addFiles('test/webix-accounts-tests.js');
+});

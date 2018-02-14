@@ -1,0 +1,17 @@
+The runner is initiated by the UI
+
+The page is initialized to 0 so it knows it's just starting
+
+It runs every minute
+
+It looks for all the active/inactive jobs w/ it's ID
+
+
+If there is only one,
+then it is on the first page
+or it is done
+
+It kicks off a MapBox job
+
+
+ 

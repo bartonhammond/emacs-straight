@@ -1,0 +1,16 @@
+var WebixInput = BlazeComponent.extendComponent({
+  template: function () {
+    return 'atNavButton';
+  },
+
+  events: function () {
+    return [{
+      'click *': this.onClick
+    }];
+  },
+
+  
+  onClick: function (event) {
+    console.log('WebixInput.onclick');
+  }
+}).register('WebixInput');

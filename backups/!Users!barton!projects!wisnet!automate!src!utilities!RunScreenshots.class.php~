@@ -1,0 +1,288 @@
+<?php
+namespace Automate;
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once './src/utilities/curlSupport.php';
+require_once './src/utilities/readTestDirectory.php';
+require_once './src/utilities/screenShots.php';
+require_once './src/utilities/checkParallelTest.php';
+require_once './src/utilities/automateFile.php';
+/*
+ * Run the ScreenShots 
+ * For each URL, this will take ScreenShots for all the browsers
+ * defined in the 'automate.json' file.
+ * 
+ */
+class RunScreenshots{
+    protected $username;
+    protected $authkey;
+
+	protected $baseUrl = "https://crossbrowsertesting.com/api/v3/screenshots";
+    protected $seleniumScriptUrl = "https://crossbrowsertesting.com/api/v3/screenshots/seleniumscripts";
+    protected $seleniumScriptUrlForDelete = "https://crossbrowsertesting.com/api/v3/screenshots/seleniumscripts/";
+    
+    protected $fileName = "screenShotsUrl.json";
+
+	protected $currentTest = NULL;
+    protected $screenshotID;
+    protected $curlSupport;
+    
+    protected $mapOfUrls;
+    
+    protected $homeDir;
+    protected $directory;
+    protected $testDir;
+
+    protected $automateFile;
+    protected $checkParallelTest;
+    
+	function __construct($username, $authkey) {
+		$this->username = $username;
+		$this->authkey = $authkey;
+        $this->curlSupport = new CurlSupport($username, $authkey);
+        $this->mapOfUrls;
+        $this->testDir  = __DIR__ . '/../../test';
+
+        $this->screenShots = new ScreenShots($this->username,
+                                             $this->authkey);
+        
+        $this->checkParallelTest = new CheckParallelTest($this->username,
+                                                         $this->authkey);        
+	}
+    function endsWith($haystack, $needle) {
+        $length = strlen($needle);
+        
+        return $length === 0 || 
+                       (substr($haystack, -$length) === $needle);
+    }
+    function main($argv) {
+        $dirs = new \Automate\ReadTestDirectory();
+
+        $testSuites = $dirs->readDirectory($this->testDir, "/project.json");
+
+        //A $testSuite constains the directory names to be processed
+        //in the "tests". such as UWCE & EverydayFit
+        foreach ($testSuites as $testSuite) {
+            if (!empty($argv[1])) {
+
+                if (!$this->endsWith($testSuite['directory'], $argv[1]) ) {
+                    continue;
+                }
+            }
+
+            foreach($testSuite['tests'] as $test) {
+                $this->automateFile = new \Automate\AutomateFile($testSuite['directory']
+                                                            . '/'
+                                                            . $test);
+
+                if (isset($this->automateFile->automate->screenshots) ) {
+                    $dir = $testSuite['directory'] . '/' . $test;
+                    $this->mapOfUrls = $this->screenShots->getScreenShotURLs($dir);
+                    $this->takeAllScreenShots($dir, $testSuite);
+
+                    copy('./src/template/index-for-screenshots.php',
+                         $this->automateFile->automate->results . "/screenshots/index.php");                    
+                }
+            }//$test
+        }//$testSuite
+
+        
+    }
+	function isTestComplete(){
+		$this->currentTest = $this->updateTestInfo();
+		return !$this->currentTest->versions[0]->active;
+	}
+
+	function getTestId(){
+		return $this->currentTest->screenshot_test_id;
+	}
+    function getVersionId() {
+        return $this->currentTest->versions[0]->version_id;
+    }
+
+    function updateTestInfo(){
+		$url = $this->baseUrl . "/" . $this->getTestId();
+		return $this->curlSupport->callApi($url, 'GET');
+	}
+    /*
+     * For all the saved URLs, do screenshots of each URL
+     * The list of browsers is stored in the CBT Comparison 
+     * site
+     */
+    function takeAllScreenShots($dir, $testSuite) {
+        $keys = $this->mapOfUrls->keys();
+        $count = 0;
+        foreach($keys as $key) {
+            $screenshot = $this->mapOfUrls->get($key);
+
+            //If the script failed, we could have
+            //the script already defined - so delete it now
+            if (isset($screenshot['script'])) {
+                $this->deleteScreenshotScript($screenshot);
+            }
+            //Add new script
+            if (isset($screenshot['script'])) {
+                $this->addScreenshotScript($dir, $screenshot, $testSuite);
+            }
+
+            $screenshot = $this->takeScreenShots($screenshot, $testSuite);
+            
+            $this->mapOfUrls->put($key, $screenshot);
+            $this->saveResults($count . '.json');
+            $this->doComparison($screenshot, $count . '.json');
+            
+            //Delete the script
+            if (isset($screenshot['script'])) {
+                $this->deleteScreenshotScript($screenshot);
+            }
+            $count++;
+        }
+        $this->screenShots->saveUrls($this->mapOfUrls);
+    }
+    function getSeleniumScriptName($screenshot) {
+        $fileName = $screenshot['script'];
+        $pos = strrpos($fileName,'/');
+        
+        if ($pos !== FALSE) {
+            $fileName = substr($fileName, $pos+1);
+        }
+        
+        return $fileName;
+    }
+    function deleteScreenshotScript($screenshot){
+
+       $response =  $this->curlSupport->callApi($this->seleniumScriptUrlForDelete
+                                    . $this->getSeleniumScriptName($screenshot)
+                                    , 'DELETE');
+       if (!$response->deleted) {
+           var_dump($response);
+       }
+    }
+    function replaceVariables($script, $vars){
+        foreach( $vars as $key => $value ) {
+            $key = '${' . $key . '}';
+            $script = str_replace($key, $value, $script);
+        }
+        return $script;
+    }
+    function addScreenshotScript($dir, $screenshot, $testSuite) {
+        $script = file_get_contents($dir
+                                    . '/'
+                                    . $screenshot['script']);
+        
+        $vars = $this->automateFile->automate->screenshots->variables;
+        $script = $this->replaceVariables($script, $vars);
+        $script = $this->replaceVariables($script, $testSuite['variables']);
+        $params["script_name"] =  $this->getSeleniumScriptName($screenshot);
+        $params["custom_script"] = $script;
+        
+        $this->curlSupport->callApi($this->seleniumScriptUrl, 'POST', $params);
+                
+    }
+    /*
+     * Submit a request for screenshots
+     * Update the screenshot data for base, version id and target
+     * version id so that subsequently we can do the comparison
+     * 
+     * Returns $screenshot updated w/ version 
+     */
+    function takeScreenShots($screenshot, $testSuite){
+
+        //set parameters we want for the screenshot test
+        $params["url"] = $screenshot['url'];
+        $params["browser_list_name"] = $this->automateFile->automate->screenshots->browser_list_name;
+
+        if (isset($screenshot['script'])) {
+            $params["login"] = $this->getSeleniumScriptName($screenshot);
+        } else {
+            $params["login"] = $this->automateFile->automate->screenshots->login;
+        }
+        
+        $params["hide_fixed_elements"] = true;
+        $params["check_url"] = true;
+
+        $this->checkParallelTest->waitWhileTestsAreRunning();
+        
+        //if test id provided initialize this test to that test data
+        if (!empty($screenshot['base_test_id'])) {
+            $url = $this->baseUrl
+                 . "/"
+                 . $screenshot['base_test_id']
+                 . "/"
+                 . $screenshot['base_version_id'];
+            $this->currentTest = $this->curlSupport->callApi($url, 'POST');
+        } else {
+            $this->currentTest = $this->curlSupport->callApi($this->baseUrl, 'POST', $params);
+        }
+
+        //Keep waiting for the test to finish
+        while (TRUE) {
+            if ($this->isTestComplete()){
+                //If first time, set that as "Base"
+                //Will need to control this via the UI eventually
+                if (empty($screenshot['base_test_id'])) {
+                    $screenshot['base_test_id'] = $this->getTestId();
+                    $screenshot['base_version_id'] = $this->getVersionId();
+                } else {
+                    $screenshot['target_version_id'] = $this->getVersionId();
+                }
+                return $screenshot;
+            }
+            else {
+                sleep(2);
+            }
+        }
+
+    }
+    /*
+     * Save all the JSON that has the images for all the browsers with 
+     * screenshots
+     */
+    function saveResults( $fileName) {
+        if (!file_exists($this->automateFile->automate->results . "/screenshots")) {
+            mkdir($this->automateFile->automate->results . "/screenshots", 0777, true);
+        }
+        $url = "https://crossbrowsertesting.com/api/v3/screenshots/" . $this->getTestId() . '?format=json';
+        
+        $response = $this->curlSupport->callApi($url, 'GET');
+        
+        file_put_contents($this->automateFile->automate->results . "/screenshots/" . $fileName,
+                          json_encode($response,
+                                      JSON_PRETTY_PRINT),
+                          LOCK_EX);
+    
+    }
+    /*
+     * Compare the base id/version w/ the new version
+     */
+    function doComparison($screenshot, $fileName) {
+        if (!empty($screenshot['base_test_id'])
+            &&
+            !empty($screenshot['base_version_id'])
+            &&
+            !empty($screenshot['target_version_id'])) {
+                    
+            $url = "https://crossbrowsertesting.com/api/v3/screenshots/"
+                 . $screenshot['base_test_id']
+                 . "/"
+                 . $screenshot['target_version_id']
+                 . "/comparison/parallel/"
+                 . $screenshot['base_version_id']
+                 . "?format=json&tolerance=30";
+        
+            $response = $this->curlSupport->callApi($url, 'GET');
+        
+            file_put_contents($this->automateFile->automate->results . "/screenshots/compare-" . $fileName,
+                              json_encode($response,
+                                          JSON_PRETTY_PRINT),
+                              LOCK_EX);
+        }
+
+    }
+
+} //class
+
+$username = "bhammond@wisnet.com";
+$authkey = "u0459a8738c4a60d";
+
+$runner = new RunScreenShots($username, $authkey);
+$runner->main($argv);

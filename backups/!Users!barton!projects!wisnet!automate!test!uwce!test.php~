@@ -1,0 +1,40 @@
+<?php 
+require_once __DIR__ . '/../../src/testCase/BaseTestCase.php';
+class Test extends \Automate\BaseTestCase { 
+public function thisFunction() { 
+
+    
+print "\nNavigating to URL\n";
+$this->driver->get("http://croSsbrowsertesting.github.io/todo-app.html");
+
+sleep(3);
+$this->takeScreenShot();
+print "Clicking Checkbox\n";
+$this->driver->findElement(WebDriverBy::name("todo-4"))->click();
+$this->takeScreenShot();
+            
+print "Clicking Checkbox\n";
+$this->driver->findElement(WebDriverBy::name("todo-5"))->click();
+$this->takeScreenShot();            
+$elems = $this->driver->findElements(WebDriverBy::className("done-true"));
+$this->assertEquals(2, count($elems));
+            
+print "Entering Text\n";
+$this->driver->findElement(WebDriverBy::id("todotext"))->sendKeys("Run your first Selenium test");
+$this->takeScreenShot();
+            
+print "Adding todo to the list\n";
+$this->driver->findElement(WebDriverBy::id("addbutton"))->click();
+$this->takeScreenShot();
+
+$spanText = $this->driver->findElement(WebDriverBy::xpath("/html/body/div/div/div/ul/li[6]/span"))->getText();
+$this->assertEquals("Run your first Selenium test", $spanText);
+            
+print "Archiving old todos\n";
+$this->driver->findElement(WebDriverBy::linkText("archive"))->click();
+$this->takeScreenShot();
+$elems = $this->driver->findElements(WebDriverBy::className("done-false"));
+$this->assertEquals(4, count($elems));
+// if we've made it this far, assertions have passed and we'll set the score to pass.
+}
+}

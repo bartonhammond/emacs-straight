@@ -1,0 +1,1 @@
+curl -L http://www.loggly.com/install/LogglySample.log | curl -X POST -H "content-type:text/plain" --data-binary @- http://logs-01.loggly.com/bulk/CUSTOMER_TOKEN/tag/sample

@@ -1,0 +1,27 @@
+```
+~/projects/MFV/redhat$ rhc app create -a hapi -t nodejs-0.10
+RSA 1024 bit CA certificates are loaded due to old openssl compatibility
+Application Options
+-------------------
+Domain:     bartonhammond
+Cartridges: nodejs-0.10
+Gear Size:  default
+Scaling:    no
+
+Creating application 'hapi' ... done
+
+
+Waiting for your DNS name to be available ... done
+
+Cloning into 'hapi'...
+Warning: Permanently added the RSA host key for IP address '54.172.238.204' to the list of known hosts.
+
+Your application 'hapi' is now available.
+
+  URL:        http://hapi-bartonhammond.rhcloud.com/
+  SSH to:     56816a237628e124700001d0@hapi-bartonhammond.rhcloud.com
+  Git remote: ssh://56816a237628e124700001d0@hapi-bartonhammond.rhcloud.com/~/git/hapi.git/
+  Cloned to:  /Users/barton/projects/MFV/redhat/hapi
+
+Run 'rhc show-app hapi' for more details about your app.
+```

@@ -1,0 +1,9 @@
+Template.submenu.helpers({
+  notifications: function() {
+    return Notifications.find({userId: Meteor.userId(), read: false}).fetch();
+  },
+  notificationPostPath: function() {
+    return Router.routes.postPage.path({_id: this.postId});
+  }
+  
+});

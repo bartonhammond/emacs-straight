@@ -1,0 +1,47 @@
+'use strict';
+let logger = require('../../Bunyan').logger();
+/**
+ * Return promise that resolves to a GetStargazersForRepoJob
+ */
+let CreateCacheSearchRepositoriesJob = function(queue, id, access_token, minstars, maxstars)
+{
+  return new Promise((resolve, reject) => {
+    let start = logger.now();
+
+    let job = queue.create('cacheSearchRepositories', {
+      title: 'cacheSearchRepositories: '
+        + minstars + '->'
+        + maxstars,
+      id: id,
+      access_token: access_token,
+      minstars: minstars,
+      maxstars: maxstars
+    }).save((err) => {
+      if (err) {
+        reject(err);
+      }
+    });
+    job.on('complete', (results) => {
+      logger.info({id: id,
+                   elapsed: logger.elapsed(start),
+                   minstars: minstars,
+                   maxstars: maxstars,
+                   access_token: access_token},
+                   'CreateCacheSearchRepositoriesJob');                  
+      resolve(results);
+    });
+    job.on('failed', (err) => {
+      logger.error({id: id,
+                    elapsed: logger.elapsed(start),
+                    error: err,
+                    minstars: minstars,
+                    maxstars: maxstars,
+                    access_token: access_token},
+                    'CreateCacheSearchRepositoriesJob');                        
+      reject(err);
+    });
+
+  });
+};//createJob
+
+module.exports = CreateCacheSearchRepositoriesJob;

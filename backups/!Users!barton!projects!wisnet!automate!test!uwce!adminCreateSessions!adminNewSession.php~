@@ -1,0 +1,23 @@
+
+//Start from Admin dashboard
+$adminPage->clickAdminMenu();
+
+$adminPage->clickaddTerm();
+$this->takeSnapShot();
+
+
+$termPage = new TermPage($this->driver);
+$termPage->waitPageLoaded();
+$this->assertEquals("New Term", $termPage->getH2HeadingText());
+
+$termPage->typeTitle("BWH Term");
+
+$termPage->typeStartDate("11/02/2017");
+$termPage->typeEndDate("11/30/2017");
+$termPage->setActive();
+$this->takeSnapShot();
+$termPage->submit();
+$this->takeSnapShot();
+
+$this->assertContains("Your changes have been saved", $termPage->getActionMessage());
+$this->takeSnapShot();

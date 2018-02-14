@@ -1,0 +1,63 @@
+_.each(AccountsTemplates.atInputRendered, function(callback){
+  Template.atInput.onRendered(callback);
+  Template.atHiddenInput.onRendered(callback);
+});
+
+// Simply 'inherites' helpers from AccountsTemplates
+Template.atInput.helpers(AccountsTemplates.atInputHelpers);
+
+// Simply 'inherites' events from AccountsTemplates
+Template.atInput.events(AccountsTemplates.atInputEvents);
+
+// Simply 'inherites' helpers from AccountsTemplates
+Template.atTextInput.helpers(AccountsTemplates.atInputHelpers);
+/**
+// Simply 'inherites' helpers from AccountsTemplates
+Template.atCheckboxInput.helpers(AccountsTemplates.atInputHelpers);
+
+// Simply 'inherites' helpers from AccountsTemplates
+Template.atSelectInput.helpers(AccountsTemplates.atInputHelpers);
+
+// Simply 'inherites' helpers from AccountsTemplates
+Template.atRadioInput.helpers(AccountsTemplates.atInputHelpers);
+
+// Simply 'inherites' helpers from AccountsTemplates
+Template.atHiddenInput.helpers(AccountsTemplates.atInputHelpers);
+**/
+
+var atTextInput = BlazeComponent.extendComponent({
+  template: function () {
+    return 'atTextInput';
+  },
+  onRendered: function() {
+    //Add the click handlers
+    //Wait for webix to process
+    var field = 'at-field-'+ this._componentInternals.templateInstance.data._id;
+    var templateInstance = this._componentInternals.templateInstance;
+
+    Meteor.setTimeout(function() {
+      if (webix.ui.views[field]) {
+        //Only way I could find the "id"
+        var innerHtml = webix.ui.views[field].$view.innerHTML;
+        var splits = innerHtml.split(' ');
+        var id = _.find(splits, function(a){return a.indexOf('for=') ===0 });
+        id = id.slice(5,id.length-1);
+        
+        webix.ui.views[field].attachEvent('onKeyPress',function(code, e) {
+          debugger;
+          var eventContext = {};
+          eventContext.currentTarget = $('#'+id)[0];
+          eventContext.templateInstance = templateInstance;
+          //call base class
+
+          Template.atInput.__eventMaps[0]["keyup input"].call(eventContext,event);
+        });
+
+      }
+    },500);
+
+  },
+  mixins: function () {
+    return [ExposeTemplateHelpersMixin];
+  }
+}).register('atTextInput');

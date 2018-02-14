@@ -1,0 +1,8 @@
+Template.private.rendered = function() {
+  debugger;
+   this.ui =
+    webix.ui({
+      view:"label", template: "<div>Private!!!!!!</div>"
+  }, this.find("home"));
+};
+

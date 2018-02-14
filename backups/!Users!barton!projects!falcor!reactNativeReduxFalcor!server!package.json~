@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "falcor": "^0.1.15",
+    "falcor-express": "^0.1.2",
+    "falcor-router": "^0.2.12"
+  }
+}

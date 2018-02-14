@@ -1,0 +1,45 @@
+/**
+ * 
+ */
+'use strict';
+/**
+ * ## Imports
+ *
+ */
+//Handle the endpoints
+var BatchHandlers = require('./handlers'),
+    //Joi is Hapi's validation library
+    Joi = require('joi'),
+    internals = {};
+
+
+/**
+ */
+internals.endpoints = [
+
+
+  {
+    method: 'GET',
+    path: '/online/runner/{access_token}/{owner}/{repo}',
+    handler: {
+      async: BatchHandlers.onlineRunner
+    },
+    config: {
+      auth: 'simple',
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'Build mapbox for owner/repo',
+      validate: {
+	params: {
+          access_token: Joi.string().optional().default(''),
+          owner: Joi.string().optional().default('bartonhammond'),
+          repo: Joi.string().optional().default('snowflake')
+	}
+      }
+    }
+  }
+
+];
+
+
+module.exports = internals;

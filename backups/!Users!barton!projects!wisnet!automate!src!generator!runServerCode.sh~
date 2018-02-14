@@ -1,0 +1,1 @@
+php src/generator/newProjectServer.php 'customerName=cust&projectName=project&testName=test'

@@ -1,0 +1,9 @@
+<template name="blogs">
+  <h3>Blogs</h3>
+  <div class="col-md-9 content blog">
+
+    {{> pagesNav}}
+    {{> pages}}
+    
+  </div>
+</template>

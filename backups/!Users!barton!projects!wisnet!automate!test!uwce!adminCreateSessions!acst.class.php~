@@ -1,0 +1,420 @@
+<?php 
+require_once __DIR__ . '/pageObjects/MainPage.class.php';
+require_once __DIR__ . '/pageObjects/CampusPage.class.php';
+require_once __DIR__ . '/pageObjects/CourseCatalog.class.php';
+require_once __DIR__ . '/pageObjects/LoginPage.class.php';
+require_once __DIR__ . '/pageObjects/AdminPage.class.php';
+require_once __DIR__ . '/pageObjects/TermPage.class.php';
+require_once __DIR__ . '/pageObjects/CategoryPage.class.php';
+require_once __DIR__ . '/pageObjects/CoursePage.class.php';
+require_once __DIR__ . '/pageObjects/SessionPage.class.php';
+require_once __DIR__ . '/pageObjects/CourseAndProgramPage.class.php';
+require_once __DIR__ . '/pageObjects/CourseProgramDisplayPage.class.php';
+require_once __DIR__ . '/pageObjects/WorkshopPage.class.php';
+require_once __DIR__ . '/pageObjects/TimeSlotsPage.class.php';
+
+require_once 'vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
+
+/*
+PLATFORM_NAME='Mac OSX 10.12' BROWSER_NAME='Chrome' VERSION='62x64' NAME='University of Wisconsin-Continuing Education' BUILD='2018-01-22-13-51' DIRECTORY='/Users/barton/projects/wisnet/automate/src/utilities/../../test/uwce/adminCreateSessions/output/2018-01-22-13-51' USER_NAME='bhammond@wisnet.com' AUTHKEY='u0459a8738c4a60d' ISLOCAL='1' vendor/bin/phpunit  --verbose --debug /Users/barton/projects/wisnet/automate/src/utilities/../../test/uwce/adminCreateSessions/test.php
+*/           
+
+class AdminCreateSessionsTest  { 
+
+    protected $main;
+    protected $campusPage;
+    protected $courseCatalogPage;
+    protected $loginPage;
+    protected $adminPage;
+    protected $categoryPage;
+    protected $coursePage;
+    protected $session;
+    protected $termPage;
+    protected $cpPage;
+    protected $cpDisplayPage;
+    protected $workshopPage;
+    protected $timeSlotsPage;
+
+    protected $driver;
+    protected $theTester;
+
+    function __construct($theTester, $driver, $isMobile, $isLocal) {
+        $this->theTester = $theTester;
+        $this->driver = $driver;
+        
+        $this->main = new MainPage($driver, $isMobile, $isLocal);
+        $this->campusPage = new CampusPage($driver, $isMobile, $isLocal);    
+        $this->courseCatalogPage = new CourseCatalogPage($driver, $isMobile, $isLocal);
+        $this->loginPage = new LoginPage($driver, $isMobile, $isLocal);
+        $this->adminPage = new AdminPage($driver, $isMobile, $isLocal);
+        $this->categoryPage = new CategoryPage($driver, $isMobile, $isLocal);
+        $this->coursePage = new CoursePage($driver, $isMobile, $isLocal);
+        $this->session = new SessionPage($driver, $isMobile, $isLocal);
+        $this->termPage = new TermPage($driver, $isMobile, $isLocal);
+        $this->cpPage = new CourseAndProgramPage($driver, $isMobile, $isLocal);
+        $this->cpDisplayPage = new CourseProgramDisplayPage($driver, $isMobile, $isLocal);
+        $this->workshopPage = new WorkshopPage($driver, $isMobile, $isLocal);
+        $this->timeSlotsPage = new TimeSlotsPage($driver, $isMobile, $isLocal);
+    }
+
+    public function navigateToCourseAndProgramPage() {
+        //Start from Admin dashboard
+        $this->adminPage->clickAdminMenu();
+
+        $this->adminPage->clickCourseAndProgram();
+
+        $this->cpPage->waitPageLoaded();
+        $this->theTester->takeSnapShot();
+
+        $this->cpPage->typeCourseSearch("BWH Music Course");
+        $this->cpPage->submit();
+
+        $this->theTester->takeSnapShot();
+        assertEquals("BWH Music Course", $this->cpPage->getFirstSearchResultText());
+
+        $this->cpPage->selectFirstSearchResult();
+        $this->theTester->takeSnapShot();
+
+
+        $this->cpDisplayPage->waitPageLoaded();
+
+        assertContains("BWH Music Course", $this->cpDisplayPage->getH2HeadingText());
+    }
+    public function login() {
+        
+        //adminLogin.php
+        $home = "https://www.secured-site7.com/uwce-staging/www/";
+    
+        $this->driver->get($home);
+
+        $this->main->waitPageLoaded();
+        assertEquals("Continuing Education", $this->main->getH2HeadingText());
+        $this->theTester->takeSnapShot();
+        $this->main->selectFondDuLac();
+
+
+        $this->courseCatalogPage->waitPageLoaded();
+        assertEquals("Course Catalog", $this->courseCatalogPage->getH1HeadingText());
+        $this->theTester->takeSnapShot();
+
+        $this->courseCatalogPage->login();
+
+        $this->loginPage->waitInputsClickable();
+        assertEquals("Login", $this->loginPage->getH1HeadingText());
+        $this->theTester->takeSnapShot();
+
+        $this->loginPage->typeUsername('bhammond@wisnet.com');
+        $this->loginPage->typePassword('12345678a');
+        $this->theTester->takeSnapShot();
+        $this->loginPage->submit();
+
+        $this->adminPage->waitPageLoaded();
+        assertEquals("System Administration", $this->adminPage->getH1HeadingText());
+        $this->theTester->takeSnapShot();
+
+    }
+    public function setCampus() {
+        
+        //Look at campus settings
+        $this->adminPage->clickEditFDLCampus();
+        $this->campusPage->verifyPageLoaded();
+        $this->campusPage->verifyPageUrl();
+        $this->theTester->takeSnapShot();
+
+        $this->campusPage->setSeniorDiscountTextField("10");
+        $this->campusPage->setApplyDiscountToRegistrantsOverNumberField("55");
+        $this->campusPage->clickSaveButton();
+        
+        assertContains("Your changes have been saved", $this->campusPage->getActionMessage());        
+
+    }
+    public function addCategory(){
+        //adminNewCategory.php
+        $this->adminPage->clickAdminMenu();
+        $this->adminPage->clickAddCategory();
+
+        $this->categoryPage->waitPageLoaded();
+        assertEquals("New Category", $this->categoryPage->getH2HeadingText());
+
+        $this->categoryPage->typeCategoryName("BWH Music Category Name");
+        $this->categoryPage->typeDescription("Category Description for BWH Music Category Name");
+        $this->theTester->takeSnapShot();
+
+        //try to close the keyboard
+        $this->categoryPage->clickH2Heading();
+        $this->categoryPage->submit();
+
+        assertContains("Your changes have been saved", $this->categoryPage->getActionMessage());
+    }
+    public function addTerm() {
+        //adminNewTerm.php
+        //Start from Admin dashboard
+        $this->adminPage->clickAdminMenu();
+
+        $this->adminPage->clickaddTerm();
+        $this->theTester->takeSnapShot();
+
+        $this->termPage->waitPageLoaded();
+        assertEquals("New Term", $this->termPage->getH2HeadingText());
+
+        $this->termPage->typeTitle("BWH Term");
+
+        $this->termPage->typeStartDate("11/02/2017");
+        $this->termPage->typeEndDate("11/30/2017");
+        $this->termPage->setActive();
+        $this->theTester->takeSnapShot();
+        $this->termPage->submit();
+        $this->theTester->takeSnapShot();
+
+        assertContains("Your changes have been saved", $this->termPage->getActionMessage());
+    }
+    public function setSeniorDiscount($value, $clickToEditCourse = false) {
+        if ($clickToEditCourse) {
+            $this->cpDisplayPage->clickToEditCourse();
+            $this->coursePage->waitPageLoaded();            
+        }
+        $this->coursePage->setSeniorDiscount(true);
+        $this->coursePage->submit();
+    }
+    public function logout() {
+        $this->courseCatalogPage->logout();
+    }
+    public function addCourse() {
+        
+        //adminNewCourse.php
+        //Start from Admin dashboard
+        $this->adminPage->clickAdminMenu();
+        sleep(2);
+        $this->adminPage->clickAddCourse();
+        sleep(2);
+
+        $this->coursePage->waitPageLoaded();
+
+        $this->theTester->takeSnapShot();
+
+        $this->coursePage->typeTitle("BWH Music Course");
+        $this->coursePage->typeCourseNumber("12345");
+        $this->coursePage->typeCourseDescription("Description for BWH Music Course");
+        $this->coursePage->typeAdditionalInformation("Additional Information for BWH Music Course");
+        $this->coursePage->setCategory();
+        $this->theTester->takeSnapShot();
+
+        assertContains("Category Added", $this->coursePage->getInnerActionMessage());
+        $this->theTester->takeSnapShot();
+
+        $this->coursePage->closeInnerActionMessage();
+
+        $this->coursePage->typeInstructorNotes("Instructor Notes for BWH Music Course");
+
+        $this->coursePage->typeQuestion("One Question");
+        $this->coursePage->typeQuestionOption("One choice\n");
+        $this->coursePage->setQuestionRequired(TRUE);
+        $this->coursePage->addQuestion();
+
+        $this->theTester->takeSnapShot();
+
+        assertContains("Question Added", $this->coursePage->getInnerActionMessage());
+        $this->coursePage->closeActionMessage();
+
+        $this->coursePage->typeCourseCEU("5");
+        $this->coursePage->typeCourseFee("100");
+
+        $this->coursePage->typeEarlyRegistrationFee("50");
+        $this->coursePage->typeLateRegistrationFee("125");
+
+        $this->coursePage->typeInitialPayment("100");
+        $this->coursePage->typeSecondPayment("125");
+
+        $this->coursePage->selectCriticalAnalysis();
+        $this->setSeniorDiscount(false);
+        $this->coursePage->submit();
+
+        
+        assertContains("Deposit and second payment cannot be greater than Registration Fee",
+                              $this->coursePage->getActionErrorMessage());
+
+        $this->coursePage->closeActionMessage();
+
+        $this->coursePage->typeInitialPayment("50");
+        $this->coursePage->typeSecondPayment("50");
+
+        $this->coursePage->submit();
+        
+        assertContains("Deposit and second payment cannot be greater than Early Registration Fee",
+                              $this->coursePage->getActionErrorMessage());
+        $this->coursePage->closeActionMessage();
+
+        $this->coursePage->typeInitialPayment("25");
+        $this->coursePage->typeSecondPayment("25");
+        $this->coursePage->submit();
+        
+        assertContains("Your changes have been saved.",
+                              $this->coursePage->getActionMessage());
+        $this->coursePage->closeActionMessage();
+
+        $this->theTester->takeSnapShot();
+
+        //Get the course id
+        $url = $this->driver->getCurrentURL();
+        $pos = strrpos($url, '/');
+        $value = substr($url, $pos+1);
+
+        //Save the course number for Screen shot testing
+        if (is_numeric($value)) {
+            $this->theTester->setScreenShotVariableInProject("course_id", $value);
+        }//adminNewSession.php
+    }
+    public function addSession() {
+            
+        $this->cpDisplayPage->clickAddNewSession();
+
+        $this->session->waitPageLoaded();
+
+        $this->theTester->takeSnapShot();
+        assertEquals("Edit Session", $this->session->getH3HeadingText());
+
+        $this->session->typeSessionTitle("BWH Session Title");
+        $this->session->selectTerm("BWH Term");
+
+        $date1 = date('m/d/y', strtotime('+1 month'));
+        $date2 = date('m/d/y', strtotime('+3 month'));
+
+        $this->session->typeSessionStartDate($date1);
+        $this->session->typeSessionEndDate($date2);
+        $this->session->typeSessionStartTime("06:00 AM");
+
+        $this->theTester->takeSnapShot();
+
+        $this->session->clickMonday(TRUE);
+        $this->session->clickTuesday(TRUE);
+        $this->session->clickWednesday(TRUE);
+        $this->session->clickThursday(TRUE);
+        $this->session->clickFriday(TRUE);
+        $this->theTester->takeSnapShot();
+    }
+    public function addRegistrationAndPayments() {
+        //Registration tab
+        $this->session->clickRegistrationAndPaymentsTab();
+        $this->session->typeSessionRegistrationStartDate(date('m/d/y', strtotime('-10 day')));
+        $this->session->typeSessionRegistrationEndDate(date('m/d/y', strtotime('+10 day')));
+        $this->session->typeSessionEarlyRegistrationDate(date('m/d/y', strtotime('-20 day')));
+        $this->session->typeSessionLateRegistrationDate(date('m/d/y', strtotime('+20 day')));
+
+        $this->session->typeSessionFee("100");
+        $this->session->typeEarlyRegistrationFee("50");
+        $this->session->typeLateRegistrationFee("125");
+
+        $this->session->typeDepositPayment("25");
+        $this->session->typeSecondInstallment("25");
+
+        $this->session->typeMinStudents("1");
+        $this->session->typeMaxStudents("3");
+        $this->session->typeAttendees("1");
+    }
+    public function addInstructor() {
+        $this->session->clickInstructorsTab();
+        $this->session->selectFirstInstructor();
+        $this->session->typeInstructorPay("25");
+        $this->session->addInstructor();
+
+        $this->theTester->takeSnapShot();
+
+        $this->session->submit();
+
+        $this->theTester->takeSnapShot();
+
+        assertContains("Your changes have been saved.", $this->session->getActionMessageText());
+    }
+    public function addWorkshop() {
+        //adminNewWorkshop.php
+        $this->navigateToCourseAndProgramPage();
+
+        $this->cpDisplayPage->clickToEditCourse();
+
+        $this->coursePage->waitPageLoaded();
+
+        $this->coursePage->selectProgram();
+        $this->coursePage->submit();
+
+
+        $this->cpDisplayPage->waitPageLoaded();
+        $this->cpDisplayPage->clickToEditFirstSession();
+
+        $this->session->waitPageLoaded();
+
+        $this->session->clickWorkshopsTab();
+        $this->theTester->takeSnapShot();
+
+        //Wait for popup.
+        $this->session->clickAddNewWorkshop();
+
+        sleep(3);
+
+        $this->theTester->takeSnapShot();
+        $this->workshopPage->waitPageLoaded();
+        assertEquals("New Workshop", $this->workshopPage->getHeading());
+
+        $this->workshopPage->typeWorkshopTitle("BWH Workshop Title");
+        $this->workshopPage->typeFeeLabel("BWH Workshop Fee Label");
+        $this->workshopPage->typeFee("10");
+        $this->workshopPage->clickInstructor();
+        $this->workshopPage->typeMaxStudents(2);
+        $this->workshopPage->typeLocation("Fond du Lac");
+        $this->workshopPage->submit();
+
+        sleep(3);
+        assertEquals("BWH Workshop Title", $this->session->getWorkshopTitle());
+        $this->theTester->takeSnapShot();
+    }
+    public function addTimeSlot() {
+        //adminTimeSlots.php
+        $this->navigateToCourseAndProgramPage();
+
+        $this->cpDisplayPage->waitPageLoaded();
+
+        $this->cpDisplayPage->clickToEditFirstSession();
+
+        $this->session->waitPageLoaded();
+
+        $this->session->clickTimeSlotsTab();
+
+        $this->timeSlotsPage->clickAddTimeSlot();
+        $this->timeSlotsPage->waitPageLoaded();
+
+        assertEquals("New Time Slot", $this->timeSlotsPage->getHeading());
+
+        $this->timeSlotsPage->typeLabel("BWH Time Slot");
+        sleep(1);
+        $this->timeSlotsPage->clickWorkshop();
+        $this->timeSlotsPage->submit();
+
+        sleep(3);
+        assertEquals("BWH Time Slot", $this->timeSlotsPage->getTimeSlotText());
+    }    
+    public function main() {
+        $this->login();
+
+        $this->setCampus();
+
+        $this->addCategory();
+
+        $this->addTerm();
+
+        $this->addCourse();
+
+        $this->navigateToCourseAndProgramPage();
+
+        $this->addSession();
+
+        $this->addRegistrationAndPayments();
+
+        $this->addInstructor();
+
+        $this->addWorkshop();
+
+        $this->addTimeSlot();
+
+        $this->logout();
+
+    }
+}

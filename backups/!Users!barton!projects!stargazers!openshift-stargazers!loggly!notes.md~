@@ -1,0 +1,66 @@
+Starting here: https://www.loggly.com/docs/loggly-tutorial/
+
+First off, if the data is available for user, then why not have the
+Tutorial match exactly? Why have discrepancy?
+
+Step 1: Upload Loggle Sample Data
+
+* Has a link to  https://www.loggly.com/docs/loggly-sample-data/:
+
+In the "Verify" step it shows "tag:sample" in blue box but screen shot has
+"tag:file_upload" - very confusing - I missed the "tag:sample" as I
+was focused on the PNG.
+
+Again, why the discrepancy between screen shots and my data - how do I
+know if I am doing things right if the numbers don't match and the
+screen looks different?
+
+On this page, the PNG shows "tag:file_upload" and "999 Events Dec 3" but my
+screen says "7,453 events" w/ no Date.
+
+The screen itself also doesn't match the current product making it
+difficult to determine if I'm on the correct page or what?
+
+Returning to this page: https://www.loggly.com/docs/loggly-tutorial/
+
+
+* Step 2:
+Again, the UI does not match my UI nor the number of events.  This PNG
+shows "6,701, Events Dec 17-18" mine just says "7,453 events" and the
+bar has "Feb 9 -10".  Nothing matches.
+
+
+* Step 3: Zoom in on events. "And then dragging w/ your mouse" - how
+to do that?
+
+I held down mouse on blue column and moved to right but then nothing
+was displayed.
+
+How do I go back?  I tried Search again but the search From To fields
+are already populated?  Don't know how to reset.  I tried clearing the
+From field and then clicking Search but get error "Invalid From Value"
+
+Couldn't go backwards so I just killed the tab.
+
+Started over by created a new tab and entering "tag:sample"
+
+I tried double clicking the bar and it changed perspective and did it
+again until I see 2 bars.  If I double click on to one bar it expands
+but then the data from the other bar is missing?
+
+Ah - I now see the "reset" in the top right corner of the graph - that
+should be pointed out in the Tutorial.
+
+So I reset and then just double click until I'm seeing 7453.  But
+could not figure out the "drag column" thing.
+
+Again, the PNG show "6,701 Events Dec 18" : I have no data for Dec
+18.
+
+* The next couple of steps were ok.
+
+* Step 6
+
+Has a link to https://www.loggly.com/docs/trends/ and again the PNG
+doesn't match the product.  It took me some time to figure out where
+the Timeline Trend 

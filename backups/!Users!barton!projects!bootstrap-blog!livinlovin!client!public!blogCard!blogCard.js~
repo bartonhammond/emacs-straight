@@ -1,0 +1,5 @@
+Template.blogCard.helpers({
+  written: function() {
+    return "Wednesday June 18, 2015"
+  }
+});

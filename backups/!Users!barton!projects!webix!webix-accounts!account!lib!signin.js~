@@ -1,0 +1,19 @@
+Template.signin.onCreated(function() {
+  console.log('signin.onCreated');
+});
+
+Template.signin.onRendered(function() {
+  if (_.isUndefined(webix.ui.views['signin'])) {
+    console.log('signin.rendered.markup.init');
+    var component =  webix.markup.init();
+     webix.event(window, 'resize', function(){
+       component.resize();
+     });
+  }
+});
+
+Template.signin.onDestroyed(function() {
+  console.log('signin.onDestroyed');
+  $$('signin').destructor();
+
+});

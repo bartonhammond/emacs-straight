@@ -1,0 +1,5 @@
+##Page Object Model directory
+
+This directory is to organize the POMs.  The `tests` directory name will reference the POMs.  The POMs are not test specific.
+
+*** ExamplePage.class.php

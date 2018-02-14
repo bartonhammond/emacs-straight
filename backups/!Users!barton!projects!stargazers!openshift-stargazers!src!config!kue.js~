@@ -1,0 +1,7 @@
+'use strict';
+
+
+let Kue = require('kue');
+
+Kue.createQueue();
+Kue.app.listen(3000);

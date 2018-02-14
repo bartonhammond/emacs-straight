@@ -1,0 +1,123 @@
+'use strict';
+
+import ProcessorClass from '../../ProcessorClass';
+import MapZen from '../../MapZen';
+
+class GetLocation extends ProcessorClass{
+  constructor() {
+    super();
+    this.mapZen = new MapZen();
+    this.latinize = require('latinize');    
+  }
+  init(access_token) {
+    let self = this;
+    self.queue.process(
+      'location'
+        + '_'
+        + access_token,
+      1,
+      function(job,
+               ctx,
+               done) {
+
+        if (! job.data.location) {
+          return done();
+        }
+
+        try {
+          self.job = job;
+          
+          let loc = self.latinize(job.data.location).toLowerCase();
+          var valid = /^[a-z\.\,\-_\s]+$/i.test(loc);
+
+          if (!valid) {
+            return done();
+          }
+          
+          self.getRedisValue(
+            self.redisKeyLocation,
+            loc)
+            .then((location) => {
+              if (location) {
+                return Promise.resolve();
+              } else {
+                return self.getLocationFromMapZen(
+                  loc);
+              }
+            })
+          
+            .then(() => {
+             return done();
+            })
+          
+            .catch((err) => {
+              throw err;
+            });
+
+        } catch(err) {
+          self.logger.error(
+            'BatchGetLocation',          
+            {location: job.data.location,
+             error: err,
+             access_token: access_token});          
+        }
+      }//function
+    );//queue.process
+  };//init
+  
+
+  getLocationFromMapZen(loc) {
+    let self = this;
+    return new Promise((resolve, reject) => {
+      try {
+        self.mapZen.search(loc)
+          .then((location) => {
+            let coords = self.getCoordinates(location);
+
+            let key =  self.redisKeyLocation + loc;
+
+            self.redisClient.setnx(
+              key,
+              JSON.stringify(coords));
+            
+            //Expire in 1 month
+            self.redisClient.expire(key, 60 * 60 * 24 * 30);
+            resolve();
+          })
+          .catch((err) => {
+            reject(err);
+          });
+        
+      } catch(err) {
+        reject(err);
+      }
+    });
+  }
+
+  /**
+   * Using Mapzen location object, return just the lat/long
+   * or just an empty object
+   */
+  getCoordinates(location) {
+    if (location.geocoding
+        && location.geocoding.query
+        && location.features
+        && location.features[0]
+        && location.features[0].geometry
+        && location.features[0].geometry.coordinates) {
+
+      let long = location.features[0].geometry.coordinates[0];
+      let lat = location.features[0].geometry.coordinates[1];
+
+      let value = {};
+      value.long = long;
+      value.lat = lat;
+      return value;
+    } else {
+      return {};
+    }
+  }  
+  
+}
+
+module.exports = GetLocation;

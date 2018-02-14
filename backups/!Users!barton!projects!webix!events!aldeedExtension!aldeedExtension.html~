@@ -1,0 +1,29 @@
+<body>
+  {{> foo}}
+  {{> foo2}}
+</body>
+
+<template name="foo">
+    <div data-view="text"
+         data-type="email"
+         data-id="at-field-email"
+       data-label="email">
+  </div>
+
+  <br>
+  {{err}}
+  <br>
+
+
+</template>
+
+<template name="foo2">
+  <div style="display:none">
+    <input id="email2" type="email">
+  </div>
+</template>
+
+<head>
+  <title>aldeedExtension</title>
+</head>
+

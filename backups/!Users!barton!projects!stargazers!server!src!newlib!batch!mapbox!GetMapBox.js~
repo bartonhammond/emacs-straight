@@ -1,0 +1,32 @@
+'use strict';
+require('regenerator/runtime');
+
+import BaseClass from '../BaseClass';
+import GetMapBoxProcessor from './GetMapBoxProcessor';
+
+class GetMapBox extends BaseClass{
+  constructor(queue) {
+    super(queue);
+  }
+  
+  init() {
+    let self = this;
+    self.queue.process(
+      'getMapBox',
+      13, //3 for batch, 10 for on line
+      function(job,
+               ctx,
+               done) {
+        
+        new GetMapBoxProcessor(
+          self.queue,
+          job,
+          ctx,
+          done).run();
+
+      });
+  }
+}
+module.exports = GetMapBox;
+
+

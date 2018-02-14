@@ -1,0 +1,118 @@
+<?php
+
+class Test extends BrowserStackTest {
+
+    public $results = array();
+
+    //Main page
+    public $home = "https://everydayfit.ninja/";
+    
+    
+    public function thisFunction() {
+
+        $this->driver->get($this->home);
+        
+        //Get Log in link
+
+        $this->tryCatchCache(WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::linkText("Log In")));
+
+          
+        $element = $this->driver->findElement(WebDriverBy::linkText("Log In"));
+
+        $this->assertNotNull($element);
+        $element->click();
+
+        
+        $this->tryCatchCache(WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::id("email")));
+
+        //Login
+        $url = $this->driver->getCurrentURL();
+        $this->assertContains('login', $url);            
+        
+        $element = $this->driver->findElement(WebDriverBy::id("email"));
+        $this->assertNotNull($element);
+        $element->sendKeys("bhammond@wisnet.com");
+        
+        $element = $this->driver->findElement(WebDriverBy::id("password"));
+        $this->assertNotNull($element);            
+        $element->sendKeys("123456");
+        
+        $element = $this->driver->findElement(WebDriverBy::className("btn2"));
+        $this->assertNotNull($element);
+        
+        $element->click();
+
+        //Check if on Activity List page        
+        $this->tryCatchCache(WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::linkText("Sync Strava")));
+        $url = $this->driver->getCurrentURL();
+        $this->assertContains('activity-list', $url);
+        
+        //Click the Team tab
+        $element = $this->driver->findElement(WebDriverBy::linkText("Teams"));
+        $this->assertNotNull($element);        
+        $element->click();
+    
+        //Check if on Team List page
+
+        $this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::className('appBanner__heading'), 'Teams'));
+
+        $url = $this->driver->getCurrentURL();
+        $this->assertContains('group-list', $url);            
+
+        //Click the Challenges tab
+        $element = $this->driver->findElement(WebDriverBy::linkText("Challenges"));
+        $this->assertNotNull($element);        
+        $element->click();
+    
+        //Check if on Challenges List page
+        $this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElement(WebDriverBy::className('appBanner__heading'), 'Challenges'));
+                
+        $url = $this->driver->getCurrentURL();
+        $this->assertContains('challenge-list', $url);                        
+
+        //Click the hamburger
+        $element = $this->driver->findElement(WebDriverBy::className("js-navBoxTrigger"));
+        $this->assertNotNull($element);        
+        $element->click();
+
+        //Click Profile
+        $this->tryCatchCache(WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::linkText("Profile")));
+
+        $element = $this->driver->findElement(WebDriverBy::linkText("Profile"));
+        $this->assertNotNull($element);        
+        $element->click();
+    
+        //Check if  Profile page is displayed
+        $this->tryCatchCache(WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::linkText("Edit Profile")));
+
+        $url = $this->driver->getCurrentURL();
+        $this->assertContains('profile', $url);                                    
+        
+        //Click Edit Profile
+        $element = $this->driver->findElement(WebDriverBy::linkText("Edit Profile"));
+        $this->assertNotNull($element);                
+        $element->click();
+    
+        //Check if on Edit Profile page
+        $this->tryCatchCache(WebDriverExpectedCondition::textToBePresentInElementValue(WebDriverBy::id('fName'), 'Barton'));
+
+        $url = $this->driver->getCurrentURL();
+        $this->assertContains('edit-profile', $url);                                                
+
+        //Click the hamburger
+        $element = $this->driver->findElement(WebDriverBy::className("js-navBoxTrigger"));
+        $this->assertNotNull($element);                
+        $element->click();
+
+        //Log out
+        $element = $this->driver->findElement(WebDriverBy::linkText("Logout"));
+        $this->assertNotNull($element);                
+        $element->click();
+    
+        //Check if main page
+        $this->tryCatchCache(WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::linkText("Log In")));        
+        $url = $this->driver->getCurrentURL();
+        $this->assertEquals($url, $this->home);
+    }
+}
+?>

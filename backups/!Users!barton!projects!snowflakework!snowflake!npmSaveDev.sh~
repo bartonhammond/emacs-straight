@@ -1,0 +1,9 @@
+npm install  babel-core \
+    babel-jest \
+    babel-preset-react-native \
+    docker \
+    istanbul \ 
+    jest-cli \
+    react \
+    react-addons-test-utils \
+    redux-mock-store  --save-dev

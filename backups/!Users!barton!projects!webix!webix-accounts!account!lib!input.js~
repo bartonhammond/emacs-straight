@@ -1,0 +1,55 @@
+_.each(AccountsTemplates.atInputRendered, function(callback){
+  Template.atInput.onRendered(callback);
+  Template.atHiddenInput.onRendered(callback);
+});
+
+// Simply 'inherites' helpers from AccountsTemplates
+Template.atInput.helpers(AccountsTemplates.atInputHelpers);
+
+// Simply 'inherites' events from AccountsTemplates
+Template.atInput.events(AccountsTemplates.atInputEvents);
+
+// Simply 'inherites' helpers from AccountsTemplates
+Template.atTextInput.helpers(AccountsTemplates.atInputHelpers);
+/**
+ // Simply 'inherites' helpers from AccountsTemplates
+ Template.atCheckboxInput.helpers(AccountsTemplates.atInputHelpers);
+
+ // Simply 'inherites' helpers from AccountsTemplates
+ Template.atSelectInput.helpers(AccountsTemplates.atInputHelpers);
+
+ // Simply 'inherites' helpers from AccountsTemplates
+ Template.atRadioInput.helpers(AccountsTemplates.atInputHelpers);
+
+ // Simply 'inherites' helpers from AccountsTemplates
+ Template.atHiddenInput.helpers(AccountsTemplates.atInputHelpers);
+**/
+
+Template.atTextInput.onRendered(function () {
+  var field = 'at-field-'+ Template.instance().data._id;
+/**
+  BaseController.displayContent(field, function() {
+    console.log(field + '.displayContent callback', webix.ui.views);
+
+    if (!_.isUndefined(webix.ui.views[field]) && _.isUndefined(webix.ui.views[field].config.hasHandlers)){
+      _.extend(webix.ui.views[field].config,{hasHandlers: true});
+      //Only way I could find the webix generated "id"
+      var innerHtml = webix.ui.views[field].$view.innerHTML;
+      if (innerHtml) {
+        var splits = innerHtml.split(' ');
+        id = _.find(splits, function(a){return a.indexOf('for=') ===0 });
+        id = id.slice(5,id.length-1);
+        
+        $('#' + id).focusout(function() {
+          console.log(id + '.focusout ');
+        });
+        console.log(field + '.displayContent callback focusout', webix.ui.views);
+      } else {
+        console.log(field + '.displayContent callback no innerHTML', webix.ui.views);
+      }
+    } else {
+      console.log(field + '.displayContent callback no view', webix.ui.views);
+    }
+  });
+*/
+});

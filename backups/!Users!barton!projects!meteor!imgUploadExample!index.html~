@@ -1,0 +1,13 @@
+<head>
+  <title>imgUpload</title>
+</head>
+
+<body>
+  {{>displayimages}}
+</body>
+
+<template name="displayimages">
+  {{#each images}}
+  {{{content}}}
+  {{/each}}
+</template>

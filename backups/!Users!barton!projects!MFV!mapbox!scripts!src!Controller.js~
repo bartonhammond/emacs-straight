@@ -1,0 +1,8 @@
+var GitHub = require('./GitHub');
+
+
+export function getAllStarGazers(request, response)  {
+  var gitHub = new GitHub();
+  return response.success(gitHub.getAllStarGazers(request.params.owner,
+                                          request.params.repo));
+}

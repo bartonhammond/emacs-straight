@@ -1,0 +1,79 @@
+'use strict';
+require('regenerator/runtime');
+const BuildCache = require('./BuildCache');
+
+let Kue = require('kue');
+var _queue;
+
+function _createQueue() {
+  if(process.env.OPENSHIFT_REDIS_DB_HOST){
+    return Kue.createQueue({
+      prefix: 'jq',
+      redis: {
+        port: process.env.OPENSHIFT_REDIS_DB_PORT,  
+        host: process.env.OPENSHIFT_REDIS_DB_HOST,
+        auth:  process.env.OPENSHIFT_REDIS_DB_PASSWORD
+      }
+    });
+  } else {
+    return Kue.createQueue();
+  }
+}
+
+function _connect() {
+  if (_queue) {
+    return _queue;
+  }
+  _queue = _createQueue();
+  //Kue.app.listen(3000);
+
+  _queue.process('cachejob', 1, function(job, ctx, done) {
+    let buildCache = new BuildCache();
+    
+    buildCache.processRepositoriesJob(job)
+      .then(() => {
+        done();
+      }).catch((err) => {
+        debugger;
+        if (err
+            && err.status
+            && err.status === 403) {
+          let now = Date.now() * 1000;
+          console.log('_queue.process.now', now);
+          console.log('_queue.process.ratelimitReset',err.ratelimitReset);
+          
+          let pause = err.ratelimitReset - now;
+
+          console.log('*********         pausing', pause);          
+          ctx.pause(1000, (error)=> {
+            console.log('******* callback on pause');
+            if (!error) {
+              setTimeout( () => {
+                console.log('*********    resumeing');                              
+                ctx.resume();
+              }, pause );
+            } else {
+              console.log('******** error',error);
+              done(err);
+            }
+          });
+        } else {
+          done(err);
+        }
+      });
+  });
+  
+
+  return _queue;
+}
+
+module.exports = {
+  connect: function() {
+    return _connect();
+  }
+};
+
+
+
+
+

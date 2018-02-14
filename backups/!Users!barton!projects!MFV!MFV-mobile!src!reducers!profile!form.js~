@@ -1,0 +1,17 @@
+import {Record} from 'immutable';
+import {
+  
+} from '../../lib/constants';
+
+const Form = Record({
+  disabled: false,
+  error: null,
+  isValid: false,
+  isFetching: true,
+  fields: new (Record({
+    username: '',
+    email: ''
+  }))
+});
+
+export default Form;

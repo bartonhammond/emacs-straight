@@ -1,0 +1,451 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickCancelLink",
+        "attributeType": "link",
+       "attributeName": "cancel",
+        "attributeStrategy": "css",
+        "attributeValue": "a.btn.btn-default"
+     },
+
+    {     
+        "operationName": "clickCreateAccount1Button",
+        "attributeType": "button",
+       "attributeName": "createAccount1",
+        "attributeStrategy": "id",
+        "attributeValue": "toggleRegForm"
+     },
+
+    {     
+        "operationName": "clickCreateAccount2Button",
+        "attributeType": "button",
+       "attributeName": "createAccount2",
+        "attributeStrategy": "css",
+        "attributeValue": "#registrationform div.row div:nth-of-type(1) form button.btn.btn-primary"
+     },
+
+    {     
+        "operationName": "clickForgotPasswordLink",
+        "attributeType": "link",
+       "attributeName": "forgotPassword",
+        "attributeStrategy": "css",
+        "attributeValue": "a.pull-right"
+     },
+
+    {     
+        "operationName": "clickLogInButton",
+        "attributeType": "button",
+       "attributeName": "logIn",
+        "attributeStrategy": "css",
+        "attributeValue": "#loginform div.row div:nth-of-type(1) form button.btn.btn-primary"
+     },
+
+    {     
+        "operationName": "clickXButton",
+        "attributeType": "button",
+       "attributeName": "x",
+        "attributeStrategy": "css",
+        "attributeValue": "button.close"
+     },
+
+
+
+    {     
+        "operationName": "setDateOfBirthRequiredTextField",
+        "operationArgument" : "dateOfBirthRequiredValue",
+        "attributeType": "text",
+       "attributeName": "dateOfBirthRequired",
+        "attributeStrategy": "id",
+        "attributeValue": "new_birthDate"
+     },
+
+    {     
+        "operationName": "setEmailAddressRequiredTextField",
+        "operationArgument" : "emailAddressRequiredValue",
+        "attributeType": "text",
+       "attributeName": "emailAddressRequired",
+        "attributeStrategy": "id",
+        "attributeValue": "new_email"
+     },
+
+    {     
+        "operationName": "setFirstNameRequiredTextField",
+        "operationArgument" : "firstNameRequiredValue",
+        "attributeType": "text",
+       "attributeName": "firstNameRequired",
+        "attributeStrategy": "id",
+        "attributeValue": "new_firstName"
+     },
+
+    {     
+        "operationName": "setLastNameRequiredTextField",
+        "operationArgument" : "lastNameRequiredValue",
+        "attributeType": "text",
+       "attributeName": "lastNameRequired",
+        "attributeStrategy": "id",
+        "attributeValue": "new_lastName"
+     },
+
+    {     
+        "operationName": "setPassword1PasswordField",
+        "operationArgument" : "password1Value",
+        "attributeType": "text",
+       "attributeName": "password1",
+        "attributeStrategy": "id",
+        "attributeValue": "password"
+     },
+
+    {     
+        "operationName": "setPassword2PasswordField",
+        "operationArgument" : "password2Value",
+        "attributeType": "text",
+       "attributeName": "password2",
+        "attributeStrategy": "id",
+        "attributeValue": "password_password"
+     },
+
+    {     
+        "operationName": "setPhoneNumberRequiredTextField",
+        "operationArgument" : "phoneNumberRequiredValue",
+        "attributeType": "text",
+       "attributeName": "phoneNumberRequired",
+        "attributeStrategy": "id",
+        "attributeValue": "new_phone"
+     },
+
+    {     
+        "operationName": "setRetypeEmailAddressTextField",
+        "operationArgument" : "retypeEmailAddressValue",
+        "attributeType": "text",
+       "attributeName": "retypeEmailAddress",
+        "attributeStrategy": "id",
+        "attributeValue": "new_confirmemail"
+     },
+
+    {     
+        "operationName": "setRetypePasswordPasswordField",
+        "operationArgument" : "retypePasswordValue",
+        "attributeType": "text",
+       "attributeName": "retypePassword",
+        "attributeStrategy": "id",
+        "attributeValue": "password_confirmPassword"
+     },
+
+    {     
+        "operationName": "setUsernameRequiredTextField",
+        "operationArgument" : "usernameRequiredValue",
+        "attributeType": "text",
+       "attributeName": "usernameRequired",
+        "attributeStrategy": "id",
+        "attributeValue": "new_username"
+     },
+
+    {     
+        "operationName": "setUsernameTextField",
+        "operationArgument" : "usernameValue",
+        "attributeType": "text",
+       "attributeName": "username",
+        "attributeStrategy": "id",
+        "attributeValue": "username"
+     },
+
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class LoginExtra extends \Automate\Page {
+
+
+
+
+
+
+
+
+
+     protected $pageLoadedText = "Please provide your name and email address so that we may confirm your class registration and contact you in case of changes or cancellation";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/create-account";
+
+
+
+
+
+
+
+
+   private static $_selectors = [
+    "cancel" =>
+    [
+       "css" => "a.btn.btn-default"
+    ],
+
+    "createAccount1" =>
+    [
+       "id" => "toggleRegForm"
+    ],
+
+    "createAccount2" =>
+    [
+       "css" => "#registrationform div.row div:nth-of-type(1) form button.btn.btn-primary"
+    ],
+
+    "dateOfBirthRequired" =>
+    [
+       "id" => "new_birthDate"
+    ],
+
+    "emailAddressRequired" =>
+    [
+       "id" => "new_email"
+    ],
+
+    "firstNameRequired" =>
+    [
+       "id" => "new_firstName"
+    ],
+
+    "forgotPassword" =>
+    [
+       "css" => "a.pull-right"
+    ],
+
+    "lastNameRequired" =>
+    [
+       "id" => "new_lastName"
+    ],
+
+    "logIn" =>
+    [
+       "css" => "#loginform div.row div:nth-of-type(1) form button.btn.btn-primary"
+    ],
+
+
+
+    "password1" =>
+    [
+       "id" => "password"
+    ],
+
+    "password2" =>
+    [
+       "id" => "password_password"
+    ],
+
+    "phoneNumberRequired" =>
+    [
+       "id" => "new_phone"
+    ],
+
+    "retypeEmailAddress" =>
+    [
+       "id" => "new_confirmemail"
+    ],
+
+    "retypePassword" =>
+    [
+       "id" => "password_confirmPassword"
+    ],
+
+    "username" =>
+    [
+       "id" => "username"
+    ],
+
+    "usernameRequired" =>
+    [
+       "id" => "new_username"
+    ],
+
+    "x" =>
+    [
+       "css" => "button.close"
+    ],
+    ];
+    /**
+     * Click on Cancel Link.
+     *
+     */
+    function clickCancelLink() {
+        //link
+        $this->click(self::$_selectors['cancel']);
+    }
+
+    /**
+     * Click on Create Account Button.
+     *
+     */
+    function clickCreateAccount1Button() {
+        //button
+        $this->click(self::$_selectors['createAccount1']);
+    }
+
+    /**
+     * Click on Create Account Button.
+     *
+     */
+    function clickCreateAccount2Button() {
+        //button
+        $this->click(self::$_selectors['createAccount2']);
+    }
+
+    /**
+     * Click on Forgot Password Link.
+     *
+     */
+    function clickForgotPasswordLink() {
+        //link
+        $this->click(self::$_selectors['forgotPassword']);
+    }
+
+    /**
+     * Click on Log In Button.
+     *
+     */
+    function clickLogInButton() {
+        //button
+        $this->click(self::$_selectors['logIn']);
+    }
+
+    /**
+     * Click on X Button.
+     *
+     */
+    function clickXButton() {
+        //button
+        $this->click(self::$_selectors['x']);
+    }
+
+
+
+    /**
+     * Set default value to Date Of Birth Required. Text field.
+     *
+     */
+    function setDateOfBirthRequiredTextField($dateOfBirthRequiredValue) {
+         //text
+        $this->type(self::$_selectors['dateOfBirthRequired'],$dateOfBirthRequiredValue);
+    }
+
+    /**
+     * Set default value to Email Address Required. Text field.
+     *
+     */
+    function setEmailAddressRequiredTextField($emailAddressRequiredValue) {
+         //text
+        $this->type(self::$_selectors['emailAddressRequired'],$emailAddressRequiredValue);
+    }
+
+    /**
+     * Set default value to First Name Required. Text field.
+     *
+     */
+    function setFirstNameRequiredTextField($firstNameRequiredValue) {
+         //text
+        $this->type(self::$_selectors['firstNameRequired'],$firstNameRequiredValue);
+    }
+
+    /**
+     * Set default value to Last Name Required. Text field.
+     *
+     */
+    function setLastNameRequiredTextField($lastNameRequiredValue) {
+         //text
+        $this->type(self::$_selectors['lastNameRequired'],$lastNameRequiredValue);
+    }
+
+    /**
+     * Set default value to Password Password field.
+     *
+     */
+    function setPassword1PasswordField($password1Value) {
+         //text
+        $this->type(self::$_selectors['password1'],$password1Value);
+    }
+
+    /**
+     * Set default value to Password Password field.
+     *
+     */
+    function setPassword2PasswordField($password2Value) {
+         //text
+        $this->type(self::$_selectors['password2'],$password2Value);
+    }
+
+    /**
+     * Set default value to Phone Number Required. Text field.
+     *
+     */
+    function setPhoneNumberRequiredTextField($phoneNumberRequiredValue) {
+         //text
+        $this->type(self::$_selectors['phoneNumberRequired'],$phoneNumberRequiredValue);
+    }
+
+    /**
+     * Set default value to Retype Email Address Text field.
+     *
+     */
+    function setRetypeEmailAddressTextField($retypeEmailAddressValue) {
+         //text
+        $this->type(self::$_selectors['retypeEmailAddress'],$retypeEmailAddressValue);
+    }
+
+    /**
+     * Set default value to Retype Password Password field.
+     *
+     */
+    function setRetypePasswordPasswordField($retypePasswordValue) {
+         //text
+        $this->type(self::$_selectors['retypePassword'],$retypePasswordValue);
+    }
+
+    /**
+     * Set default value to Username Required. Text field.
+     *
+     */
+    function setUsernameRequiredTextField($usernameRequiredValue) {
+         //text
+        $this->type(self::$_selectors['usernameRequired'],$usernameRequiredValue);
+    }
+
+    /**
+     * Set default value to Username Text field.
+     *
+     */
+    function setUsernameTextField($usernameValue) {
+         //text
+        $this->type(self::$_selectors['username'],$usernameValue);
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickLogInButton();
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+        $this->driver->wait(self::WAIT_TIME, self::ITERATE_TIME)->until(
+            function () use ($driver) {
+            $driver.getPageSource().contains($this->pageLoadedText);
+        });
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return strpos($this->driver->getCurrentURL(), $this->pageUrl) !== false;
+    }
+}

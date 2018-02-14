@@ -1,0 +1,165 @@
+'use strict';
+require('regenerator/runtime');
+
+var GitHub = require('../lib/GitHub');
+var ResourceLimiter = require('./ResourceLimiter');
+
+class BuildCache {
+  constructor(year = 2008, month=1, language='javascript') {
+    this.year = year;
+    this.month = month;
+    this.language = language;
+    this.gitHub = new GitHub();
+    this.resourceLimiter = new ResourceLimiter();
+    this.redisClient = require('../database/redis'),
+    this.latinize = require('latinize');
+    this.moment = require('moment');    
+    this.momentFormat = 'YYYY-MM-DD';
+    this.now = this.moment().format(this.momentFormat);    
+  }
+  padZero(num) {
+    return ("0" + num).slice(-2);
+  }
+  async updateCount(count) {
+    let self = this;
+    return new Promise(function(resolve,reject) {
+      self.redisClient.get(self.now, (err,value) => {
+        if (err) {
+          return reject(err);
+        }
+        if (value) {
+          value = Number(value) + count;
+        } else {
+          value = count;
+        }
+        self.redisClient.set(self.now,value);
+        return resolve(value);
+
+      });//redisClient
+    });//promise
+    
+  }
+  async getRedisLocation(location) {
+    let self = this;
+    return new Promise(function(resolve,reject) {
+      self.redisClient.get(location, (err,value) => {
+        if (err) {
+          return reject(err);
+        }
+        return resolve(value);
+
+      });//redisClient
+    });//promise
+  }
+  
+  async searchGitHub(term) {
+    console.log('searchGitHub.term',term);
+    let users = [];
+    let more = true;
+    let page = 1;
+    
+    while(more) {
+      let results = await this.gitHub.searchUsers(
+        term,
+        0, //repos
+        'desc', //sort
+        'followers', //order
+        page);
+
+      debugger;
+      //save users
+      if (results && results.json && results.json.items) {
+        for (let item of results.json.items) {
+          if (item.user && item.user.location) {
+
+            let location =
+                  this.latinize(item.user.location).toLowerCase();
+            console.log('location',location);
+            var valid = /^[a-z\,\-_\s]+$/i.test(location);
+            if (valid) {
+              console.log('checking location', location);              
+              let value = await this.getRedisLocation(location);
+              if (!value) {
+                users.push(location);
+              } else {
+              console.log('found location', location);                              
+              }
+            } //valid
+          }//location
+        }//for
+      }//items
+      
+      //get more pages?
+      more = false;
+      if (results && results.link && results.link.last) {
+        if (page < results.link.last.page) {
+          more = true;
+          page++;          
+        }
+      }
+    }
+    return users;
+  }
+
+  
+  async process() {
+    let count = 0;
+    while (count < 1) {
+
+      let start = 'created:'
+            + this.year
+            + '-'
+            + this.padZero(this.month) +
+            '-01..';
+
+      this.month++;
+      if (this.month === 13) {
+        this.year++;
+        this.month = 1;
+      }
+      
+      let end = ''
+            + this.year
+            + '-'
+            + this.padZero(this.month) +
+            '-01';
+
+      let locations = await this.searchGitHub(start+end+' language:'+this.language);
+
+      console.log(locations);
+      if (locations && locations.length > 0) {
+        let updatedCount = await this.updateCount(locations.length);
+        console.log('mapzen requests for ' + this.now, updatedCount);
+
+        debugger;
+        let latLongs = await this.resourceLimiter.maxInProcessPerPeriodThrottle(locations, 6, 1000);
+
+        for (let obj of latLongs) {
+          if (obj.geocoding && obj.geocoding.query
+              && obj.features
+              && obj.features[0]
+              && obj.features[0].geometry
+              && obj.features[0].geometry.coordinates) {
+
+            //Place into Redis
+            let key = obj.geocoding.query.text;
+            let long = obj.features[0].geometry.coordinates[0];
+            let lat = obj.features[0].geometry.coordinates[1];
+
+            let value = {};
+            value.long = long;
+            value.lat = lat;
+            this.redisClient.setnx(key, JSON.stringify(value));
+            
+            console.log('key: ' + key + ' lat: ' + lat + ' long: ' + long);
+          }
+        } //latLongs
+      } //locations > 0
+      count++;
+      console.log('last date:',start+end);          
+    } //while
+
+    process.exit();
+  }
+}
+(new BuildCache(2008, 8)).process();

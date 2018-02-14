@@ -1,0 +1,67 @@
+<?php
+require_once __DIR__ . "/../../../../src/pageObjects/Page.class.php";
+
+class AdminPage extends \Automate\Page {
+    private static $_selectors = [
+        "administration" =>
+        [
+            "css" => "header#masthead li.dropdown > a"
+        ],
+        "h1_message" =>
+        [
+            "css" => "div#primary h1"
+        ],
+        "add_term" =>
+        [
+            "xpath" => "//a[contains(text(),'Add')][contains(text(),'Term')]"
+        ],
+        "add_category" =>
+        [
+            "xpath" => "//a[contains(text(),'Add')][contains(text(),'Category')]"
+        ],
+        "add_course" =>
+        [
+            "xpath" => "//a[contains(text(),'Add')][contains(text(),'Course')]"
+        ],
+        "course_and_program" =>
+        [
+            "xpath" => "//a[contains(text(),'Courses')][contains(text(),'Programs')]"
+        ],
+        "edit_fdl_campus" =>
+                [
+            "xpath" => "//a[contains(text(),'Edit')][contains(text(),'UW-Fond du Lac')]"
+        ]
+    ];
+
+    function waitPageLoaded() {
+        $this->waitPageLoadedBySelectors([self::$_selectors["administration"]]);
+    }
+    function clickAdminMenu() {
+        $this->click(self::$_selectors['administration']);
+        $this->waitPageLoadedBySelectors([self::$_selectors["add_category"],
+                                          self::$_selectors["add_term"],
+                                          self::$_selectors["add_course"],
+                                          self::$_selectors["course_and_program"]
+        ]);
+    }
+    function clickAddCategory()  {
+        $this->click(self::$_selectors['add_category']);
+    }
+    function clickAddTerm()  {
+        $this->click(self::$_selectors['add_term']);
+    }
+    function clickAddCourse()  {
+
+        $this->click(self::$_selectors['add_course']);
+    }
+    function clickCourseAndProgram()  {
+        $this->click(self::$_selectors['course_and_program']);
+    }
+    function clickEditFDLCampus()  {
+        $this->click(self::$_selectors['edit_fdl_campus']);
+    }
+    function getH1HeadingText() {
+        return $this->find(self::$_selectors['h1_message'])->getText();
+    }
+    
+}

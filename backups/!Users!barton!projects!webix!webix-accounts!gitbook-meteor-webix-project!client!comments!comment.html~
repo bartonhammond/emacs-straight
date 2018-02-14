@@ -1,0 +1,7 @@
+<template name="postItem">
+  <li data-id="{{_id}}"
+      data-title="{{title}}"
+      data-url='<a href="{{url}}" target="_blank">{{url}}</a>'
+      >
+  </li>
+</template>

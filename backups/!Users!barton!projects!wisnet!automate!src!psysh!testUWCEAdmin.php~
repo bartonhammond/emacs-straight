@@ -1,0 +1,14 @@
+require_once 'vendor/autoload.php'; 
+require_once __DIR__ . '/src/testCase/BaseTestCase.php';
+require_once __DIR__ . '/test/uwce/adminCreateSessions/pageObjects/MainPage.class.php';
+require_once __DIR__ . '/pageObjects/CourseCatalog.class.php';
+require_once __DIR__ . '/pageObjects/LoginPage.class.php';
+require_once __DIR__ . '/pageObjects/AdminPage.class.php';
+require_once __DIR__ . '/pageObjects/TermPage.class.php';
+require_once __DIR__ . '/pageObjects/CategoryPage.class.php';
+require_once __DIR__ . '/pageObjects/CoursePage.class.php';
+require_once __DIR__ . '/pageObjects/SessionPage.class.php';
+require_once __DIR__ . '/pageObjects/CourseAndProgramPage.class.php';
+require_once __DIR__ . '/pageObjects/CourseProgramDisplayPage.class.php';
+require_once __DIR__ . '/pageObjects/WorkshopPage.class.php';
+require_once __DIR__ . '/pageObjects/TimeSlotsPage.class.php';

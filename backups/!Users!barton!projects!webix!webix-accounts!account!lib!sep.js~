@@ -1,0 +1,6 @@
+'use strict';
+Template.oauth.helpers({
+  oauthService: function () {
+    return WebixDefaults.getOauthServices()
+  }
+});

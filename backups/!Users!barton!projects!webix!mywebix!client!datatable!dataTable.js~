@@ -1,0 +1,27 @@
+'use strict';
+
+// http://docs.webix.com/api__refs__ui.datatable.html
+var mydataTable = {
+  view: 'datatable',
+  id: 'datatable',
+  // Columns can usually be omitted and they can be automatically detected with autoconfig: true
+  // But since we don't know what data in the DB might confuse the autodetection, we'll specify:
+  columns: [
+    // http://docs.webix.com/api__ui.datatable_columns_config.html
+    { id: 'title', header: 'Title &nbsp;', editor: 'text', sort: 'string', fillspace: true }, // fill remaining width in the table
+    { id: 'year', header: 'Year &nbsp;', editor: 'text', sort: 'string', adjust: true },  // automatically adjust to content size
+    { id: 'rating', header: 'Rating &nbsp;', editor: 'text', sort: 'string', adjust: true }
+  ],
+  select: true,
+  editable: true,  // redundant, but see http://forum.webix.com/discussion/4328/editable-true-doesn-t-do-anything-if-columns-don-t-have-editor-specified
+  editaction: 'dblclick',
+  resizeColumn: true,
+  // validation
+  rules: {
+    'year': function (value) {
+      return value > 1890 && value < 2030
+    }  
+  },
+  url:  webix.proxy('meteor', Movies),  // <-- this is it!
+  save: webix.proxy('meteor', Movies)   // Mongo.Collection
+};

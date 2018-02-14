@@ -1,0 +1,38 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+use Facebook\WebDriver\WebDriverSelect;
+use Facebook\WebDriver\WebDriverBy;
+
+class CatalogCourseExtra extends CatalogCourse {
+    protected $pageUrl = "/uwce-staging/www/fond-du-lac/catalog/bwh-music-course/";
+    protected $pageUrlLocal = "/uwce-staging/www/fond-du-lac/catalog/-bwh-music-course/";
+    private static $_selectors = [
+   ];
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     * see Page.class.php
+     */
+    function verifyPageUrl() {
+        if (!$this->isLocal) {
+            return $this->verifyPageUrlToLastSlash($this->driver->getCurrentURL(),
+                                               $this->pageUrl);
+        } else {
+            return $this->verifyPageUrlToLastSlash($this->driver->getCurrentURL(),
+                                               $this->pageUrlLocal);
+        }
+    }
+    function checkQuestion($option) {
+        $webDriverSelect = new WebDriverSelect($this->driver->findElement(WebDriverBy::cssSelector('tbody#register-user-list div:nth-child(1) > table > tbody > tr > td:nth-child(2) > select')));
+        $webDriverSelect->selectByVisibleText($option);
+    }
+    /**
+     * Set default value to Workshops Drop Down List field.
+     *
+     */
+    function setWorkshops2DropDownListField($workshops2Value) {
+        $webDriverSelect = new WebDriverSelect($this->driver->findElement(WebDriverBy::cssSelector('tbody#register-user-list div:nth-child(2) > table > tbody > tr > td:nth-child(2) > select')));
+        $webDriverSelect->selectByVisibleText($workshops2Value);        
+    }
+    
+}

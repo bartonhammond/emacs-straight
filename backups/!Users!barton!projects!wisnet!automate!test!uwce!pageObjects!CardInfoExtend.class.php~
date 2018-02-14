@@ -1,0 +1,355 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+use Facebook\WebDriver\WebDriverSelect;
+use Facebook\WebDriver\WebDriverBy;
+/* Copy the following JSON to Wisnet ATF Generator in the Selectors
+ * section
+ * Then delete this 
+[
+    {     
+        "operationName": "clickBillingLink3",
+        "attributeType": "link",
+       "attributeName": "billing3",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(3)"
+     },
+
+    {     
+        "operationName": "clickBwhMusicCourse12345BwhLink",
+        "attributeType": "link",
+       "attributeName": "bwhMusicCourse12345Bwh",
+        "attributeStrategy": "css",
+        "attributeValue": "a[href=&#x27;/uwce-staging/www/fond-du-lac/catalog/-bwh-music-course/419&#x27;]"
+     },
+
+    {     
+        "operationName": "clickConfirmLink2",
+        "attributeType": "link",
+       "attributeName": "confirm2",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(2)"
+     },
+
+    {     
+        "operationName": "clickPaymentLink4",
+        "attributeType": "link",
+       "attributeName": "payment4",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(4)"
+     },
+
+    {     
+        "operationName": "clickSelectRegistrantsLink1",
+        "attributeType": "link",
+       "attributeName": "selectRegistrants1",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(1)"
+     },
+
+    {     
+        "operationName": "clickStep4Of4Link",
+        "attributeType": "link",
+       "attributeName": "step4Of4",
+        "attributeStrategy": "css",
+        "attributeValue": "#primary div.container-fluid div.stepwizard span:nth-of-type(1) a"
+     },
+
+    {     
+        "operationName": "clickSubmitPaymentButton",
+        "attributeType": "button",
+       "attributeName": "submitPayment",
+        "attributeStrategy": "name",
+        "attributeValue": "Submit Payment"
+     },
+
+
+
+    {     
+        "operationName": "setCcvTextField",
+        "operationArgument" : "ccvValue",
+        "attributeType": "text",
+       "attributeName": "ccv",
+        "attributeStrategy": "id",
+        "attributeValue": "x_card_code"
+     },
+
+    {     
+        "operationName": "setCreditCardTextField",
+        "operationArgument" : "creditCardValue",
+        "attributeType": "text",
+       "attributeName": "creditCard",
+        "attributeStrategy": "id",
+        "attributeValue": "x_card_num"
+     },
+
+    {     
+        "operationName": "setExpMonthDropDownListField",
+        "operationArgument" : "expMonthValue",
+        "attributeType": "select",
+       "attributeName": "expMonth",
+        "attributeStrategy": "id",
+        "attributeValue": "exp_month"
+     },
+
+    {     
+        "operationName": "setExpYearDropDownListField",
+        "operationArgument" : "expYearValue",
+        "attributeType": "select",
+       "attributeName": "expYear",
+        "attributeStrategy": "id",
+        "attributeValue": "exp_year"
+     },
+
+
+    {     
+        "operationName": "unsetExpMonthDropDownListField",
+        "operationArgument" : "expMonthValue",
+        "attributeType": "select",
+       "attributeName": "expMonth",
+        "attributeStrategy": "id",
+        "attributeValue": "exp_month"
+     },
+
+    {     
+        "operationName": "unsetExpYearDropDownListField",
+        "operationArgument" : "expYearValue",
+        "attributeType": "select",
+       "attributeName": "expYear",
+        "attributeStrategy": "id",
+        "attributeValue": "exp_year"
+     },
+
+
+]
+DELETE THE ENDING COMMA ABOVE
+*/
+class CardInfo extends \Automate\Page {
+
+
+
+
+
+
+
+     protected $pageLoadedText = "Fond Du Lac WI 54935";
+
+     protected $pageUrl = "/uwce-staging/www/fond-du-lac/card-info/441";
+
+
+
+
+   private static $_selectors = [
+    "billing3" =>
+    [
+       "css" => "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(3)"
+    ],
+
+    "bwhMusicCourse12345Bwh" =>
+    [
+       "css" => "a[href='/uwce-staging/www/fond-du-lac/catalog/-bwh-music-course/419']"
+    ],
+
+    "ccv" =>
+    [
+       "id" => "x_card_code"
+    ],
+
+    "confirm2" =>
+    [
+       "css" => "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(2)"
+    ],
+
+    "creditCard" =>
+    [
+       "id" => "x_card_num"
+    ],
+
+    "expMonth" =>
+    [
+       "id" => "exp_month"
+    ],
+
+    "expYear" =>
+    [
+       "id" => "exp_year"
+    ],
+
+
+
+    "payment4" =>
+    [
+       "css" => "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(4)"
+    ],
+
+    "selectRegistrants1" =>
+    [
+       "css" => "#primary div.container-fluid div.stepwizard span:nth-of-type(2) a:nth-of-type(1)"
+    ],
+
+    "step4Of4" =>
+    [
+       "css" => "#primary div.container-fluid div.stepwizard span:nth-of-type(1) a"
+    ],
+
+    "submitPayment" =>
+    [
+       "name" => "Submit Payment"
+    ],
+    ];
+    /**
+     * Click on 3billing Link.
+     *
+     */
+    function clickBillingLink3() {
+        //link
+        $this->click(self::$_selectors['billing3']);
+    }
+
+    /**
+     * Click on Bwh Music Course 12345 Bwh Session Title 222018 Link.
+     *
+     */
+    function clickBwhMusicCourse12345BwhLink() {
+        //link
+        $this->click(self::$_selectors['bwhMusicCourse12345Bwh']);
+    }
+
+    /**
+     * Click on 2confirm Link.
+     *
+     */
+    function clickConfirmLink2() {
+        //link
+        $this->click(self::$_selectors['confirm2']);
+    }
+
+    /**
+     * Click on 4payment Link.
+     *
+     */
+    function clickPaymentLink4() {
+        //link
+        $this->click(self::$_selectors['payment4']);
+    }
+
+    /**
+     * Click on 1select Registrants Link.
+     *
+     */
+    function clickSelectRegistrantsLink1() {
+        //link
+        $this->click(self::$_selectors['selectRegistrants1']);
+    }
+
+    /**
+     * Click on Step 4 Of 4 Link.
+     *
+     */
+    function clickStep4Of4Link() {
+        //link
+        $this->click(self::$_selectors['step4Of4']);
+    }
+
+    /**
+     * Click on Submit Payment Button.
+     *
+     */
+    function clickSubmitPaymentButton() {
+        //button
+        $this->click(self::$_selectors['submitPayment']);
+    }
+
+
+
+    /**
+     * Set default value to Ccv Text field.
+     *
+     */
+    function setCcvTextField($ccvValue) {
+         //text
+        $this->type(self::$_selectors['ccv'],$ccvValue);
+    }
+
+    /**
+     * Set default value to Credit Card Text field.
+     *
+     */
+    function setCreditCardTextField($creditCardValue) {
+         //text
+        $this->type(self::$_selectors['creditCard'],$creditCardValue);
+    }
+
+    /**
+     * Set default value to Exp. Month Drop Down List field.
+     *
+     */
+    function setExpMonthDropDownListField($expMonthValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["expMonth"]));
+        $webDriverSelect->selectByVisibleText($expMonthValue);        
+    }
+
+    /**
+     * Set default value to Exp. Year Drop Down List field.
+     *
+     */
+    function setExpYearDropDownListField($expYearValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["expYear"]));
+        $webDriverSelect->selectByVisibleText($expYearValue);        
+    }
+
+    /**
+     * Submit the form to target page.
+     *
+     */
+    function submit() {
+       $this->clickSubmitPaymentButton();
+    }
+
+    /**
+     * Unset default value from Exp. Month Drop Down List field.
+     *
+     */
+    function unsetExpMonthDropDownListField($expMonthValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["expMonth"]));
+        $webDriverSelect->selectByVisibleText($expMonthValue);        
+    }
+
+    /**
+     * Unset default value from Exp. Year Drop Down List field.
+     *
+     */
+    function unsetExpYearDropDownListField($expYearValue) {
+        $webDriverSelect = new WebDriverSelect($this->find(self::$_selectors["expYear"]));
+        $webDriverSelect->selectByVisibleText($expYearValue);        
+    }
+
+    /**
+     * Verify that the page loaded completely.
+     *
+     */
+    function verifyPageLoaded() {
+         $text = $this->pageLoadedText;
+        $driver = $this->driver;
+        return $driver->wait(self::WAIT_TIME, self::ITERATE_TIME)->until(
+            function () use ($driver, $text)  {
+                try {
+                    $source = $driver->getPageSource();
+                    if (strpos($source,$text) !== false) {
+                        return true;
+                    }
+                    return false;
+                } catch (\Exception $e) {
+                    return false;
+                }
+        });
+    }
+
+    /**
+     * Verify that current page URL matches the expected URL.
+     *
+     */
+    function verifyPageUrl() {
+        return $this->verifyPageUrlToLastSlash($this->driver->getCurrentURL(),
+                                               $this->pageUrl);                     
+    }
+}

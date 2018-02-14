@@ -1,0 +1,58 @@
+'use strict';
+require('regenerator/runtime');
+
+import Bottleneck from 'bottleneck';
+import ProcessorClass from '../ProcessorClass';
+import CreateSearchRepositoriesJob from '../search/CreateSearchRepositoriesJob';
+import CreateGetMapBoxJob from '../mapbox/CreateGetMapBoxJob';
+
+class CacheSearchRepositoriesProcessor extends ProcessorClass{
+  constructor(queue, job, ctx, done) {
+    super(queue, job, ctx, done);
+    debugger;
+    this.getMapBoxLimiter = new Bottleneck(1, 800);
+  }
+  processRepos(repos) {
+    let self = this;
+    //Done when all pages/repos are processed
+    self.lastPage = repos.length;
+
+    for (let repo of repos) {
+      self.getMapBoxLimiter.schedule(
+        CreateGetMapBoxJob.bind(
+          self,
+          self.queue,
+          self.job.data.id,
+          self.job.data.access_token,
+          repo.owner.login, //owner
+          repo.name)) //repo namex
+
+        .then((mapbox) => {
+          self.saveResults(mapbox);
+        })
+
+        .catch(() => {
+          self.saveResults(); //keep the counter accurate
+        });
+    }
+  }
+  run() {
+
+    let self = this;
+    //create Serach
+    CreateSearchRepositoriesJob(
+      self.queue,
+      self.job.data.id,
+      self.job.data.access_token,
+      self.job.data.minstars,
+      self.job.data.maxstars)
+      .then((repos) => {
+        self.processRepos(repos);
+      })
+      .catch(() => {
+        self.saveResults(); //done
+      });
+  }
+  
+}
+module.exports = CacheSearchRepositoriesProcessor;

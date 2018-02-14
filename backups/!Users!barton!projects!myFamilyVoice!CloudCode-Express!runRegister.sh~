@@ -1,0 +1,4 @@
+export PARSE_APP_ID=9H8pOkHqCgRfrboqNuku6ewTh63PwMgjsQaJwjFw
+export PARSE_MASTER_KEY=pVIbRKm8gEzgBr9dFz0JXafij2UylMoTxzoGVymj
+export PARSE_WEBHOOK_KEY=TvseHwMTv2QquqwwJ4hx65vm3IigQQktO3CQIQdL
+export HOOKS_URL=https://7e17b6e8.ngrok.io

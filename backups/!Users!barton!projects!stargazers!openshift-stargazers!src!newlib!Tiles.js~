@@ -1,0 +1,64 @@
+'use strict';
+
+/**
+* Place users into geographical tiles dependant on their location
+*/
+var turf = require('turf');
+var tilebelt = require('tilebelt');
+let _ = require('underscore');
+
+class Tiles {
+  constructor() {
+    this.zoom = 7;
+  }
+  
+  process(stargazers) {
+    let tiles = {};
+    let that = this;
+    stargazers.forEach(function(star){
+      var tile = {};
+      tile.key = tilebelt.pointToTile(star.long, star.lat,
+                                      that.zoom).join('/');
+
+      if(!tiles[tile.key]) {
+        tiles[tile.key] = {};
+        tiles[tile.key].size = 1;
+        tiles[tile.key].location = star.location;
+        tiles[tile.key].users = [];
+        tiles[tile.key].users.push(star.user);
+      } else { // if we have seen the tile before, increment the count by 1
+        tiles[tile.key].size++ ;
+        tiles[tile.key].users.push(star.user);;    
+      }
+    });
+
+    var fc = turf.featurecollection([]);
+
+    Object.keys(tiles).forEach(function(tile){
+
+      // split the tile key into an array and map the items to numbers
+      var poly = tilebelt.tileToGeoJSON(tile.split('/').map(Number));
+      
+      // grab the count for the associated tile and set it on the geojson
+      var feature = {};
+      feature.type = 'Feature';
+      feature.geometry = poly;
+
+      // add center of polygon
+      var center = turf.centroid(feature);
+
+      center.properties = {};
+      center.properties.users = _.extend({}, tiles[tile].users);
+      center.properties.location = tiles[tile].location;
+      
+      //used by geoColor
+      center.properties["marker-color"] = "#55aa00";
+      center.properties.stars = tiles[tile].size;
+      
+      fc.features.push(center);
+    }); //for each
+    return Promise.resolve(fc);
+  } //process
+} //Tiles
+
+module.exports = Tiles;

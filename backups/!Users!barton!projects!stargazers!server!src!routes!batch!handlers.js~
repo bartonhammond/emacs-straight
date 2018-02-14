@@ -1,0 +1,102 @@
+'use strict';
+require('regenerator/runtime');
+const queue = require('../../newlib/Queue').queue();
+
+let uuid = require('uuid');
+
+import CreateSearchRepositoriesJob from '../../newlib/jobs/search/CreateSearchRepositoriesJob';
+
+import CreateGetUsersForRepoJob from '../../newlib/jobs/users/CreateGetUsersForRepoJob';
+
+import CreateGetUserJob from '../../newlib/jobs/user/CreateGetUserJob';
+
+import CreateGetLocationJob from '../../newlib/jobs/location/CreateGetLocationJob';
+
+import CreateGetMapDataJob from '../../newlib/jobs/mapdata/CreateGetMapDataJob';
+
+import CreateGetMapBoxJob from '../../newlib/jobs/mapbox/CreateGetMapBoxJob';
+
+import CreateCacheSearchRepositoriesJob from '../../newlib/jobs/cache/CreateCacheSearchRepositoriesJob';
+
+let internals ={};
+
+internals.searchRepositories = async function(req, reply) {
+  CreateSearchRepositoriesJob(
+    queue,
+    uuid.v4(),
+    req.params.access_token,
+    req.params.minstars,
+    req.params.maxstars
+  );
+  reply('submitted');
+
+};
+
+internals.getUsersForRepo = async function(req, reply) {
+  CreateGetUsersForRepoJob(
+    queue,
+    uuid.v4(),
+    req.params.access_token,
+    req.params.owner,
+    req.params.repo
+  );
+  reply('submitted');
+
+};
+
+internals.getUser = async function(req, reply) {
+  CreateGetUserJob(
+    queue,
+    uuid.v4(),
+    req.params.access_token,
+    req.params.login
+  );
+  reply('submitted');
+};
+
+internals.getLocation = async function(req, reply) {
+  CreateGetLocationJob(
+    queue,
+    uuid.v4(),
+    req.params.location
+  );
+  reply('submitted');
+
+};
+
+internals.getMapData = async function(req, reply) {
+  CreateGetMapDataJob(
+    queue,
+    uuid.v4(),
+    req.params.access_token,
+    req.params.owner,
+    req.params.repo
+  );
+  reply('submitted');
+};
+
+internals.getMapBox = async function(req, reply) {
+  CreateGetMapBoxJob(  
+    queue,
+    uuid.v4(),
+    req.params.access_token,
+    req.params.owner,
+    req.params.repo
+  );
+  reply('submitted');
+
+};
+
+internals.cacheSearchRepositories = async function(req, reply) {
+  CreateCacheSearchRepositoriesJob(
+    queue,
+    uuid.v4(),
+    req.params.access_token,
+    req.params.minstars,
+    req.params.maxstars
+  );
+  reply('submitted');
+
+};
+
+module.exports = internals;

@@ -1,0 +1,2 @@
+$main = new MainPage($this->driver, $this->isMobile);
+$courseCatalogPage = new CourseCatalogPage($this->driver, $this->isMobile);

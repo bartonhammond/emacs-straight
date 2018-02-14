@@ -1,0 +1,9 @@
+
+curl --data "username=barton2&password=Passw0rd$&email=foo2@gmail.com" http://localhost:8080/account/register
+
+curl --data "username=barton2&password=Passw0rd$" http://localhost:8080/account/login
+
+
+curl -v -H "Authorization: Bearer \
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU2ODcyMDBhOWY0OTNjYmEwOTBlNmM2NSIsImlhdCI6MTQ1MTY5NjE5MH0.Y5iCQuF8E4VYWEnbVMwJvvTtVG_fXsxJwc4dWrW3L9k" \
+http://localhost:8080/account/me

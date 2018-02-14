@@ -1,0 +1,167 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "bartonhammond1",
+  "key": "UXXHAju9asdQAp1R2LcN",
+
+
+  "capabilities": {
+    "build": "phpunit-browserstack",
+    "name": "parallel_test",
+    "browserstack.debug": true
+  },
+
+  "environments": [
+    {
+      "os": "OS X",
+      "os_version": "El Capitan",
+      "browser": "chrome",
+      "browser_version": "61.0"
+    },
+    {
+      "os": "OS X",
+      "os_version": "El Capitan",
+      "browser": "firefox",
+      "browser_version": "45.0"
+    },
+    {
+      "os": "OS X",
+      "os_version": "El Capitan",
+      "browser": "safari",
+      "browser_version": "9.1"
+    },
+    {
+      "browserName" : "safari",
+      "browser_version" : "10.1",
+      "os" : "OS X",
+      "os_version" : "Sierra"
+    },
+    {
+      "browserName" : "firefox",
+      "browser_version" : "55.0",
+      "os" : "OS X",
+      "os_version" : "Sierra"
+    },
+    {
+      "browserName" : "chrome",
+      "browser_version" : "61.0",
+      "os" : "OS X",
+      "os_version" : "Sierra"
+    },
+    {
+      "browserName" : "safari",
+      "browser_version" : "8.0",
+      "os" : "OS X",
+      "os_version" : "Yosemite"
+    },
+    {
+      "browserName" : "firefox",
+      "browser_version" : "56.0 beta",
+      "os" : "OS X",
+      "os_version" : "Yosemite"
+    } ,
+    {
+      "browserName" : "chrome",
+      "browser_version" : "61.0",
+      "os" : "OS X",
+      "os_version" : "Yosemite"
+    {
+   {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "ie",
+      "browser_version": "11.0"
+    },
+    {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "chrome",
+      "browser_version": "50.0"
+    },
+    {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "edge",
+      "browser_version": "14.0"
+    },
+    {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "firefox",
+      "browser_version": "45.0"
+    },
+        {
+      "device" : "Samsung Galaxy S6",
+      "realMobile" : "true",
+      "os_version" : "5.0"      
+    },
+    {
+      "device" : "Samsung Galaxy S7",
+      "realMobile" : "true",
+      "os_version" : "6.0"
+    },
+    {
+      "device" : "Samsung Galaxy S8",
+      "realMobile" : "true",
+      "os_version" : "7.0"
+    },
+    {
+      "device" : "Samsung Galaxy S8 Plus",
+      "realMobile" : "true",
+      "os_version" : "7.0"
+    },
+    {
+      "device" : "Motorola Moto X 2nd Gen",
+      "realMobile" : "true",
+      "os_version" : "5.0"
+    },
+    {
+      "device" : "Motorola Moto X 2nd Gen",
+      "realMobile" : "true",
+      "os_version" : "6.0"
+    },
+    {
+      "device" : "Google Pixel",
+      "realMobile" : "true",
+      "os_version" : "8.0"
+    },
+    {
+      "device" : "Google Pixel",
+      "realMobile" : "true",
+      "os_version" : "7.1"
+    },{
+      "device" : "Google Nexus 6",
+      "realMobile" : "true",
+      "os_version" : "6.0"
+    },
+    {
+      "device" : "Google Nexus 5",
+      "realMobile" : "true",
+      "os_version" : "4.4"
+    },
+    {
+      "device" : "Samsung Galaxy Tab 4",
+      "realMobile" : "true",
+      "os_version" : "4.4"
+    },
+    {
+      "device" : "Samsung Galaxy Note 4",
+      "realMobile" : "true",
+      "os_version" : "6.0"
+    },
+    {
+      "device" : "Google Nexus 9",
+      "realMobile" : "true",
+      "os_version" : "5.1"
+    },
+  {
+      "device" : "iPhone 7",
+      "realMobile" : "true",
+      "os_version" : "10.0"
+    },
+    {
+      "device" : "iPhone 7 Plus",
+      "realMobile" : "true",
+      "os_version" : "10.0"
+    }
+  ]
+}

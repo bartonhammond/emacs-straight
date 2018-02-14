@@ -1,0 +1,14 @@
+Template.postsLists.onRendered(function() {
+  if (_.isUndefined(webix.ui.views['postsLists'])) {
+    var component =  webix.markup.init();
+    webix.event(window, 'resize', function(){
+      if (component) component.resize();
+    });
+
+  }
+});
+Template.postsLists.onDestroyed(function() {
+  if (webix.ui.views['postsLists']) {
+    webix.ui.views['postsLists'].destructor();
+  }
+});

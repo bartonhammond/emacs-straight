@@ -1,0 +1,1 @@
+/Users/barton/.emacs.d/straight/repos/projectile/projectile.el

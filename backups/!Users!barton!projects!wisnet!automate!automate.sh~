@@ -1,0 +1,3 @@
+cd "C:\www\automate"
+
+composer test

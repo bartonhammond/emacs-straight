@@ -1,0 +1,10 @@
+##notes
+
+copy _automate.example.json to automate.json
+provide the "testName"
+provide which browser list on CBT to use for screenshots
+
+copy _browserDevices.example.json to browserDevices.json
+edit which device/browser to use
+
+the _screenShotsUrl.example.json is provided only for documentation - the system will update the file w/ the urls that are visited during automation that have the function "takeSnapshot" executed.

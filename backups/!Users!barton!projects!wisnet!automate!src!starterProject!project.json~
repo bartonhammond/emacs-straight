@@ -1,0 +1,4 @@
+{
+  "customerName": "University of Wisconsin",
+  "tests": ["adminCreateSessions"]
+}

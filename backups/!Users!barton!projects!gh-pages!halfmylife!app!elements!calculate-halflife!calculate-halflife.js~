@@ -1,0 +1,15 @@
+    (function() {
+    'use strict';
+
+    Polymer({
+    is: 'calculate-halflife',
+
+    properties: {
+    foo: {
+    type: String,
+    value: 'calculate-halflife',
+    notify: true
+    }
+    }
+    });
+    })();

@@ -1,0 +1,1 @@
+curl -u "wisnetcom:G6SBfwFVrpR5mMAPysJG" -X DELETE https://www.browserstack.com/automate/sessions/0edb34588241bb6694e210cd30175bba85015066.json

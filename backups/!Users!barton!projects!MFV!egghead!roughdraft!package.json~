@@ -1,0 +1,43 @@
+{
+  "name": "egghead",
+  "version": "0.0.1",
+  "private": true,
+  "jest": {
+    "scriptPreprocessor": "./node_modules/babel-jest",
+    "setupEnvScriptFile": "./node_modules/react-native/jestSupport/env.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ],
+    "unmockedModulePathPatterns": [
+    ],
+    "verbose": true,
+    "testPathDirs": [
+      "src/"
+    ]
+  },
+  "scripts": {
+    "test": "rm -rf ./node_modules/jest-cli/.haste_cache && jest ",
+    "start": "react-native start",
+    "test:watch": "npm run test -- --watch",
+    "test-chrome": "node-debug --preload false --nodejs --harmony jest --runInBand",
+    "docs": "./node_modules/docker/docker -w -i src/ -o ../snowflake-pages "
+  },
+  "dependencies": {
+    "react-native": "^0.17.0",
+    "react-native-simpledialog-android": "^1.0.2"
+  },
+  "devDependencies": {
+    "babel-jest": "^6.0.1",
+    "jest-cli": "^0.8.2",
+    "react": "^0.14.3"
+  }
+}

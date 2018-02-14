@@ -1,0 +1,68 @@
+<?PHP
+  // Original PHP code by Chirp Internet: www.chirp.com.au
+  // Please acknowledge use of this code by including this header.
+
+  function getFileList($dir)
+  {
+    // array to hold return value
+    $retval = array();
+
+    // add trailing slash if missing
+    if(substr($dir, -1) != "/") $dir .= "/";
+
+    // open pointer to directory and read list of files
+    $d = @dir($dir) or die("getFileList: Failed opening directory $dir for reading");
+    while(false !== ($entry = $d->read())) {
+      // skip hidden files
+      if($entry[0] == ".") continue;
+      if(is_dir("$dir$entry")) {
+        $retval[] = array(
+          "name" => "$dir$entry/",
+          "type" => filetype("$dir$entry"),
+          "size" => 0,
+          "lastmod" => filemtime("$dir$entry")
+        );
+      } elseif(is_readable("$dir$entry")) {
+        $retval[] = array(
+          "name" => "$dir$entry",
+          "type" => mime_content_type("$dir$entry"),
+          "size" => filesize("$dir$entry"),
+          "lastmod" => filemtime("$dir$entry")
+        );
+      }
+    }
+    $d->close();
+
+    return $retval;
+  }
+?>
+
+<h1>Wisnet - Automations</h1>
+<h3>Automated test against real desktop devices with video and snapshots</h3>
+<h3>Automated Screenshots on both desktop and mobile devices</h3>
+<pre style="white-space: pre-wrap;">Snapshot: The view taken during an Automation test run.  It only displays what is on the sreen.
+</pre>
+
+<pre style="white-space: pre-wrap;">Screenshot: The image of the entire web page at a specific URL </pre>
+      
+</p> 
+<table class="collapse" border="1">
+<thead>
+<tr><th>Customer Name</th><th>Type</th><th>Size</th><th>Last Modified</th></tr>
+</thead>
+<tbody>
+<?PHP
+  $dirlist = getFileList("./");
+  foreach($dirlist as $file) {
+      if ($file['type'] === 'dir') {
+    echo "<tr>\n";
+    echo "<td><a href=\"{$file['name']}\">",basename($file['name']),"</a></td>\n";
+    echo "<td>{$file['type']}</td>\n";
+    echo "<td>{$file['size']}</td>\n";
+    echo "<td>",date('r', $file['lastmod']),"</td>\n";
+    echo "</tr>\n";
+      }
+  }
+?>
+</tbody>
+</table>

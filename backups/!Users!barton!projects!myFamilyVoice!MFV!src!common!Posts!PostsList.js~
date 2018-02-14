@@ -1,0 +1,137 @@
+  'use strict';
+
+  var React = require('react-native');
+  var {
+    StyleSheet,
+    Image,
+    Text,
+    View,
+    ScrollView,
+    PixelRatio,
+    TouchableHighlight,
+  } = React;
+  var GLOBAL = require('../Globals');
+  var PostAdd = require('./PostsAdd');
+  var Subscribable = require('Subscribable');
+  var ProgressHUD = require('react-native-progress-hud');
+  var FBSDKCore = require('react-native-fbsdkcore');
+  var {
+    FBSDKGraphRequest,
+  } = FBSDKCore;
+
+  var FBSDKShare = require('react-native-fbsdkshare');
+  var {
+    FBSDKShareDialog,
+    FBSDKShareLinkContent,
+  } = FBSDKShare;
+
+  var Subscribable = require('Subscribable');
+  var _ = require('underscore');
+
+  var ImageWidth = 150;
+
+  var PostsList = React.createClass({
+    mixins: [Subscribable.Mixin, ProgressHUD.Mixin],
+    getInitialState() {
+      return {
+        showPostAdd: this.props.showPostAdd,
+        posts: [],
+        app_access_token: ''
+      };
+    },
+    makeRequest(token) {
+      // Make a graph request
+      var url = "https://graph.facebook.com/v2.5/"
+        + GLOBAL.APPID
+        + '/groups?'
+        + token.app_access_token;
+        fetch(url ,{
+            method: "GET",
+            body: ''
+        })
+        .then((response) => response.json())
+        .then((responseData) => {
+          this._handleRequest(responseData);
+        })
+        .done();
+    },
+    componentDidMount: function() {
+      this.addListenerOn(this.props.eventEmitter, 'app_access_token', this.makeRequest);
+    },
+    render() {
+      if (this.state.posts.length === 0) {
+          return (
+            <View style={{
+              margin: 100
+            }}>
+              <ProgressHUD
+                isVisible={true}
+                isDismissible={true}
+                color="blue"
+              />
+            <PostAdd eventEmitter={this.props.eventEmitter}/>
+            </View>
+          )
+      } else {
+        return (
+          <View>
+            <PostAdd eventEmitter={this.props.eventEmitter}/>
+            <ScrollView style={{
+              marginTop: 65
+            }}>
+              {this.state.posts}
+            </ScrollView>
+          </View>
+        );
+      }
+    },
+
+    _renderPost(posts) {
+      return (
+        <TouchableHighlight onPress={() => this._pressRow(rowData.icon)}>
+          <View>
+          <View style={styles.row}>
+              <Text style={styles.text}>
+                {posts.name}
+              </Text>
+            </View>
+            <View style={styles.separator} />
+          </View>
+        </TouchableHighlight>
+      );
+    },
+
+    /**
+     * Handles the response from the graph request
+     */
+    _handleRequest(result) {
+      if (_.isUndefined(result.error)) {
+        var posts = result.data;
+        var renderedPosts = [];
+        for (var i = 0, il = posts.length; i < il; i++) {
+          var post = posts[i];
+          renderedPosts.push(this._renderPost(post));
+        }
+        this.setState({ groups: renderedPostsxs });
+      }
+    }
+  });
+
+  var styles = StyleSheet.create({
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      padding: 10,
+      backgroundColor: '#F6F6F6',
+    },
+    separator: {
+      height: 1,
+      backgroundColor: '#CCCCCC',
+    },
+    text: {
+      flex: 1,
+      marginLeft: 10
+    },
+  });
+
+  module.exports = PostsList;

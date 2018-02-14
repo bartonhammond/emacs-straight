@@ -1,0 +1,32 @@
+'use strict';
+
+import assert from 'assert';
+import React, { View } from 'react-native';
+import utils from 'react-addons-test-utils';
+
+jest.setMock('react-native', {
+    NativeModules: {}
+});
+
+var ErrorAlert = require('../../../src/components/ErrorAlert');
+
+jest.mock('react-native-simpledialog-android');
+var SimpleAlert = require('react-native-simpledialog-android');
+
+describe('ErrorAlert', () => {
+
+
+  it('should be fine', () => {
+    const errorAlertProps = {
+      error: {
+        error: 'Error occurred'
+      }
+    };
+
+    ErrorAlert.checkError(errorAlertProps);
+    
+    SimpleAlert.alert.mock.calls[0 /*first call*/][0 /*first argument*/].success(errorAlertProps);
+
+  });
+
+});//describe ErrorAlert`

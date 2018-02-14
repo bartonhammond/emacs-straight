@@ -1,0 +1,92 @@
+[
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/",
+        "base_test_id": 2656761,
+        "base_version_id": 2805133,
+        "target_version_id": 2805559
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/catalog",
+        "base_test_id": 2656779,
+        "base_version_id": 2805151,
+        "target_version_id": 2805583
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/login",
+        "base_test_id": 2656799,
+        "base_version_id": 2805171,
+        "target_version_id": 2805605
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin",
+        "base_test_id": 2656814,
+        "base_version_id": 2805188,
+        "target_version_id": 2805626
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/category\/new",
+        "base_test_id": 2656831,
+        "base_version_id": 2805205,
+        "target_version_id": 2805651
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/term\/new",
+        "base_test_id": 2656844,
+        "base_version_id": 2805219,
+        "target_version_id": 2805659
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/term",
+        "base_test_id": 2656860,
+        "base_version_id": 2805235,
+        "target_version_id": 2805677
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course",
+        "base_test_id": 2656877,
+        "base_version_id": 2805253,
+        "target_version_id": 2805695
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course?courseSearch_recordStart=0&courseSearch_termId=&courseSearch_categoryId=&courseSearch_status=0&courseSearch_keyword=BWH+Music+Course",
+        "base_test_id": 2656887,
+        "base_version_id": 2805263,
+        "target_version_id": 2805711
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course\/xxx?tab=dateTime",
+        "script": "screenshots\/admin-course-edit-tab-date.json",
+        "base_test_id": 2656900,
+        "base_version_id": 2805278,
+        "target_version_ind": "",
+        "target_version_id": 2805726
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course\/xxx?tab=location",
+        "script": "screenshots\/admin-course-edit-tab-location.json",
+        "base_test_id": 2656912,
+        "base_version_id": 2805291,
+        "target_version_id": 2805755
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course\/xxx?tab=registration",
+        "script": "screenshots\/admin-course-edit-tab-registration.json",
+        "base_test_id": 2656923,
+        "base_version_id": 2805302,
+        "target_version_id": 2805774
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course\/xxx?tab=instructors",
+        "script": "screenshots\/admin-course-edit-tab-instructor.json",
+        "base_test_id": 2656940,
+        "base_version_id": 2805319,
+        "target_version_id": 2805795
+    },
+    {
+        "url": "https:\/\/www.secured-site7.com\/uwce-staging\/www\/fond-du-lac\/admin\/course\/xxx?tab=additional",
+        "script": "screenshots\/admin-course-edit-tab-additional.json",
+        "base_test_id": 2656956,
+        "base_version_id": 2805336,
+        "target_version_id": 2805823
+    }
+]

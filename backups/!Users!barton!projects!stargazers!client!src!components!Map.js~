@@ -1,0 +1,95 @@
+'use strict';
+
+var React = require('react-native');
+var Mapbox = require('react-native-mapbox-gl');
+var _ = require('underscore');
+
+
+var CONFIG = require('./scripts/src/config');
+var configuration = require('./scripts/configuration.json');
+
+var mapRef = 'mapRef';
+var {
+  AlertIOS,  
+  StyleSheet,
+  StatusBarIOS,
+  View
+} = React;
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  map: {
+    flex: 1
+  },
+  text: {
+    padding: 3
+  }
+});
+
+
+var MapExample = React.createClass({
+  mixins: [Mapbox.Mixin],
+  getInitialState() {
+    return configuration;
+  },
+  onRegionChange(location) {
+  //    this.setState({ zoom: location.zoom });
+  },
+  onRegionWillChange(location) {
+    console.log(location);
+  },
+  onUpdateUserLocation(location) {
+    console.log(location);
+  },
+  onOpenAnnotation(annotation) {
+    console.log(annotation);
+  },
+  onRightAnnotationTapped(e) {
+    debugger;
+    var users = _.pluck(configuration.annotations[e.id].users,'login').join('\n');
+    
+    AlertIOS.alert(
+            users,
+            null,
+            [
+              {text: 'OK', onPress: (text) => console.log('OK pressed')},
+            ],
+            'default'
+    );
+  },
+  onLongPress(location) {
+    console.log('long pressed', location);
+  },
+  render: function() {
+    StatusBarIOS.setHidden(true);
+    return (
+      <View style={styles.container}>
+        <Mapbox
+          style={styles.map}
+          direction={0}
+          rotateEnabled={true}
+          scrollEnabled={true}
+          zoomEnabled={true}
+          showsUserLocation={true}
+          ref={mapRef}
+          accessToken={CONFIG.mapbox.accessToken}
+          styleURL={this.mapStyles.emerald}
+          userTrackingMode={this.userTrackingMode.none}
+          centerCoordinate={this.state.center}
+          zoomLevel={this.state.zoom}
+          onRegionChange={this.onRegionChange}
+          onRegionWillChange={this.onRegionWillChange}
+          annotations={this.state.annotations}
+          onOpenAnnotation={this.onOpenAnnotation}
+          onRightAnnotationTapped={this.onRightAnnotationTapped}
+          onUpdateUserLocation={this.onUpdateUserLocation}
+          onLongPress={this.onLongPress} />
+      </View>
+    );
+  }
+});
+
+
+

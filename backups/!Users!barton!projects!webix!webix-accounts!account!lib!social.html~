@@ -1,0 +1,8 @@
+<template name="social">
+    <div data-id="social_{{_id}}"
+       data-view="button"
+       data-label="{{text}}"
+       data-click="{{dataClick}}"
+       data-width=100>
+  </div>
+</template>

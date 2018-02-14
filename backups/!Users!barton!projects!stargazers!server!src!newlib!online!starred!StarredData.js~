@@ -1,0 +1,8 @@
+'use strict';
+
+class StarredData {
+  constructor(data) {
+    this.data = data ? data: [];
+    
+  }
+}

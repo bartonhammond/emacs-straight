@@ -1,0 +1,17 @@
+<?php
+require_once __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class {{model.name}} extends \Automate\Page {
+   private static $_selectors = [
+    {{#attributes}}
+    {{#if attribute.strategy}}
+    "{{attribute.name}}" =>
+    [
+       "{{attribute.strategy}}" = "{{{attribute.value}}}"
+    ],
+    {{/if}} 
+    {{/attributes}}
+    ];
+
+
+}

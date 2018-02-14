@@ -1,0 +1,16 @@
+WebixDefaults.fields.push(
+    new Field({
+    _id: "name",
+    type: "text",
+    required: true,
+    minLength: 6,
+    visible: ['signUp'],
+    createUserProfile: true,
+    displayName: {
+      "default": "User Name"
+    },
+    placeholder: {
+      "default": "User Name"
+    }
+  })
+);

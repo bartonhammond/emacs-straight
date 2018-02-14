@@ -1,0 +1,42 @@
+http://www.meteorkitchen.com/
+
+Code generator for meteor.  It uses a single JSON file as it's input
+and generates tons of boilerplate code helping you get a running
+application with minimal effort.  
+
+Take menu option "Getting Started"
+   It appears you do the work of writing the JSON by hand.  You can
+   but we wont
+
+Take menu Examples
+   These examples are all built from JSON file.  They are a great
+   reference point
+
+Take API Reference
+   If you're writting the JSON yourself, this is a great API
+   reference.  Again, we'll not be writing it ourselves.
+
+Take What's UP
+   We are currently using 0.9.36.  There are some bugs...
+
+So let's register/login and start (I've already registered so we'll skip
+that step.  Instead I'll log in)
+
+Now that we've registered/logged in we are presented with the
+development environment.  Let's take a tour.
+
+On this main page, you can start the creation of your application.
+Rather then writting JSON by hand, Meteor Kitchen provides a simple
+user interface to interact.  By entering data via the web, the
+application JSON file will be automatically generated.
+
+Let's select my existing Todo and see what we have.
+
+The first option is the Designer - this where we'll do most of the
+work.  We'll be digging around the JSON struction via this interface.
+Fortunately the interface provides some help instructions.
+
+
+Since I already have my Todo application we'll select it and take a
+tour.
+

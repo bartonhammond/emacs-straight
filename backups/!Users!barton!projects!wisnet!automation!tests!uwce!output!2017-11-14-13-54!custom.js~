@@ -1,0 +1,33 @@
+$(function(){
+  $("#includedContent").load("./screenshots.html");
+  $("#includedLogs").load("./includedLogs.html");      
+  n =  new Date();
+  y = n.getFullYear();
+  m = n.getMonth() + 1;
+  d = n.getDate();
+  document.getElementById("date").innerHTML
+    = "Browserstack Screentshot: " +  m + "/" + d + "/" + y;
+});
+
+$("#logModal").on("show.bs.modal", function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var device = button.data("whatever");
+  console.log(device);
+  var x = document.getElementById(device);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+  var x = document.getElementById("device");
+  x.value = device;
+})
+$("#logModal").on("hide.bs.modal", function (event) {
+  var device = document.getElementById("device");
+  var x = document.getElementById(device.value);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }      
+})      

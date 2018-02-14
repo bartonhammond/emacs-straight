@@ -1,0 +1,42 @@
+'use strict';
+require('regenerator/runtime');
+
+import ProcessorClass from '../ProcessorClass';
+
+class GetStargazersForRepoByPageJobProcessor extends ProcessorClass{
+  constructor(queue) {
+    super(queue);
+  }
+  init() {
+    let self = this;
+
+    self.queue.process(
+      'getStargazersForRepoByPage',      
+      13, //3 batch, 10 online
+      function(job,
+               ctx,
+               done) {
+        
+        self.gitHub.access_token = job.data.access_token;
+        
+        //ratelimit the search requests at 30/min
+        self.gitHub.getStargazersByPage(
+          job.data.owner,
+          job.data.repo,
+          job.data.page)
+        
+          .then((page) => {
+            console.log('CreateGetStargazersForRepoByPageJobProcessor.page',job.data.page);
+            done(null, page);
+            
+          }).catch((err) => {
+            done(err);
+            self.needToPause(ctx, err);
+          });
+      });
+  }
+  
+}
+module.exports = GetStargazersForRepoByPageJobProcessor;
+
+

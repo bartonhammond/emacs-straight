@@ -1,0 +1,283 @@
+'use strict';
+require('regenerator/runtime');
+
+
+import ProcessorClass from '../../ProcessorClass';
+import Kue from 'kue';
+import  pako from 'pako';
+import uuid from 'uuid';
+
+class Runner extends ProcessorClass{
+  constructor() {
+    super();
+    this.redisAppPartionKey = 'app:';
+    this.redisRunnerKey = 'runner';
+  }
+  
+  init(access_token) {
+    let self = this;
+    self.queue.process(
+      'runner'
+        + '-'
+        + access_token,
+      1,
+      function(job,
+               ctx,
+               done) {
+        try {
+          self.getCountOfJobsWithId(job.data.id)
+            .then((count) => {
+              if (count && count === 1) {
+                if (job.data.page === 0) {
+
+                  //Delete existing cached value
+                  let key = job.data.owner
+                        + ':'
+                        + job.data.repo;
+                  self.redisClient.del(
+                    self.redisKeyStargazers + key);
+
+                  self.redisClient.del(
+                    self.redisKeyMapBox + key);
+
+                  //start the process
+                  job.data.page++;
+                  self.createOnlineStargazersForRepoByPageJob(job);
+                  self.createOnlineRunnerJob(job);
+                } else {
+                  //we are now through processing
+                  console.log('Runner is done');
+
+                  self.createMapboxData(job);
+                  //send it to mongodb
+                  //send it to s3
+                }
+              } else {
+                self.createOnlineRunnerJob(job);                
+              }
+
+              done();            
+            })
+            .catch((err) => {
+              done(err);              
+              self.logger.error(
+                'Runner.inner',                
+                {error: err});            
+            });
+
+        } catch(err) {
+          done(err);          
+          self.logger.error(
+            'Runner',                
+            {error: err});
+
+        };
+      });
+  } //init
+  /**
+   * Kickoff the stargazers
+   */
+  createOnlineStargazersForRepoByPageJob(job) {
+    return new Promise((resolve, reject) => {
+      try {
+        let CreateStargazers =
+              require('../stargazers/CreateStargazers');
+        
+        let createStargazers
+              = CreateStargazers.creator(job.data.access_token);
+        
+        createStargazers.createJob(
+          job.data.id,
+          job.data.owner,
+          job.data.repo,                  
+          job.data.page);
+        resolve();
+      } catch(err) {
+        reject(err);
+      }
+
+    });
+  }
+  
+  createOnlineRunnerJob (job) {
+    let CreateRunner = require('./CreateRunner');
+    let createRunner = CreateRunner.creator(job.data.access_token);
+    
+    createRunner.createJob(
+      job.data.id,
+      job.data.owner,
+      job.data.repo,
+      job.data.page
+    );
+  }
+  createMapboxData(job) {
+    let self = this;
+    let  Tiles = require('../../Tiles');
+    let tiles = new Tiles();
+
+    let  GeoColor = require('../../GeoColor');
+    let geoColor = new GeoColor();
+    
+    let  GeoToAnnotations = require('../../GeoToAnnotations');
+    let geoToAnnotations = new GeoToAnnotations();
+
+    return new Promise((resolve, reject) => {
+      try {
+        //read the data                  
+        let key = job.data.owner
+              + ':'
+              + job.data.repo;
+
+        self.getRedisValue(self.redisKeyStargazers,
+                           key)
+          .then((currentValues) =>  {
+            if (!currentValues) {
+              return  [];
+            } else {
+              return JSON.parse(pako.inflate(currentValues, { to: 'string' }));              
+            }
+          })
+        
+          .then((users) => {
+            return self.getLocations(users);
+          })
+        
+          .then((usersWithLocations) => {
+            return tiles.process(usersWithLocations);
+          })
+
+          .then((fc) => {
+            if (fc.features.length > 25) {
+              let geoColorResults = geoColor.jenks(fc);
+              return geoToAnnotations.convert(geoColorResults);                  
+            } else {
+              return geoToAnnotations.convert(fc);
+            }            
+          })
+        
+          .then((results) => {
+            //store results
+            let key =  self.redisKeyMapBox
+                  + job.data.owner
+                  + ':'
+                  + job.data.repo;
+
+            let values 
+                  = pako.deflate(JSON.stringify(results), {to: 'string' });
+            
+            self.redisClient.set(
+              key,
+              values);
+
+            //Expire in 1  month
+            self.redisClient.expire(key, 60 * 60 * 24 * 30);
+
+            self.logger.info(
+              {id: job.data.id,
+               owner: job.data.owner,
+               repo: job.data.repo,
+               access_token: job.data.access_token},
+              'Runner.createMapBox.finished');
+            resolve();
+          })
+          .catch((err) => {
+            throw(err);
+          });
+      } catch(err) {
+        reject(err);
+      }
+    });
+  }      
+
+  getLocations(users) {
+    let self = this;
+    let usersWithLocations = [];
+    users.forEach((user) => {
+      if (user && user.location) {
+        usersWithLocations.push(self.getLocationForUser(user));
+      }
+    });
+    
+    return Promise.all(usersWithLocations)
+      .then((allUsers) => {
+        let cleanedUsers = [];
+        allUsers.forEach((user) => {
+          if (user) {
+            cleanedUsers.push(user);
+          }
+        });
+        return cleanedUsers;
+      });
+    
+  }
+
+  getLocationForUser(user) {
+    let self = this;
+    let latinize = require('latinize');    
+    return new Promise((resolve, reject) => {
+      try {
+        let loc = latinize(user.location).toLowerCase();
+        
+        self.getRedisValue(
+          self.redisKeyLocation,
+          loc)
+          .then((location) => {
+            if (location) {
+              location = JSON.parse(location);
+              user.coords = location;
+              return resolve(user);
+            } else {
+              return resolve();
+            }
+          });
+        
+      } catch(err) {
+        return reject(err);
+      }
+    });
+  }
+  getCountOfJobsWithId(id) {
+    let self = this;
+    let jobs = [];
+    let types = ['active','inactive','delayed'];
+    types.forEach((type) => {
+      jobs.push(self.getJobsByType(type));      
+    });
+
+    return Promise.all(jobs)
+      .then((potentialJobs) => {
+        let jobsWithMyId = 0;    
+        potentialJobs.forEach((somejobs) => {
+          if (somejobs) {
+            somejobs.forEach((aJob) => {
+              if (aJob.data.id === id) {
+                jobsWithMyId++;
+              }
+            });
+          }
+        });
+        return Promise.resolve(jobsWithMyId);
+      })
+      .catch((err) => {
+        return Promise.reject(err);
+      });
+  }
+  getJobsByType(type) {
+    return new Promise((resolve,reject) => {
+      try {
+        Kue.Job.rangeByState( type, 0, 1000000, 'asc', function( err, jobs ) {
+          if(err) {
+            reject(err);
+          }
+          resolve(jobs);
+        });
+      } catch(err) {
+        reject(err);
+      }
+    });
+  }
+
+}
+module.exports = Runner;
+
+

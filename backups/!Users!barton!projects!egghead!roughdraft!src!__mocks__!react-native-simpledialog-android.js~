@@ -1,0 +1,8 @@
+'use strict';
+
+var SimpleAlert = {};
+
+SimpleAlert.alert = jest.genMockFunction();
+
+module.exports = SimpleAlert;
+

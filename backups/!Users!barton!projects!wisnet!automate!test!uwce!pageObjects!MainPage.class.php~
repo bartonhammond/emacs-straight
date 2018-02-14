@@ -1,0 +1,18 @@
+<?php
+require __DIR__ . "/../../../src/pageObjects/Page.class.php";
+
+class MainPage extends \Automate\Page {
+    private static $_selectors = [
+        "fond_du_lac" =>
+        [
+            "linkText" => "UW-Fond du Lac (Staging)"
+        ]
+    ];
+
+    function waitPageLoaded() {
+        $this->waitPageClickableBySelectors(self::$_selectors);
+    }
+    function selectFondDuLac() {
+        $this->click(self::$_selectors['fond_du_lac']);
+    }
+}

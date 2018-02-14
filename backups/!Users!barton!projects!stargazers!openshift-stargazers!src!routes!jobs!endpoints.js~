@@ -1,0 +1,62 @@
+/**
+ * # cache.js
+ *
+ * 1) Process GitHub repositories
+ * 2) Get all the stargazers for a repo
+ * 3) Get all the user for each stargazer
+ * 4) If location is valid, call Mapzen
+ * 5) Cache the user & mapzen coordinates in Redis
+ *  
+ * 
+ */
+'use strict';
+/**
+ * ## Imports
+ *
+ */
+//Handle the endpoints
+var CacheHandlers = require('./handlers'),
+    //Joi is Hapi's validation library
+    Joi = require('joi'),
+    internals = {};
+
+
+/**
+ * ## github/repos/{username}
+ *
+ * Get all the repos for this user
+ *
+ * NOTE: the handler is 'async' 
+ */
+internals.endpoints = [
+  {
+    method: 'GET',
+    path: '/buildcache/{minStars}/{maxStars}/{language}/{times}/{startingPage}/{endingPage}',
+    handler: {
+      async: CacheHandlers.processRespositories
+    },
+    config: {
+      // Include this API in swagger documentation
+      tags: ['api'],
+      description: 'save github user & mapzen location from stargazers',
+      notes: 'Retrieves repos that have min/max stars and retreives stargazers',
+      validate: {
+	params: {
+          minStars: Joi.number().integer().optional().default(1),
+          maxStars: Joi.number().integer().optional().default(2),
+	  language: Joi.string().valid(['javascript', 'java',
+                                        'python', 'go', 'ruby',
+                                        'clojure', 'c', 'php',
+                                        'css',
+                                        'html','c++']).optional().default('javascript'),
+          times: Joi.number().integer().optional().default(1),
+          startingPage: Joi.number().integer().optional().default(1),
+          endingPage: Joi.number().integer().optional().default(1)          
+	}
+      }
+    }
+  }
+];
+
+
+module.exports = internals;

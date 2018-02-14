@@ -1,0 +1,6 @@
+npm install  immutable  key-mirror  react-native \
+react-native-gifted-spinner \ 
+react-native-navbar  react-native-router-flux \
+react-native-simple-store react-native-simpledialog-android \
+react-native-vector-icons react-redux redux redux-thunk regenerator \
+tcomb-form-native underscore validate.js --save
